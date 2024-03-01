@@ -1,6 +1,7 @@
 import { catalogService } from "@/services/catalogService";
 import styles from './styles.module.scss'
 import Link from "next/link";
+import Modal from "../modal/Modal";
 
 
 const HeaderPrimary = async () => {
@@ -9,7 +10,7 @@ const HeaderPrimary = async () => {
     return(
         <>
             <header className={`${styles.header} container flex justify-between items-center`}>
-                    <button type="button" className={styles.btnHeader}>≡</button>
+                    <Modal catalog={catalog} />
             </header>
         </>
     )

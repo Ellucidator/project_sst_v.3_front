@@ -1,0 +1,83 @@
+@import '../../styles/colors/colors.module.scss';
+
+.btnHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12px;
+    background-color: $secondary;
+    font-size: 45px;
+    border-radius: 20%;
+    height: 50px;
+    width: 50px;
+}
+
+.modal {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    top: 1%;
+    left: 10%;
+    background-color: #303030;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 8px 6px 4px #0000007c;
+
+    /* CONTEÚDO DO MODAL */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 24px;
+
+    .btnModal {
+        align-self: flex-end;
+        color: $secondary;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+.modalLink {
+    color: white;
+    margin: 5px 0px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.overlayModal {
+    background-color: transparent;
+}
+
+///Botão
+.btnSub{
+    margin-left: 15px;
+    color: $secondary;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btnSubTest{
+    margin-left: 15px;
+    color: $secondary;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+
+
+///SubCategoty
+.subCategory {
+    display: none;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
+
+.subCategoryActive {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
