@@ -3,61 +3,64 @@ import { Categories } from "@/types/catalogTypes";
 import ReactModal from "react-modal"
 import styles from './styles.module.scss'
 import { MouseEvent, useState } from "react";
+import Link from "next/link";
 
 type Props = {
     catalog: Categories[]
 }
 
-const Modal = ({catalog}: Props) => {
+const Modal = ({ catalog }: Props) => {
     const [open, setOpen] = useState(false)
-    const [test, setTest] = useState(()=>{
-        return `${styles.btnSub}`
-    })
-    
-
     const handleClick = () => {
         setOpen(!open)
     }
 
-    const subCategoryOpen = (ev:MouseEvent<HTMLButtonElement>) => {
-        //@ts-ignore
-        const subCategory = ev.target.parentNode.parentNode.children.subCategory
 
-        if(subCategory.style.display === 'none'){
-            subCategory.style.display = 'block'
-            setTest(`${styles.btnSubTest}`)
-        }else{
-            subCategory.style.display = 'none'
-            setTest(`${styles.btnSub}`)
+
+    const subCategoryOpen = (ev: MouseEvent<HTMLButtonElement>, category: Categories) => {
+        const button = ev.currentTarget
+        console.log(button)
+
+        const subCategory = document.getElementById(`${category.name}-${category.id}`)
+        if (subCategory?.className === styles.subCategoryList) {
+            subCategory.className = styles.subCategoryOpen
+            button.className = styles.btnSubActive
+        } else {
+            subCategory!.className = styles.subCategoryList
+            button.className = styles.btnSub
         }
     }
 
     return (
         <>
             <button onClick={handleClick} type="button" className={styles.btnHeader}>≡</button>
-            <ReactModal 
-            isOpen={open}
-            shouldCloseOnEsc={true}
-            className={styles.modal}
-            overlayClassName={styles.overlayModal}
-            
-
+            <ReactModal
+                isOpen={open}
+                shouldCloseOnEsc={true}
+                className={styles.modal}
+                overlayClassName={styles.overlayModal}
+                appElement={document.getElementById('header')!}
             >
                 <button onClick={handleClick} type="button" className={styles.btnModal} >X</button>
                 {catalog.map((category) => (
-                    <div key={category.id} className={styles.categories}>             
-                            <h3  className={styles.categoryTittle}>
-                                {category.name}
-                                <button onClick={subCategoryOpen} className={`${test}`}>V</button>
-                            </h3>
-                            <ul id="subCategory" className={styles.subCategory}>
+                    <div key={category.id} className={styles.categories}>
+                        <div className="flex">
+                            <Link href={`/`}>
+                                <h3 className={styles.categoryTittle}>
+                                    {category.name}
+                                </h3>
+                            </Link>
+                            <button onClick={(ev) => subCategoryOpen(ev, category)} className={`${styles.btnSub}`}>⇱</button>
+                        </div>
+                        <ul key={`${category.id}`} id={`${category.name}-${category.id}`} className={styles.subCategoryList}>
                             {category.SubCategories.map((subCategory) => (
-                                <li key={subCategory.id} >
-                                    {subCategory.name}
+                                <li key={subCategory.id} className={styles.subCategory} >
+                                    <Link href={`/`}>
+                                        {subCategory.name}
+                                    </Link>
                                 </li>
                             ))}
-                            </ul>
-                        
+                        </ul>
                     </div>
                 ))}
             </ReactModal>

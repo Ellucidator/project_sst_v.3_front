@@ -18,7 +18,8 @@
     height: 100%;
     top: 1%;
     left: 10%;
-    background-color: #303030;
+    background-color: $primary;
+    color: $secondary;
     outline: none;
     border-radius: 5px;
     box-shadow: 8px 6px 4px #0000007c;
@@ -47,37 +48,46 @@
     background-color: transparent;
 }
 
+
+.categoryTittle {
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.1s;
+}
 ///Botão
 .btnSub{
     margin-left: 15px;
-    color: $secondary;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
     transition: 0.5s;
-}
-.btnSubTest{
-    margin-left: 15px;
-    color: $secondary;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
-    transform: rotate(180deg);
-    transition: 0.5s;
+    transform: rotate(-135deg);
 }
 
+.btnSubActive{
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.5s;
+    transform: rotate(45deg);
+}
 
 ///SubCategoty
-.subCategory {
+.subCategoryList {
     display: none;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    transition: 0.5s;
 }
 
-.subCategoryActive {
+.subCategoryOpen {
     display: block;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    transition: 0.5s;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    transition: 0.1s;
 }
+
+.subCategory:hover, .categoryTittle:hover{
+    transform: scale(1.015);
+    transition: 0.1s;
+}
+
