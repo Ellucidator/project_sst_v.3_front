@@ -1,0 +1,22 @@
+@import '../../styles/colors/colors.module.scss';
+
+.header{
+    height: 100px;
+    width: 100%;
+    background-color: $primary;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+
+    .btnHeader{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 12px;
+        background-color: $secondary;
+        font-size: 45px;
+        border-radius: 20%;
+        height: 50px;
+        width: 50px;
+    }
+}

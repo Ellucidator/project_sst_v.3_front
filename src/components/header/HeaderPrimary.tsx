@@ -1,18 +1,15 @@
+import { catalogService } from "@/services/catalogService";
+import styles from './styles.module.scss'
+import Link from "next/link";
 
 
-
-const HeaderPrimary = () => {
-    
+const HeaderPrimary = async () => {
+        const catalog = await catalogService.getCatalog();
+        
     return(
         <>
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
-                    </ul>
-                </nav>
+            <header className={`${styles.header} container flex justify-between items-center`}>
+                    <button type="button" className={styles.btnHeader}>≡</button>
             </header>
         </>
     )
