@@ -4,9 +4,13 @@ import Link from "next/link";
 import Modal from "../modal/Modal";
 import Image from "next/image";
 import searchIcon from "../../../public/public/header/search.svg"
+import { cookieService } from "@/services/cookieService";
 
 
 const HeaderPrimary = async () => {
+
+        const validate = await cookieService.verifySession();
+        console.log(validate)
         const catalog = await catalogService.getCatalog();
         
     return(
@@ -18,13 +22,14 @@ const HeaderPrimary = async () => {
                     </div>
 
                     <form className={styles.headerCenter}>
-                        <input type="search" className={styles.inputSearch}/>
+                        <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto"/>
                         <button type="submit" className={styles.btnSearch}>
-                            <Image src={searchIcon} alt="search" />
+                            <Image src={searchIcon} alt="search" className={styles.searchIcon} />
                         </button>
                     </form>
 
                     <div className={styles.headerRight}>
+
                     </div>
             </header>
         </>
