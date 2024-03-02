@@ -18,11 +18,19 @@
     }
 }
 
+//Modal
 .modal {
     position: absolute;
+    transition: 0.3s;
+    width: 0px;
+    left: 10%;
+}
+.modalOpen {
+    position: absolute;
+    visibility: visible;
+    transition: 0.5s;
     width: 300px;
     height: 100%;
-    top: 1%;
     left: 10%;
     background-color: $primary;
     color: $secondary;
@@ -48,16 +56,13 @@
     }
 
 }
-
-.modalLink {
-    color: white;
-    margin: 5px 0px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 .overlayModal {
-    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 
@@ -67,7 +72,8 @@
     cursor: pointer;
     transition: 0.1s;
 }
-///Botão
+
+///Botão SubCategoty
 .btnSub{
     margin-left: 15px;
     font-weight: bold;
@@ -79,7 +85,6 @@
         color: $tertiary;
     }
 }
-
 .btnSubActive{
     margin-left: 15px;
     font-weight: bold;
@@ -97,14 +102,12 @@
 .subCategoryList {
     display: none;
 }
-
 .subCategoryOpen {
     display: block;
     margin-left: 15px;
     margin-bottom: 10px;
-    transition: 0.1s;
+    transition: 0.5s;
 }
-
 .subCategory:hover, .categoryTittle:hover{
     color: $tertiary;
     transform: scale(1.015);

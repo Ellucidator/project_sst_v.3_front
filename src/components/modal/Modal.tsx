@@ -10,22 +10,32 @@ type Props = {
 }
 
 const Modal = ({ catalog }: Props) => {
-    
+
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
         const elementClient: HTMLElement = document.getElementById('header')!
         setElement(elementClient)
-    },[])
+    }, [])
     const [open, setOpen] = useState(false)
+    const [styleModal, setStyleModal] = useState(styles.modal)
     const handleClick = () => {
+
         setOpen(!open)
+
+        setTimeout(() => {
+            if (open) {
+                setStyleModal(styles.modal);
+            } else {
+                setStyleModal(styles.modalOpen);
+            }
+        }, 0.1);
+        
     }
 
 
-    
+
     const subCategoryOpen = (ev: MouseEvent<HTMLButtonElement>, category: Categories) => {
         const button = ev.currentTarget
-        console.log(button)
 
         const subCategory = document.getElementById(`${category.name}-${category.id}`)
         if (subCategory?.className === styles.subCategoryList) {
@@ -43,9 +53,11 @@ const Modal = ({ catalog }: Props) => {
             <ReactModal
                 isOpen={open}
                 shouldCloseOnEsc={true}
-                className={styles.modal}
+                className={styleModal}
                 overlayClassName={styles.overlayModal}
                 appElement={element}
+                shouldCloseOnOverlayClick={true}
+                onRequestClose={handleClick}
             >
                 <button onClick={handleClick} type="button" className={styles.btnModal} >X</button>
                 {catalog.map((category) => (
