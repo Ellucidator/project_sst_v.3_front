@@ -10,7 +10,9 @@ const HeaderPrimary = async () => {
     return(
         <>
             <header id="header" className={`${styles.header} container flex justify-between items-center`}>
-                    <Modal catalog={catalog} />
+                    <div>
+                        <Modal catalog={catalog} />
+                    </div>
             </header>
         </>
     )

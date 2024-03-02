@@ -10,6 +10,12 @@
     border-radius: 20%;
     height: 50px;
     width: 50px;
+    transition: 0.5s linear;
+
+    &:hover{
+        transition: 0.5s linear;
+        background: $tertiary; ;
+    }
 }
 
 .modal {
@@ -34,7 +40,13 @@
         color: $secondary;
         font-weight: bold;
         font-size: 20px;
+        transition: 0.2s;
+        &:hover {
+            color: $tertiary;
+            transform: scale(1.02);
+        }
     }
+
 }
 
 .modalLink {
@@ -63,6 +75,9 @@
     cursor: pointer;
     transition: 0.5s;
     transform: rotate(-135deg);
+    &:hover {
+        color: $tertiary;
+    }
 }
 
 .btnSubActive{
@@ -72,6 +87,10 @@
     cursor: pointer;
     transition: 0.5s;
     transform: rotate(45deg);
+    color: $tertiary;
+    &:hover {
+        color: $secondary;
+    }
 }
 
 ///SubCategoty
@@ -87,6 +106,7 @@
 }
 
 .subCategory:hover, .categoryTittle:hover{
+    color: $tertiary;
     transform: scale(1.015);
     transition: 0.1s;
 }

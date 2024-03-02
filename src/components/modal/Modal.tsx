@@ -2,7 +2,7 @@
 import { Categories } from "@/types/catalogTypes";
 import ReactModal from "react-modal"
 import styles from './styles.module.scss'
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
 
 type Props = {
@@ -10,13 +10,19 @@ type Props = {
 }
 
 const Modal = ({ catalog }: Props) => {
+    
+    const [element, setElement] = useState<HTMLElement>()
+    useEffect(() => {
+        const elementClient: HTMLElement = document.getElementById('header')!
+        setElement(elementClient)
+    },[])
     const [open, setOpen] = useState(false)
     const handleClick = () => {
         setOpen(!open)
     }
 
 
-
+    
     const subCategoryOpen = (ev: MouseEvent<HTMLButtonElement>, category: Categories) => {
         const button = ev.currentTarget
         console.log(button)
@@ -39,7 +45,7 @@ const Modal = ({ catalog }: Props) => {
                 shouldCloseOnEsc={true}
                 className={styles.modal}
                 overlayClassName={styles.overlayModal}
-                appElement={document.getElementById('header')!}
+                appElement={element}
             >
                 <button onClick={handleClick} type="button" className={styles.btnModal} >X</button>
                 {catalog.map((category) => (
