@@ -1,16 +1,18 @@
 import { catalogService } from "@/services/catalogService";
 import styles from './styles.module.scss'
 import Link from "next/link";
-import Modal from "../modal/Modal";
+import Modal from "../modal";
 import Image from "next/image";
 import searchIcon from "../../../public/public/header/search.svg"
 import { cookieService } from "@/services/cookieService";
+import HeaderRightAuth from "./headerRightAuth";
+import HeaderRightGeneric from "./headerRightGeneric";
 
 
 const HeaderPrimary = async () => {
 
         const validate = await cookieService.verifySession();
-        console.log(validate)
+
         const catalog = await catalogService.getCatalog();
         
     return(
@@ -29,7 +31,7 @@ const HeaderPrimary = async () => {
                     </form>
 
                     <div className={styles.headerRight}>
-
+                        {validate ? <HeaderRightAuth /> : <HeaderRightGeneric />}
                     </div>
             </header>
         </>
