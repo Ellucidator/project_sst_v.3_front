@@ -4,13 +4,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    
     flex-wrap: nowrap;
     background-color: $primary;
 
 }
 .headerContainer{
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
@@ -24,7 +26,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 10px 20px;
-    padding: 15px 10px;
+    padding: 15px 0px;
 
     .logoHeader{
         width: 300px;
@@ -35,13 +37,15 @@
 }
 
 .headerCenter{
-    width: 40%;
+    width: 50%;
     height: 50px;
     display: flex;
     flex-wrap: nowrap;
-    border: 2px solid $tertiaryDark;
+    align-self: flex-end;
+    margin-bottom: 18px;
+    border: none;
     background-color: $primaryLight;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
     .inputSearch{
         width: 100%;
@@ -77,6 +81,36 @@
 
 .headerRight{
     display: flex;
-    flex-wrap: wrap;   
-    margin-right: 25px;
+    
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-left: 30px;
+    .linkHeader{
+        display: flex;
+        color: $secondaryLight;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+
+        .chatIcon{
+            filter: invert(100%);
+            padding: 0px 0px 10px 5px;
+        }
+
+        &:hover {
+            transform: scale(1.02);
+            color: $tertiary;
+            padding-left: 3px;
+            border-left: 2px solid $tertiary;
+
+            .chatIcon{
+                filter: invert(70%);
+            }
+        }
+    }
+
+    .division{
+        color: $secondaryLight;
+        font-weight: bold;
+    }
 }

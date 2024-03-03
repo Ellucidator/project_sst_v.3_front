@@ -41,7 +41,8 @@
     background-color: $primary;
     color: $secondary;
     outline: none;
-    border-radius: 5px;
+    border-right: 4px solid $tertiaryDark;
+    border-top-right-radius: 30px;
     box-shadow: 8px 6px 4px #0000007c;
 
     /* CONTEÚDO DO MODAL */
@@ -53,6 +54,8 @@
         align-self: flex-end;
         color: $secondary;
         font-weight: bold;
+        height: 60px;
+        width: 60px;
         font-size: 20px;
         transition: 0.2s;
         &:hover {

@@ -32,6 +32,13 @@ const HeaderPrimary = async () => {
                     </form>
 
                     <div className={styles.headerRight}>
+                        <div className={styles.linkHeader}>
+                            <Link href="/" >
+                                Contato
+                            </Link>
+                            <Image src='/public/header/chat-dots.svg' alt="search" className={styles.chatIcon}
+                                width={20} height={20} />
+                        </div>
                         {validate ? <HeaderRightAuth /> : <HeaderRightGeneric />}
                     </div>
                 </main>
