@@ -1,20 +1,26 @@
 @import '../../styles/colors/colors.module.scss';
 
+
 .btnHeader{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 12px;
-    background-color: $secondary;
-    font-size: 45px;
+    // background-color: $primaryLight;
+    font-size: 18px;
     border-radius: 20%;
-    height: 50px;
-    width: 50px;
-    transition: 0.5s linear;
+    padding: 10px 10px;
+    border-left: 4px solid $tertiaryDark;
+    
+    transition: 0.2s linear;
 
+    .icon{
+        filter: invert(100%);
+    }
     &:hover{
-        transition: 0.5s linear;
-        background: $tertiary; ;
+        transition: 0.2s linear;
+        border-left: 4px solid $tertiary;
+        border-bottom: 1px solid $tertiary;
     }
 }
 
@@ -23,15 +29,15 @@
     position: absolute;
     transition: 0.3s;
     width: 0px;
-    left: 10%;
+    left: 0%;
 }
 .modalOpen {
     position: absolute;
     visibility: visible;
     transition: 0.5s;
-    width: 300px;
+    width: 350px;
     height: 100%;
-    left: 10%;
+    left: 0%;
     background-color: $primary;
     color: $secondary;
     outline: none;

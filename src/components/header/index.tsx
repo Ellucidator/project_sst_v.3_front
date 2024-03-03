@@ -11,20 +11,21 @@ import HeaderRightGeneric from "./headerRightGeneric";
 
 const HeaderPrimary = async () => {
 
-        const validate = await cookieService.verifySession();
+    const validate = await cookieService.verifySession();
 
-        const catalog = await catalogService.getCatalog();
-        
-    return(
+    const catalog = await catalogService.getCatalog();
+
+    return (
         <>
-            <header id="header" className={`${styles.header} container flex justify-between items-center`}>
+            <header id="header" className={`${styles.header}`}>
+                <main className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerLeft}>
                         <Modal catalog={catalog} />
-                        <div className={styles.logoHeader}/>
+                        <div className={styles.logoHeader} />
                     </div>
 
                     <form className={styles.headerCenter}>
-                        <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto"/>
+                        <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto" />
                         <button type="submit" className={styles.btnSearch}>
                             <Image src={searchIcon} alt="search" className={styles.searchIcon} />
                         </button>
@@ -33,6 +34,7 @@ const HeaderPrimary = async () => {
                     <div className={styles.headerRight}>
                         {validate ? <HeaderRightAuth /> : <HeaderRightGeneric />}
                     </div>
+                </main>
             </header>
         </>
     )

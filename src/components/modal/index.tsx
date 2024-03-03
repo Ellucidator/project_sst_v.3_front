@@ -4,6 +4,7 @@ import ReactModal from "react-modal"
 import styles from './styles.module.scss'
 import { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
     catalog: Categories[]
@@ -49,7 +50,16 @@ const Modal = ({ catalog }: Props) => {
 
     return (
         <>
-            <button onClick={handleClick} type="button" className={styles.btnHeader}>≡</button>
+            <button onClick={handleClick} type="button" className={styles.btnHeader}>
+                <p className="flex gap-2 border-b-2">
+                    Catalogo
+                    <Image src="/public/header/shop.svg" alt="catalog" className={styles.icon} width={20} height={20} />
+                </p>
+                <p className="flex gap-2">
+                    Serviços
+                    <Image src="/public/header/pc-display.svg" alt="services" className={styles.icon} width={20} height={20} />
+                </p>
+            </button>
             <ReactModal
                 isOpen={open}
                 shouldCloseOnEsc={true}
