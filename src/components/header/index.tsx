@@ -21,7 +21,9 @@ const HeaderPrimary = async () => {
                 <main className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerLeft}>
                         <Modal catalog={catalog} />
-                        <div className={styles.logoHeader} />
+                        <Link href="/" className={styles.logoHeader}>
+                            <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
+                        </Link>
                     </div>
 
                     <form className={styles.headerCenter}>
