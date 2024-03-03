@@ -1,0 +1,19 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.linkHeader{
+    color: $secondaryLight;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+    &:hover {
+        transform: scale(1.02);
+        color: $tertiary;
+        border-bottom: 2px solid $tertiary;
+    }
+}
+.division{
+    color: $secondaryLight;
+    font-weight: bold;
+}
