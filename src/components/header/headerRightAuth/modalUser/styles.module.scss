@@ -1,17 +1,41 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.btnHeader{
+.divUser{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: $primaryLight;
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    padding: 10px 10px;
-    border: 2px solid $tertiaryDark;
-    
+    background-color: $primaryDark;
+    border-left: 1px solid $tertiaryDark;
+    border-right: 1px solid $tertiaryDark;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 0px 5px 0px 3px;
+    cursor: pointer;
+
+    .username{
+        display: flex;
+        justify-content: center;
+        gap: 3px;
+        align-items: center;
+        width: auto;
+        height: 40px;
+        margin-right: 10px;
+
+        .userIcon{
+            filter: invert(90%);
+            height: 22px;
+        }
+        
+    }
+    .iconSeta{
+        transform: rotate(-139deg);
+        padding-bottom: 8px;
+        transition: 0.5s;
+    }
+    .iconSetaOpen{
+        transform: rotate(45deg);
+        transition: 0.5s;
+        color: $tertiaryLight;
+    }
 }
 .overlayModal {
     position: fixed;
@@ -26,7 +50,8 @@
         position: absolute;
         transition: 0.3s;
         height: 0px;
-        left: 0%;
+        right: 16%;
+        top: 14%;
 }
 .modalOpen{
     position: absolute;
@@ -34,11 +59,24 @@
     width: 220px;
     height: 300px;
     right: 16%;
-    top: 14%;
+    top: 13%;
     background-color: $primaryLight;
+    border-right: 1.5px solid $tertiary;
     border-radius: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 15px solid $primaryLight;
+    
+        top: -15px;
+        right: 5%;
+    }
 }

@@ -7,11 +7,15 @@ import searchIcon from "../../../public/public/header/search.svg"
 import { cookieService } from "@/services/cookieService";
 import HeaderRightAuth from "./headerRightAuth";
 import HeaderRightGeneric from "./headerRightGeneric";
+import { UserPayload } from "@/types/userTypes";
 
 
 const HeaderPrimary = async () => {
 
     const validate = await cookieService.verifySession();
+    if(typeof validate === 'string'){
+        return validate
+    }
 
     const catalog = await catalogService.getCatalog();
 
@@ -41,7 +45,7 @@ const HeaderPrimary = async () => {
                             <Image src='/public/header/chat-dots.svg' alt="search" className={styles.chatIcon}
                                 width={20} height={20} />
                         </div>
-                        {validate ? <HeaderRightAuth /> : <HeaderRightGeneric />}
+                        {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
                     </div>
                 </main>
             </header>

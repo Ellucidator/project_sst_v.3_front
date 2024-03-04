@@ -2,16 +2,21 @@
 import ReactModal from "react-modal"
 import styles from './styles.module.scss'
 import { useEffect, useState } from "react"
+import Image from "next/image"
+import { UserPayload } from "@/types/userTypes"
 
+type Props = {
+    payload: UserPayload
+}
+const ModalUser = ({payload}: Props) => {
 
-const ModalUser = () => {
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
         const elementClient: HTMLElement = document.getElementById('header')!
         setElement(elementClient)
     }, [])
 
-
+    const [iconSetaClass, setIconSetaClass] = useState(() => styles.iconSeta)
     const [open, setOpen] = useState(false)
     const [styleModal, setStyleModal] = useState(styles.modal)
     const handleClick = () => {
@@ -21,19 +26,25 @@ const ModalUser = () => {
         setTimeout(() => {
             if (open) {
                 setStyleModal(styles.modal);
+                setIconSetaClass(styles.iconSeta)
             } else {
                 setStyleModal(styles.modalOpen);
+                setIconSetaClass(styles.iconSetaOpen)
             }
         }, 0.1);
         
     }
     return (
         <div>
-            <span>
-                <button onClick={handleClick} className={styles.btnHeader}>
-                    teste
-                </button>
-            </span>
+            <div className={styles.divUser}  onClick={handleClick}>
+                <div  className={styles.username}>
+                    <Image src='/public/header/user-icon.svg' alt="user" className={styles.userIcon} width={30} height={30} />
+                    {payload.name}
+                </div>
+                <p className={iconSetaClass}>
+                    ⇱
+                </p>
+            </div>
             <ReactModal
                 isOpen={open}
                 className={styleModal}

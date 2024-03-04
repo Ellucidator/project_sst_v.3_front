@@ -1,13 +1,17 @@
 import Link from "next/link"
 import styles from './styles.module.scss'
 import ModalUser from "./modalUser"
+import { UserPayload } from "@/types/userTypes"
 
-const HeaderRightAuth = () => {
+type Props = {
+    payload: UserPayload
+}
+const HeaderRightAuth = ({payload}: Props) => {
 
     return(
         <div>
             <Link className={styles.headerAuth} href="/" >
-                <ModalUser/>
+                <ModalUser payload={payload}/>
             </Link>
         </div>
     )
