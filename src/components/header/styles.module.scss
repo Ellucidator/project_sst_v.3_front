@@ -8,118 +8,165 @@
     flex-wrap: nowrap;
     background-color: $primary;
 
-}
-.headerContainer{
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 5px;
-}
-
-.headerLeft{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 10px 20px;
-    padding: 15px 0px;
-
-    .logoHeader{
-        padding-bottom: 5px;
-        .logo{
-            width: 250px;
-            height: 95px;
-        }
-    }
-}
-
-.headerDiv2{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-wrap: nowrap;
-    width: 70%;
-    height: 100%;
-
-}
-.headerCenter{
-    width: 80%;
-    height: 50px;
-    display: flex;
-    
-    flex-wrap: nowrap;
-    margin-bottom: 20px;
-    border: none;
-    background-color: $primaryLight;
-    border-radius: 5px;
-    padding: 5px;
-    .inputSearch{
-        width: 100%;
-        height: 100%;
-        border: none;
-        background-color: transparent;
-        color: $secondaryLight;
-        outline: none;
-        padding-left: 10px;
-    }
-    .btnSearch{
-        width: 40px;
-        height: auto;
+    .headerContainer{
         display: flex;
-        align-items: center;
+        gap: 15px;
         justify-content: center;
-        padding: 0px 10px;
-        border-radius: 8px;
-        background-color: transparent;
-        cursor: pointer;
-        .searchIcon{
-            filter: invert(100%);
-            &:hover{
-                filter: invert(80%);
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+        padding: 5px;
+    
+        .headerLeft{
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 10px 20px;
+            padding: 15px 0px;
+        
+            .logoHeader{
+                padding-bottom: 5px;
+                .logo{
+                    width: 250px;
+                    height: 95px;
+                }
             }
+        }
+
+        .headerDiv2{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            flex-wrap: nowrap;
+            width: 70%;
+            height: 100%;
+        
+            .headerCenter{
+                width: 80%;
+                height: 50px;
+                display: flex;
+                
+                flex-wrap: nowrap;
+                margin-bottom: 20px;
+                border: none;
+                background-color: $primaryLight;
+                border-radius: 5px;
+                padding: 5px;
+                .inputSearch{
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    background-color: transparent;
+                    color: $secondaryLight;
+                    outline: none;
+                    padding-left: 10px;
+                }
+                .btnSearch{
+                    width: 40px;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0px 10px;
+                    border-radius: 8px;
+                    background-color: transparent;
+                    cursor: pointer;
+                    .searchIcon{
+                        filter: invert(100%);
+                        &:hover{
+                            filter: invert(80%);
+                        }
+                    }
+                }
+            
+                &:hover{
+                    border-color: $tertiary;
+                }
+            }
+        
+            .headerRight{
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                justify-content: center;
+                align-self: center;
+                margin: 10px 0px 10px 25px;
+                .linkHeader{
+                    display: flex;
+                    color: $secondaryLight;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: 0.2s;
+            
+                    .chatIcon{
+                        filter: invert(100%);
+                        padding: 0px 0px 10px 5px;
+                    }
+            
+                    &:hover {
+                        transform: scale(1.02);
+                        color: $tertiary;
+                        padding-left: 3px;
+                        border-left: 2px solid $tertiary;
+            
+                        .chatIcon{
+                            filter: invert(70%);
+                        }
+                    }
+                }
+            
+                .division{
+                    color: $secondaryLight;
+                    font-weight: bold;
+                }
+            }
+        
         }
     }
 
-    &:hover{
-        border-color: $tertiary;
+}
+
+
+
+
+
+@media(max-width:1024px) {
+    .header{
+        .headerContainer{
+
+            .headerDiv2{
+                flex-wrap: wrap-reverse;
+
+                .headerCenter{
+                    width: 100%;
+                }
+            }
+        }
+
     }
 }
 
-.headerRight{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-    margin: 0px 0px 10px 25px;
-    .linkHeader{
-        display: flex;
-        color: $secondaryLight;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.2s;
-
-        .chatIcon{
-            filter: invert(100%);
-            padding: 0px 0px 10px 5px;
-        }
-
-        &:hover {
-            transform: scale(1.02);
-            color: $tertiary;
-            padding-left: 3px;
-            border-left: 2px solid $tertiary;
-
-            .chatIcon{
-                filter: invert(70%);
+@media(max-width:605px) {
+    .header{
+        .headerContainer{
+            flex-wrap: wrap;
+            gap: 0px;
+            .headerLeft{
+                width: 70%;
+                padding-bottom: 0px;
+            }
+            .headerDiv2{
+                height: auto;
+                width: 70%;
+                flex-wrap: wrap-reverse;
+                .headerCenter{
+                    width: 100%;
+                }
+                .headerRight{
+                    margin-top: 0px;
+                }
             }
         }
-    }
 
-    .division{
-        color: $secondaryLight;
-        font-weight: bold;
     }
 }
