@@ -12,6 +12,10 @@ async function getCatalog() {
     return data;
 }
 
+async function getFeaturedPromotion(){
+    
+}
+
 
 export const catalogService = {
     getCatalog

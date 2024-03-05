@@ -10,7 +10,7 @@ const HeaderRightGeneric = () => {
             </Link>
             <p className={styles.division}>|</p>
             <Link className={styles.linkHeader} href="/register">
-                <button type="button">CADASTRO</button>
+                <button type="button">CADASTRAR</button>
             </Link>
         </div>
     )

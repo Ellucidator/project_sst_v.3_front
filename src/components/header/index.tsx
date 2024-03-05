@@ -23,7 +23,7 @@ const HeaderPrimary = async () => {
         <>
             <header id="header" className={`${styles.header}`}>
                 <main className={`container ${styles.headerContainer}`}>
-                    <div className={styles.headerLeft}>
+                    <div className={styles.headerDiv1}>
                         <Modal catalog={catalog} />
                         <Link href="/" className={styles.logoHeader}>
                             <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
