@@ -11,14 +11,14 @@
     border-radius: 20%;
     padding: 10px 10px;
     border-left: 4px solid $tertiaryDark;
-    
-    transition: 0.2s linear;
+    border-bottom: 1px solid transparent;
+    transition: 0.5s linear;
 
     .icon{
         filter: invert(100%);
     }
     &:hover{
-        transition: 0.2s linear;
+        transition: 0.5s linear;
         border-left: 4px solid $tertiary;
         border-bottom: 1px solid $tertiary;
     }

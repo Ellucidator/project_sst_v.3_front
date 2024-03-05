@@ -13,7 +13,7 @@ import { UserPayload } from "@/types/userTypes";
 const HeaderPrimary = async () => {
 
     const validate = await cookieService.verifySession();
-    if(typeof validate === 'string'){
+    if (typeof validate === 'string') {
         return validate
     }
 
@@ -30,23 +30,27 @@ const HeaderPrimary = async () => {
                         </Link>
                     </div>
 
-                    <form className={styles.headerCenter}>
-                        <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto" />
-                        <button type="submit" className={styles.btnSearch}>
-                            <Image src={searchIcon} alt="search" className={styles.searchIcon} />
-                        </button>
-                    </form>
+                    <div className={styles.headerDiv2}>
+                        <form className={styles.headerCenter}>
+                            <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto" />
+                            <button type="submit" className={styles.btnSearch}>
+                                <Image src={searchIcon} alt="search" className={styles.searchIcon} />
+                            </button>
+                        </form>
 
-                    <div className={styles.headerRight}>
-                        <div className={styles.linkHeader}>
-                            <Link href="/" >
-                                Contato
-                            </Link>
-                            <Image src='/public/header/chat-dots.svg' alt="search" className={styles.chatIcon}
-                                width={20} height={20} />
+                        <div className={styles.headerRight}>
+                            <div className={styles.linkHeader}>
+                                <Link href="/" >
+                                    Contato
+                                </Link>
+                                <Image src='/public/header/chat-dots.svg' alt="search" className={styles.chatIcon}
+                                    width={20} height={20} />
+                            </div>
+                            {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
                         </div>
-                        {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
                     </div>
+
+
                 </main>
             </header>
         </>
