@@ -13,10 +13,18 @@ async function getCatalog() {
 }
 
 async function getFeaturedPromotion(){
-    
+    const res = await fetch('http://localhost:3000/promotions/featured', {
+        next:{
+            revalidate: 60*60*60*24
+        },
+        cache: 'force-cache'
+    })
+    const data = await res.json();
+    return data;
 }
 
 
 export const catalogService = {
-    getCatalog
+    getCatalog,
+    getFeaturedPromotion
 }
