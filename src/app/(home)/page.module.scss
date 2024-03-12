@@ -1,7 +1,23 @@
 .home{
     background-image: url('../../../public/public/home/bg-home.svg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100vh;
     width: 100%;
+
+    .promotion{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 20px;
+
+        .promotionBanner{
+            width: 80%;
+            height: auto;
+        }
+    }
 }
+

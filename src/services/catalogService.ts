@@ -1,4 +1,5 @@
 import { Categories } from "@/types/catalogTypes";
+import { PromotionWithItems } from "@/types/promotionsTypes";
 
 
 async function getCatalog() {
@@ -17,9 +18,10 @@ async function getFeaturedPromotion(){
         next:{
             revalidate: 60*60*60*24
         },
-        cache: 'force-cache'
+        cache: 'no-store'
     })
-    const data = await res.json();
+    const data: PromotionWithItems = await res.json();
+    console.log(data)
     return data;
 }
 
