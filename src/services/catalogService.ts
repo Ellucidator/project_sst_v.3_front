@@ -18,7 +18,7 @@ async function getFeaturedPromotion(){
         next:{
             revalidate: 60*60*60*24
         },
-        cache: 'no-store'
+        cache: 'force-cache'
     })
     const data: PromotionWithItems = await res.json();
     console.log(data)

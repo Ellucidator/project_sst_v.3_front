@@ -8,15 +8,32 @@
     height: 100vh;
     width: 100%;
 
-    .promotion{
+    .homeContainer{
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
-        padding-top: 20px;
 
-        .promotionBanner{
-            width: 80%;
-            height: auto;
+        .slide{
+            align-items: center;
+            width: 85%;
+            padding: 20px 0px 0px 12px;
+        }
+        .promotion{
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            padding: 20px 0px 0px 12px;
+    
+            .promotionLink{
+                width: 100%;
+    
+                .promotionBanner{
+                    width: 100%;
+                    height: 90%;
+                    border-radius: 5px;
+                }
+            }
         }
     }
 }
