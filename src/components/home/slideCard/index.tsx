@@ -18,16 +18,33 @@ export const SlideCard = ({ item }: Props) => {
     return (
         <>
             <div className={styles.slideCard}>
-                <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" className={styles.slideBanner} width={180} height={180} />
-                <p>{item.name}</p>
+                <section className={styles.cardContent}>
+                    <Image
+                        src={`http://localhost:3000/files/${item.thumbnail_url}`}
+                        alt="banner"
+                        className={styles.cardBanner}
+                        width={180}
+                        height={180}
+                    />
+
+                    <p className={styles.name}>{item.name}</p>
+                </section>
 
                 {
                     itemPromotion ? (
                         <>
-                            <p>{itemPromotion.price}</p>
-                            <p>{itemPromotion.price_promotion}</p>
+                            <div className={styles.priceContainer}>
+                                <p className={styles.price}>{
+                                    itemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                                }</p>
+                                <p className={styles.pricePromotion}>{
+                                    itemPromotion.price_promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                                }</p>
+                            </div>
                         </>
-                    ) : <p>{item.price}</p>
+                    ) : <p className={styles.price}>{
+                        item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                    }</p>
                 }
 
             </div>

@@ -16,11 +16,11 @@ const SlideSection = ({allItems}: Props) => {
 
                 options={{
                     type: 'loop',
-                    perPage: 5,
+                    perPage: 6,
                     perMove: 1,
                     width: '100%',
                     height:'100%',
-                    gap: '1rem'
+                    gap: '1.5rem',
                 }}
             >
                 {
