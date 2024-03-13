@@ -21,7 +21,6 @@ async function getFeaturedPromotion(){
         cache: 'force-cache'
     })
     const data: PromotionWithItems = await res.json();
-    console.log(data)
     return data;
 }
 

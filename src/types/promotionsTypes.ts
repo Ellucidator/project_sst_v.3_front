@@ -1,4 +1,4 @@
-import { Item } from "./itemsTypes"
+import { ItemPromotion } from "./itemsTypes"
 
 export interface Promotion{
     id: number
@@ -8,5 +8,5 @@ export interface Promotion{
 }
 
 export interface PromotionWithItems extends Promotion{
-    items: Item[]
+    items: ItemPromotion[]
 }

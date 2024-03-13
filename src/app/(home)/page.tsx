@@ -4,8 +4,9 @@ import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
 import SlideSection from "@/components/home/slideSection";
 export default async function Home() {
-  const promotionFeature = await catalogService.getFeaturedPromotion();
 
+  const promotionFeature = await catalogService.getFeaturedPromotion();
+  console.log(promotionFeature)
 
   return (
     <main className={`${styles.home}`}>
@@ -16,7 +17,7 @@ export default async function Home() {
           </Link>
         </section>
         <section className={`container ${styles.slide}`}>
-          <SlideSection/>
+          <SlideSection allItems={promotionFeature.items}/>
         </section>
       </div>
     </main>

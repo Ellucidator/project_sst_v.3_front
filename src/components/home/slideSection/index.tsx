@@ -2,9 +2,13 @@
 //@ts-ignore
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import SlideCard from '../slideCard';
+import { Item, ItemPromotion } from '@/types/itemsTypes';
 
-
-const SlideSection = () => {
+type Props = {
+    allItems: Item[] | ItemPromotion[]
+}
+const SlideSection = ({allItems}: Props) => {
     return (
         <>
             <Splide
@@ -15,17 +19,19 @@ const SlideSection = () => {
                     perPage: 5,
                     perMove: 1,
                     width: '100%',
+                    height:'100%',
+                    gap: '1rem'
                 }}
             >
-                <SplideSlide>
-                    <p>teste</p>
-                </SplideSlide>
-                <SplideSlide>
-                    <p>teste</p>
-                </SplideSlide>
-                <SplideSlide>
-                    <p>teste</p>
-                </SplideSlide>
+                {
+                    allItems.map((item)=>{
+                        return (
+                            <SplideSlide key={item.id}>
+                                <SlideCard item={item} />
+                            </SplideSlide>
+                        )
+                    })
+                }
             </Splide>
         </>
     )
