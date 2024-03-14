@@ -25,7 +25,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width: 70%;
 
         .promotion{
             display: flex;
@@ -62,7 +62,7 @@
 
         .categoriesCards{
             width: 90%;
-            height: 200px;
+            height: 150px;
             display: flex;
             padding-left: 12px;
             gap: 15px;
@@ -74,7 +74,7 @@
                 background-image: url('../../../public/public/home/categoryBanner1.png');
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
-                border-radius: 10px;
+                border-radius: 5px;
                 border-color: transparent;
                 transition: 0.1s linear;
 
@@ -94,7 +94,7 @@
                     text-shadow: 2px 2px #ff000085;
                     font-weight: bold;
                     text-align: center;
-                    padding-top: 50px;
+                    padding-top: 30px;
                 }
             }
             .categoryCard2{
@@ -123,7 +123,7 @@
                     text-shadow: 2px 2px $secondaryLight; ;
                     font-weight: bold;
                     text-align: center;
-                    padding-top: 50px;
+                    padding-top: 30px;
 
                 }
             }

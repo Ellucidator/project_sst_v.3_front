@@ -7,7 +7,7 @@ export default async function Home() {
 
   const promotionFeature = await catalogService.getFeaturedPromotion();
   const catalog = await catalogService.getCatalog();
-  const featuredItens = ''
+  const featuredItens = await catalogService.getFeaturedItems()
 
 
   return (
@@ -36,8 +36,8 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <h2 className={styles.slideTitle}>{promotionFeature.name}</h2>
-          <SlideSection allItems={promotionFeature.items} />
+          <h2 className={styles.slideTitle}>Produtos Novos</h2>
+          <SlideSection allItems={featuredItens} />
         </section>
       </div>
 

@@ -1,4 +1,5 @@
 import { Categories } from "@/types/catalogTypes";
+import { Item } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 
 
@@ -24,8 +25,20 @@ async function getFeaturedPromotion(){
     return data;
 }
 
+async function getFeaturedItems(){
+    const res = await fetch(`http://localhost:3000/items/highlighted`, {
+        next:{
+            revalidate: 60*60*60*24
+        },
+        cache: 'force-cache'
+    })
+    const data: Item[] = await res.json();
+    return data;
+}
+
 
 export const catalogService = {
     getCatalog,
-    getFeaturedPromotion
+    getFeaturedPromotion,
+    getFeaturedItems
 }
