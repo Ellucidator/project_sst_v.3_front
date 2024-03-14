@@ -1,5 +1,15 @@
 @import '../../styles/colors/colors.module.scss';
 
+@keyframes girar-borda {
+    0% { border-color: transparent; }
+    25% { border-left-color: #ff000085; }
+    50% { border-top-color: #ff000085; }
+    75% { border-right-color: #ff000085; }
+    80% { border-bottom-color: #ff000085; }
+    100% { border-color: transparent;}
+}
+
+
 .home{
     background-image: url('../../../public/public/home/bg-home.svg');
     background-repeat: no-repeat;
@@ -23,7 +33,6 @@
             width: 90%;
             height: 65%;
             padding: 20px 0px 0px 12px;
-            margin-bottom: 50px;
     
             .promotionLink{
                 width: 100%;
@@ -41,7 +50,7 @@
             width: 85%;
             height: auto;
             padding: 0px 0px 0px 12px;
-            margin-bottom: 35px;
+            margin: 50px 0px 50px 0px;
 
             .slideTitle{
                 font-size: 25px;
@@ -62,18 +71,61 @@
             .categoryCard1{
                 height: 100%;
                 width: 50%;
-                background-image: url('../../../public/public/home/categoryCard1.svg');
+                background-image: url('../../../public/public/home/categoryBanner1.png');
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 border-radius: 10px;
+                border-color: transparent;
+                transition: 0.1s linear;
+
+                &:hover{
+                    border: 2px solid transparent;
+                    animation: girar-borda 2s linear infinite;
+                    
+                }
+
+                .categoryName{
+                    font-size: 55px;
+                    width:auto;
+                    background-image: linear-gradient(to right, yellow 0%, #ffffff 100%);
+                    color: transparent;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    text-shadow: 2px 2px #ff000085;
+                    font-weight: bold;
+                    text-align: center;
+                    padding-top: 50px;
+                }
             }
             .categoryCard2{
                 height: 100%;
                 width: 50%;
-                background-image: url('../../../public/public/home/categoryCard1.svg');
+                background-image: url('../../../public/public/home/categoryBanner2.png');
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 border-radius: 10px;
+                border-color: transparent;
+                transition: 0.1s linear;
+
+                &:hover{
+                    border: 2px solid transparent;
+                    animation: girar-borda 2s linear infinite;
+                    
+                }
+
+                .categoryName{
+                    font-size: 55px;
+                    width:auto;
+                    background-image: linear-gradient(to right, rgb(5, 202, 5) 0%, rgb(5, 202, 5) 100%);
+                    color: transparent;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    text-shadow: 2px 2px $secondaryLight; ;
+                    font-weight: bold;
+                    text-align: center;
+                    padding-top: 50px;
+
+                }
             }
         }
     }

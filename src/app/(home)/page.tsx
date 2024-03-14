@@ -6,7 +6,9 @@ import SlideSection from "@/components/home/slideSection";
 export default async function Home() {
 
   const promotionFeature = await catalogService.getFeaturedPromotion();
-  console.log(promotionFeature)
+  const catalog = await catalogService.getCatalog();
+  const featuredItens = ''
+
 
   return (
     <main className={`${styles.home}`}>
@@ -21,16 +23,21 @@ export default async function Home() {
 
         <section className={`container ${styles.slide}`}>
           <h2 className={styles.slideTitle}>{promotionFeature.name}</h2>
-          <SlideSection allItems={promotionFeature.items}/>
+          <SlideSection allItems={promotionFeature.items} />
         </section>
 
         <section className={`container ${styles.categoriesCards}`}>
           <Link href={'/'} className={styles.categoryCard1}>
-            <p></p>
+            <p className={styles.categoryName}>{catalog[0].name}</p>
           </Link>
           <Link href={'/'} className={styles.categoryCard2}>
-            <p></p>
+            <p className={styles.categoryName}>{catalog[1].name}</p>
           </Link>
+        </section>
+
+        <section className={`container ${styles.slide}`}>
+          <h2 className={styles.slideTitle}>{promotionFeature.name}</h2>
+          <SlideSection allItems={promotionFeature.items} />
         </section>
       </div>
 
