@@ -8,7 +8,7 @@ async function getCatalog() {
         next:{
             revalidate: 60*60*60*24
         },
-        cache: 'force-cache'
+        cache: 'no-cache'
     });
     const data: Categories[] = await res.json();
     return data;
@@ -22,6 +22,18 @@ async function getFeaturedPromotion(){
         cache: 'force-cache'
     })
     const data: PromotionWithItems = await res.json();
+    console.log(data)
+    return data;
+}
+
+async function getNewestsItems(){
+    const res = await fetch(`http://localhost:3000/items/newests`, {
+        next:{
+            revalidate: 60*60*60*24
+        },
+        cache: 'no-cache'
+    })
+    const data: Item[] = await res.json();
     return data;
 }
 
@@ -30,7 +42,7 @@ async function getFeaturedItems(){
         next:{
             revalidate: 60*60*60*24
         },
-        cache: 'force-cache'
+        cache: 'no-cache'
     })
     const data: Item[] = await res.json();
     return data;
@@ -40,5 +52,6 @@ async function getFeaturedItems(){
 export const catalogService = {
     getCatalog,
     getFeaturedPromotion,
+    getNewestsItems,
     getFeaturedItems
 }

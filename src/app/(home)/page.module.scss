@@ -50,7 +50,7 @@
             width: 85%;
             height: auto;
             padding: 0px 0px 0px 12px;
-            margin: 50px 0px 50px 0px;
+            margin: 50px 0px 0px 0px;
 
             .slideTitle{
                 font-size: 25px;
@@ -65,6 +65,7 @@
             height: 150px;
             display: flex;
             padding-left: 12px;
+            margin-top: 50px;
             gap: 15px;
             justify-content: center;
             
@@ -127,6 +128,19 @@
 
                 }
             }
+        }
+
+        .cardsContainer{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background-color: $primaryLight;
+            border-radius: 10px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
         }
     }
 }

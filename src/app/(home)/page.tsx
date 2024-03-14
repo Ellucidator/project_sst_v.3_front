@@ -3,11 +3,13 @@ import styles from './page.module.scss'
 import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
 import SlideSection from "@/components/home/slideSection";
+import CardItem from "@/components/common/cardItem";
 export default async function Home() {
 
   const promotionFeature = await catalogService.getFeaturedPromotion();
   const catalog = await catalogService.getCatalog();
-  const featuredItens = await catalogService.getFeaturedItems()
+  const newestsItens = await catalogService.getNewestsItems();
+  const featuredItems = await catalogService.getFeaturedItems();
 
 
   return (
@@ -36,8 +38,19 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <h2 className={styles.slideTitle}>Produtos Novos</h2>
-          <SlideSection allItems={featuredItens} />
+          <p className={styles.slideTitle}>Produtos Novos</p>
+          <SlideSection allItems={newestsItens} />
+        </section>
+
+        <section className={`container ${styles.slide} `}>
+          <p className={styles.slideTitle}>Produtos em Destaque</p>
+          <div className={styles.cardsContainer}>
+          {featuredItems.map((item) => {
+            return (
+              <CardItem key={item.id} item={item} />
+            )
+          })}
+          </div>
         </section>
       </div>
 

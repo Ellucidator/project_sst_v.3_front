@@ -1,4 +1,3 @@
-'use client'
 import Image from 'next/image';
 import styles from './styles.module.scss'
 import { Item, ItemPromotion } from '@/types/itemsTypes';
@@ -8,7 +7,7 @@ type Props = {
     item: ItemPromotion | Item
 }
 
-export const SlideCard = ({ item }: Props) => {
+export const CardItem = ({ item }: Props) => {
 
     let itemPromotion
 
@@ -19,7 +18,7 @@ export const SlideCard = ({ item }: Props) => {
     return (
         <>
 
-            <Link href={'/'} className={styles.slideCard}>
+            <Link href={'/'} className={styles.cardItem}>
                 <section className={styles.cardContent}>
                     <Image
                         src={`http://localhost:3000/files/${item.thumbnail_url}`}
@@ -55,4 +54,4 @@ export const SlideCard = ({ item }: Props) => {
     )
 }
 
-export default SlideCard
+export default CardItem
