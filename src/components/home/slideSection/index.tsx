@@ -34,7 +34,7 @@ const SlideSection = ({allItems}: Props) => {
                         900: {
                             perPage: 2,
                         },
-                        555: {
+                        400: {
                             perPage: 1,
                         }
                     }
