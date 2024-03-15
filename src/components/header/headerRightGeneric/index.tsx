@@ -5,11 +5,11 @@ const HeaderRightGeneric = () => {
     
     return(
         <div className="flex items-center">
-            <Link className={styles.linkHeader} href="/login">
+            <Link className={styles.linkHeader} href="/form/login">
                 <button type="button">ENTRAR</button>
             </Link>
             <p className={styles.division}>|</p>
-            <Link className={styles.linkHeader} href="/register">
+            <Link className={styles.linkHeader} href="/form/register">
                 <button type="button">CADASTRAR</button>
             </Link>
         </div>
