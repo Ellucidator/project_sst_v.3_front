@@ -3,11 +3,11 @@ import styles from './styles.module.scss'
 const Footer = ()=>{
 
     return(
-        <footer className={styles.footer}>
+        <div className={styles.footer}>
             <main className={`container ${styles.footerContainer}`}>
 
             </main>
-        </footer>
+        </div>
     )
 }
 

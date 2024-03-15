@@ -21,10 +21,10 @@ const HeaderPrimary = async () => {
 
     return (
         <>
-            <header id="header" className={`${styles.header}`}>
+            <div id="header" className={`${styles.header}`}>
                 <main className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
-                        <Modal catalog={catalog} />
+                        <Modal catalog={catalog} validate={validate} />
                         <Link href="/" className={styles.logoHeader}>
                             <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
                         </Link>
@@ -52,7 +52,7 @@ const HeaderPrimary = async () => {
 
 
                 </main>
-            </header>
+            </div>
         </>
     )
 }

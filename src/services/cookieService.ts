@@ -12,7 +12,7 @@ const verifySession = async ()=>{
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
             const {payload}: {payload: UserPayload} = await jose.jwtVerify(cookieValue.value, secret)
 
-            if(typeof payload === 'object' && payload !== null){
+            if(payload){
                 return payload
             }
         } catch (error) {

@@ -5,12 +5,15 @@ import styles from './styles.module.scss'
 import { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import HeaderRightAuth from "../header/headerRightAuth";
+import HeaderRightGeneric from "../header/headerRightGeneric";
 
 type Props = {
     catalog: Categories[]
+    validate: any
 }
 
-const Modal = ({ catalog }: Props) => {
+const Modal = ({ catalog, validate }: Props) => {
 
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
@@ -30,7 +33,7 @@ const Modal = ({ catalog }: Props) => {
                 setStyleModal(styles.modalOpen);
             }
         }, 0.1);
-        
+
     }
 
 
@@ -70,6 +73,12 @@ const Modal = ({ catalog }: Props) => {
                 onRequestClose={handleClick}
             >
                 <button onClick={handleClick} type="button" className={styles.btnModal} >X</button>
+                {/* <div className={styles.headerRight}>
+                    <div className={styles.linkHeader}>
+                    </div>
+                    {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
+                </div> */}
+
                 {catalog.map((category) => (
                     <div key={category.id} className={styles.categories}>
                         <div className="flex">
@@ -90,7 +99,9 @@ const Modal = ({ catalog }: Props) => {
                             ))}
                         </ul>
                     </div>
+
                 ))}
+
             </ReactModal>
         </>
     )

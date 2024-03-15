@@ -32,6 +32,7 @@
     left: 0%;
 }
 .modalOpen {
+    z-index: 10;
     position: absolute;
     transition: 0.2s;
     width: 350px;
@@ -64,6 +65,7 @@
 
 }
 .overlayModal {
+    z-index: 10;
     position: fixed;
     top: 0;
     left: 0;

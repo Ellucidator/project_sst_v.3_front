@@ -12,7 +12,7 @@ const ModalUser = ({payload}: Props) => {
 
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
-        const elementClient: HTMLElement = document.getElementById('header')!
+        const elementClient: HTMLElement = document.getElementById('userModal')!
         setElement(elementClient)
     }, [])
 
@@ -35,7 +35,7 @@ const ModalUser = ({payload}: Props) => {
         
     }
     return (
-        <div>
+        <div id="userModal">
             <div className={styles.divUser}  onClick={handleClick}>
                 <div  className={styles.username}>
                     <Image src='/public/header/user-icon.svg' alt="user" className={styles.userIcon} width={30} height={30} />

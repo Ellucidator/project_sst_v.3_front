@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from './page.module.scss'
 import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
-import SlideSection from "@/components/home/slideSection";
+import SlideSection from "@/components/common/slideSection";
 import CardItem from "@/components/common/cardItem";
 export default async function Home() {
 
