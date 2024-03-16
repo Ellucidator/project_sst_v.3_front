@@ -27,7 +27,27 @@ const verifySession = async ()=>{
 
 }
 
+const setSession = async (email:string, password:string)=>{
+    const res = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password}),
+    })
+    const {token} = await res.json();
+    console.log(token)
+    if(token){
+        cookies().set('token', token, {
+            maxAge: 60*60*24,
+        })
+        return true
+    }
+    return false
+}
+
 
 export const cookieService = {
     verifySession,
+    setSession
 }

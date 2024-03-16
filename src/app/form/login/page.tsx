@@ -10,12 +10,24 @@ const Login =async () => {
     //     redirect('/user/')
     // }
 
+    const handlerSubmit = async (form: FormData) =>{
+        'use server'
+        const login = form.get('email')?.valueOf();
+        const password = form.get('password')?.valueOf();
+        if(typeof login === 'string' && typeof password === 'string'){
 
+            const session = await cookieService.setSession(login, password);
+
+            if(session){
+                redirect('/')
+            }
+        }
+    }
 
     return (
         <div className={styles.login}>
             <div className={`container ${styles.loginContainer}`}>
-                <form action="" method='POST' className={`container ${styles.loginForm}`}>
+                <form action={handlerSubmit} method='POST' className={`container ${styles.loginForm}`}>
                     <div className={styles.inputDiv}>
                         <label className={styles.label} htmlFor="email">Email:</label>
                         <input type="email" name="email" id="email" className={styles.input} />
