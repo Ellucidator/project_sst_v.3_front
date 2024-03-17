@@ -12,13 +12,12 @@ const verifySession = async ()=>{
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
             const {payload}: {payload: UserPayload} = await jose.jwtVerify(cookieValue.value, secret)
 
-            if(payload){
-                return payload
-            }
+            if(typeof payload === 'string' || typeof payload === 'undefined')false
+
+            return payload
+
         } catch (error) {
-            if(error instanceof Error){
-                return error.message
-            }
+                return false
         }
 
     }else{
@@ -37,6 +36,7 @@ const setSession = async (email:string, password:string)=>{
     })
     const {token} = await res.json();
     console.log(token)
+
     if(token){
         cookies().set('token', token, {
             maxAge: 60*60*24,

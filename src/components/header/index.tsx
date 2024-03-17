@@ -13,9 +13,6 @@ import { UserPayload } from "@/types/userTypes";
 const HeaderPrimary = async () => {
 
     const validate = await cookieService.verifySession();
-    if (typeof validate === 'string') {
-        return validate
-    }
 
     const catalog = await catalogService.getCatalog();
 

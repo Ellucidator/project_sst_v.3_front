@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation';
 
 const Login =async () => {
 
-    // const validate = await cookieService.verifySession();
-    // if(!validate){
-    //     redirect('/user/')
-    // }
+    const validate = await cookieService.verifySession();
+    if(validate){
+        redirect('/')
+    }
 
     const handlerSubmit = async (form: FormData) =>{
         'use server'
