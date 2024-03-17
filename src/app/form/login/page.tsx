@@ -14,11 +14,12 @@ const Login =async () => {
         'use server'
         const login = form.get('email')?.valueOf();
         const password = form.get('password')?.valueOf();
+
         if(typeof login === 'string' && typeof password === 'string'){
 
             const session = await cookieService.setSession(login, password);
 
-            if(session){
+            if(session === true){
                 redirect('/')
             }
         }
@@ -30,11 +31,11 @@ const Login =async () => {
                 <form action={handlerSubmit} method='POST' className={`container ${styles.loginForm}`}>
                     <div className={styles.inputDiv}>
                         <label className={styles.label} htmlFor="email">Email:</label>
-                        <input type="email" name="email" id="email" className={styles.input} />
+                        <input required type="email" name="email" id="email" className={styles.input} />
                     </div>
                     <div className={styles.inputDiv}>
                         <label htmlFor="password" className={styles.label}>Senha:</label>
-                        <input type="password" name="password" id="password" className={styles.input} />
+                        <input required type="password" name="password" id="password" className={styles.input} />
                     </div>
                     <button type="submit" className={styles.buttonLogin} >ENTRAR</button>
                 </form>
