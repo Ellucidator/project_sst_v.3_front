@@ -28,6 +28,7 @@ const Login =async () => {
     return (
         <div className={styles.login}>
             <div className={`container ${styles.loginContainer}`}>
+                
                 <form action={handlerSubmit} method='POST' className={`container ${styles.loginForm}`}>
                     <div className={styles.inputDiv}>
                         <label className={styles.label} htmlFor="email">Email:</label>

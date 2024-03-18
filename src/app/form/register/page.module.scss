@@ -1,6 +1,6 @@
 @import '../../../styles/colors/colors.module.scss';
 
-.login{
+.register{
     width: 100%;
     height: 75vh;
     display: flex;
@@ -8,19 +8,31 @@
     align-items: center;
     background-color: #1d1d1d ;
 
-    .loginContainer{
+    .registerContainer{
         width: 50%;
-        height: 60%;
+        height: auto;
+        padding: 10px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: $primaryLight;
         border-radius: 5px;
 
+        .registerTittle{
+            font-size: 27px;
+            font-weight: bold;
+            color: $secondaryLight;
+            border-bottom: 2px solid $tertiary;
+            
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 
-        .loginForm{
-            width: 60%;
+        .registerForm{
+            width: 100%;
             height: 100%;
+            padding: 15px 0px 15px 0px;
             background-color: $primary;
             display: flex;
             gap: 20px;
@@ -51,11 +63,11 @@
             .label{
                 width: 90%;
                 color: $secondaryLight;
-                font-size: 20px;
+                font-size: 22px;
                 align-self:auto;
             }
 
-            .buttonLogin{
+            .buttonregister{
                 width: 90%;
                 height: 50px;
                 background-color: $tertiary;
@@ -70,34 +82,6 @@
                     border: 2px solid $tertiary;
                 }
 
-            }
-        }
-        .divRegister{
-            display: flex;
-            width: 50%;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-
-            .tittle{
-                font-size: 25px;
-                color: $secondaryLight;
-            }
-            .link{
-                font-size: 20px;
-                border-bottom: 2px solid $tertiaryLight;
-                cursor: pointer;
-                color: $tertiaryLight;
-
-
-                &:hover{
-                    transition: 0.5s;
-                    color: $tertiary;
-                    border-bottom: 2px solid $tertiary;
-
-
-                    border-radius: 5px;
-                }
             }
         }
 
