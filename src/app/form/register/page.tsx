@@ -48,6 +48,7 @@ const Register = () => {
                                 type="email"
                                 name="email"
                                 id="email"
+                                placeholder='ex: nomeabc@hotmail.com'
                                 className={styles.input}
                             />
                         </div>
@@ -59,6 +60,7 @@ const Register = () => {
                                     type="password"
                                     name="password"
                                     id="password"
+                                    placeholder='ex: @Abc123987'
                                     className={styles.input}
                                 />
                             </div>
@@ -78,10 +80,11 @@ const Register = () => {
                                 <label htmlFor="phone" className={styles.label}>Telefone:</label>
                                 <input
                                     required
-                                    type="tel"
+                                    type="number"
                                     name="phone"
                                     id="phone"
-                                    className={styles.input}
+                                    placeholder='DDD+Número ex: 11999999999'
+                                    className={styles.inputPhone}
                                 />
                             </div>
                             <div className={styles.inputDiv}>
@@ -97,6 +100,10 @@ const Register = () => {
                         </div>
                         <button type="submit" className={styles.buttonregister} >REGISTRAR</button>
                     </form>
+                    <div className={styles.divLogin}>
+                    <p className={styles.tittle}>Já tem uma conta?</p>
+                    <Link className={styles.link} href={'/form/login'}>Entrar</Link>
+                </div>
                 </div>
             </div>
         </>
