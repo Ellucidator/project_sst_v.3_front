@@ -4,6 +4,7 @@ import Image from 'next/image'
 import registerIcon from '../../../../public/public/register/registerIcon.svg'
 import { redirect } from 'next/navigation'
 import { userService } from '@/services/userService'
+import { CreateUser } from '@/types/userTypes'
 const Register = async () => {
 
     const handlerSubimit = async (form: FormData) => {
@@ -15,15 +16,32 @@ const Register = async () => {
         const password = form.get('password')?.valueOf()
         const phone = form.get('phone')?.valueOf()
         const birth = form.get('birth')?.valueOf()
-
         const confirmPassword = form.get('confirmPassword')?.valueOf()
 
-        if (newUser) {
+        if (
+            typeof first_name === 'string' &&
+            typeof last_name === 'string' &&
+            typeof email === 'string' &&
+            typeof password === 'string' &&
+            typeof phone === 'string' &&
+            typeof birth === 'string' &&
+            typeof confirmPassword === 'string'
+        ) {
+            const newUser: CreateUser = {
+                first_name,
+                last_name,
+                email,
+                password,
+                phone,
+                birth
+            }
 
-            if (newUser.password === confirmPassword) {
-                console.log(newUser)
-                await userService.createUser(newUser)
-                // redirect('/form/login')
+            if (password === confirmPassword) {
+                const res = await userService.createUser(newUser)
+                console.log(res)
+                if (!res) return
+
+                redirect('/')
             } else {
                 console.log('As senhas precisam ser iguais')
             }

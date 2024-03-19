@@ -10,6 +10,8 @@ type Props = {
 }
 const ModalUser = ({payload}: Props) => {
 
+    console.log(payload)
+
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
         const elementClient: HTMLElement = document.getElementById('userModal')!

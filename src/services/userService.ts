@@ -1,4 +1,5 @@
 import { CreateUser } from "@/types/userTypes";
+import { cookieService } from "./cookieService";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -12,8 +13,12 @@ const createUser = async(user:CreateUser)=>{
             body: JSON.stringify(user),
             cache: 'no-store'
         })
-        const data = await res.json();
-        return data
+
+        if(!res.ok) return false
+
+        await cookieService.setSession(user.email, user.password)
+        
+        return true
     } catch (error) {
         if(error instanceof Error){
             console.log(error.message)
