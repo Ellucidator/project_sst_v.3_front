@@ -2,7 +2,29 @@ import Link from 'next/link'
 import styles from './page.module.scss'
 import Image from 'next/image'
 import registerIcon from '../../../../public/public/register/registerIcon.svg'
-const Register = () => {
+import { redirect } from 'next/navigation'
+const Register = async() => {
+
+    const handlerSubimit = async(form:FormData)=>{
+        'use server'
+        const newUser = {
+            first_name: form.get('firstName')?.valueOf(),
+            last_name: form.get('lastName')?.valueOf(),
+            email: form.get('email')?.valueOf(),
+            password: form.get('password')?.valueOf(),
+            confirmPassword: form.get('confirmPassword')?.valueOf()
+        }
+        if(newUser.first_name && newUser.last_name && newUser.email && newUser.password && newUser.confirmPassword){
+            if(newUser.password === newUser.confirmPassword){
+                console.log(newUser)
+                redirect('/form/login')
+            }else{
+                console.log('As senhas precisam ser iguais')
+            }
+        }else{
+            console.log('Preencha todos os campos')
+        }
+    }
 
     return (
         <>
@@ -12,7 +34,7 @@ const Register = () => {
 
                     <h2 className={styles.registerTittle}>Formulario de cadastro</h2>
 
-                    <form action={''} method='POST' className={`container ${styles.registerForm}`}>
+                    <form action={handlerSubimit} method='POST' className={`container ${styles.registerForm}`}>
                         <div className={styles.inputDivDuo}>
                             <div className={styles.inputDiv}>
                                 <label className={styles.label} htmlFor="firstName">Primeiro nome:</label>
