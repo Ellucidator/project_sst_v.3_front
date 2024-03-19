@@ -3,25 +3,31 @@ import styles from './page.module.scss'
 import Image from 'next/image'
 import registerIcon from '../../../../public/public/register/registerIcon.svg'
 import { redirect } from 'next/navigation'
-const Register = async() => {
+import { userService } from '@/services/userService'
+const Register = async () => {
 
-    const handlerSubimit = async(form:FormData)=>{
+    const handlerSubimit = async (form: FormData) => {
         'use server'
-        const newUser = {
-            first_name: form.get('firstName')?.valueOf(),
-            last_name: form.get('lastName')?.valueOf(),
-            email: form.get('email')?.valueOf(),
-            password: form.get('password')?.valueOf(),
-            confirmPassword: form.get('confirmPassword')?.valueOf()
-        }
-        if(newUser.first_name && newUser.last_name && newUser.email && newUser.password && newUser.confirmPassword){
-            if(newUser.password === newUser.confirmPassword){
+
+        const first_name = form.get('firstName')?.valueOf()
+        const last_name = form.get('lastName')?.valueOf()
+        const email = form.get('email')?.valueOf()
+        const password = form.get('password')?.valueOf()
+        const phone = form.get('phone')?.valueOf()
+        const birth = form.get('birth')?.valueOf()
+
+        const confirmPassword = form.get('confirmPassword')?.valueOf()
+
+        if (newUser) {
+
+            if (newUser.password === confirmPassword) {
                 console.log(newUser)
-                redirect('/form/login')
-            }else{
+                await userService.createUser(newUser)
+                // redirect('/form/login')
+            } else {
                 console.log('As senhas precisam ser iguais')
             }
-        }else{
+        } else {
             console.log('Preencha todos os campos')
         }
     }
@@ -123,9 +129,9 @@ const Register = async() => {
                         <button type="submit" className={styles.buttonregister} >REGISTRAR</button>
                     </form>
                     <div className={styles.divLogin}>
-                    <p className={styles.tittle}>Já tem uma conta?</p>
-                    <Link className={styles.link} href={'/form/login'}>Entrar</Link>
-                </div>
+                        <p className={styles.tittle}>Já tem uma conta?</p>
+                        <Link className={styles.link} href={'/form/login'}>Entrar</Link>
+                    </div>
                 </div>
             </div>
         </>

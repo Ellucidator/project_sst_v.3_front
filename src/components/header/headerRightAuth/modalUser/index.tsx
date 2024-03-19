@@ -39,7 +39,7 @@ const ModalUser = ({payload}: Props) => {
             <div className={styles.divUser}  onClick={handleClick}>
                 <div  className={styles.username}>
                     <Image src='/public/header/user-icon.svg' alt="user" className={styles.userIcon} width={30} height={30} />
-                    {payload.name}
+                    {payload.first_name}
                 </div>
                 <p className={iconSetaClass}>
                     ⇱
