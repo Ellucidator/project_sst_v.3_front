@@ -5,7 +5,7 @@ export interface Item {
     price: number;
     in_stock: number;
     featured?: boolean;
-    promotion?: boolean;
+    promotion: boolean;
     thumbnail_url: string;
 }
 

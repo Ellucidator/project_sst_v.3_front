@@ -9,16 +9,12 @@ type Props = {
 
 export const CardItem = ({ item }: Props) => {
 
-    let itemPromotion
-
-    if (item.promotion) {
-        itemPromotion = item as ItemPromotion
-    }
-
+    const itemPromotion = item.promotion?(item as ItemPromotion):undefined
+    
     return (
         <>
 
-            <Link href={'/'} className={styles.cardItem}>
+            <Link href={`/item/${item.id}`} className={styles.cardItem}>
                 <section className={styles.cardContent}>
                     <Image
                         src={`http://localhost:3000/files/${item.thumbnail_url}`}
@@ -35,17 +31,23 @@ export const CardItem = ({ item }: Props) => {
                     itemPromotion ? (
                         <>
                             <div className={styles.priceContainer}>
-                                <p className={styles.price}>{
-                                    itemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                                }</p>
                                 <p className={styles.pricePromotion}>{
+                                    `${itemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+                                    }
+                                </p>
+                                <p className={styles.price}>{
                                     itemPromotion.price_promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                                }</p>
+                                    }
+                                </p>
                             </div>
                         </>
-                    ) : <p className={styles.price}>{
-                        item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                    }</p>
+                    ) : (
+                        <>
+                            <p className={styles.price}>
+                                {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                            </p>
+                        </>
+                    )
                 }
 
             </Link>
