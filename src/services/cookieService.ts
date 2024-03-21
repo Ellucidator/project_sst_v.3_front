@@ -27,7 +27,6 @@ const verifySession = async ()=>{
 }
 
 const setSession = async (email:string, password:string)=>{
-    console.log(email, password)
     try {
         const res = await fetch('http://localhost:3000/login', {
             method: 'POST',

@@ -40,7 +40,7 @@ async function getNewestsItems(){
 async function getFeaturedItems(){
     const res = await fetch(`http://localhost:3000/items/highlighted`, {
         next:{
-            revalidate: 60*60*60*24
+            revalidate: 10
         },
         cache: 'no-cache'
     })
