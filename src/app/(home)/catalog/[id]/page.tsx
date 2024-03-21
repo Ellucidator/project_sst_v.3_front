@@ -2,16 +2,22 @@
 import { catalogService } from '@/services/catalogService';
 import styles from './page.module.scss'
 import { Categories } from '@/types/catalogTypes';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Catalog(){
-    
+    const [catalog, setCatalog] = useState<Categories[]>([]);
 
     useEffect(() => {
-        catalogService.getCatalog()
+        async function getCatalog() {
+            const data = await catalogService.getCatalog();
+            console.log(data)
+            setCatalog(data);
+        }
+
+        getCatalog();
     }, [])
 
-
+    
     
     
     
@@ -22,7 +28,11 @@ export default function Catalog(){
             <div className={`container ${styles.catalogContainer}`}>
 
                 <div className={styles.catalogOptions}>
-                    <p>Filtros</p>
+                    {catalog[0]?(
+                        <p>{catalog[0].name}</p>
+                    ):(
+                        <></>
+                    )}
                 </div>
 
                 <div className={styles.catalogCardContainer}>
