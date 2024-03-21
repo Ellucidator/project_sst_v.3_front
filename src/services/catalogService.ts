@@ -6,9 +6,10 @@ import { PromotionWithItems } from "@/types/promotionsTypes";
 async function getCatalog() {
     const res = await fetch('http://localhost:3000/categories', {
         next:{
-            revalidate: 60*60*60*24
+            revalidate: 10
         },
-        cache: 'no-cache'
+        cache: 'default',
+
     });
     const data: Categories[] = await res.json();
     return data;
