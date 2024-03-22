@@ -4,14 +4,15 @@ import styles from './page.module.scss'
 import { useEffect, useState } from 'react';
 import { Item } from '@/types/itemsTypes';
 import CardItem from '@/components/common/cardItem';
+import { SubCategories } from '@/types/catalogTypes';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 export default function Catalog({ params }: { params: { id: string[] } }) {
-    const [catalog, setCatalog] = useState<Item[]>([]);
+    const [catalog, setCatalog] = useState<SubCategories>();
 
     useEffect(() => {
         async function getCatalog() {
-            const data: Item[] = await catalogService.getItensBySubCategory(params.id[1]);
+            const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1]);
             console.log(data)
             setCatalog(data);
         }
@@ -42,15 +43,22 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
                         <p>teste</p>
                     </div>
                     <div className={styles.cardsContainer} >
-                        <div className={styles.cards}>
-                            {catalog[0] ? (
-                                catalog.map(item => (
-                                    <CardItem key={item.id} item={item} />
-                                ))
-                            ) : (
-                                <></>
-                            )}
-                        </div>
+                        {catalog ? (
+                            <>
+                                <p className={styles.subCatalogTitle}>{catalog.name}</p>
+                                <div className={styles.cards}>
+                                    {catalog.items ? (
+                                        catalog.items.map(item => (
+                                            <CardItem key={item.id} item={item} />
+                                        ))
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            </>
+                        ):(
+                            <></>
+                        )}
                     </div>
                 </div>
 

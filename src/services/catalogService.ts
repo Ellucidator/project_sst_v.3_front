@@ -1,4 +1,4 @@
-import { Categories } from "@/types/catalogTypes";
+import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 
@@ -56,7 +56,7 @@ async function getItensBySubCategory(itemId: string){
         },
         cache: 'no-cache'
     })
-    const data: Item[] = await res.json();
+    const data: SubCategories = await res.json();
     return data;
 }
 
