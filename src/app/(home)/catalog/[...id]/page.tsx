@@ -3,10 +3,11 @@ import { catalogService } from '@/services/catalogService';
 import styles from './page.module.scss'
 import { Categories } from '@/types/catalogTypes';
 import { useEffect, useState } from 'react';
+import CategoryFilter from '@/components/common/categoryFilter';
 
-export default function Catalog(){
+export default function Catalog({params}:{params: {id: string[]}}) {
     const [catalog, setCatalog] = useState<Categories[]>([]);
-
+    
     useEffect(() => {
         async function getCatalog() {
             const data = await catalogService.getCatalog();
@@ -29,7 +30,7 @@ export default function Catalog(){
 
                 <div className={styles.catalogOptions}>
                     {catalog[0]?(
-                        <p>{catalog[0].name}</p>
+                        <CategoryFilter catalog={catalog} />
                     ):(
                         <></>
                     )}

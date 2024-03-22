@@ -1,0 +1,13 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+
+.subCategory{
+    display: flex;
+    align-items: center;
+    font-size: 11.5px;
+    padding-left: 20px;
+    .checkbox{
+        margin-right: 5px;
+        height: 10px;
+    }
+}
