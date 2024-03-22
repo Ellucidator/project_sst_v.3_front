@@ -49,10 +49,21 @@ async function getFeaturedItems(){
     return data;
 }
 
+async function getItensBySubCategory(itemId: string){
+    const res = await fetch(`http://localhost:3000/sub-categories/${itemId}`, {
+        next:{
+            revalidate: 10
+        },
+        cache: 'no-cache'
+    })
+    const data: Item[] = await res.json();
+    return data;
+}
 
 export const catalogService = {
     getCatalog,
     getFeaturedPromotion,
     getNewestsItems,
-    getFeaturedItems
+    getFeaturedItems,
+    getItensBySubCategory
 }

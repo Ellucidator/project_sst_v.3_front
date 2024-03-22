@@ -1,16 +1,17 @@
 'use client'
 import { catalogService } from '@/services/catalogService';
 import styles from './page.module.scss'
-import { Categories } from '@/types/catalogTypes';
 import { useEffect, useState } from 'react';
-import CategoryFilter from '@/components/common/categoryFilter';
+import { Item } from '@/types/itemsTypes';
+import CardItem from '@/components/common/cardItem';
+// import CategoryFilter from '@/components/common/categoryFilter';
 
-export default function Catalog({params}:{params: {id: string[]}}) {
-    const [catalog, setCatalog] = useState<Categories[]>([]);
-    
+export default function Catalog({ params }: { params: { id: string[] } }) {
+    const [catalog, setCatalog] = useState<Item[]>([]);
+
     useEffect(() => {
         async function getCatalog() {
-            const data = await catalogService.getCatalog();
+            const data: Item[] = await catalogService.getItensBySubCategory(params.id[1]);
             console.log(data)
             setCatalog(data);
         }
@@ -18,10 +19,10 @@ export default function Catalog({params}:{params: {id: string[]}}) {
         getCatalog();
     }, [])
 
-    
-    
-    
-    
+
+
+
+
 
     return (
         <div className={styles.catalog}>
@@ -29,11 +30,11 @@ export default function Catalog({params}:{params: {id: string[]}}) {
             <div className={`container ${styles.catalogContainer}`}>
 
                 <div className={styles.catalogOptions}>
-                    {catalog[0]?(
-                        <CategoryFilter catalog={catalog} />
+                    {/* {catalog[0]?(
+                        // <CategoryFilter catalog={catalog} />
                     ):(
                         <></>
-                    )}
+                    )} */}
                 </div>
 
                 <div className={styles.catalogCardContainer}>
@@ -41,7 +42,15 @@ export default function Catalog({params}:{params: {id: string[]}}) {
                         <p>teste</p>
                     </div>
                     <div className={styles.cardsContainer} >
-                        <p>teste</p>
+                        <div className={styles.cards}>
+                            {catalog[0] ? (
+                                catalog.map(item => (
+                                    <CardItem key={item.id} item={item} />
+                                ))
+                            ) : (
+                                <></>
+                            )}
+                        </div>
                     </div>
                 </div>
 
