@@ -92,7 +92,7 @@ const Modal = ({ catalog, validate }: Props) => {
                         <ul key={`${category.id}`} id={`${category.name}-${category.id}`} className={styles.subCategoryList}>
                             {category.SubCategories.map((subCategory) => (
                                 <li key={subCategory.id} className={styles.subCategory} >
-                                    <Link href={`/`}>
+                                    <Link href={`http://localhost:3001/catalog/${category.id}/${subCategory.id}`}>
                                         {subCategory.name}
                                     </Link>
                                 </li>
