@@ -51,10 +51,7 @@ async function getFeaturedItems(){
 
 async function getSearchItems(name:string){
     const res = await fetch(`http://localhost:3000/items/search?name=${name}`,{
-        next:{
-            revalidate: 10
-        },
-        cache: 'no-cache'
+        cache: 'no-store'
     })
     const data: Item[] = await res.json();
     console.log(data)
