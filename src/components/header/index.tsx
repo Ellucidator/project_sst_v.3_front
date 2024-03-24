@@ -8,6 +8,7 @@ import { cookieService } from "@/services/cookieService";
 import HeaderRightAuth from "./headerRightAuth";
 import HeaderRightGeneric from "./headerRightGeneric";
 import { UserPayload } from "@/types/userTypes";
+import InputSearch from "../common/inputSearch";
 
 
 const HeaderPrimary = async () => {
@@ -28,13 +29,9 @@ const HeaderPrimary = async () => {
                     </div>
 
                     <div className={styles.headerDiv2}>
-                        <form className={styles.headerCenter}>
-                            <input type="search" className={styles.inputSearch} placeholder="Pesquise por um produto" />
-                            <button type="submit" className={styles.btnSearch}>
-                                <Image src={searchIcon} alt="search" className={styles.searchIcon} />
-                            </button>
-                        </form>
 
+                        <InputSearch/>
+                        
                         <div className={styles.headerRight}>
                             <div className={styles.linkHeader}>
                                 <Link href="/" >

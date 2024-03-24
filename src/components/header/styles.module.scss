@@ -44,49 +44,6 @@
             width: 70%;
             height: 100%;
         
-            .headerCenter{
-                width: 80%;
-                height: 50px;
-                display: flex;
-                
-                flex-wrap: nowrap;
-                margin-bottom: 20px;
-                border: none;
-                background-color: $primaryLight;
-                border-radius: 5px;
-                padding: 5px;
-                .inputSearch{
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                    background-color: transparent;
-                    color: $secondaryLight;
-                    outline: none;
-                    padding-left: 10px;
-                }
-                .btnSearch{
-                    width: 40px;
-                    height: auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0px 10px;
-                    border-radius: 8px;
-                    background-color: transparent;
-                    cursor: pointer;
-                    .searchIcon{
-                        filter: invert(100%);
-                        &:hover{
-                            filter: invert(80%);
-                        }
-                    }
-                }
-            
-                &:hover{
-                    border-color: $tertiary;
-                }
-            }
-        
             .headerRight{
                 display: flex;
                 flex-wrap: nowrap;
