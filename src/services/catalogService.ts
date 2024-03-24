@@ -49,6 +49,18 @@ async function getFeaturedItems(){
     return data;
 }
 
+async function getSearchItems(name:string){
+    const res = await fetch(`http://localhost:3000/items/search?name=${name}`,{
+        next:{
+            revalidate: 10
+        },
+        cache: 'no-cache'
+    })
+    const data: Item[] = await res.json();
+    console.log(data)
+    return data
+}
+
 async function getItensBySubCategory(itemId: string){
     const res = await fetch(`http://localhost:3000/sub-categories/${itemId}`, {
         next:{
@@ -65,5 +77,6 @@ export const catalogService = {
     getFeaturedPromotion,
     getNewestsItems,
     getFeaturedItems,
-    getItensBySubCategory
+    getItensBySubCategory,
+    getSearchItems
 }
