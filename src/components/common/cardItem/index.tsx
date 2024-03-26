@@ -9,7 +9,7 @@ type Props = {
 
 export const CardItem = ({ item }: Props) => {
 
-    const itemPromotion = item.promotion?(item as ItemPromotion):undefined
+    const itemP = item.promotion?(item as ItemPromotion):undefined
     
     return (
         <>
@@ -28,17 +28,17 @@ export const CardItem = ({ item }: Props) => {
                 </section>
 
                 {
-                    itemPromotion ? (
+                    itemP ? (
                         <>
                             <div className={styles.priceContainer}>
                                 <p className={styles.pricePromotion}>{
-                                    `${itemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+                                    `${itemP.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
                                     }
                                 </p>
-                                {/* <p className={styles.price}>{
-                                    itemPromotion.price_promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                                <p className={styles.price}>{
+                                    itemP.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
                                     }
-                                </p> */}
+                                </p>
                             </div>
                         </>
                     ) : (

@@ -15,15 +15,19 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
             if(!params.id[1]){
                 const data: SubCategories = await catalogService.getItensByCategory(params.id[0]);
                 console.log(data)
-                return setCatalog(data);
+                setCatalog(data);
+            }else{
+                const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1]);
+                console.log(data)
+
+                setCatalog(data);
             }
-            const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1]);
-            console.log(data)
-            setCatalog(data);
+            
         }
 
         getCatalog();
     }, [])
+
 
 
 
@@ -45,15 +49,15 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
 
                 <div className={styles.catalogCardContainer}>
                     <div className={styles.catalogOrder}>
-                        <p>teste</p>
+                        <p>{'teste'}</p>
                     </div>
                     <div className={styles.cardsContainer} >
                         {catalog ? (
                             <>
                                 <p className={styles.subCatalogTitle}>{catalog.name}</p>
                                 <div className={styles.cards}>
-                                    {catalog.items ? (
-                                        catalog.items.map(item => (
+                                    {catalog.Items ? (
+                                        catalog.Items.map(item => (
                                             <CardItem key={item.id} item={item} />
                                         ))
                                     ) : (

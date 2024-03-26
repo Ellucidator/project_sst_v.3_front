@@ -10,7 +10,11 @@ export interface Item {
 }
 
 export interface ItemPromotion extends Item {
-    price_promotion: number;
+    ItemPromotion:ItemPromotionAtributes;
+}
+
+export interface ItemPromotionAtributes{
+    price:number
 }
 
 export interface ItemFull extends Item {

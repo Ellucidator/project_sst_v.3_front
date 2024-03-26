@@ -8,5 +8,5 @@ export interface Promotion{
 }
 
 export interface PromotionWithItems extends Promotion{
-    items: ItemPromotion[]
+    Items: ItemPromotion[]
 }

@@ -25,7 +25,7 @@ export default async function Home() {
 
         <section className={`container ${styles.slide}`}>
           <h2 className={styles.slideTitle}>{promotionFeature.name}</h2>
-          <SlideSection allItems={promotionFeature.items} />
+          <SlideSection allItems={promotionFeature.Items} />
         </section>
 
         <section className={`container ${styles.categoriesCards}`}>
