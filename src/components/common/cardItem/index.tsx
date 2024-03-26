@@ -35,10 +35,10 @@ export const CardItem = ({ item }: Props) => {
                                     `${itemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
                                     }
                                 </p>
-                                <p className={styles.price}>{
+                                {/* <p className={styles.price}>{
                                     itemPromotion.price_promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
                                     }
-                                </p>
+                                </p> */}
                             </div>
                         </>
                     ) : (

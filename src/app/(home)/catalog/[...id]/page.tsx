@@ -12,6 +12,11 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
 
     useEffect(() => {
         async function getCatalog() {
+            if(!params.id[1]){
+                const data: SubCategories = await catalogService.getItensByCategory(params.id[0]);
+                console.log(data)
+                return setCatalog(data);
+            }
             const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1]);
             console.log(data)
             setCatalog(data);

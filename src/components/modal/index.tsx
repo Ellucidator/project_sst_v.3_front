@@ -82,7 +82,7 @@ const Modal = ({ catalog, validate }: Props) => {
                 {catalog.map((category) => (
                     <div key={category.id} className={styles.categories}>
                         <div className="flex">
-                            <Link href={`/`}>
+                            <Link href={`http://localhost:3001/catalog/${category.id}`}>
                                 <h3 className={styles.categoryTittle}>
                                     {category.name}
                                 </h3>
