@@ -2,23 +2,24 @@
 import { catalogService } from '@/services/catalogService';
 import styles from './page.module.scss'
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Item } from '@/types/itemsTypes';
 import CardItem from '@/components/common/cardItem';
 import { SubCategories } from '@/types/catalogTypes';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 export default function Catalog({ params }: { params: { id: string[] } }) {
     const [catalog, setCatalog] = useState<SubCategories>();
-    const [itemsOrder, setItemsOrder] = useState('dateDesc')
+    const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
+
+    console.log(itemsOrder)
 
     useEffect(() => {
         async function getCatalog() {
             if(!params.id[1]){
-                const data: SubCategories = await catalogService.getItensByCategory(params.id[0]);
+                const data: SubCategories = await catalogService.getItensByCategory(params.id[0],itemsOrder);
                 console.log(data)
                 setCatalog(data);
             }else{
-                const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1]);
+                const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1],itemsOrder);
                 console.log(data)
 
                 setCatalog(data);
@@ -27,7 +28,7 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
         }
 
         getCatalog();
-    }, [])
+    }, [itemsOrder])
 
 
 
@@ -54,9 +55,9 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
                     <div className={styles.catalogOrder}>
                         <p>{'teste'}</p>
                         <select onChange={orderChange} >
-                            <option value="dateDesc">Novidades</option>
-                            <option value="priceASC">Maior Preço</option>
-                            <option value="priceDesc">Menor Preço</option>
+                            <option value={'created_at-DESC'}>Novidades</option>
+                            <option value={'price-ASC'}>Maior Preço</option>
+                            <option value={'price-DESC'}>Menor Preço</option>
                         </select>
                     </div>
                     <div className={styles.cardsContainer} >

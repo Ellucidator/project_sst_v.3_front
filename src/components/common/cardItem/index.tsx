@@ -32,7 +32,7 @@ export const CardItem = ({ item }: Props) => {
                         <>
                             <div className={styles.priceContainer}>
                                 <p className={styles.pricePromotion}>{
-                                    `${itemP.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+                                    `${itemP.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
                                     }
                                 </p>
                                 <p className={styles.price}>{

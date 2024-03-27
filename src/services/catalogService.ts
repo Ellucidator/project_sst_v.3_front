@@ -58,8 +58,8 @@ async function getSearchItems(name:string){
     return data
 }
 
-async function getItensBySubCategory(itemId: string){
-    const res = await fetch(`http://localhost:3000/sub-categories/${itemId}`, {
+async function getItensBySubCategory(subCategoryId: string ,itemsOrder:string){
+    const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}`, {
         next:{
             revalidate: 10
         },
@@ -69,8 +69,8 @@ async function getItensBySubCategory(itemId: string){
     return data;
 }
 
-async function getItensByCategory(catogryId: string){
-    const res = await fetch(`http://localhost:3000/categories/${catogryId}`, {
+async function getItensByCategory(catogryId: string ,itemsOrder:string){
+    const res = await fetch(`http://localhost:3000/categories/${catogryId}?order=${itemsOrder}`, {
         next:{
             revalidate: 10
         },
