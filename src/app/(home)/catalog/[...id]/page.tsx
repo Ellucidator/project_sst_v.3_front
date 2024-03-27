@@ -1,7 +1,7 @@
 'use client'
 import { catalogService } from '@/services/catalogService';
 import styles from './page.module.scss'
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Item } from '@/types/itemsTypes';
 import CardItem from '@/components/common/cardItem';
 import { SubCategories } from '@/types/catalogTypes';
@@ -9,6 +9,7 @@ import { SubCategories } from '@/types/catalogTypes';
 
 export default function Catalog({ params }: { params: { id: string[] } }) {
     const [catalog, setCatalog] = useState<SubCategories>();
+    const [itemsOrder, setItemsOrder] = useState('dateDesc')
 
     useEffect(() => {
         async function getCatalog() {
@@ -30,7 +31,9 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
 
 
 
-
+    const orderChange = (ev:ChangeEvent<HTMLSelectElement>)=>{
+        setItemsOrder(ev.currentTarget.value)
+    }
 
 
 
@@ -50,6 +53,11 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
                 <div className={styles.catalogCardContainer}>
                     <div className={styles.catalogOrder}>
                         <p>{'teste'}</p>
+                        <select onChange={orderChange} >
+                            <option value="dateDesc">Novidades</option>
+                            <option value="priceASC">Maior Preço</option>
+                            <option value="priceDesc">Menor Preço</option>
+                        </select>
                     </div>
                     <div className={styles.cardsContainer} >
                         {catalog ? (

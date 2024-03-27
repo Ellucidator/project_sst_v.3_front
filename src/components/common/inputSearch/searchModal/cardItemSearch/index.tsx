@@ -36,7 +36,7 @@ export const CardItemSearch = ({ item }: Props) => {
                                 }
                                 </p>
                                 <p className={styles.price}>{
-                                    itemPromotion.price_promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                                    itemPromotion.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
                                 }
                                 </p>
                             </div>
