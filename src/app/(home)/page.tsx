@@ -29,10 +29,10 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.categoriesCards}`}>
-          <Link href={'/'} className={styles.categoryCard1}>
+          <Link href={`http://localhost:3001/catalog/${catalog[0].id}`} className={styles.categoryCard1}>
             <p className={styles.categoryName}>{catalog[0].name}</p>
           </Link>
-          <Link href={'/'} className={styles.categoryCard2}>
+          <Link href={`http://localhost:3001/catalog/${catalog[1].id}`} className={styles.categoryCard2}>
             <p className={styles.categoryName}>{catalog[1].name}</p>
           </Link>
         </section>
