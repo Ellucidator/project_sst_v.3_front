@@ -56,7 +56,8 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
                         {catalog?(
                             params.id[1]?<p className={styles.catalogTitle}>{catalog.category_name?.toUpperCase()}</p>:
                             <p className={styles.catalogTitle}>{catalog.name.toUpperCase()}</p>
-                        ):<></>}
+                        ):<><p></p></>}
+                        
                         <select onChange={orderChange} className={styles.selectOrder} >
                             <option value={'created_at-DESC'}>Novidades</option>
                             <option value={'price-ASC'}>Maior Preço</option>
