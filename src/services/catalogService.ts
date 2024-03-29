@@ -1,5 +1,5 @@
 import { Categories, SubCategories } from "@/types/catalogTypes";
-import { Item } from "@/types/itemsTypes";
+import { Item, ItemFull } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 
 
@@ -26,6 +26,18 @@ async function getFeaturedPromotion(){
     return data;
 }
 
+
+async function getOneItem(itemId:string) {
+    const res = await fetch(`http://localhost:3000/items/${itemId}`, {
+        next:{
+            revalidate: 10
+        },
+        cache: 'no-store'
+    })
+    const data: ItemFull = await res.json();
+    return data;
+}
+
 async function getNewestsItems(){
     const res = await fetch(`http://localhost:3000/items/newests`, {
         next:{
@@ -34,7 +46,6 @@ async function getNewestsItems(){
         cache: 'default'
     })
     const data: Item[] = await res.json();
-    console.log(data)
     return data;
 }
 
@@ -54,7 +65,6 @@ async function getSearchItems(name:string){
         cache: 'no-store'
     })
     const data: Item[] = await res.json();
-    console.log(data)
     return data
 }
 
@@ -87,5 +97,6 @@ export const catalogService = {
     getFeaturedItems,
     getItensBySubCategory,
     getSearchItems,
-    getItensByCategory
+    getItensByCategory,
+    getOneItem
 }

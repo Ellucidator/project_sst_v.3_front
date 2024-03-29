@@ -1,9 +1,15 @@
 @import '../../../../styles/colors/colors.module.scss';
 
 .pageItem{
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
     .itemContainer{
-        
+        height: 100%;
+        background-color: $primaryLight;
+        display: flex;
+        flex-direction: column;
     }
 }

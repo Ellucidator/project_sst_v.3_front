@@ -9,18 +9,22 @@ export interface Item {
     thumbnail_url: string;
 }
 
-export interface ItemPromotion extends Item {
-    ItemPromotion:ItemPromotionAtributes;
-}
-
 export interface ItemPromotionAtributes{
     price:number
 }
 
-export interface ItemFull extends Item {
-    bucket: string;
-    mime: string;
-    size: number;
-    images: string;
-    sub_category_id: number;
+export interface ItemPromotion extends Item {
+    ItemPromotion:ItemPromotionAtributes;
+}
+
+export interface ItemFull extends ItemPromotion {
+    bucket?: string;
+    mime?: string;
+    size?: number;
+    images?: {
+        key:string[],
+        mime?:string[],
+        size?:string[],
+        bucket?:string[]
+    };
 }

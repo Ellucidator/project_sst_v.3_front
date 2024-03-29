@@ -12,7 +12,7 @@ const SlideSection = ({allItems}: Props) => {
     return (
         <>
             <Splide
-                aria-label="My Favorite Images"
+                tag="section"
 
                 options={{
                     type: 'loop',
