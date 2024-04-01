@@ -11,5 +11,14 @@
         background-color: $primaryLight;
         display: flex;
         flex-direction: column;
+
+        .titleItem{
+            margin: 90px 40px 20px 150px;
+            font-size: 36px;
+        }
+        .cardItem{
+            width: 45%;
+            margin-left: 150px;
+        }
     }
 }
