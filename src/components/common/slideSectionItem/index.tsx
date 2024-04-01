@@ -25,21 +25,16 @@ const SlideSectionItem = ({ allItems }: Props) => {
         var miniSlide = new Splide('#miniSlide', {
             rewind: true,
             fixedWidth: 110,
-            fixedHeight: 90,
             isNavigation: true,
+            // focus:'center',
+            arrows:false,
             gap: 5,
-            focus: 'center',
             pagination: false,
             dragMinThreshold: {
                 mouse: 4,
                 touch: 10,
             },
-            breakpoints: {
-                640: {
-                    fixedWidth: 66,
-                    fixedHeight: 60,
-                },
-            },
+
         })
         main.sync(miniSlide)
         main.mount()
@@ -48,7 +43,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
     }, [])
 
     return (
-        <div>
+        <div className={styles.slideItem}>
             <section className='splide' id='mainSlide'>
                 <div className="splide__track">
                     <ul className="splide__list">
@@ -70,9 +65,9 @@ const SlideSectionItem = ({ allItems }: Props) => {
                     </ul>
                 </div>
             </section>
-            <section className='splide' id='miniSlide'>
-                <div className="splide__track">
-                    <ul className="splide__list">
+            <section className={`splide`} id='miniSlide'>
+                <div className={`splide__track ${styles.miniSlide}`}>
+                    <ul className={`splide__list ${styles.ulMiniSlide}`}>
                         {
                             allItems.images?.key.map((key) => {
                                 return (

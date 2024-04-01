@@ -2,6 +2,7 @@ import { catalogService } from '@/services/catalogService'
 import styles from './page.module.scss'
 import Image from 'next/image'
 import SlideSectionItem from '@/components/common/slideSectionItem'
+import PriceItem from '@/components/common/priceItem'
 
 export default async function Item({ params }: { params: { id: string } }){
     const item = await catalogService.getOneItem(params.id)
@@ -19,7 +20,7 @@ export default async function Item({ params }: { params: { id: string } }){
                     <SlideSectionItem allItems={item} />
 
                     <div className={styles.itemBuy}>
-
+                        <PriceItem item={item}/>
                     </div>
                 </div>
                 <div className={styles.cep} ></div>

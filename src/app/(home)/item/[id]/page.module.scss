@@ -13,12 +13,22 @@
         flex-direction: column;
 
         .titleItem{
-            margin: 90px 40px 20px 150px;
+            margin: 90px 0px 10px 100px;
             font-size: 36px;
+            font-family: 'Courier New', Courier, monospace;
         }
         .cardItem{
-            width: 45%;
-            margin-left: 150px;
+            width: 100%;
+            padding: 0px 100px;
+            display: flex;
+            justify-content: center;
+            .itemBuy{
+                width: 40%;
+                display: flex;
+                padding: 10px;
+                flex-direction: column;
+                background-color: $primary;
+            }
         }
     }
 }
