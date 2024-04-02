@@ -51,8 +51,17 @@ const setSession = async (email:string, password:string)=>{
     }
 }
 
+const addCarItem = async (item:any)=>{
+
+
+    
+
+    
+}
+
 
 export const cookieService = {
     verifySession,
-    setSession
+    setSession,
+    addCarItem
 }
