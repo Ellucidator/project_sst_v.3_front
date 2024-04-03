@@ -1,3 +1,9 @@
+
+export interface ItemToCar{
+    id:number
+    quantity:number
+}
+
 export interface Item {
     id: number;
     name: string;

@@ -10,11 +10,14 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
-    const formAction = async (form:FormData)=>{
+    const formAction = async (form: FormData) => {
         'use server'
-        const buyQuantity = form.get('quantity')!.toString()
+        const buyQuantity = parseInt(form.get('quantity')!.toString())
 
-        await cookieService.addCarItem(item)
+        await cookieService.addCarItem({
+            id: item.id,
+            quantity: buyQuantity
+        })
     }
 
     return (
@@ -26,11 +29,16 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <SlideSectionItem allItems={item} />
 
                     <div className={styles.itemBuy}>
+                        {item.in_stock > 0 ? (
+                            <p className={styles.itemStockT}>Produto Disponivel</p>
+                        ) : (
+                            <p className={styles.itemStockF}>Produto Indisponivel</p>
+                        )}
                         <PriceItem item={item} />
                         <form action={formAction} method='POST'>
                             <div className={styles.divQuant}>
                                 <p>Quantidade</p>
-                                <select name="quantity" id="quantity" className={styles.selectQuant}>
+                                <select name="quantity" disabled={item.in_stock > 0 ? false : true} id="quantity" className={styles.selectQuant}>
                                     {
                                         quantity.map((num) => {
                                             return (
@@ -42,7 +50,17 @@ export default async function Item({ params }: { params: { id: string } }) {
                                     }
                                 </select>
                             </div>
-                            <button type='submit'>Comprar</button>
+
+                            <button type='submit' className={styles.btnBuy} >
+                                <div className={styles.btnTexts}>
+                                    <p className={styles.title}>Comprar</p>
+
+                                    <p className={styles.subTitle}>Adicionar ao carrinho</p>
+                                </div>
+                                <Image src="/public/common/cart-plus.svg" alt="catalog" className={styles.icon} width={35} height={35} />
+
+                            </button>
+
                         </form>
                     </div>
                 </div>

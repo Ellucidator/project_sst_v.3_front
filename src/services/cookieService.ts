@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
+import { ItemToCar } from "@/types/itemsTypes"
 
 
 const verifySession = async ()=>{
@@ -51,9 +52,31 @@ const setSession = async (email:string, password:string)=>{
     }
 }
 
-const addCarItem = async (item:any)=>{
+const addCarItem = async (item:ItemToCar)=>{
+    const setCar:ItemToCar[] = []
+    setCar.push(item)
+    
+    
+    const car = cookies().get('car')
+    if(car){
+        const verifyCar:ItemToCar[] = JSON.parse(car.value)
 
+        const verifyItem = verifyCar.find((ic)=> ic.id === item.id)
 
+        if(verifyItem){
+            verifyItem.quantity += item.quantity 
+            cookies().set('car', JSON.stringify(verifyCar))
+        }else{
+            verifyCar.push(item)
+            cookies().set('car', JSON.stringify(verifyCar))
+        }
+
+    }else{
+        cookies().set('car', JSON.stringify(setCar),
+        {
+            expires: 60*60*60*24*10
+        })
+    }
     
 
     

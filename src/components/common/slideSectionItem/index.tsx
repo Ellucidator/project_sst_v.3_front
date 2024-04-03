@@ -15,16 +15,17 @@ const SlideSectionItem = ({ allItems }: Props) => {
     useEffect(() => {
         var main = new Splide('#mainSlide', {
             type: 'fade',
+            rewind:true,
             heightRatio: 0.5,
             pagination: false,
-            arrows: false,
+            arrows: true,
             focus: 'center',
-            height:500
+            height:650
 
         })
         var miniSlide = new Splide('#miniSlide', {
             rewind: true,
-            fixedWidth: 110,
+            fixedWidth: 130,
             isNavigation: true,
             // focus:'center',
             arrows:false,
