@@ -4,6 +4,7 @@ import Image from 'next/image'
 import SlideSectionItem from '@/components/common/slideSectionItem'
 import PriceItem from '@/components/common/priceItem'
 import { cookieService } from '@/services/cookieService'
+import { cepService } from '@/services/cepService'
 
 export default async function Item({ params }: { params: { id: string } }) {
     const item = await catalogService.getOneItem(params.id)
@@ -19,6 +20,12 @@ export default async function Item({ params }: { params: { id: string } }) {
             quantity: buyQuantity
         })
     }
+
+    const formActionCep = async (form: FormData) => {
+        'use server'
+        await cepService.cepCalculator('')
+    }
+
 
     return (
         <div className={styles.pageItem}>
@@ -64,7 +71,11 @@ export default async function Item({ params }: { params: { id: string } }) {
                         </form>
                     </div>
                 </div>
-                <div className={styles.cep} ></div>
+                <div className={styles.cep} >
+                    <form action={formActionCep}>
+                        <button type="submit">teste</button>
+                    </form>
+                </div>
                 <div className={styles.itemDescription}></div>
                 <div className={styles.avaliations} ></div>
             </div>
