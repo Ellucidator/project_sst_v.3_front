@@ -1,0 +1,49 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.cep{
+    padding: 20px 143px;
+    background-color: $primary;
+    form{
+        width: 30%;
+        background-color: $primaryLight;
+        padding: 10px;
+        border-radius: 5px;
+
+        .title{
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+
+        }
+
+        .divInput{
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            align-items: center;
+            
+            .inputCep{
+                background-color: $primary;
+                border-radius: 5px;
+                width: 150px;
+                height: 35px;
+                padding: 0px 10px;
+                border: 1px solid $secondaryDark;
+
+                &::-webkit-inner-spin-button{
+                    display: none;
+                }
+            }
+
+            .btnCep{
+                border: 1px solid $secondaryDark;
+                background-color: $primary;
+                padding: 5px 12px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

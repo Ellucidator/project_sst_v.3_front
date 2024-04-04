@@ -1,5 +1,8 @@
 
-async function cepCalculator({cep, quantity}: {cep: string, quantity: number}) {
+async function cepCalculator(cep:string|undefined, quantityRes:string|undefined) {
+    console.log(cep, quantityRes)
+
+
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
         headers:{
             'Content-Type': 'application/json',
@@ -10,6 +13,7 @@ async function cepCalculator({cep, quantity}: {cep: string, quantity: number}) {
             'User-Agent': 'Aplicação andradefj13@hotmail.com'
         },
         method: 'POST',
+        mode: 'no-cors',
         body: JSON.stringify({
             "from": {
                 "postal_code": "45470000"
@@ -25,7 +29,7 @@ async function cepCalculator({cep, quantity}: {cep: string, quantity: number}) {
                     "length": 11,
                     "weight": 0.3,
                     "insurance_value": 10.1,
-                    "quantity": quantity
+                    "quantity": quantityRes
                 }
             ],
             "options": {
@@ -35,8 +39,14 @@ async function cepCalculator({cep, quantity}: {cep: string, quantity: number}) {
             "services": "1,2"
         })
     })
+    if(res.status === 422)return false
 
-    console.log(await res.json())
+    console.log(res)
+    const data = await res.json()
+    console.log(data)
+
+    return data
+    
 }
 
 
