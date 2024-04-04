@@ -73,8 +73,16 @@ export default async function Item({ params }: { params: { id: string } }) {
                 </div>
                 <div className={styles.cep} >
                     <form action={formActionCep}>
-                        <button type="submit">teste</button>
+                        <p className={styles.title}>Fretes e prazos</p>
+                        <div className={styles.divInput}>
+                            <label htmlFor="cep">CEP:</label>
+                            <input className={styles.inputCep} type="number" name="cep" id="cep" />
+                            <button type="submit" className={styles.btnCep}>Calcular</button>
+                        </div>
                     </form>
+                    <div className={styles.cepResult}>
+                        
+                    </div>
                 </div>
                 <div className={styles.itemDescription}></div>
                 <div className={styles.avaliations} ></div>

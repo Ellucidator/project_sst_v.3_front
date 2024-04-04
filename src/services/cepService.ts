@@ -15,7 +15,7 @@ async function cepCalculator(params:any) {
                 "postal_code": "45470000"
             },
             "to": {
-                "postal_code": "45200020"
+                "postal_code": "45200000"
             },
             "products": [
                 {
@@ -32,7 +32,7 @@ async function cepCalculator(params:any) {
                 "receipt": false,
                 "own_hand": false
             },
-            "services": "1,2,18"
+            "services": "1,2"
         })
     })
 
