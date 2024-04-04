@@ -1,5 +1,5 @@
 
-async function cepCalculator(params:any) {
+async function cepCalculator({cep, quantity}: {cep: string, quantity: number}) {
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
         headers:{
             'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ async function cepCalculator(params:any) {
                 "postal_code": "45470000"
             },
             "to": {
-                "postal_code": "45200000"
+                "postal_code": cep
             },
             "products": [
                 {
@@ -25,7 +25,7 @@ async function cepCalculator(params:any) {
                     "length": 11,
                     "weight": 0.3,
                     "insurance_value": 10.1,
-                    "quantity": 1
+                    "quantity": quantity
                 }
             ],
             "options": {

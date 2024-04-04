@@ -1,0 +1,25 @@
+@import '../../../styles/colors/colors.module.scss';
+
+
+.divQuant{
+    display: flex;
+    flex-wrap: nowrap;
+    align-self: flex-end;
+    gap: 5px;
+    background-color: $primary;
+    width: 130px;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid $secondaryDark;
+
+    .selectQuant{
+        background-color: transparent;
+        border: none;
+        &:focus{
+            outline: none;
+        }
+        option{
+            background-color: $primary;
+        }   
+    }
+}

@@ -72,9 +72,9 @@ const addCarItem = async (item:ItemToCar)=>{
         }
 
     }else{
-        cookies().set('car', JSON.stringify(setCar),
+        const test = cookies().set('car', JSON.stringify(setCar),
         {
-            expires: 60*60*60*24*10
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7) ,
         })
     }
     

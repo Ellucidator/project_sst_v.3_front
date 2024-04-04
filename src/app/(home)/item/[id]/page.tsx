@@ -5,6 +5,7 @@ import SlideSectionItem from '@/components/common/slideSectionItem'
 import PriceItem from '@/components/common/priceItem'
 import { cookieService } from '@/services/cookieService'
 import { cepService } from '@/services/cepService'
+import InputQuantity from '@/components/common/inputQuantity'
 
 export default async function Item({ params }: { params: { id: string } }) {
     const item = await catalogService.getOneItem(params.id)
@@ -23,7 +24,13 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     const formActionCep = async (form: FormData) => {
         'use server'
-        await cepService.cepCalculator('')
+        const cep = form.get('cep')?.toString()
+        const quantity = parseInt(form.get('quantity')!.toString())
+
+        if(!cep) return
+
+        await cepService.cepCalculator({cep, quantity})
+
     }
 
 
@@ -43,20 +50,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                         )}
                         <PriceItem item={item} />
                         <form action={formAction} method='POST'>
-                            <div className={styles.divQuant}>
-                                <p>Quantidade</p>
-                                <select name="quantity" disabled={item.in_stock > 0 ? false : true} id="quantity" className={styles.selectQuant}>
-                                    {
-                                        quantity.map((num) => {
-                                            return (
-                                                <option value={num}>
-                                                    {num}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </select>
-                            </div>
+                            <InputQuantity quantity={quantity} in_stock={item.in_stock} />
 
                             <button type='submit' className={styles.btnBuy} >
                                 <div className={styles.btnTexts}>
@@ -74,6 +68,12 @@ export default async function Item({ params }: { params: { id: string } }) {
                 <div className={styles.cep} >
                     <form action={formActionCep}>
                         <p className={styles.title}>Fretes e prazos</p>
+                        <div className={styles.divItem}>
+                            <p>Produto: {item.name}</p>
+
+                            <InputQuantity quantity={quantity} in_stock={item.in_stock} />
+
+                        </div>
                         <div className={styles.divInput}>
                             <label htmlFor="cep">CEP:</label>
                             <input className={styles.inputCep} type="number" name="cep" id="cep" />
@@ -81,7 +81,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                         </div>
                     </form>
                     <div className={styles.cepResult}>
-                        
+
                     </div>
                 </div>
                 <div className={styles.itemDescription}></div>
