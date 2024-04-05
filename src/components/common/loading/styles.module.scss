@@ -1,0 +1,21 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.loading {
+    align-self: center;
+    border: 5px solid #f3f3f3;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

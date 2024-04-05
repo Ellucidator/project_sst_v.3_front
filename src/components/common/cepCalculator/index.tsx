@@ -6,6 +6,7 @@ import { revalidateTag } from 'next/cache'
 import InputQuantity from '../inputQuantity'
 import { CepResponse } from '@/types/cepTypes'
 import Image from 'next/image'
+import Loading from '../loading'
 
 type Props = {
     in_stock: number
@@ -14,7 +15,6 @@ type Props = {
 }
 const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
     const resultsCepCalculator: CepResponse[] = await cepService.cepCalculator()
-    console.log(resultsCepCalculator)
 
     async function formAction(form: FormData) {
         'use server'
@@ -22,6 +22,8 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
         const quantity = form.get('quantity')?.toString()
 
         if (!cep || !quantity) return
+
+        await new Promise(resolve => setTimeout(resolve, 3000))
 
         cookies().set('cep', JSON.stringify({ cep, quantity }))
 
@@ -43,8 +45,7 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
                         <input className={styles.inputCep} type="number" name="cep" id="cep" />
                         <button type="submit" className={styles.btnCep}>Calcular</button>
                     </div>
-                </form>
-                <div className={styles.cepResult}>
+                    <div className={styles.cepResult}>
                     {resultsCepCalculator ? (
                         <>
                             {resultsCepCalculator.map((result) => {
@@ -63,9 +64,13 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
                             })}
                         </>
                     ) : (
-                        <></>
+                        <>
+                            <Loading/>
+                        </>
                     )}
                 </div>
+                </form>
+
             </div>
         </>
     )

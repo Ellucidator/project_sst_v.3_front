@@ -11,6 +11,8 @@
         flex-wrap: nowrap;
         gap: 5px;
         padding: 10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
 
         .title{
             font-size: 24px;
@@ -51,9 +53,27 @@
     }
     .cepResult{
         background-color: $primaryLight;
-        width: 30%;
         padding: 10px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-top: 1px solid $secondaryDark;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        
+    
+        .cepResultItem{
+
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            padding: 3px;
+            gap: 5px;
+
+            .cepResultImg{
+                background-color: white;
+                padding: 5px;
+                border-radius: 5px;
+            }
+        }
+        
     }
 }

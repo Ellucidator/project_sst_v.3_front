@@ -21,7 +21,6 @@ async function cepCalculator() {
             'User-Agent': 'Aplicação andradefj13@hotmail.com'
         },
         method: 'POST',
-        mode: 'no-cors',
         body: JSON.stringify({
             "from": {
                 "postal_code": "45470000"
@@ -48,7 +47,8 @@ async function cepCalculator() {
         }),
         next:{
             tags: ['cep']
-        }
+        },
+        cache: 'no-cache'
     })
     if(res.status === 422)return false
 
