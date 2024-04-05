@@ -1,46 +1,69 @@
-'use client'
 
-import { useEffect, useState } from 'react'
+import { cookies } from 'next/headers'
 import styles from './styles.module.scss'
 import { cepService } from '@/services/cepService'
+import { revalidateTag } from 'next/cache'
+import InputQuantity from '../inputQuantity'
+import { CepResponse } from '@/types/cepTypes'
+import Image from 'next/image'
 
+type Props = {
+    in_stock: number
+    quantity: number[]
+    itemName: string
+}
+const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
+    const resultsCepCalculator: CepResponse[] = await cepService.cepCalculator()
+    console.log(resultsCepCalculator)
 
-const CepCalculator = () => {
-    const [cepResponse, setCepResponse] = useState([])
+    async function formAction(form: FormData) {
+        'use server'
+        const cep = form.get('cep')?.toString()
+        const quantity = form.get('quantity')?.toString()
 
-    const handlerSubmit = async (ev: React.FormEvent ) => {
-        ev.preventDefault()
-        
-        const quantity = document.getElementById('quantity') as HTMLInputElement
-        const cep = document.getElementById('cep') as HTMLInputElement
-        console.log(cep.value, quantity.value)
+        if (!cep || !quantity) return
 
-        
-        const response = await cepService.cepCalculator(cep.value, quantity.value)
+        cookies().set('cep', JSON.stringify({ cep, quantity }))
 
-        console.log(response)
+        revalidateTag('cep')
 
-        setCepResponse(response)
     }
     return (
         <>
             <div className={styles.cep} >
-                <form onSubmit={handlerSubmit}>
+                <form action={formAction} >
                     <p className={styles.title}>Fretes e prazos</p>
 
                     <div className={styles.divInput}>
+                        <p>Produto: {itemName}</p>
+                        <InputQuantity in_stock={in_stock} quantity={quantity} />
+                    </div>
+                    <div className={styles.divInput}>
                         <label htmlFor="cep">CEP:</label>
                         <input className={styles.inputCep} type="number" name="cep" id="cep" />
-                        <button  type="submit" className={styles.btnCep}>Calcular</button>
+                        <button type="submit" className={styles.btnCep}>Calcular</button>
                     </div>
                 </form>
                 <div className={styles.cepResult}>
-                    {cepResponse?(
-                        <div>
-                            {/* <p>Frete: {cepResponse[0].name}</p> */}
-                        </div>
-                    ):(
-                        <p>Cep Invalido</p>
+                    {resultsCepCalculator ? (
+                        <>
+                            {resultsCepCalculator.map((result) => {
+                                return (
+                                    <div key={result.name} className={styles.cepResultItem}>
+                                        <Image 
+                                            src={result.company.picture} 
+                                            alt={result.company.name} 
+                                            width={70} height={70} 
+                                            className={styles.cepResultImg}
+                                            />
+                                            
+                                        <p>{`${result.name} - ${parseFloat(result.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - De ${result.delivery_range.min} a ${result.delivery_range.max} Dias uteis`}</p>
+                                    </div>
+                                )
+                            })}
+                        </>
+                    ) : (
+                        <></>
                     )}
                 </div>
             </div>

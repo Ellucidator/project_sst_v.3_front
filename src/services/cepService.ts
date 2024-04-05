@@ -1,6 +1,14 @@
+import { cookies } from "next/headers"
 
-async function cepCalculator(cep:string|undefined, quantityRes:string|undefined) {
-    console.log(cep, quantityRes)
+async function cepCalculator() {
+    
+    const cepCookie = cookies().get('cep')?.value
+
+    if(!cepCookie) return
+
+    const {cep, quantity} = JSON.parse(cepCookie)
+
+    if(!cep || !quantity) return
 
 
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
@@ -29,7 +37,7 @@ async function cepCalculator(cep:string|undefined, quantityRes:string|undefined)
                     "length": 11,
                     "weight": 0.3,
                     "insurance_value": 10.1,
-                    "quantity": quantityRes
+                    "quantity": quantity
                 }
             ],
             "options": {
@@ -37,13 +45,14 @@ async function cepCalculator(cep:string|undefined, quantityRes:string|undefined)
                 "own_hand": false
             },
             "services": "1,2"
-        })
+        }),
+        next:{
+            tags: ['cep']
+        }
     })
     if(res.status === 422)return false
 
-    console.log(res)
     const data = await res.json()
-    console.log(data)
 
     return data
     

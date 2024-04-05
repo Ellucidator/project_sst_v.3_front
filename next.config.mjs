@@ -7,6 +7,12 @@ const nextConfig = {
                 hostname: 'localhost',
                 port: '3000',
                 pathname: '/files/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.melhorenvio.com.br',
+                port: '',
+                pathname: '/images/**'
             }
         ]
     },

@@ -1,13 +1,16 @@
 @import '../../../styles/colors/colors.module.scss';
 
 .cep{
-    padding: 20px 143px;
+    padding: 0px 143px;
     background-color: $primary;
     form{
         width: 30%;
         background-color: $primaryLight;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 5px;
         padding: 10px;
-        border-radius: 5px;
 
         .title{
             font-size: 24px;
@@ -45,5 +48,12 @@
                 align-items: center;
             }
         }
+    }
+    .cepResult{
+        background-color: $primaryLight;
+        width: 30%;
+        padding: 10px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 }
