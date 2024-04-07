@@ -1,12 +1,13 @@
 
 import { cookies } from 'next/headers'
 import styles from './styles.module.scss'
-import { cepService } from '@/services/cepService'
 import { revalidateTag } from 'next/cache'
 import InputQuantity from '../inputQuantity'
 import { CepResponse } from '@/types/cepTypes'
 import Image from 'next/image'
 import Loading from '../loading'
+import Link from 'next/link'
+import { cepCalculator } from '@/services/cepService'
 
 type Props = {
     in_stock: number
@@ -14,7 +15,7 @@ type Props = {
     itemName: string
 }
 const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
-    const resultsCepCalculator: CepResponse[] = await cepService.cepCalculator()
+    const resultsCepCalculator: CepResponse[] = await cepCalculator()
 
     async function formAction(form: FormData) {
         'use server'
@@ -25,9 +26,12 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
 
         await new Promise(resolve => setTimeout(resolve, 3000))
 
-        cookies().set('cep', JSON.stringify({ cep, quantity }))
+        cookies().set('cep-calculator', JSON.stringify({ cep, quantity }),
+            {
+                maxAge: 60
+            })
 
-        revalidateTag('cep')
+        revalidateTag('cep-calculator-fetch')
 
     }
     return (

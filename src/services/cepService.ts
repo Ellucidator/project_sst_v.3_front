@@ -1,8 +1,10 @@
 import { cookies } from "next/headers"
 
-async function cepCalculator() {
+
+
+export async function cepCalculator() {
     
-    const cepCookie = cookies().get('cep')?.value
+    const cepCookie = cookies().get('cep-calculator')?.value
 
     if(!cepCookie) return
 
@@ -46,7 +48,7 @@ async function cepCalculator() {
             "services": "1,2"
         }),
         next:{
-            tags: ['cep']
+            tags: ['cep-calculator-fetch'],
         },
         cache: 'no-cache'
     })
@@ -64,6 +66,4 @@ async function cepCalculator() {
 
 
 
-export const cepService = {
-    cepCalculator
-}
+

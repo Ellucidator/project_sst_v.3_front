@@ -1,3 +1,4 @@
+
 import { catalogService } from '@/services/catalogService'
 import styles from './page.module.scss'
 import Image from 'next/image'
@@ -6,12 +7,10 @@ import PriceItem from '@/components/common/priceItem'
 import { cookieService } from '@/services/cookieService'
 import InputQuantity from '@/components/common/inputQuantity'
 import CepCalculator from '@/components/common/cepCalculator'
-import { redirect } from 'next/navigation'
+
+
 
 export default async function Item({ params }: { params: { id: string } }) {
-
-    
-    
     const item = await catalogService.getOneItem(params.id)
 
     const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
