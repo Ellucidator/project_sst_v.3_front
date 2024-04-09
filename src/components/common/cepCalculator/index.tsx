@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Loading from '../loading'
 import Link from 'next/link'
 import { cepCalculator } from '@/services/cepService'
+import ResultCepCalculator from './resultCepCalculator'
 
 type Props = {
     in_stock: number
@@ -16,12 +17,13 @@ type Props = {
 }
 const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
     const resultsCepCalculator: CepResponse[] = await cepCalculator()
-
+    console.log(resultsCepCalculator)
     async function formAction(form: FormData) {
         'use server'
+
         const cep = form.get('cep')?.toString()
         const quantity = form.get('quantity')?.toString()
-
+        
         if (!cep || !quantity) return
 
         await new Promise(resolve => setTimeout(resolve, 3000))
@@ -46,27 +48,18 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
                     </div>
                     <div className={styles.divInput}>
                         <label htmlFor="cep">CEP:</label>
-                        <input className={styles.inputCep} type="number" name="cep" id="cep" />
+                        <input 
+                            className={styles.inputCep} 
+                            type="number" 
+                            name="cep" 
+                            id="cep"
+                            placeholder='10000100'
+                            />
                         <button type="submit" className={styles.btnCep}>Calcular</button>
                     </div>
                     <div className={styles.cepResult}>
                     {resultsCepCalculator ? (
-                        <>
-                            {resultsCepCalculator.map((result) => {
-                                return (
-                                    <div key={result.name} className={styles.cepResultItem}>
-                                        <Image 
-                                            src={result.company.picture} 
-                                            alt={result.company.name} 
-                                            width={70} height={70} 
-                                            className={styles.cepResultImg}
-                                            />
-                                            
-                                        <p>{`${result.name} - ${parseFloat(result.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - De ${result.delivery_range.min} a ${result.delivery_range.max} Dias uteis`}</p>
-                                    </div>
-                                )
-                            })}
-                        </>
+                        <ResultCepCalculator resultsCepCalculator={resultsCepCalculator} />
                     ) : (
                         <>
                             <Loading/>

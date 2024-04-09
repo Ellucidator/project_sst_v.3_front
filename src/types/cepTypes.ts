@@ -10,4 +10,5 @@ export interface CepResponse {
         name: string;
         picture: string;
     };
+    error?: string;
 }

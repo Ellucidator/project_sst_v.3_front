@@ -4,7 +4,7 @@
     padding: 0px 143px;
     background-color: $primary;
     form{
-        width: 30%;
+        max-width: 32%;
         background-color: $primaryLight;
         display: flex;
         flex-direction: column;
@@ -58,22 +58,6 @@
         font-size: 14px;
         display: flex;
         flex-direction: column;
-        
-    
-        .cepResultItem{
-
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            padding: 3px;
-            gap: 5px;
-
-            .cepResultImg{
-                background-color: white;
-                padding: 5px;
-                border-radius: 5px;
-            }
-        }
         
     }
 }
