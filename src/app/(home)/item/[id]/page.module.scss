@@ -93,6 +93,16 @@
             }
         }
 
+        .sectionSecond{
+        align-self: center;
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            .recomendedItems{
+                width: 60%;
+                padding: 10px;
+            }
+        }
         
     }
 }

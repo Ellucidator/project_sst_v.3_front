@@ -7,12 +7,13 @@ import PriceItem from '@/components/common/priceItem'
 import { cookieService } from '@/services/cookieService'
 import InputQuantity from '@/components/common/inputQuantity'
 import CepCalculator from '@/components/common/cepCalculator'
+import SlideSection from '@/components/common/slideSection'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
     const item = await catalogService.getOneItem(params.id)
-
+    const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
     const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
     const formAction = async (form: FormData) => {
@@ -57,7 +58,16 @@ export default async function Item({ params }: { params: { id: string } }) {
                         </form>
                     </div>
                 </div>
-                <CepCalculator in_stock={item.in_stock} quantity={quantity} itemName={item.name} />
+                <div className={styles.sectionSecond}>
+                    <CepCalculator in_stock={item.in_stock} quantity={quantity} itemName={item.name} />
+                    {recomendedItems.Items?(
+                        <div className={styles.recomendedItems}>
+                            <p>Você pode gostar:</p>
+                            <SlideSection allItems={recomendedItems.Items} />
+                        </div>
+                    ):null}
+
+                </div>
                 <div className={styles.itemDescription}></div>
                 <div className={styles.avaliations} ></div>
             </div>

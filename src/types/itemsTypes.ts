@@ -13,6 +13,7 @@ export interface Item {
     featured?: boolean;
     promotion: boolean;
     thumbnail_url: string;
+    sub_category_id?: number;
 }
 
 export interface ItemPromotionAtributes{
