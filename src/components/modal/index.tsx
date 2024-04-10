@@ -14,7 +14,6 @@ type Props = {
 }
 
 const Modal = ({ catalog, validate }: Props) => {
-
     const [element, setElement] = useState<HTMLElement>()
     useEffect(() => {
         const elementClient: HTMLElement = document.getElementById('header')!
@@ -79,28 +78,29 @@ const Modal = ({ catalog, validate }: Props) => {
                     {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
                 </div> */}
 
-                {catalog.map((category) => (
-                    <div key={category.id} className={styles.categories}>
-                        <div className="flex">
-                            <Link href={`http://localhost:3001/catalog/${category.id}`}>
-                                <h3 className={styles.categoryTittle}>
-                                    {category.name}
-                                </h3>
-                            </Link>
-                            <button onClick={(ev) => subCategoryOpen(ev, category)} className={`${styles.btnSub}`}>⇱</button>
+                {catalog.map((category) => {
+                    return (
+                        <div key={category.id} className={styles.categories}>
+                            <div className="flex">
+                                <Link href={`http://localhost:3001/catalog/${category.id}`}>
+                                    <h3 className={styles.categoryTittle}>
+                                        {category.name}
+                                    </h3>
+                                </Link>
+                                <button onClick={(ev) => subCategoryOpen(ev, category)} className={`${styles.btnSub}`}>⇱</button>
+                            </div>
+                            <ul key={`${category.id}`} id={`${category.name}-${category.id}`} className={styles.subCategoryList}>
+                                {category.SubCategories.map((subCategory) => (
+                                    <li key={subCategory.id} className={styles.subCategory} >
+                                        <Link href={`http://localhost:3001/catalog/${category.id}/${subCategory.id}`}>
+                                            {subCategory.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                        <ul key={`${category.id}`} id={`${category.name}-${category.id}`} className={styles.subCategoryList}>
-                            {category.SubCategories.map((subCategory) => (
-                                <li key={subCategory.id} className={styles.subCategory} >
-                                    <Link href={`http://localhost:3001/catalog/${category.id}/${subCategory.id}`}>
-                                        {subCategory.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                ))}
+                    )
+                })}
 
             </ReactModal>
         </>

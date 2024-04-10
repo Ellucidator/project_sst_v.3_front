@@ -8,7 +8,7 @@ async function getCatalog() {
         next:{
             revalidate: 10
         },
-        cache: 'default',
+        cache: 'force-cache',
 
     });
     const data: Categories[] = await res.json();

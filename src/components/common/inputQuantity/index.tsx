@@ -12,7 +12,7 @@ const InputQuantity = ({ in_stock, quantity }: Props) => {
                 {
                     quantity.map((num) => {
                         return (
-                            <option value={num}>
+                            <option key={num} value={num}>
                                 {num}
                             </option>
                         )

@@ -49,9 +49,9 @@ const SlideSectionItem = ({ allItems }: Props) => {
                 <div className="splide__track">
                     <ul className="splide__list">
                         {
-                            allItems.images?.key.map((key) => {
+                            allItems.images?.key.map((key, i) => {
                                 return (
-                                    <li className="splide__slide">
+                                    <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgs}
                                             src={`http://localhost:3000/files/${key}`}
@@ -70,9 +70,9 @@ const SlideSectionItem = ({ allItems }: Props) => {
                 <div className={`splide__track ${styles.miniSlide}`}>
                     <ul className={`splide__list ${styles.ulMiniSlide}`}>
                         {
-                            allItems.images?.key.map((key) => {
+                            allItems.images?.key.map((key,i) => {
                                 return (
-                                    <li className="splide__slide">
+                                    <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgs}
                                             src={`http://localhost:3000/files/${key}`}

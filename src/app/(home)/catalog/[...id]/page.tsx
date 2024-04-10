@@ -28,7 +28,7 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
         }
 
         getCatalog();
-    }, [itemsOrder])
+    }, [itemsOrder, params.id]);
 
 
 

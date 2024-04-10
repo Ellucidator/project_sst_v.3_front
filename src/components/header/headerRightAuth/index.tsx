@@ -9,7 +9,7 @@ type Props = {
 const HeaderRightAuth = ({payload}: Props) => {
 
     return(
-        <div>
+        <div id="userModal">
             <Link className={styles.headerAuth} href="/" >
                 <ModalUser payload={payload}/>
             </Link>

@@ -13,7 +13,6 @@ const SlideSection = ({allItems}: Props) => {
         <>
             <Splide
                 tag="section"
-
                 options={{
                     type: 'loop',
                     perPage: 6,
