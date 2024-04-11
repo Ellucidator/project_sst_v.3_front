@@ -39,6 +39,7 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
 
 
     return (
+        
         <div className={styles.catalog}>
 
             <div className={`container ${styles.catalogContainer}`}>

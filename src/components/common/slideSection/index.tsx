@@ -7,16 +7,19 @@ import CardItem from '../../common/cardItem';
 
 type Props = {
     allItems: Item[] | ItemPromotion[]
+    perPage?: number
+    perMove?: number
+    itemId?: number
 }
-const SlideSection = ({allItems}: Props) => {
+const SlideSection = ({allItems, perPage = 6, perMove = 1 ,itemId}: Props) => {
     return (
         <>
             <Splide
                 tag="section"
                 options={{
                     type: 'loop',
-                    perPage: 6,
-                    perMove: 1,
+                    perPage: perPage,
+                    perMove: perMove,
                     width: '100%',
                     height:'100%',
                     gap: '1.5rem',
@@ -41,6 +44,7 @@ const SlideSection = ({allItems}: Props) => {
             >
                 {
                     allItems.map((item)=>{
+                        if(itemId === item.id) return
                         return (
                             <SplideSlide key={item.id}>
                                 <CardItem item={item} />

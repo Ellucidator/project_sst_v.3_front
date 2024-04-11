@@ -62,8 +62,8 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <CepCalculator in_stock={item.in_stock} quantity={quantity} itemName={item.name} />
                     {recomendedItems.Items?(
                         <div className={styles.recomendedItems}>
-                            <p>Você pode gostar:</p>
-                            <SlideSection allItems={recomendedItems.Items} />
+                            <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>
+                            <SlideSection allItems={recomendedItems.Items} perPage={5} itemId={item.id} />
                         </div>
                     ):null}
 

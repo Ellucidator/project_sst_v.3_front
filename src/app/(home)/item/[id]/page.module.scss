@@ -96,11 +96,21 @@
         .sectionSecond{
         align-self: center;
             display: flex;
-            width: 80%;
+            width: 100%;
             justify-content: space-between;
+            padding-left: 145px;
             .recomendedItems{
-                width: 60%;
-                padding: 10px;
+                width: 70%;
+                padding:0px 20px;
+
+                .recomendedItemsTitle{
+                    font-size: 20px;
+                    margin: 10px 0px;
+                    border-left: 3px solid $tertiaryDark;
+                    padding: 2px 4px;
+                    background-color: $primary;
+                    max-width: fit-content;
+                }
             }
         }
         
