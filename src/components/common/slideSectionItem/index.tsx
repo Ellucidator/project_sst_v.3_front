@@ -11,14 +11,14 @@ type Props = {
     allItems: ItemFull
 }
 const SlideSectionItem = ({ allItems }: Props) => {
-
+    const quantImg = allItems.images?.key.length
     useEffect(() => {
         var main = new Splide('#mainSlide', {
             type: 'fade',
             rewind:true,
             heightRatio: 0.5,
             pagination: false,
-            arrows: true,
+            arrows: quantImg && quantImg > 1 ? true : false,
             focus: 'center',
             height:650
 
