@@ -68,7 +68,10 @@ export default async function Item({ params }: { params: { id: string } }) {
                     ):null}
 
                 </div>
-                <div className={styles.itemDescription}></div>
+                <div className={styles.itemDescription}>
+                    <p className={styles.descriptionTitle}>Descricão do Item</p>
+                    <p className={styles.descriptionText}>{item.description}</p>
+                </div>
                 <div className={styles.avaliations} ></div>
             </div>
         </div>

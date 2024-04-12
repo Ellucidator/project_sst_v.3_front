@@ -13,10 +13,15 @@
     background-color:$primary ;
     height: 100%;
     border-bottom-left-radius: 10px;
+    
     .ulMiniSlide{
         display: flex;
         flex-direction: column;
         gap: 3px;
+        overflow-y: auto;
+        scrollbar-color: $primary $primaryLight;
+        scrollbar-track-color: $primaryLight;
+        scrollbar-width: thin;
         li{
             padding: 3px;
         }

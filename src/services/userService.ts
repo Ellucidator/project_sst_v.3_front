@@ -20,9 +20,7 @@ const createUser = async(user:CreateUser)=>{
         
         return true
     } catch (error) {
-        if(error instanceof Error){
-            console.log(error.message)
-        }
+        return false
     }
 }
 

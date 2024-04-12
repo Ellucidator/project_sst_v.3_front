@@ -13,7 +13,9 @@
     padding: 15px;
     max-height: 55vh;
     overflow-y: auto;
-    
+    scrollbar-color: $primary $primaryLight;
+    scrollbar-track-color: $primaryLight;
+    scrollbar-width: thin;
 }
 .overlayModal {
     z-index: 10;

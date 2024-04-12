@@ -10,17 +10,14 @@ export default function Catalog({ params }: { params: { id: string[] } }) {
     const [catalog, setCatalog] = useState<SubCategories>();
     const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
 
-    console.log(itemsOrder)
 
     useEffect(() => {
         async function getCatalog() {
             if (!params.id[1]) {
                 const data: SubCategories = await catalogService.getItensByCategory(params.id[0], itemsOrder);
-                console.log(data)
                 setCatalog(data);
             } else {
                 const data: SubCategories = await catalogService.getItensBySubCategory(params.id[1], itemsOrder);
-                console.log(data)
 
                 setCatalog(data);
             }
