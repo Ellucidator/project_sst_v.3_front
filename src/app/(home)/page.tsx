@@ -6,10 +6,13 @@ import SlideSection from "@/components/common/slideSection";
 import CardItem from "@/components/common/cardItem";
 export default async function Home() {
 
-  const promotionFeature = await catalogService.getFeaturedPromotion();
-  const catalog = await catalogService.getCatalog();
-  const newestsItens = await catalogService.getNewestsItems();
-  const featuredItems = await catalogService.getFeaturedItems();
+  const [promotionFeature,catalog,newestsItens,featuredItems]= await Promise.all([
+    catalogService.getFeaturedPromotion(),
+    catalogService.getCatalog(),
+    catalogService.getNewestsItems(),
+    catalogService.getFeaturedItems()
+  ])
+
 
 
   return (
@@ -29,11 +32,11 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.categoriesCards}`}>
-          <Link href={`http://localhost:3001/catalog/${catalog[0].id}`} className={styles.categoryCard1}>
-            <p className={styles.categoryName}>{catalog[0].name}</p>
+          <Link href={`/catalog/${catalog[0].name.toLowerCase()}/${catalog[0].SubCategories[0].id}`} className={styles.categoryCard1}>
+            <p className={styles.categoryName}>{catalog[0].SubCategories[0].name}</p>
           </Link>
-          <Link href={`http://localhost:3001/catalog/${catalog[1].id}`} className={styles.categoryCard2}>
-            <p className={styles.categoryName}>{catalog[1].name}</p>
+          <Link href={`/catalog/${catalog[1].name.toLowerCase()}/${catalog[0].SubCategories[1].id}`} className={styles.categoryCard2}>
+            <p className={styles.categoryName}>{catalog[0].SubCategories[1].name}</p>
           </Link>
         </section>
 

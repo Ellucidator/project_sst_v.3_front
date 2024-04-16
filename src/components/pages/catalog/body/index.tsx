@@ -25,7 +25,7 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
 
     useEffect(()=>{
         getCatalog()
-    },[orderChange])
+    },[itemsOrder])
 
 
 
