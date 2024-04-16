@@ -81,7 +81,7 @@ async function getItensBySubCategory(subCategoryId: string|number ,itemsOrder:st
     return data;
 }
 
-async function getItensByCategory(catogryId: string ,itemsOrder:string){
+async function getItensByCategory(catogryId: string ,itemsOrder:string = 'created_at-DESC'){
     const res = await fetch(`http://localhost:3000/categories/${catogryId}?order=${itemsOrder}`, {
         next:{
             revalidate: 10

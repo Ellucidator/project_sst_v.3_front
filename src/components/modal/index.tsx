@@ -37,8 +37,9 @@ const Modal = ({ catalog, validate }: Props) => {
 
 
 
-    const subCategoryOpen = (ev: MouseEvent<HTMLButtonElement>, category: Categories) => {
-        const button = ev.currentTarget
+    const subCategoryOpen = (ev: MouseEvent<HTMLButtonElement>|MouseEvent<HTMLParagraphElement>, category: Categories) => {
+        
+        const button = ev.currentTarget.parentNode!.children[1]
 
         const subCategory = document.getElementById(`${category.name}-${category.id}`)
         if (subCategory?.className === styles.subCategoryList) {
@@ -82,17 +83,15 @@ const Modal = ({ catalog, validate }: Props) => {
                     return (
                         <div key={category.id} className={styles.categories}>
                             <div className="flex">
-                                <Link href={`http://localhost:3001/catalog/${category.id}`}>
-                                    <h3 className={styles.categoryTittle}>
+                                    <p className={styles.categoryTittle} onClick={(ev) => subCategoryOpen(ev, category)}>
                                         {category.name}
-                                    </h3>
-                                </Link>
+                                    </p>
                                 <button onClick={(ev) => subCategoryOpen(ev, category)} className={`${styles.btnSub}`}>⇱</button>
                             </div>
                             <ul key={`${category.id}`} id={`${category.name}-${category.id}`} className={styles.subCategoryList}>
                                 {category.SubCategories.map((subCategory) => (
                                     <li key={subCategory.id} className={styles.subCategory} >
-                                        <Link href={`http://localhost:3001/catalog/${category.id}/${subCategory.id}`}>
+                                        <Link href={`/catalog/${category.name.toLowerCase()}/${subCategory.id}`}>
                                             {subCategory.name}
                                         </Link>
                                     </li>
