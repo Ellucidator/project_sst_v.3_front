@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import { ChangeEvent, useEffect, useState } from 'react';
 import CardItem from '@/components/common/cardItem';
 import { SubCategories } from '@/types/catalogTypes';
+import PagCount from '@/components/common/pagCount';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 type Props = {
@@ -69,6 +70,7 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
                     ) : (
                         <></>
                     )}
+                    <PagCount count={150} page={13} perPage={10} />
                 </div>
             </div>
         </div>
