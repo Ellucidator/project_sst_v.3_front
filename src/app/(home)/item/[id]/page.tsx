@@ -42,7 +42,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
                         <PriceItem item={item} />
-                        <form action={formAction} method='POST'>
+                        <form action={formAction}>
                             <InputQuantity quantity={quantity} in_stock={item.in_stock} />
 
                             <button type='submit' className={styles.btnBuy} >

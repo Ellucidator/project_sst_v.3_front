@@ -9,6 +9,8 @@ type Props = {
 }
 const PagCount = ({count,perPage,page,setPage}: Props)=>{
 
+    if(count <perPage) return (<></>)
+
     const pagCount = (count / perPage) > 1 ? Math.ceil(count / perPage) : 1
 
     const pagArray = Array.from({length: pagCount}, (_, index) => index + 1)

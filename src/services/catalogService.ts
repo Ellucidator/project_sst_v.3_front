@@ -70,8 +70,8 @@ async function getSearchItems(name:string){
     return data
 }
 
-async function getItensBySubCategory(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:string = '1') {
-    const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}?page=${page}`, {
+async function getItensBySubCategory(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:number = 1) {
+    const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
         next:{
             revalidate: 10
         },
