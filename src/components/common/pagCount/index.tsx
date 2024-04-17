@@ -21,16 +21,16 @@ const PagCount = ({count,perPage,page}: Props)=>{
                     limit = limit + page - 5
                     if(i +1 > page -5 && i < limit){
                         return(
-                            <button>{value}</button>
+                            <button key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}>{value}</button>
                         )
                     }
                 }else if(i < limit){
                     return(
-                        <button>{value}</button>
+                        <button key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}>{value}</button>
                     )
                 }
             })}
-            {pagArray.length>10 && page+1<pagCount?<button>...</button>:<></>}
+            {pagArray.length> 5 + page?<button>...</button>:<></>}
         </div>
     )
 }

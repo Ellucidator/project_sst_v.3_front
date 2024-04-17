@@ -55,7 +55,7 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
                 </div>
                 <div className={styles.cardsContainer} >
                     {catalog ? (
-                        <>
+                        <div className={styles.catalogCards}>
                             <p className={styles.subCatalogTitle}>{catalog.name}</p>
                             <div className={styles.cards}>
                                 {catalog.Items ? (
@@ -66,11 +66,11 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
                                     <></>
                                 )}
                             </div>
-                        </>
+                        </div>
                     ) : (
                         <></>
                     )}
-                    <PagCount count={150} page={13} perPage={10} />
+                    <PagCount count={catalog.countItems!} page={1} perPage={10} />
                 </div>
             </div>
         </div>
