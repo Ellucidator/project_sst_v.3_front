@@ -1,11 +1,13 @@
+import { MouseEvent } from 'react'
 import styles from './styles.module.scss'
 
 type Props = {
     count: number
     perPage: number
     page: number
+    setPage: (number: number) => void
 }
-const PagCount = ({count,perPage,page}: Props)=>{
+const PagCount = ({count,perPage,page,setPage}: Props)=>{
 
     const pagCount = (count / perPage) > 1 ? Math.ceil(count / perPage) : 1
 
@@ -19,14 +21,34 @@ const PagCount = ({count,perPage,page}: Props)=>{
                 let limit = 10
                 if(page>5){
                     limit = limit + page - 5
-                    if(i +1 > page -5 && i < limit){
+                    if(limit >= pagArray.length){
+                        if(i+1>pagArray.length-10){
+                            return(
+                                <button 
+                                    type='button' 
+                                    key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}
+                                    onClick={() => setPage(i+1)}
+                                >{value}</button>
+                            )
+                        }
+                    }
+                    else if(i +1 > page -5 && i < limit){
                         return(
-                            <button key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}>{value}</button>
+                            <button 
+                                type='button' 
+                                key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}
+                                onClick={() => setPage(i+1)}
+                            
+                            >{value}</button>
                         )
                     }
                 }else if(i < limit){
                     return(
-                        <button key={i} className={page===i+1 ? styles.btnActive : styles.btnCount}>{value}</button>
+                        <button 
+                            key={i} 
+                            className={page===i+1 ? styles.btnActive : styles.btnCount}
+                            onClick={() => setPage(i+1)}
+                        >{value}</button>
                     )
                 }
             })}

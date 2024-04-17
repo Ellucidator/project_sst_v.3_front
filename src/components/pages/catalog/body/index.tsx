@@ -14,19 +14,19 @@ type Props = {
 const CatalogBody = ({catalogServ, categoryName}:Props)=> {
     const [catalog, setCatalog] = useState<SubCategories>(catalogServ);
     const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
-
+    const [page, setPage] = useState('1')
 
     const orderChange = (ev: ChangeEvent<HTMLSelectElement>) => {
         setItemsOrder(ev.currentTarget.value)
     }
     const getCatalog = async () => {
-        const data: SubCategories = await catalogService.getItensBySubCategory(catalogServ.id.toString(), itemsOrder);
+        const data: SubCategories = await catalogService.getItensBySubCategory(catalogServ.id.toString(), itemsOrder, page);
         setCatalog(data);
     }
 
     useEffect(()=>{
         getCatalog()
-    },[itemsOrder])
+    },[itemsOrder,page])
 
 
 
@@ -70,7 +70,7 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
                     ) : (
                         <></>
                     )}
-                    <PagCount count={catalog.countItems!} page={1} perPage={10} />
+                    <PagCount count={150} page={page} setPage={setPage} perPage={10} />
                 </div>
             </div>
         </div>
