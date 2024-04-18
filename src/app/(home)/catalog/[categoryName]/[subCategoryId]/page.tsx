@@ -3,10 +3,12 @@ import styles from './page.module.scss'
 import { catalogService } from '@/services/catalogService'
 
 
-export default async function Catalog({ params }: { params: { categoryName: string, itemId: string } }) {
+export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
     
-    const catalog = await catalogService.getItensBySubCategory(params.itemId)
-
+    const [catalog, tags] = await Promise.all([
+        catalogService.getItensBySubCategory(params.subCategoryId),
+        catalogService.getTags(params.subCategoryId)
+    ])
     return (
         
         <div className={styles.catalog}>

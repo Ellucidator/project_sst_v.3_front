@@ -1,6 +1,7 @@
 import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item, ItemFull } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
+import { Tag } from "@/types/tagTypes";
 
 
 async function getCatalog() {
@@ -14,7 +15,16 @@ async function getCatalog() {
     const data: Categories[] = await res.json();
     return data;
 }
-
+async function getTags(subCategoryId:string) {
+    const res = await fetch(`http://localhost:3000/tags/${subCategoryId}`, {
+        next:{
+            revalidate: 10
+        },
+        cache: 'no-cache'
+    })
+    const data: Tag[] = await res.json();
+    return data;
+}
 async function getFeaturedPromotion(){
     const res = await fetch('http://localhost:3000/promotions/featured', {
         next:{
@@ -90,5 +100,6 @@ export const catalogService = {
     getFeaturedItems,
     getItensBySubCategory,
     getSearchItems,
-    getOneItem
+    getOneItem,
+    getTags
 }
