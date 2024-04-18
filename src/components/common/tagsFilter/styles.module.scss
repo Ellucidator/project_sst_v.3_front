@@ -2,18 +2,38 @@
 
 .tagsFilter{
     height: 100%;
-    .filterTitle {
-        font-size: 20px;
-        width: fit-content;
-        border-top: 3px solid $tertiaryDark;
-        background-color: $primary;
-        padding: 0px 5px;
-        margin-bottom: 25px;
-        overflow-y: auto;
-        scrollbar-color: $primaryLight $primary;
-        scrollbar-width: thin;
+    overflow-y: auto;
+    scrollbar-color: $primaryLight $primary;
+    scrollbar-width: thin;
 
+    .titleContainer{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .filterTitle {
+            font-size: 20px;
+            width: fit-content;
+            border-top: 2px solid $tertiaryDark;
+            background-color: $primary;
+            padding: 0px 5px;
+
+        }
+        .btnFilter{
+            padding: 0px 6px;
+            background-color: $tertiaryDark;
+            border: 1px solid $primary;
+            border-radius: 3px;
+            font-size: 13px;
+
+            &:hover{
+                border-color: $tertiaryDark;
+                border: 1px solid $secondaryDark;
+
+            }
+        }
     }
+
     .divTag{
         display: flex;
         flex-direction: column;

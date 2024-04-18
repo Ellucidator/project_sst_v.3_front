@@ -18,7 +18,7 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
     const [catalog, setCatalog] = useState<SubCategories>(catalogServ);
     const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
     const [page, setPage] = useState(1)
-
+    const [filter, setfilter] = useState<string[]>([])
     const orderChange = (ev: ChangeEvent<HTMLSelectElement>) => {
         setItemsOrder(ev.currentTarget.value)
     }
@@ -38,7 +38,7 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
         <div className={`container ${styles.catalogContainer}`}>
 
             <div className={styles.catalogOptions}>
-                <TagsFilter tags={tagsServ} />
+                <TagsFilter tags={tagsServ} setFilter={setfilter} />
             </div>
 
             <div className={styles.catalogCardContainer}>
