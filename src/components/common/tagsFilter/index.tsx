@@ -10,11 +10,12 @@ const TagsFilter=({tags}:Props)=>{
     
     return (
         <div className={styles.tagsFilter}>
+            <p className={styles.filterTitle}>Filtros</p>
             {
                 tags.map((tag)=>{
                     return(
                         <div key={tag.id} className={styles.divTag}>
-                            <p className={styles.tagTitle}>{tag.name}</p>
+                            <p className={styles.tagTitle}>{tag.name +' :'}</p>
                             <div className={styles.tagValues}>
                                 {
                                     tag.TagValues?

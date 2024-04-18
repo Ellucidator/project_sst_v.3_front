@@ -9,10 +9,11 @@ export default async function Catalog({ params }: { params: { categoryName: stri
         catalogService.getItensBySubCategory(params.subCategoryId),
         catalogService.getTags(params.subCategoryId)
     ])
+
     return (
         
         <div className={styles.catalog}>
-            <CatalogBody categoryName={params.categoryName} catalogServ={catalog}/>
+            <CatalogBody categoryName={params.categoryName} catalogServ={catalog} tagsServ={tags}/>
         </div>
     )
 }

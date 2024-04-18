@@ -5,13 +5,16 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import CardItem from '@/components/common/cardItem';
 import { SubCategories } from '@/types/catalogTypes';
 import PagCount from '@/components/common/pagCount';
+import { Tag } from '@/types/tagTypes';
+import TagsFilter from '@/components/common/tagsFilter';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 type Props = {
     catalogServ: SubCategories;
-    categoryName: string
+    categoryName: string;
+    tagsServ:Tag[]
 }
-const CatalogBody = ({catalogServ, categoryName}:Props)=> {
+const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
     const [catalog, setCatalog] = useState<SubCategories>(catalogServ);
     const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
     const [page, setPage] = useState(1)
@@ -35,11 +38,7 @@ const CatalogBody = ({catalogServ, categoryName}:Props)=> {
         <div className={`container ${styles.catalogContainer}`}>
 
             <div className={styles.catalogOptions}>
-                {/* {catalog[0]?(
-                        // <CategoryFilter catalog={catalog} />
-                    ):(
-                        <></>
-                    )} */}
+                <TagsFilter tags={tagsServ} />
             </div>
 
             <div className={styles.catalogCardContainer}>
