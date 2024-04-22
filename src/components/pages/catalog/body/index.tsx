@@ -23,13 +23,19 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
         setItemsOrder(ev.currentTarget.value)
     }
     const getCatalog = async () => {
-        const data: SubCategories = await catalogService.getItensBySubCategory(catalogServ.id.toString(), itemsOrder, page);
-        setCatalog(data);
+        if(filter.length>0){
+            const data: SubCategories = await catalogService.getItensByTags(catalogServ.id.toString(), itemsOrder, page, filter);
+            setCatalog(data);
+        }else{
+            const data: SubCategories = await catalogService.getItensBySubCategory(catalogServ.id.toString(), itemsOrder, page);
+            setCatalog(data);
+        }
+
     }
 
     useEffect(()=>{
         getCatalog()
-    },[itemsOrder,page])
+    },[itemsOrder,page,filter])
 
 
 

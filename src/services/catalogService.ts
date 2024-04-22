@@ -91,6 +91,25 @@ async function getItensBySubCategory(subCategoryId: string|number ,itemsOrder:st
     return data;
 }
 
+async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:number = 1,tags:string[]) {
+
+    const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+        next:{
+            revalidate: 10
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        cache: 'no-cache',
+        method: 'POST',
+        body: JSON.stringify({tags})
+    })
+    console.log(res)
+    const data: SubCategories = await res.json();
+    console.log(data)
+    return data;
+}
+
 
 
 export const catalogService = {
@@ -101,5 +120,6 @@ export const catalogService = {
     getItensBySubCategory,
     getSearchItems,
     getOneItem,
-    getTags
+    getTags,
+    getItensByTags
 }

@@ -1,21 +1,25 @@
 import { Tag } from '@/types/tagTypes'
 import styles from './styles.module.scss'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 
 type Props = {
     tags: Tag[]
     setFilter: (value: string[]) => void
 }
 const TagsFilter=({tags,setFilter}:Props)=>{
-
-    const tagsFilter:string[]=[]
+    const [filterState, setFilterState] = useState<string[]>([])
     const onChangeFilter = (ev: ChangeEvent<HTMLInputElement>) => {
-        if(ev.target.checked) tagsFilter.push(ev.target.name)
-        else tagsFilter.splice(tagsFilter.indexOf(ev.target.name), 1)
+        if(ev.target.checked){
+            setFilterState([...filterState, ev.target.name])
+        }else{
+            setFilterState(filterState.filter((value)=>{
+                return value !== ev.target.name
+            }))
+        }
     }
-    const handleFilter = () => {
-        if(tagsFilter.length < 1) return
-        setFilter(tagsFilter)
+    const handleFilter = (ev: MouseEvent<HTMLButtonElement>) => {
+        
+        setFilter(filterState)
     }
     
     if(tags.length < 1) return (<></>)
@@ -24,7 +28,7 @@ const TagsFilter=({tags,setFilter}:Props)=>{
         <div className={styles.tagsFilter}>
             <div className={styles.titleContainer}>
                 <p className={styles.filterTitle}>Filtros</p>
-                <button className={styles.btnFilter} onClick={handleFilter}>APLICAR</button>
+                <button  className={styles.btnFilter} onClick={handleFilter}>APLICAR</button>
             </div>
             {
                 tags.map((tag)=>{
