@@ -94,7 +94,7 @@
         }
 
         .sectionSecond{
-        align-self: center;
+            align-self: center;
             display: flex;
             width: 100%;
             justify-content: space-between;
@@ -112,6 +112,11 @@
                     max-width: fit-content;
                 }
             }
+        }
+        .itemDescription{
+            margin: 15px 0px;
+            width: 92%;
+            align-self: flex-end;
         }
         
     }
