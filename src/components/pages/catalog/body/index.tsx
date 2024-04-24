@@ -54,8 +54,8 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
 
                     <select onChange={orderChange} className={styles.selectOrder} >
                         <option value={'created_at-DESC'}>Novidades</option>
-                        <option value={'price-ASC'}>Maior Preço</option>
-                        <option value={'price-DESC'}>Menor Preço</option>
+                        <option value={'price-DESC'}>Maior Preço</option>
+                        <option value={'price-ASC'}>Menor Preço</option>
                     </select>
                 </div>
                 <div className={styles.cardsContainer} >

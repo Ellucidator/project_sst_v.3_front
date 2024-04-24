@@ -1,3 +1,4 @@
+import { TagValue } from "./tagTypes";
 
 export interface ItemToCar{
     id:number
@@ -34,4 +35,5 @@ export interface ItemFull extends ItemPromotion {
         size?:string[],
         bucket?:string[]
     };
+    TagValues?: TagValue[]
 }

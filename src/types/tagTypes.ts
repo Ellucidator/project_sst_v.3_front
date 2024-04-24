@@ -1,6 +1,7 @@
 export interface TagValue{
     id: number
     name: string
+    Tag?: Tag
 }
 
 export interface Tag {
