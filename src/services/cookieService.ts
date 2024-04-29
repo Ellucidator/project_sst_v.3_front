@@ -82,9 +82,28 @@ const addCarItem = async (item:ItemToCar)=>{
     
 }
 
+async function getItemsCart() {
+    const cart = cookies().get('car')!.value
+    const test:ItemToCar[] = JSON.parse(cart)
+    const ids = test.map((item)=> item.id)
+
+    const res = await fetch('http://localhost:3000/items/show-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ids),
+            cache: 'no-store'
+        })
+        const data = await res.json();
+
+    console.log(data)
+}
+
 
 export const cookieService = {
     verifySession,
     setSession,
-    addCarItem
+    addCarItem,
+    getItemsCart
 }

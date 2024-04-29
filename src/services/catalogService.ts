@@ -2,6 +2,7 @@ import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item, ItemFull } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
+import { cookies } from "next/headers";
 
 
 async function getCatalog() {
@@ -49,6 +50,8 @@ async function getOneItem(itemId:string) {
     const data: ItemFull = await res.json();
     return data;
 }
+
+
 
 async function getNewestsItems(){
     const res = await fetch(`http://localhost:3000/items/newests`, {
@@ -121,5 +124,6 @@ export const catalogService = {
     getSearchItems,
     getOneItem,
     getTags,
-    getItensByTags
+    getItensByTags,
+    
 }
