@@ -41,31 +41,39 @@ export default async function Item({ params }: { params: { id: string } }) {
                         ) : (
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
-                        <PriceItem item={item} />
-                        <form action={formAction}>
-                            <InputQuantity quantity={quantity} in_stock={item.in_stock} />
+                        <div className={styles.itemInfo}>
+                            <section className={styles.sectionPayInfo}>
 
-                            <button type='submit' className={styles.btnBuy} >
-                                <div className={styles.btnTexts}>
-                                    <p className={styles.title}>Comprar</p>
+                            </section>
 
-                                    <p className={styles.subTitle}>Adicionar ao carrinho</p>
-                                </div>
-                                <Image src="/public/common/cart-plus.svg" alt="catalog" className={styles.icon} width={35} height={35} />
+                            <section className={styles.sectionBuy}>
+                                <PriceItem item={item} />
+                                <form action={formAction}>
+                                    <InputQuantity quantity={quantity} in_stock={item.in_stock} />
 
-                            </button>
+                                    <button type='submit' className={styles.btnBuy} >
+                                        <div className={styles.btnTexts}>
+                                            <p className={styles.title}>Comprar</p>
 
-                        </form>
+                                            <p className={styles.subTitle}>Adicionar ao carrinho</p>
+                                        </div>
+                                        <Image src="/public/common/cart-plus.svg" alt="catalog" className={styles.icon} width={35} height={35} />
+
+                                    </button>
+
+                                </form>
+                            </section>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.sectionSecond}>
                     <CepCalculator in_stock={item.in_stock} quantity={quantity} itemName={item.name} />
-                    {recomendedItems.Items?(
+                    {recomendedItems.Items ? (
                         <div className={styles.recomendedItems}>
                             <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>
                             <SlideSection allItems={recomendedItems.Items} perPage={5} itemId={item.id} />
                         </div>
-                    ):null}
+                    ) : null}
 
                 </div>
                 <div className={styles.itemDescription}>

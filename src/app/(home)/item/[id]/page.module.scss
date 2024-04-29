@@ -1,24 +1,25 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.pageItem{
+.pageItem {
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
 
-    .itemContainer{
+    .itemContainer {
         height: 100%;
         width: 100%;
         background-color: $primaryLight;
         display: flex;
         flex-direction: column;
 
-        .titleItem{
-            margin: 30px 0px 10px 100px;
+        .titleItem {
+            margin: 30px 0px 10px 80px;
             font-size: 36px;
             font-family: 'Courier New', Courier, monospace;
         }
-        .cardItem{
+
+        .cardItem {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -26,84 +27,98 @@
             border-bottom: 1px solid $primaryLight;
 
             padding: 5px 10px;
-            .itemBuy{
+
+            .itemBuy {
                 width: 40%;
                 display: flex;
                 justify-content: space-between;
                 padding: 10px;
                 flex-direction: column;
 
-                .itemStockT{
+                .itemStockT {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     height: 50px;
-                    border-top: 1px solid ;
+                    border-top: 1px solid;
                     border-bottom: 1px solid;
                     border-color: $primaryLight;
                     font-size: 18px;
                     font-weight: bold;
                     color: rgb(26, 214, 42);
                 }
-                .itemStockF{
+
+                .itemStockF {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     height: 50px;
-                    border-top: 1px solid ;
+                    border-top: 1px solid;
                     border-bottom: 1px solid;
                     border-color: $primaryLight;
                     font-size: 18px;
                     font-weight: bold;
-                    color:rgb(255, 0, 0);
+                    color: rgb(255, 0, 0);
                 }
 
-                form{
+                .itemInfo {
                     display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                    margin: 20px;
-                    align-self: flex-end;
 
-                        .btnBuy{
-                            
+                    .sectionPayInfo{
+                        width: 50%;
+                    }
+                    
+                    .sectionBuy {
+                        width: 50%;
+                        
+                        form {
                             display: flex;
-                            flex-wrap: nowrap;
-                            justify-content: center;
-                            align-items: center;
+                            flex-direction: column;
                             gap: 15px;
-                            border: 2px solid rgb(2, 100, 10);
-                            background-color: rgb(32, 141, 41);
-                            border-radius: 5px;
-                            padding: 0px 15px;
-                            font-size: 28px;
-                            
-                            .icon{
-                                filter: invert(100%);
-                            }
-                            .btnTexts{
-                                .subTitle{
-                                    padding-bottom: 8px;
-                                    font-size: 12px;
+                            margin: 20px;
+                            align-self: flex-end;
+
+                            .btnBuy {
+
+                                display: flex;
+                                flex-wrap: nowrap;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 15px;
+                                border: 2px solid rgb(2, 100, 10);
+                                background-color: rgb(32, 141, 41);
+                                border-radius: 5px;
+                                padding: 0px 15px;
+                                font-size: 28px;
+
+                                .icon {
+                                    filter: invert(100%);
+                                }
+
+                                .btnTexts {
+                                    .subTitle {
+                                        padding-bottom: 8px;
+                                        font-size: 12px;
+                                    }
                                 }
                             }
-                        
+                        }
                     }
                 }
             }
         }
 
-        .sectionSecond{
+        .sectionSecond {
             align-self: center;
             display: flex;
-            width: 100%;
+            width: 90%;
             justify-content: space-between;
-            padding-left: 145px;
-            .recomendedItems{
-                width: 70%;
-                padding:0px 20px;
 
-                .recomendedItemsTitle{
+            .recomendedItems {
+                width: 70%;
+                padding: 0px 20px;
+
+                .recomendedItemsTitle {
                     font-size: 20px;
                     margin: 10px 0px;
                     border-left: 3px solid $tertiaryDark;
@@ -113,11 +128,12 @@
                 }
             }
         }
-        .itemDescription{
-            margin: 15px 0px;
-            width: 92%;
-            align-self: flex-end;
+
+        .itemDescription {
+            margin: 70px 0px;
+            width: 90%;
+            align-self: center;
         }
-        
+
     }
 }
