@@ -7,14 +7,18 @@ import Image from 'next/image'
 const Stars = () => {
     const [starChecked, setStarChecked] = useState(0)
     const [clicked, setClicked] = useState(false)
+    const [starValue, setStarValue] = useState(0)
     const stars = [1, 2, 3, 4, 5]
+
+
     return (
-        <div className={styles.stars}>
-            <ul className={styles.listStars}>
+        <div className={styles.stars} >
+            <ul className={styles.listStars} >
                 {
                     stars.map((star) => {
                         return (
                             <li
+                            
                                 value={star}
                                 key={star}
                                 onMouseOver={() => !clicked ? setStarChecked(star) : null}

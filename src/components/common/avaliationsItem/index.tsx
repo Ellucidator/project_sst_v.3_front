@@ -6,12 +6,12 @@ const AvaliationsItem = () => {
 
     return (
         <>
-            <form>
-                
+            <form className={styles.formAvaliations}>
+
                 <Stars />
 
-                <input type="text" name='title' placeholder='Titulo'/>
-                <input type="text" name='comment' placeholder='Comentario'/>
+                <input className={styles.inputTitle} type="text" name='title' placeholder='Titulo'/>
+                <textarea className={styles.inputComment} name='comment' placeholder='Comentario'/>
             </form>
         </>
     )

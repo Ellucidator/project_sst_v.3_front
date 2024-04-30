@@ -1,7 +1,8 @@
 @import '../../../../styles/colors/colors.module.scss';
 
 .stars{
-
+    align-self: flex-end;
+    margin: 10px 0px;
     .listStars{
         display: flex;
         flex-wrap: nowrap;

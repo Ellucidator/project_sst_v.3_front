@@ -1,0 +1,33 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.formAvaliations{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+    
+
+    .inputTitle{
+        height: 40px;
+        border-radius: 5px;
+        font-size: 20px;
+        padding: 5px;
+        background-color: $primary;
+
+        &:focus{
+            outline: 1px solid $tertiary;
+        }
+    }
+
+    .inputComment{
+        height: 130px;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 18px;
+        background-color: $primary;
+
+        &:focus{
+            outline: 1px solid $tertiary;
+        }
+    }
+}
