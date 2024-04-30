@@ -9,6 +9,7 @@ import InputQuantity from '@/components/common/inputQuantity'
 import CepCalculator from '@/components/common/cepCalculator'
 import SlideSection from '@/components/common/slideSection'
 import DescriptionList from '@/components/common/descriptionList'
+import AvaliationsItem from '@/components/common/avaliationsItem'
 
 
 
@@ -79,7 +80,9 @@ export default async function Item({ params }: { params: { id: string } }) {
                 <div className={styles.itemDescription}>
                     <DescriptionList tagList={item.TagValues} />
                 </div>
-                <div className={styles.avaliations} ></div>
+                <div className={styles.avaliations} >
+                    <AvaliationsItem/>
+                </div>
             </div>
         </div>
     )
