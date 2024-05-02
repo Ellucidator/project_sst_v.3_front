@@ -1,5 +1,6 @@
 import { CreateUser } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
+import { CreateAvaliation } from "@/types/avaliationTypes";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -24,6 +25,26 @@ const createUser = async(user:CreateUser)=>{
     }
 }
 
+const createAvaliation = async(avaliation:CreateAvaliation)=>{
+    try {
+        const res = await fetch('http://localhost:3000/item/create-avaliation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(avaliation),
+            cache: 'no-store'
+        })
+
+        const data = await res.json();
+
+        return data
+    } catch (error) {
+        return false
+    }
+}
+
 export const userService = {
-    createUser
+    createUser,
+    createAvaliation
 }

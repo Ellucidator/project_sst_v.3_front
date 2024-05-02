@@ -14,6 +14,7 @@ const Stars = () => {
     return (
         <div className={styles.stars} >
             <ul className={styles.listStars} >
+                <input type="hidden" name="stars" value={starValue} />
                 {
                     stars.map((star) => {
                         return (
@@ -24,6 +25,7 @@ const Stars = () => {
                                 onMouseOver={() => !clicked ? setStarChecked(star) : null}
                                 onClick={() => {
                                     setStarChecked(star)
+                                    setStarValue(star)
                                     starChecked !== star ? null : setClicked(!clicked)
                                 }}
                             >
