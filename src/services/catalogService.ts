@@ -1,8 +1,8 @@
+import { Avaliation } from "@/types/avaliationTypes";
 import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item, ItemFull } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
-import { cookies } from "next/headers";
 
 
 async function getCatalog() {
@@ -113,6 +113,16 @@ async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 
     return data;
 }
 
+async function getAllAvaliationsByItemId(itemId:string){
+    const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations`, {
+        next:{
+            revalidate: 10
+        },
+        cache: 'no-cache'
+    })
+    const data: Avaliation = await res.json();
+    return data;
+}
 
 
 export const catalogService = {
@@ -125,5 +135,5 @@ export const catalogService = {
     getOneItem,
     getTags,
     getItensByTags,
-    
+    getAllAvaliationsByItemId
 }

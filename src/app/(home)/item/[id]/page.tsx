@@ -14,8 +14,15 @@ import AvaliationsItem from '@/components/common/avaliationsItem'
 
 
 export default async function Item({ params }: { params: { id: string } }) {
-    const item = await catalogService.getOneItem(params.id)
+    
+    const [item, avaliations]= await Promise.all([
+        catalogService.getOneItem(params.id),
+        catalogService.getAllAvaliationsByItemId(params.id)
+    ])
+    
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
+
+
     const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
     const formAction = async (form: FormData) => {
         'use server'
