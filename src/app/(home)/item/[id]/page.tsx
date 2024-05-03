@@ -10,14 +10,16 @@ import CepCalculator from '@/components/common/cepCalculator'
 import SlideSection from '@/components/common/slideSection'
 import DescriptionList from '@/components/common/descriptionList'
 import AvaliationsItem from '@/components/common/avaliationsItem'
+import { userService } from '@/services/userService'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
     
-    const [item, avaliations]= await Promise.all([
+    const [item, avaliations, userAvaliation]= await Promise.all([
         catalogService.getOneItem(params.id),
-        catalogService.getAllAvaliationsByItemId(params.id)
+        catalogService.getAllAvaliationsByItemId(params.id),
+        userService.getAvaliationByUserId()
     ])
     
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
@@ -88,7 +90,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <DescriptionList tagList={item.TagValues} />
                 </div>
                 <div className={styles.avaliations} >
-                    <AvaliationsItem item_id={item.id} user_id={1}/>
+                    <AvaliationsItem item_id={item.id} user_id={1} avaliation={userAvaliation} allAvaliation={avaliations}/>
                 </div>
             </div>
         </div>

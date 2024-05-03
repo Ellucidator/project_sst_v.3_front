@@ -116,11 +116,12 @@ async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 
 async function getAllAvaliationsByItemId(itemId:string){
     const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations`, {
         next:{
-            revalidate: 10
+            revalidate: 10,
+            tags: ['all-avaliations-item']
         },
         cache: 'no-cache'
     })
-    const data: Avaliation = await res.json();
+    const data: Avaliation[] = await res.json();
     return data;
 }
 
