@@ -1,6 +1,6 @@
 import { CreateUser } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
-import { CreateAvaliation } from "@/types/avaliationTypes";
+import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -44,7 +44,35 @@ const createAvaliation = async(avaliation:CreateAvaliation)=>{
     }
 }
 
+const getAvaliationByUserId = async()=>{
+    const user = await cookieService.verifySession()
+    if(!user) return false
+    
+    try {
+        const avaliation = await fetch(`http://localhost:3000/user/${user.id}/avaliation`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache: 'no-store',
+            next: {
+                revalidate: 10,
+                tags: ['avaliation-user'],
+            },
+        })
+
+        const data:Avaliation = await avaliation.json();
+
+        return data
+
+    } catch (error) {
+        if(error) return false
+    }
+
+}
+
 export const userService = {
     createUser,
-    createAvaliation
+    createAvaliation,
+    getAvaliationByUserId
 }
