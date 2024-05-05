@@ -43,18 +43,27 @@ const Register = async () => {
 
             if (password === confirmPassword) {
                 const res = await userService.createUser(newUser)
-                
-                
-                if (!res){
-                    cookies().set('register', 'true', {
+
+
+                if (!res) {
+                    cookies().set('register', JSON.stringify({
+                        email: true,
+                        password: false
+                    }), {
                         maxAge: 0
                     })
                     revalidateTag('verify-register')
-                    
-                }else{
+                } else {
                     redirect('/')
                 }
             } else {
+                cookies().set('register', JSON.stringify({
+                    email: false,
+                    password: true
+                }), {
+                    maxAge: 0
+                })
+                revalidateTag('verify-register')
                 console.log('As senhas precisam ser iguais')
             }
         } else {
@@ -109,7 +118,7 @@ const Register = async () => {
                             placeholder='ex: nomeabc@hotmail.com'
                             className={styles.input}
                         />
-                        {verify?(<p className={styles.avaliationTitleP}>Email ja cadastrado</p>):null}
+                        {verify.email ? (<p className={styles.verifyP}>Email ja cadastrado</p>) : null}
                     </div>
                     <div className={styles.inputDivDuo}>
                         <div className={styles.inputDiv}>
@@ -122,6 +131,8 @@ const Register = async () => {
                                 placeholder='ex: @Abc123987'
                                 className={styles.input}
                             />
+                            {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
+
                         </div>
                         <div className={styles.inputDiv}>
                             <label htmlFor="confirmPassword" className={styles.label}>Confirme sua senha:</label>
@@ -132,6 +143,8 @@ const Register = async () => {
                                 id="confirmPassword"
                                 className={styles.input}
                             />
+                            {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
+
                         </div>
                     </div>
                     <div className={styles.inputDivDuo}>

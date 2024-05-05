@@ -12,12 +12,16 @@ const verifyRegister = async ()=>{
         cache: 'no-store',
         next: {
             tags: ['verify-register']
-        }
+        },
+        
     })
     if(cookieValue){
-        return true
+        return await JSON.parse(cookieValue)
     }else{
-        return false
+        return {
+            email:false,
+            password:false
+        }
     }
 }
 const verifySession = async ()=>{
