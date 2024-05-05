@@ -5,7 +5,12 @@ import registerIcon from '../../../../public/public/register/registerIcon.svg'
 import { redirect } from 'next/navigation'
 import { userService } from '@/services/userService'
 import { CreateUser } from '@/types/userTypes'
+import { cookieService } from '@/services/cookieService'
+import { revalidateTag } from 'next/cache'
+import { cookies } from 'next/headers'
 const Register = async () => {
+
+    const verify = await cookieService.verifyRegister()
 
     const handlerSubimit = async (form: FormData) => {
         'use server'
@@ -38,10 +43,17 @@ const Register = async () => {
 
             if (password === confirmPassword) {
                 const res = await userService.createUser(newUser)
-                console.log(res)
-                if (!res) return
-
-                redirect('/')
+                
+                
+                if (!res){
+                    cookies().set('register', 'true', {
+                        maxAge: 0
+                    })
+                    revalidateTag('verify-register')
+                    
+                }else{
+                    redirect('/')
+                }
             } else {
                 console.log('As senhas precisam ser iguais')
             }
@@ -56,7 +68,7 @@ const Register = async () => {
             <div className={`container ${styles.registerContainer}`}>
                 <Image src={registerIcon} alt="registerIcon" className={styles.registerIcon} width={30} height={30} />
 
-                <h2 className={styles.registerTittle}>Formulario de cadastro</h2>
+                <h2 className={styles.registerTittle}>Formulario de cadastro </h2>
 
                 <form action={handlerSubimit} className={`container ${styles.registerForm}`}>
                     <div className={styles.inputDivDuo}>
@@ -97,6 +109,7 @@ const Register = async () => {
                             placeholder='ex: nomeabc@hotmail.com'
                             className={styles.input}
                         />
+                        {verify?(<p className={styles.avaliationTitleP}>Email ja cadastrado</p>):null}
                     </div>
                     <div className={styles.inputDivDuo}>
                         <div className={styles.inputDiv}>
