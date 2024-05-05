@@ -4,6 +4,22 @@ import { UserPayload } from "@/types/userTypes"
 import { ItemToCar } from "@/types/itemsTypes"
 
 
+
+const verifyRegister = async ()=>{
+
+    const cookieValue = cookies().get('register')?.value
+    const req = await fetch('http://localhost:3000/verify-register', {
+        cache: 'no-store',
+        next: {
+            tags: ['verify-register']
+        }
+    })
+    if(cookieValue){
+        return true
+    }else{
+        return false
+    }
+}
 const verifySession = async ()=>{
 
     const cookieValue = cookies().get('token')
@@ -105,5 +121,6 @@ export const cookieService = {
     verifySession,
     setSession,
     addCarItem,
-    getItemsCart
+    getItemsCart,
+    verifyRegister
 }
