@@ -64,10 +64,7 @@ const Register = async () => {
                     maxAge: 0
                 })
                 revalidateTag('verify-register')
-                console.log('As senhas precisam ser iguais')
             }
-        } else {
-            console.log('Preencha todos os campos')
         }
     }
 

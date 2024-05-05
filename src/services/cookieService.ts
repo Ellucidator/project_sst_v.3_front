@@ -2,6 +2,7 @@ import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
 import { ItemToCar } from "@/types/itemsTypes"
+import { error } from "console"
 
 
 
@@ -21,6 +22,23 @@ const verifyRegister = async ()=>{
         return {
             email:false,
             password:false
+        }
+    }
+}
+const verifyLogin = async ()=>{
+    const cookieValue = cookies().get('login')?.value
+    const req = await fetch('http://localhost:3000/verify-login', {
+        cache: 'no-store',
+        next: {
+            tags: ['verify-login']
+        },
+        
+    })
+    if(cookieValue){
+        return await JSON.parse(cookieValue)
+    }else{
+        return {
+            error:null
         }
     }
 }
@@ -58,6 +76,7 @@ const setSession = async (email:string, password:string)=>{
             cache: 'no-store'
         })
         const data = await res.json();
+        
     
         if(data.token){
             cookies().set('token', data.token, {
@@ -126,5 +145,6 @@ export const cookieService = {
     setSession,
     addCarItem,
     getItemsCart,
-    verifyRegister
+    verifyRegister,
+    verifyLogin
 }
