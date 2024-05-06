@@ -1,0 +1,34 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+
+
+.tableItems {
+    width: 100%;
+    height: fit-content;
+    background-color: $primary;
+
+    .tableTitle {
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+
+    tr {
+        
+        border-bottom: 1px solid $secondaryDark;
+
+        td {
+            padding: 10px;
+        }
+    }
+}
+
+.price {
+    font-size: 17px;
+}
+
+.pricePromotion {
+    text-decoration: line-through;
+    color: $secondaryDark;
+    font-size: 15px;
+}
