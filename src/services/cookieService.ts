@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
-import { ItemToCar } from "@/types/itemsTypes"
+import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { error } from "console"
 
 
@@ -123,8 +123,8 @@ const addCarItem = async (item:ItemToCar)=>{
 
 async function getItemsCart() {
     const cart = cookies().get('car')!.value
-    const test:ItemToCar[] = JSON.parse(cart)
-    const ids = test.map((item)=> item.id)
+    const cookieCart:ItemToCar[] = JSON.parse(cart)
+    const ids = cookieCart.map((item)=> item.id)
 
     const res = await fetch('http://localhost:3000/items/show-cart', {
             method: 'POST',
@@ -134,9 +134,21 @@ async function getItemsCart() {
             body: JSON.stringify(ids),
             cache: 'no-store'
         })
-        const data = await res.json();
+    const data:ItemPromotion[] = await res.json();
 
-    console.log(data)
+    for(let i = 0; i < data.length; i++){
+        const item = data.find((item)=> item.id === cookieCart[i].id)
+
+        if(item){
+            if(item.in_stock < cookieCart[i].quantity){
+                item.quantity = item.in_stock
+            }else{
+                item.quantity = cookieCart[i].quantity
+            }
+        }
+    }
+
+    return data
 }
 
 

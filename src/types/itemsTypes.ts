@@ -15,6 +15,7 @@ export interface Item {
     promotion: boolean;
     thumbnail_url: string;
     sub_category_id?: number;
+    quantity?:number;
 }
 
 export interface ItemPromotionAtributes{

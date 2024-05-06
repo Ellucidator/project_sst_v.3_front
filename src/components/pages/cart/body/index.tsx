@@ -13,6 +13,14 @@ interface resumo{
 }
 const CartBody = ({ items }: Props) => {
 
+    const resumo = items.reduce((acc:resumo, item) => {
+        acc.sub_total += (item.price * item.quantity!)
+        acc.total += (item.promotion ? item.ItemPromotion.price * item.quantity! : item.price * item.quantity!)
+        return acc
+    }, {
+        sub_total:0,
+        total:0
+    })
 
     
 
