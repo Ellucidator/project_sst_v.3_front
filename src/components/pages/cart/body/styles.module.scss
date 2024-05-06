@@ -1,0 +1,54 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.cartBody {
+    display: flex;
+    background-color: $primaryLight;
+    width: 100%;
+    gap: 15px;
+    padding: 50px;
+
+    .cartTitle{
+        
+        font-size: 25px;
+        color: $tertiaryDark;
+    }
+
+    .cartTotal{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: $primary;
+        padding: 20px;
+        height: 50%;
+        width: 35%;
+        justify-content: space-between;
+        align-items: center;
+
+        .resumo{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            
+            .resumoTitle{
+                font-size: 20px;
+                width: fit-content;
+                align-self: center;
+                padding: 3px 5px;
+                margin-bottom: 10px;
+                background-color: rgb($primaryLight, 0.4);
+                border-bottom: 2px solid $tertiaryDark;
+                border-top: 2px solid $tertiaryDark;
+            }
+
+            .resumoItems{
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                border-bottom: 1px solid $secondaryDark;
+                font-size: large;
+            }
+        }
+    }
+}
