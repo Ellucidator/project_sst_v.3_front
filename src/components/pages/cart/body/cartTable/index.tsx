@@ -1,12 +1,42 @@
-import { ItemPromotion } from '@/types/itemsTypes'
+'use client'
+import { ItemPromotion, ItemToCar } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
 import Image from 'next/image'
+import Cookies from 'js-cookie';
+import { MouseEvent } from 'react';
+
 
 type Props = {
     items?: ItemPromotion[]
 }
 
 const CartTable = ({ items }: Props) => {
+    
+    function updateQuantity(ev: MouseEvent<HTMLButtonElement>, id: number) {
+        ev.preventDefault()
+        const btnValue = ev.currentTarget.innerText
+        
+        const cookieValidation = Cookies.get('car')
+        if(!cookieValidation)return
+
+        const carCookie:ItemToCar[] = JSON.parse(cookieValidation)
+
+        const item = carCookie.find((item)=> item.id === id)
+        
+
+        if(btnValue === '-'){
+            item!.quantity = item!.quantity - 1
+            Cookies.set('car', JSON.stringify(carCookie))
+
+        }else if(btnValue === '+'){
+            item!.quantity = item!.quantity + 1
+            Cookies.set('car', JSON.stringify(carCookie))
+        }
+
+
+    }
+
+    
 
     return (
 
@@ -23,12 +53,18 @@ const CartTable = ({ items }: Props) => {
                     items ? items.map((item) => {
                         return (
                             <>
-                                <tr>
+                                <tr key={item.id}>
                                     <td className='flex gap-5 '>
                                         <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
                                         <p>{item.name}</p>
                                     </td>
-                                    <td>{item.in_stock === 0 ? 'Indisponível' : item.quantity}</td>
+
+                                    <td>
+                                        <button onClick={(ev)=>{updateQuantity(ev,item.id)}}>-</button>
+                                        {item.in_stock === 0 ? 'Indisponível' : item.quantity}
+                                        <button onClick={(ev)=>{updateQuantity(ev,item.id)}}>+</button>
+                                    </td>
+                                    
                                     <td>
                                         {item.promotion ? (
                                             <>
