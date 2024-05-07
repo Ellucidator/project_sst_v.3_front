@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import Image from 'next/image'
 import Cookies from 'js-cookie';
 import { MouseEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 type Props = {
@@ -11,8 +12,8 @@ type Props = {
 }
 
 const CartTable = ({ items }: Props) => {
-    
-    function updateQuantity(ev: MouseEvent<HTMLButtonElement>, id: number) {
+    const router = useRouter()
+    async function updateQuantity(ev: MouseEvent<HTMLButtonElement>, item: ItemPromotion) {
         ev.preventDefault()
         const btnValue = ev.currentTarget.innerText
         
@@ -21,19 +22,21 @@ const CartTable = ({ items }: Props) => {
 
         const carCookie:ItemToCar[] = JSON.parse(cookieValidation)
 
-        const item = carCookie.find((item)=> item.id === id)
+        const itemVerify = carCookie.find((elem)=> elem.id === item.id)
         
 
-        if(btnValue === '-'){
-            item!.quantity = item!.quantity - 1
+        if(btnValue === '-')itemVerify!.quantity = itemVerify!.quantity - 1
+        else if(btnValue === '+')itemVerify!.quantity = itemVerify!.quantity + 1
+
+        if(itemVerify!.quantity > 0){
+            if(itemVerify!.quantity > item.in_stock)return
+            
             Cookies.set('car', JSON.stringify(carCookie))
 
-        }else if(btnValue === '+'){
-            item!.quantity = item!.quantity + 1
-            Cookies.set('car', JSON.stringify(carCookie))
+        }else{
+            Cookies.set('car', JSON.stringify(carCookie.filter((elem)=> elem.id !== item.id)))
         }
-
-
+        router.refresh()
     }
 
     
@@ -60,9 +63,9 @@ const CartTable = ({ items }: Props) => {
                                     </td>
 
                                     <td>
-                                        <button onClick={(ev)=>{updateQuantity(ev,item.id)}}>-</button>
+                                        <button onClick={async(ev)=>{await updateQuantity(ev,item)}}>-</button>
                                         {item.in_stock === 0 ? 'Indisponível' : item.quantity}
-                                        <button onClick={(ev)=>{updateQuantity(ev,item.id)}}>+</button>
+                                        <button onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
                                     </td>
                                     
                                     <td>

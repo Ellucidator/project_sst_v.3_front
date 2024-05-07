@@ -2,7 +2,7 @@ import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
 import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
-import { error } from "console"
+import { Console, error } from "console"
 
 
 
@@ -152,7 +152,7 @@ async function getItemsCart() {
             }
         }
     }
-
+    
     return data
 }
 
