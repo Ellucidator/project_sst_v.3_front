@@ -7,13 +7,13 @@
     gap: 15px;
     padding: 50px;
 
-    .cartTitle{
-        
+    .cartTitle {
+
         font-size: 25px;
         color: $tertiaryDark;
     }
 
-    .cartTotal{
+    .cartTotal {
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -23,14 +23,15 @@
         width: 35%;
         justify-content: space-between;
         align-items: center;
+        border-radius: 5px;
 
-        .resumo{
+        .resumo {
             display: flex;
             flex-direction: column;
             gap: 10px;
             width: 100%;
-            
-            .resumoTitle{
+
+            .resumoTitle {
                 font-size: 20px;
                 width: fit-content;
                 align-self: center;
@@ -41,7 +42,7 @@
                 border-top: 2px solid $tertiaryDark;
             }
 
-            .resumoItems{
+            .resumoItems {
                 padding: 10px;
                 display: flex;
                 justify-content: space-between;
@@ -49,6 +50,35 @@
                 border-bottom: 1px solid $secondaryDark;
                 font-size: large;
             }
+
+            .resumoItemsTotal {
+                @extend .resumoItems;
+                font-size: x-large;
+            }
+        }
+
+        .btnBuy {
+
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgb(2, 100, 10);
+            background-color: rgb(32, 141, 41);
+            border-radius: 5px;
+            padding: 6px 10px;
+            font-size: 28px;
+
+            .icon {
+                filter: invert(100%);
+            }
+
+
+            .subTitle {
+                font-size: 20px;
+            }
+
         }
     }
 }

@@ -3,6 +3,7 @@
 
 
 .tableItems {
+    border-radius: 5px;
     width: 100%;
     height: fit-content;
     background-color: $primary;
@@ -12,6 +13,7 @@
         font-weight: bold;
 
     }
+
 
     tr {
         
@@ -31,4 +33,10 @@
     text-decoration: line-through;
     color: $secondaryDark;
     font-size: 15px;
+}
+
+.cardBanner {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
 }

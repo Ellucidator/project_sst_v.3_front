@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import Image from 'next/image'
 
 type Props = {
-    items: ItemPromotion[]
+    items?: ItemPromotion[]
 }
 
 const CartTable = ({ items }: Props) => {
@@ -20,12 +20,12 @@ const CartTable = ({ items }: Props) => {
             </thead>
             <tbody>
                 {
-                    items.map((item) => {
+                    items ? items.map((item) => {
                         return (
                             <>
                                 <tr>
                                     <td className='flex gap-5 '>
-                                        <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} />
+                                        <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
                                         <p>{item.name}</p>
                                     </td>
                                     <td>{item.in_stock === 0 ? 'Indisponível' : item.quantity}</td>
@@ -42,7 +42,7 @@ const CartTable = ({ items }: Props) => {
                                 </tr>
                             </>
                         )
-                    })
+                    }) : null
                 }
             </tbody>
         </table>

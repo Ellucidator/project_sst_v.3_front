@@ -122,7 +122,9 @@ const addCarItem = async (item:ItemToCar)=>{
 }
 
 async function getItemsCart() {
-    const cart = cookies().get('car')!.value
+    const cart = cookies().get('car')?.value
+    if(!cart) return null
+    
     const cookieCart:ItemToCar[] = JSON.parse(cart)
     const ids = cookieCart.map((item)=> item.id)
 

@@ -7,22 +7,22 @@ import CartTable from './cartTable'
 type Props = {
     items: ItemPromotion[]
 }
-interface resumo{
-    sub_total:number
-    total:number
+interface resumo {
+    sub_total: number
+    total: number
 }
 const CartBody = ({ items }: Props) => {
 
-    const resumo = items.reduce((acc:resumo, item) => {
+    const resumo = items ? items.reduce((acc: resumo, item) => {
         acc.sub_total += (item.price * item.quantity!)
         acc.total += (item.promotion ? item.ItemPromotion.price * item.quantity! : item.price * item.quantity!)
         return acc
     }, {
-        sub_total:0,
-        total:0
-    })
+        sub_total: 0,
+        total: 0
+    }) : { sub_total: 0, total: 0 }
 
-    
+
 
     return (
         <>
@@ -36,12 +36,15 @@ const CartBody = ({ items }: Props) => {
                             <p>Subtotal</p>
                             <p>{resumo.sub_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                         </div>
-                        <div className={styles.resumoItems}>
-                            <p>Total</p>
+                        <div className={styles.resumoItemsTotal}>
+                            <p >Total</p>
                             <p>{resumo.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                         </div>
                     </div>
-                    <button>FINALIZAR COMPRA</button>
+                    <button type='submit' className={styles.btnBuy} >
+                        <Image src="/public/common/bag-check.svg" alt="catalog" className={styles.icon} width={35} height={35} />
+                        <p className={styles.subTitle}>FINALIZAR COMPRAS</p>
+                    </button>
                 </div>
             </div>
         </>
