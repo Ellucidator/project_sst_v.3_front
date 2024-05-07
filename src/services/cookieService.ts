@@ -124,7 +124,7 @@ const addCarItem = async (item:ItemToCar)=>{
 async function getItemsCart() {
     const cart = cookies().get('car')?.value
     if(!cart) return null
-    
+
     const cookieCart:ItemToCar[] = JSON.parse(cart)
     const ids = cookieCart.map((item)=> item.id)
 
@@ -134,7 +134,10 @@ async function getItemsCart() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(ids),
-            cache: 'no-store'
+            cache: 'no-store',
+            next: {
+                tags: ['get-items-cart']
+            }
         })
     const data:ItemPromotion[] = await res.json();
 

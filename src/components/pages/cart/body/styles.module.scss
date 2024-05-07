@@ -2,83 +2,89 @@
 
 .cartBody {
     display: flex;
+    flex-direction: column;
     background-color: $primaryLight;
     width: 100%;
     gap: 15px;
     padding: 50px;
 
     .cartTitle {
-
         font-size: 25px;
         color: $tertiaryDark;
     }
 
-    .cartTotal {
+    .cartInfo{
         display: flex;
-        flex-direction: column;
-        gap: 15px;
-        background-color: $primary;
-        padding: 20px;
-        height: 50%;
-        width: 35%;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 5px;
+        width: 100%;
+        gap: 25px;
+        flex-wrap: nowrap;
 
-        .resumo {
+        .cartTotal {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            width: 100%;
-
-            .resumoTitle {
-                font-size: 20px;
-                width: fit-content;
-                align-self: center;
-                padding: 3px 5px;
-                margin-bottom: 10px;
-                background-color: rgb($primaryLight, 0.4);
-                border-bottom: 2px solid $tertiaryDark;
-                border-top: 2px solid $tertiaryDark;
-            }
-
-            .resumoItems {
-                padding: 10px;
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: nowrap;
-                border-bottom: 1px solid $secondaryDark;
-                font-size: large;
-            }
-
-            .resumoItemsTotal {
-                @extend .resumoItems;
-                font-size: x-large;
-            }
-        }
-
-        .btnBuy {
-
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
+            gap: 15px;
+            background-color: $primary;
+            padding: 20px;
+            width: 35%;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            border: 2px solid rgb(2, 100, 10);
-            background-color: rgb(32, 141, 41);
             border-radius: 5px;
-            padding: 6px 10px;
-            font-size: 28px;
-
-            .icon {
-                filter: invert(100%);
+    
+            .resumo {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+    
+                .resumoTitle {
+                    font-size: 20px;
+                    width: fit-content;
+                    align-self: center;
+                    padding: 3px 5px;
+                    margin-bottom: 10px;
+                    background-color: rgb($primaryLight, 0.4);
+                    border-bottom: 2px solid $tertiaryDark;
+                    border-top: 2px solid $tertiaryDark;
+                }
+    
+                .resumoItems {
+                    padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: nowrap;
+                    border-bottom: 1px solid $secondaryDark;
+                    font-size: large;
+                }
+    
+                .resumoItemsTotal {
+                    @extend .resumoItems;
+                    font-size: x-large;
+                }
             }
-
-
-            .subTitle {
-                font-size: 20px;
+    
+            .btnBuy {
+    
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                border: 2px solid rgb(2, 100, 10);
+                background-color: rgb(32, 141, 41);
+                border-radius: 5px;
+                padding: 6px 10px;
+                font-size: 28px;
+    
+                .icon {
+                    filter: invert(100%);
+                }
+    
+    
+                .subTitle {
+                    font-size: 20px;
+                }
+    
             }
-
         }
     }
 }

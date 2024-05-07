@@ -27,25 +27,28 @@ const CartBody = ({ items }: Props) => {
     return (
         <>
             <div className={`container ${styles.cartBody}`}>
-                {/* <p className={styles.cartTitle}>MEU CARRINHO</p> */}
-                <CartTable items={items} />
-                <div className={styles.cartTotal}>
-                    <div className={styles.resumo}>
-                        <p className={styles.resumoTitle}>RESUMO</p>
-                        <div className={styles.resumoItems}>
-                            <p>Subtotal</p>
-                            <p>{resumo.sub_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                <p className={styles.cartTitle}>MEU CARRINHO</p>
+                <div className={styles.cartInfo}>
+                    <CartTable items={items} />
+                    <div className={styles.cartTotal}>
+                        <div className={styles.resumo}>
+                            <p className={styles.resumoTitle}>RESUMO</p>
+                            <div className={styles.resumoItems}>
+                                <p>Subtotal</p>
+                                <p>{resumo.sub_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                            </div>
+                            <div className={styles.resumoItemsTotal}>
+                                <p >Total</p>
+                                <p>{resumo.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                            </div>
                         </div>
-                        <div className={styles.resumoItemsTotal}>
-                            <p >Total</p>
-                            <p>{resumo.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                        </div>
+                        <button type='submit' className={styles.btnBuy} >
+                            <Image src="/public/common/bag-check.svg" alt="catalog" className={styles.icon} width={35} height={35} />
+                            <p className={styles.subTitle}>FINALIZAR COMPRAS</p>
+                        </button>
                     </div>
-                    <button type='submit' className={styles.btnBuy} >
-                        <Image src="/public/common/bag-check.svg" alt="catalog" className={styles.icon} width={35} height={35} />
-                        <p className={styles.subTitle}>FINALIZAR COMPRAS</p>
-                    </button>
                 </div>
+
             </div>
         </>
     )
