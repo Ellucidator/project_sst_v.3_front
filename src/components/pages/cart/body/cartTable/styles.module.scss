@@ -25,6 +25,17 @@
     }
 }
 
+.quantity {
+
+    .btnQuantity {
+        background-color: $primary;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 0px 8px;
+        border: 1px solid $secondaryDark;
+    }
+}
+
 .price {
     font-size: 17px;
 }

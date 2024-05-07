@@ -30,7 +30,7 @@ const CartTable = ({ items }: Props) => {
 
         if(itemVerify!.quantity > 0){
             if(itemVerify!.quantity > item.in_stock)return
-            
+
             Cookies.set('car', JSON.stringify(carCookie))
 
         }else{
@@ -57,15 +57,15 @@ const CartTable = ({ items }: Props) => {
                         return (
                             <>
                                 <tr key={item.id}>
-                                    <td className='flex gap-5 '>
+                                    <td className='flex gap-5'>
                                         <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
                                         <p>{item.name}</p>
                                     </td>
 
-                                    <td>
-                                        <button onClick={async(ev)=>{await updateQuantity(ev,item)}}>-</button>
+                                    <td className={styles.quantity}>
+                                        <button className={styles.btnQuantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>-</button>
                                         {item.in_stock === 0 ? 'Indisponível' : item.quantity}
-                                        <button onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
+                                        <button className={styles.btnQuantity} disabled={item.in_stock === item.quantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
                                     </td>
                                     
                                     <td>
