@@ -27,6 +27,7 @@ const CartTable = ({ items }: Props) => {
 
         if(btnValue === '-')itemVerify!.quantity = itemVerify!.quantity - 1
         else if(btnValue === '+')itemVerify!.quantity = itemVerify!.quantity + 1
+        else if(btnValue === 'x')itemVerify!.quantity = 0
 
         if(itemVerify!.quantity > 0){
             if(itemVerify!.quantity > item.in_stock)return
@@ -77,6 +78,9 @@ const CartTable = ({ items }: Props) => {
                                         ) : (
                                             <p className={styles.price}>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                         )}
+                                    </td>
+                                    <td>
+                                        <button className={styles.btnDel} onClick={async(ev)=>{await updateQuantity(ev,item)}}>x</button>
                                     </td>
                                 </tr>
                             </>
