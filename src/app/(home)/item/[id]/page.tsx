@@ -16,11 +16,14 @@ import { userService } from '@/services/userService'
 
 export default async function Item({ params }: { params: { id: string } }) {
     
-    const [item, avaliations, userAvaliation]= await Promise.all([
+    const [item, avaliations, userAvaliation, itemCharacteristics]= await Promise.all([
         catalogService.getOneItem(params.id),
         catalogService.getAllAvaliationsByItemId(params.id),
-        userService.getAvaliationByUserId()
+        userService.getAvaliationByUserId(),
+        catalogService.getItemCharacteristics(params.id)
     ])
+
+    console.log(itemCharacteristics)
     
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
 

@@ -5,6 +5,17 @@ export interface ItemToCar{
     quantity:number
 }
 
+export interface ItemCharacteristics{
+    item_id: number
+    width: number
+    height: number
+    length: number
+    weight: number
+    insurance_value: number
+    created_at: Date
+    updated_at: Date
+}
+
 export interface Item {
     id: number;
     name: string;

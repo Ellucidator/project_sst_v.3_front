@@ -72,11 +72,11 @@ const CartTable = ({ items }: Props) => {
                                     <td>
                                         {item.promotion ? (
                                             <>
-                                                <p className={styles.pricePromotion}>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                                                <p className={styles.price}>{item.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                                <p className={styles.pricePromotion}>{(item.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                                <p className={styles.price}>{(item.ItemPromotion.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                             </>
                                         ) : (
-                                            <p className={styles.price}>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                            <p className={styles.price}>{(item.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                         )}
                                     </td>
                                     <td>

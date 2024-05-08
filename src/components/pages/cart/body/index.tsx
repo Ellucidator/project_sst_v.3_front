@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import PriceItem from '@/components/common/priceItem'
 import Image from 'next/image'
 import CartTable from './cartTable'
+import CepCalculator from '@/components/common/cepCalculator'
 
 type Props = {
     items: ItemPromotion[]
@@ -48,7 +49,6 @@ const CartBody = ({ items }: Props) => {
                         </button>
                     </div>
                 </div>
-
             </div>
         </>
     )

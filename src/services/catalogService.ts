@@ -1,6 +1,6 @@
 import { Avaliation } from "@/types/avaliationTypes";
 import { Categories, SubCategories } from "@/types/catalogTypes";
-import { Item, ItemFull } from "@/types/itemsTypes";
+import { Item, ItemCharacteristics, ItemFull } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
 
@@ -51,6 +51,19 @@ async function getOneItem(itemId:string) {
     return data;
 }
 
+async function getItemCharacteristics(itemId:string) {
+    const res = await fetch(`http:/localhost:3000/item/${itemId}/characteristics`, {
+        next:{
+            revalidate: 10,
+        },
+        cache: 'no-store'
+    })
+
+
+    const data: ItemCharacteristics = await res.json();
+
+    return data;
+}
 
 
 async function getNewestsItems(){
@@ -136,5 +149,6 @@ export const catalogService = {
     getOneItem,
     getTags,
     getItensByTags,
-    getAllAvaliationsByItemId
+    getAllAvaliationsByItemId,
+    getItemCharacteristics
 }
