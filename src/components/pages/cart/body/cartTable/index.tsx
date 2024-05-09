@@ -65,18 +65,18 @@ const CartTable = ({ items }: Props) => {
 
                                     <td className={styles.quantity}>
                                         <button className={styles.btnQuantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>-</button>
-                                        {item.in_stock === 0 ? 'Indisponível' : item.quantity}
-                                        <button className={styles.btnQuantity} disabled={item.in_stock === item.quantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
+                                        {item.in_stock === 0 ? 'Indisponível' : item.ItemCharacteristic?.quantity}
+                                        <button className={styles.btnQuantity} disabled={item.in_stock === item.ItemCharacteristic?.quantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
                                     </td>
                                     
                                     <td>
                                         {item.promotion ? (
                                             <>
-                                                <p className={styles.pricePromotion}>{(item.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                                                <p className={styles.price}>{(item.ItemPromotion.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                                <p className={styles.pricePromotion}>{(item.price * item.ItemCharacteristic?.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                                <p className={styles.price}>{(item.ItemPromotion.price * item.ItemCharacteristic?.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                             </>
                                         ) : (
-                                            <p className={styles.price}>{(item.price * item.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                            <p className={styles.price}>{(item.price * item.ItemCharacteristic?.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                         )}
                                     </td>
                                     <td>

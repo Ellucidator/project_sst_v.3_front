@@ -1,4 +1,4 @@
-import { Item, ItemPromotion } from '@/types/itemsTypes'
+import { Item, ItemCharacteristics, ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
 import PriceItem from '@/components/common/priceItem'
 import Image from 'next/image'
@@ -14,16 +14,20 @@ interface resumo {
 }
 const CartBody = ({ items }: Props) => {
 
+
+
     const resumo = items ? items.reduce((acc: resumo, item) => {
-        acc.sub_total += (item.price * item.quantity!)
-        acc.total += (item.promotion ? item.ItemPromotion.price * item.quantity! : item.price * item.quantity!)
+        acc.sub_total += (item.price * item.ItemCharacteristic!.quantity!)
+        acc.total += (item.promotion ? item.ItemPromotion.price * item.ItemCharacteristic!.quantity! : item.price * item.ItemCharacteristic!.quantity!)
         return acc
     }, {
         sub_total: 0,
         total: 0
     }) : { sub_total: 0, total: 0 }
 
-
+    const itemsCharacteristics:ItemCharacteristics[] = items!.map((item)=>{
+        return item.ItemCharacteristic!
+    })
 
     return (
         <>
@@ -48,6 +52,9 @@ const CartBody = ({ items }: Props) => {
                             <p className={styles.subTitle}>FINALIZAR COMPRAS</p>
                         </button>
                     </div>
+                </div>
+                <div className={styles.cartFrete}>
+                    <CepCalculator itemsCharacteristics={itemsCharacteristics} />
                 </div>
             </div>
         </>
