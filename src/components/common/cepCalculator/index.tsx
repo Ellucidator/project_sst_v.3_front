@@ -12,12 +12,12 @@ import ResultCepCalculator from './resultCepCalculator'
 import { Item, ItemCharacteristics } from '@/types/itemsTypes'
 
 type Props = {
-    quantityInStock: number[],
+    quantityInStock?: number[],
     item?: Item ,
-    itemCharacteristics?: ItemCharacteristics[]
+    itemsCharacteristics?: ItemCharacteristics[]
 }
 
-const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Props) => {
+const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics}: Props) => {
     
     let resultsCepCalculator: CepResponse[]=[]
 
@@ -28,7 +28,7 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
         if(cepCookie){
             const {cep,quantity}:{cep:number,quantity:number} = JSON.parse(cepCookie)
             if(cep && quantity){
-                resultsCepCalculator = await cepCalculator(cep,[{...item.ItemCharacteristics!,quantity}])
+                resultsCepCalculator = await cepCalculator(cep,[{...item.ItemCharacteristic!,quantity}])
             }
             
         }
@@ -37,7 +37,7 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
         const cepCookie = cookies().get('cep-calculator-multi')?.value
         if(cepCookie){
             const cep:number = JSON.parse(cepCookie)
-            resultsCepCalculator = await cepCalculator(cep, itemCharacteristics!)
+            resultsCepCalculator = await cepCalculator(cep, itemsCharacteristics!)
         }
     }
 
@@ -77,7 +77,7 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
                     {item ? (
                         <div className={styles.divInput}>
                             <p>Produto: {item.name}</p>
-                            <InputQuantity in_stock={item.in_stock} quantityInStock={quantityInStock} />
+                            <InputQuantity in_stock={item.in_stock} quantityInStock={quantityInStock!} />
                         </div>
                     ) : <></>}
 

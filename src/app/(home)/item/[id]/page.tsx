@@ -22,7 +22,7 @@ export default async function Item({ params }: { params: { id: string } }) {
         userService.getAvaliationByUserId(),
         catalogService.getItemCharacteristics(params.id)
     ])
-    item.ItemCharacteristics = itemCharacteristics
+    item.ItemCharacteristic = itemCharacteristics
     
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
 

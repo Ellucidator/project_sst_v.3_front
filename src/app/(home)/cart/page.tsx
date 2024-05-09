@@ -4,7 +4,7 @@ import CartBody from '@/components/pages/cart/body'
 
 export default async function Cart() {
     const cartItems = await cookieService.getItemsCart()
-
+    
     return (
         <div className={styles.pageCart}>
             <CartBody items={cartItems}/>

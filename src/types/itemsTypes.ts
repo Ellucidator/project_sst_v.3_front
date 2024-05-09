@@ -12,7 +12,7 @@ export interface ItemCharacteristics{
     length: number
     weight: number
     insurance_value: number
-    quantity?: number
+    quantity: number
 }
 
 export interface Item {
@@ -26,7 +26,7 @@ export interface Item {
     thumbnail_url: string;
     sub_category_id?: number;
     quantity?:number;
-    ItemCharacteristics?: ItemCharacteristics
+    ItemCharacteristic?: ItemCharacteristics
 }
 
 export interface ItemPromotionAtributes{

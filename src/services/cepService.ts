@@ -6,7 +6,6 @@ import { cookies } from "next/headers"
 export async function cepCalculator(cep:number,itemCharacteristics:ItemCharacteristics[]) {
     
     
-    console.log(itemCharacteristics[0].quantity)
 
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
         headers:{

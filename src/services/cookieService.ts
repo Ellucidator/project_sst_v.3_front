@@ -146,9 +146,9 @@ async function getItemsCart() {
 
         if(item){
             if(item.in_stock < cookieCart[i].quantity){
-                item.quantity = item.in_stock
+                item.ItemCharacteristic!.quantity = item.in_stock
             }else{
-                item.quantity = cookieCart[i].quantity
+                item.ItemCharacteristic!.quantity = cookieCart[i].quantity
             }
         }
     }
