@@ -9,15 +9,17 @@ import Loading from '../loading'
 import Link from 'next/link'
 import { cepCalculator } from '@/services/cepService'
 import ResultCepCalculator from './resultCepCalculator'
+import { Item } from '@/types/itemsTypes'
 
 type Props = {
-    in_stock: number
-    quantity: number[]
-    itemName: string
+    quantity: number[],
+    item: Item
 }
-const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
-    const resultsCepCalculator: CepResponse[] = await cepCalculator()
-    console.log(resultsCepCalculator)
+const CepCalculator = async ({ quantity,item }: Props) => {
+
+    const resultsCepCalculator: CepResponse[] = await cepCalculator(item.ItemCharacteristics!)
+
+
     async function formAction(form: FormData) {
         'use server'
 
@@ -43,8 +45,8 @@ const CepCalculator = async ({ in_stock, quantity, itemName }: Props) => {
                     <p className={styles.title}>Fretes e prazos</p>
 
                     <div className={styles.divInput}>
-                        <p>Produto: {itemName}</p>
-                        <InputQuantity in_stock={in_stock} quantity={quantity} />
+                        <p>Produto: {item.name}</p>
+                        <InputQuantity in_stock={item.in_stock} quantity={quantity} />
                     </div>
                     <div className={styles.divInput}>
                         <label htmlFor="cep">CEP:</label>

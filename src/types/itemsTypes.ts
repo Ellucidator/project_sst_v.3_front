@@ -12,8 +12,6 @@ export interface ItemCharacteristics{
     length: number
     weight: number
     insurance_value: number
-    created_at: Date
-    updated_at: Date
 }
 
 export interface Item {
@@ -27,6 +25,7 @@ export interface Item {
     thumbnail_url: string;
     sub_category_id?: number;
     quantity?:number;
+    ItemCharacteristics?: ItemCharacteristics
 }
 
 export interface ItemPromotionAtributes{

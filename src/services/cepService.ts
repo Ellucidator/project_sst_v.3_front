@@ -1,8 +1,9 @@
+import { ItemCharacteristics } from "@/types/itemsTypes"
 import { cookies } from "next/headers"
 
 
 
-export async function cepCalculator() {
+export async function cepCalculator(itemCharacteristics:ItemCharacteristics) {
     
     const cepCookie = cookies().get('cep-calculator')?.value
 
@@ -32,12 +33,7 @@ export async function cepCalculator() {
             },
             "products": [
                 {
-                    "id": "x",
-                    "width": 11,
-                    "height": 17,
-                    "length": 11,
-                    "weight": 0.3,
-                    "insurance_value": 10.1,
+                    ...itemCharacteristics,
                     "quantity": quantity
                 }
             ],

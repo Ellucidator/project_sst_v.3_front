@@ -22,13 +22,13 @@ export default async function Item({ params }: { params: { id: string } }) {
         userService.getAvaliationByUserId(),
         catalogService.getItemCharacteristics(params.id)
     ])
-
-    console.log(itemCharacteristics)
+    item.ItemCharacteristics = itemCharacteristics
     
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
 
 
     const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
+    
     const formAction = async (form: FormData) => {
         'use server'
         const buyQuantity = parseInt(form.get('quantity')!.toString())
@@ -80,7 +80,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     </div>
                 </div>
                 <div className={styles.sectionSecond}>
-                    <CepCalculator in_stock={item.in_stock} quantity={quantity} itemName={item.name} />
+                    <CepCalculator item={item} quantity={quantity} />
                     {recomendedItems.Items ? (
                         <div className={styles.recomendedItems}>
                             <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>
