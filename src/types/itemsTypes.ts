@@ -12,6 +12,7 @@ export interface ItemCharacteristics{
     length: number
     weight: number
     insurance_value: number
+    quantity?: number
 }
 
 export interface Item {

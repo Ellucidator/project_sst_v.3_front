@@ -27,7 +27,7 @@ export default async function Item({ params }: { params: { id: string } }) {
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
 
 
-    const quantity = Array.from({ length: item.in_stock }, (_, i) => i + 1)
+    const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
     
     const formAction = async (form: FormData) => {
         'use server'
@@ -62,7 +62,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                             <section className={styles.sectionBuy}>
                                 <PriceItem item={item} />
                                 <form action={formAction}>
-                                    <InputQuantity quantity={quantity} in_stock={item.in_stock} />
+                                    <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
 
                                     <button type='submit' className={styles.btnBuy} >
                                         <div className={styles.btnTexts}>
@@ -80,7 +80,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     </div>
                 </div>
                 <div className={styles.sectionSecond}>
-                    <CepCalculator item={item} quantity={quantity} />
+                    <CepCalculator item={item} quantityInStock={quantityInStock} />
                     {recomendedItems.Items ? (
                         <div className={styles.recomendedItems}>
                             <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>

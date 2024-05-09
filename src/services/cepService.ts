@@ -3,15 +3,9 @@ import { cookies } from "next/headers"
 
 
 
-export async function cepCalculator(itemCharacteristics:ItemCharacteristics) {
+export async function cepCalculator(cep:number,itemCharacteristics:ItemCharacteristics[]) {
     
-    const cepCookie = cookies().get('cep-calculator')?.value
-
-    if(!cepCookie) return
-
-    const {cep, quantity} = JSON.parse(cepCookie)
-
-    if(!cep || !quantity) return
+    
 
 
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
@@ -31,12 +25,7 @@ export async function cepCalculator(itemCharacteristics:ItemCharacteristics) {
             "to": {
                 "postal_code": cep
             },
-            "products": [
-                {
-                    ...itemCharacteristics,
-                    "quantity": quantity
-                }
-            ],
+            "products": itemCharacteristics,
             "options": {
                 "receipt": false,
                 "own_hand": false
