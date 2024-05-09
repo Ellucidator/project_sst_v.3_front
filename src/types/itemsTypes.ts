@@ -6,7 +6,7 @@ export interface ItemToCar{
 }
 
 export interface ItemCharacteristics{
-    item_id: number
+    id: number
     width: number
     height: number
     length: number

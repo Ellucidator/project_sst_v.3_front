@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 type Props = {
-    items?: ItemPromotion[]
+    items?: ItemPromotion[] | null
 }
 
 const CartTable = ({ items }: Props) => {

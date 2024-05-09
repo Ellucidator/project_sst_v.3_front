@@ -28,8 +28,7 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
         if(cepCookie){
             const {cep,quantity}:{cep:number,quantity:number} = JSON.parse(cepCookie)
             if(cep && quantity){
-                item.ItemCharacteristics?.quantity!=quantity
-                resultsCepCalculator = await cepCalculator(cep,[item.ItemCharacteristics!])
+                resultsCepCalculator = await cepCalculator(cep,[{...item.ItemCharacteristics!,quantity}])
             }
             
         }
@@ -51,14 +50,20 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
         const cep = form.get('cep')?.toString()
         const quantity = form.get('quantity')?.toString()
 
-        if (!cep || !quantity) return
-
-        await new Promise(resolve => setTimeout(resolve, 3000))
-
-        cookies().set('cep-calculator', JSON.stringify({ cep, quantity }),
+        
+        if(item){
+            cookies().set('cep-calculator', JSON.stringify({ cep, quantity }),
             {
                 maxAge: 60
             })
+        }else{
+            cookies().set('cep-calculator-multi', JSON.stringify(cep),
+            {
+                maxAge: 60
+            })
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 3000))
 
         revalidateTag('cep-calculator-fetch')
 
@@ -80,6 +85,7 @@ const CepCalculator = async ({ quantityInStock, item, itemCharacteristics}: Prop
                         <label htmlFor="cep">CEP:</label>
                         <input
                             className={styles.inputCep}
+                            required
                             type="number"
                             name="cep"
                             id="cep"

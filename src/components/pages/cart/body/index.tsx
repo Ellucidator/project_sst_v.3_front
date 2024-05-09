@@ -6,7 +6,7 @@ import CartTable from './cartTable'
 import CepCalculator from '@/components/common/cepCalculator'
 
 type Props = {
-    items: ItemPromotion[]
+    items: ItemPromotion[] | null
 }
 interface resumo {
     sub_total: number
