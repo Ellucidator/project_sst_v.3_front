@@ -9,13 +9,25 @@ import HeaderRightAuth from "./headerRightAuth";
 import HeaderRightGeneric from "./headerRightGeneric";
 import { UserPayload } from "@/types/userTypes";
 import InputSearch from "../common/inputSearch";
+import { cookies } from "next/headers";
+import { ItemToCar } from "@/types/itemsTypes";
 
 
 const HeaderPrimary = async () => {
 
     const validate = await cookieService.verifySession();
-
     const catalog = await catalogService.getCatalog();
+    let carCount:number
+    const cartItems = cookies().get('car')?.value
+
+    if(!cartItems)carCount=0
+    else{
+        const carItemsA:ItemToCar[]= JSON.parse(cartItems)
+        carCount = carItemsA.reduce((acc,item)=>{
+            return acc+= item.quantity
+        },0)
+    }
+    console.log(carCount)
 
     return (
         <>
