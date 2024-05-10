@@ -54,16 +54,15 @@ const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics}: Pro
         if(item){
             cookies().set('cep-calculator', JSON.stringify({ cep, quantity }),
             {
-                maxAge: 60
+                maxAge: 0
             })
         }else{
             cookies().set('cep-calculator-multi', JSON.stringify(cep),
             {
-                maxAge: 60
+                maxAge: 0
             })
         }
 
-        await new Promise(resolve => setTimeout(resolve, 3000))
 
         revalidateTag('cep-calculator-fetch')
 

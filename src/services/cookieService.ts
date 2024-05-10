@@ -103,7 +103,7 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
     } else {
         const cartItems: ItemToCar[] = JSON.parse(cart)
         const verifyItem = cartItems.find(elem => elem.id === item.id)
-        
+
         if (verifyItem) {
             verifyItem.quantity = (verifyItem.quantity + item.quantity) > inStock ? inStock : (verifyItem.quantity + item.quantity)
         } else {
@@ -143,7 +143,17 @@ async function getItemsCart() {
 
     for (let i = 0; i < data.length; i++) {
         const item = data.find((item) => item.id === cookieCart[i].id)
-
+        if(!item!.ItemCharacteristic){
+            item!.ItemCharacteristic={
+                id: item!.id,
+                width: 0,
+                height: 0,
+                length: 0,
+                weight: 0,
+                insurance_value: 0,
+                quantity: 0
+            }
+        }
         if (item) {
             if (item.in_stock < cookieCart[i].quantity) {
                 item.ItemCharacteristic!.quantity = item.in_stock

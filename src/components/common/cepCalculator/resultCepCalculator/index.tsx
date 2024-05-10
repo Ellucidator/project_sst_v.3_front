@@ -20,9 +20,9 @@ const ResultCepCalculator = ({ resultsCepCalculator }: Props) => {
                         return (
                             <div key={result.name} className={styles.cepResultItem}>
                                 <Image
-                                    src={result.company.picture}
+                                    src={result.company.picture?result.company.picture:'/public/common/ban.svg'}
                                     alt={result.company.name}
-                                    width={70} height={70}
+                                    width={result.company.picture?70:30} height={result.company.picture?70:30}
                                     className={styles.cepResultImg}
                                 />
                                 {

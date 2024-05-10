@@ -1,11 +1,19 @@
 import { ItemCharacteristics } from "@/types/itemsTypes"
+import { error } from "console"
 import { cookies } from "next/headers"
 
 
 
 export async function cepCalculator(cep:number,itemCharacteristics:ItemCharacteristics[]) {
-    
-    
+    const verify = itemCharacteristics.every((item)=>{
+        return (item.height>0 && 
+                item.insurance_value>0&& 
+                item.length>0&& 
+                item.weight>0&& 
+                item.width>0
+            )
+    })
+    if(!verify)return [{name:'Product',error:'Frete Indisponivel',company:{name:'Error',picture:false}} ]   
 
     const res = await fetch('https://www.melhorenvio.com.br/api/v2/me/shipment/calculate',{
         headers:{
