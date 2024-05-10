@@ -1,5 +1,14 @@
 @import '../../../../styles/colors/colors.module.scss';
 
+
+
+
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
 .pageItem {
     width: 100%;
     min-height: 100vh;
@@ -80,6 +89,17 @@
 
                             .btnBuy {
 
+                                .addItem{
+                                    display: none;
+                                    position: absolute;
+                                    z-index: 10;
+                                    top: 6.2%;
+                                    right: 11%;
+                                    color: greenyellow;
+                                    font-weight: bold;
+                                    transform: rotate(0deg);
+                                }
+
                                 display: flex;
                                 flex-wrap: nowrap;
                                 justify-content: center;
@@ -99,6 +119,13 @@
                                     .subTitle {
                                         padding-bottom: 8px;
                                         font-size: 12px;
+                                    }
+                                }
+
+                                &:active{
+                                    .addItem{
+                                        display: block;
+                                        animation: girar 0.2s ease-in-out infinite;
                                     }
                                 }
                             }

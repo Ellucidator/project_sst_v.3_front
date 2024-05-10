@@ -71,7 +71,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                             <p className={styles.subTitle}>Adicionar ao carrinho</p>
                                         </div>
                                         <Image src="/public/common/cart-plus.svg" alt="catalog" className={styles.icon} width={35} height={35} />
-
+                                        <div className={styles.addItem}>+</div>
                                     </button>
 
                                 </form>
