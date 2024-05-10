@@ -6,7 +6,7 @@ import { Console, error } from "console"
 
 
 
-const verifyRegister = async ()=>{
+const verifyRegister = async () => {
 
     const cookieValue = cookies().get('register')?.value
     const req = await fetch('http://localhost:3000/verify-register', {
@@ -14,73 +14,73 @@ const verifyRegister = async ()=>{
         next: {
             tags: ['verify-register']
         },
-        
+
     })
-    if(cookieValue){
+    if (cookieValue) {
         return await JSON.parse(cookieValue)
-    }else{
+    } else {
         return {
-            email:false,
-            password:false
+            email: false,
+            password: false
         }
     }
 }
-const verifyLogin = async ()=>{
+const verifyLogin = async () => {
     const cookieValue = cookies().get('login')?.value
     const req = await fetch('http://localhost:3000/verify-login', {
         cache: 'no-store',
         next: {
             tags: ['verify-login']
         },
-        
+
     })
-    if(cookieValue){
+    if (cookieValue) {
         return await JSON.parse(cookieValue)
-    }else{
+    } else {
         return {
-            error:null
+            error: null
         }
     }
 }
-const verifySession = async ()=>{
+const verifySession = async () => {
 
     const cookieValue = cookies().get('token')
-    if(cookieValue){
-        
+    if (cookieValue) {
+
         try {
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
-            const {payload}: {payload: UserPayload} = await jose.jwtVerify(cookieValue.value, secret)
+            const { payload }: { payload: UserPayload } = await jose.jwtVerify(cookieValue.value, secret)
 
-            if(typeof payload === 'string' || typeof payload === 'undefined')false
+            if (typeof payload === 'string' || typeof payload === 'undefined') false
 
             return payload
 
         } catch (error) {
-                return false
+            return false
         }
 
-    }else{
+    } else {
         return false
     }
 
 }
 
-const setSession = async (email:string, password:string)=>{
+const setSession = async (email: string, password: string) => {
     try {
         const res = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({ email, password }),
             cache: 'no-store'
         })
         const data = await res.json();
-        
-    
-        if(data.token){
+
+
+        if (data.token) {
             cookies().set('token', data.token, {
-                maxAge: 60*60*24,
+                maxAge: 60 * 60 * 24,
             })
             return true
         }
@@ -91,68 +91,68 @@ const setSession = async (email:string, password:string)=>{
     }
 }
 
-const addCarItem = async (item:ItemToCar)=>{
-    const setCar:ItemToCar[] = []
-    setCar.push(item)
-    
-    
-    const car = cookies().get('car')
-    if(car){
-        const verifyCar:ItemToCar[] = JSON.parse(car.value)
+const addCarItem = async (inStock: number, item: ItemToCar) => {
 
-        const verifyItem = verifyCar.find((ic)=> ic.id === item.id)
-
-        if(verifyItem){
-            verifyItem.quantity += item.quantity 
-            cookies().set('car', JSON.stringify(verifyCar))
-        }else{
-            verifyCar.push(item)
-            cookies().set('car', JSON.stringify(verifyCar))
+    const cart = cookies().get('car')?.value
+    if (!cart) {
+        cookies().set('car', JSON.stringify([item]),
+            {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            }
+        )
+    } else {
+        const cartItems: ItemToCar[] = JSON.parse(cart)
+        const verifyItem = cartItems.find(elem => elem.id === item.id)
+        
+        if (verifyItem) {
+            verifyItem.quantity = (verifyItem.quantity + item.quantity) > inStock ? inStock : (verifyItem.quantity + item.quantity)
+        } else {
+            cartItems.push(item)
         }
 
-    }else{
-        const test = cookies().set('car', JSON.stringify(setCar),
-        {
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7) ,
-        })
+        cookies().set('car', JSON.stringify(cartItems),
+            {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            }
+        )
     }
-    
 
-    
+
+
 }
 
 async function getItemsCart() {
     const cart = cookies().get('car')?.value
-    if(!cart) return null
+    if (!cart) return null
 
-    const cookieCart:ItemToCar[] = JSON.parse(cart)
-    const ids = cookieCart.map((item)=> item.id)
+    const cookieCart: ItemToCar[] = JSON.parse(cart)
+    const ids = cookieCart.map((item) => item.id)
 
     const res = await fetch('http://localhost:3000/items/show-cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(ids),
-            cache: 'no-store',
-            next: {
-                tags: ['get-items-cart']
-            }
-        })
-    const data:ItemPromotion[] = await res.json();
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(ids),
+        cache: 'no-store',
+        next: {
+            tags: ['get-items-cart']
+        }
+    })
+    const data: ItemPromotion[] = await res.json();
 
-    for(let i = 0; i < data.length; i++){
-        const item = data.find((item)=> item.id === cookieCart[i].id)
+    for (let i = 0; i < data.length; i++) {
+        const item = data.find((item) => item.id === cookieCart[i].id)
 
-        if(item){
-            if(item.in_stock < cookieCart[i].quantity){
+        if (item) {
+            if (item.in_stock < cookieCart[i].quantity) {
                 item.ItemCharacteristic!.quantity = item.in_stock
-            }else{
+            } else {
                 item.ItemCharacteristic!.quantity = cookieCart[i].quantity
             }
         }
     }
-    
+
     return data
 }
 
