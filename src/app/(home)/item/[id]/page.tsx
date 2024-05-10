@@ -33,7 +33,7 @@ export default async function Item({ params }: { params: { id: string } }) {
         'use server'
         const buyQuantity = parseInt(form.get('quantity')!.toString())
 
-        await cookieService.addCarItem({
+        await cookieService.addCarItem(item.in_stock,{
             id: item.id,
             quantity: buyQuantity
         })

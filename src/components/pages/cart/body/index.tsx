@@ -25,9 +25,9 @@ const CartBody = ({ items }: Props) => {
         total: 0
     }) : { sub_total: 0, total: 0 }
 
-    const itemsCharacteristics:ItemCharacteristics[] = items!.map((item)=>{
+    const itemsCharacteristics:ItemCharacteristics[] =items? items!.map((item)=>{
         return item.ItemCharacteristic!
-    })
+    }):[]
 
     return (
         <>

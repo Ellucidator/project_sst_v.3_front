@@ -42,8 +42,16 @@ const HeaderPrimary = async () => {
                             </div>
                             {validate ? <HeaderRightAuth payload={validate} /> : <HeaderRightGeneric />}
                         </div>
+                        
                     </div>
 
+                    <div className={styles.headerDiv3}>
+                        <Link href={'/cart'} className={styles.linkCart}>
+                            <p className={styles.cartCount}>{carCount}</p>
+                            <Image src='/public/header/cart-fill.svg' alt="search" className={styles.cartIcon}
+                                    width={40} height={40} />
+                        </Link>
+                    </div>
 
                 </main>
             </div>
