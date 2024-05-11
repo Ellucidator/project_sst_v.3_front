@@ -17,6 +17,7 @@ const Login =async () => {
 
     const handlerSubmit = async (form: FormData) =>{
         'use server'
+        
         const login = form.get('email')?.valueOf();
         const password = form.get('password')?.valueOf();
 

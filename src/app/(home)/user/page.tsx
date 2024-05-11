@@ -12,17 +12,9 @@ export default async function UserPage() {
         
 
     return(
-        <div className={styles.pageBody}>
-            <div className={styles.pageContainer}>
-                <div className={styles.divOptions}></div>
-
-                <div className={styles.divInfo}>
-                    <div className={styles.userInfo}>
-                        <p className={styles.userName}>Bem vindo {user.first_name}</p>
-                        <p className={styles.userEmail}>{user.email}</p>
-                    </div>
-                </div>
-            </div>
+        <div className={styles.userInfo}>
+            <p className={styles.userName}>Bem vindo {user.first_name}</p>
+            <p className={styles.userEmail}>{user.email}</p>
         </div>
     )
 }
