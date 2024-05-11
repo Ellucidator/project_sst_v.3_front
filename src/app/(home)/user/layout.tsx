@@ -20,7 +20,7 @@ export default function PageUserLayout({ children }: Props) {
                     {
                         options.map((elem)=>{
                             return(
-                                <Link href={`/user/${elem[1]}`}>
+                                <Link key={elem[1]} href={`/user/${elem[1]}`} className={styles.option}>
                                     <p>{elem[0]}</p>
                                 </Link>
                             )

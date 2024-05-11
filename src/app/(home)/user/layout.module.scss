@@ -11,31 +11,38 @@
         background-color: $primaryLight;
         display: flex;
         .divOptions{
-            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb($primary,0.8);
+            gap: 10px;
+            width: 25%;
             border-right: 1px solid $secondaryDark;
+            padding: 50px 10px 0px 10px;
 
+            .option{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 60px;
+                padding: 10px;
+                background-color: $primary;
+                width: 100%;
+                font-size: 20px;
+                border: 2px solid $secondaryDark;
+                border-radius: 5px;
+
+                &:hover{
+                    border-color: $tertiaryDark;
+                }
+            }
             
         }
         .divInfo{
-            width: 70%;
+            width: 75%;
             padding: 10px;
             display: flex;
             flex-direction: column;
-            .userInfo{
-                padding: 0px 10px 5px 10px;
-                margin-top: 15px;
-                border-bottom: 1px solid $secondaryDark;
-                width: 100%;
-
-                .userName{
-                    font-size: 45px;
-                    color: $tertiaryDark;
-                }
-
-                .userEmail{
-                    padding-left: 10px;
-                }
-            }
         }
     }
 }
