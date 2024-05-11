@@ -4,7 +4,7 @@ import { UserPayload } from '@/types/userTypes'
 import { redirect } from 'next/navigation'
 
 
-export default async function UserPage() {
+export default async function UserPage({params}:{params:{options:string}}) {
     
     const user = await cookieService.verifySession()
     
