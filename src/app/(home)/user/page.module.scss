@@ -3,4 +3,38 @@
 .pageBody{
     min-height:100vh ;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    .pageContainer{
+        width: 90%;
+        background-color: $primaryLight;
+        display: flex;
+        .divOptions{
+            width: 30%;
+            border-right: 1px solid $secondaryDark;
+
+            
+        }
+        .divInfo{
+            width: 70%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            .userInfo{
+                padding: 0px 10px 5px 10px;
+                margin-top: 15px;
+                border-bottom: 1px solid $secondaryDark;
+                width: 100%;
+
+                .userName{
+                    font-size: 45px;
+                    color: $tertiaryDark;
+                }
+
+                .userEmail{
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
 }
