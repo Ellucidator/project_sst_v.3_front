@@ -7,9 +7,10 @@ type Props = {
 
 export default function PageUserLayout({ children }: Props) {
     const options = [
+        ['Inicio','home'],
         ['Minhas Informações','my-info'],
         ['Meus Pedidos','my-purchases'],
-        ['Endereços','adres'],
+        ['Endereços','address'],
         ['Favoritos','favorites']
     ]
 
