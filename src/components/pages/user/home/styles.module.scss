@@ -1,0 +1,10 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.userName {
+    font-size: 45px;
+    color: $tertiaryDark;
+}
+
+.userEmail {
+    padding-left: 10px;
+}
