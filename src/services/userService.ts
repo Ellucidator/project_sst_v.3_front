@@ -62,7 +62,6 @@ const getAvaliationByUserId = async()=>{
         })
 
         const data:Avaliation = await avaliation.json();
-
         return data
 
     } catch (error) {
@@ -71,8 +70,30 @@ const getAvaliationByUserId = async()=>{
 
 }
 
+async function getUserAdresses(){
+
+    const adresses = await fetch(`http://localhost:3000/user/addresses`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU3OTMyNTIsImV4cCI6MTcxNTgyMjA1Mn0.Q0gqyuXJwEzE3V1VKDPgMh035c00WoHnuPz98GgiVJs`
+        },
+        
+        cache: 'no-store',
+        next: {
+            revalidate: 10,
+            tags: ['adresses-user'],
+        },
+    })
+
+    const data = await adresses.json();
+    console.log(data)
+    return data
+}
+
 export const userService = {
     createUser,
     createAvaliation,
-    getAvaliationByUserId
+    getAvaliationByUserId,
+    getUserAdresses
 }
