@@ -8,3 +8,34 @@
 .userEmail {
     padding-left: 10px;
 }
+
+.userPurchaseTitle{
+    font-size: 20px;
+    margin: 40px 0px 10px 0px;
+    border-left: 3px solid $tertiaryDark;
+    padding: 2px 4px;
+    background-color: $primary;
+    max-width: fit-content;
+}
+.userPurchase{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    height: 150px;
+    padding: 20px;
+    border: 1px solid $tertiaryDark;
+    border-radius: 8px;
+    .userPurchaseInfo{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+        .userPurchaseInfoTitle{
+            font-weight: bold;
+        }
+
+        .userPurchaseInfoValue{
+        }
+    }
+}
