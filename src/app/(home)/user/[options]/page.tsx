@@ -11,6 +11,8 @@ export default async function UserPage({params}:{params:{options:string}}) {
     
     const user = await cookieService.verifySession()
     const userAddress = await userService.getUserAdresses()
+    const userPurchases = await userService.getUserPurchases()
+    console.log(userPurchases)
     if(!user)redirect('/')
         
 

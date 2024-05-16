@@ -76,7 +76,7 @@ async function getUserAdresses(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU3OTMyNTIsImV4cCI6MTcxNTgyMjA1Mn0.Q0gqyuXJwEzE3V1VKDPgMh035c00WoHnuPz98GgiVJs`
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU4ODI0NzcsImV4cCI6MTcxNTkxMTI3N30.1K7l9nftGeQnDB2fYfbP1tJ1TbQ5S9x8QLvSkAKtWJM`
         },
         
         cache: 'no-store',
@@ -90,10 +90,31 @@ async function getUserAdresses(){
     console.log(data)
     return data
 }
+async function getUserPurchases(){
+
+    const purchases = await fetch(`http://localhost:3000/user/show/purchases`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU4ODI0NzcsImV4cCI6MTcxNTkxMTI3N30.1K7l9nftGeQnDB2fYfbP1tJ1TbQ5S9x8QLvSkAKtWJM`
+        },
+        
+        cache: 'no-store',
+        next: {
+            revalidate: 10,
+            tags: ['purchases-user'],
+        },
+    })
+
+    const data = await purchases.json();
+    console.log(data)
+    return data
+}
 
 export const userService = {
     createUser,
     createAvaliation,
     getAvaliationByUserId,
-    getUserAdresses
+    getUserAdresses,
+    getUserPurchases
 }
