@@ -13,7 +13,7 @@ export default function PageUserLayout({ children }: Props) {
         ['Endereços','address'],
         ['Favoritos','favorites']
     ]
-
+    
     return (
         <div className={styles.pageBody}>
             <div className={styles.pageContainer}>

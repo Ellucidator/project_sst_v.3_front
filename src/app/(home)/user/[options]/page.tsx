@@ -3,11 +3,14 @@ import styles from './page.module.scss'
 import { UserPayload } from '@/types/userTypes'
 import { redirect } from 'next/navigation'
 import UserHome from '@/components/pages/user/home'
+import { userService } from '@/services/userService'
+import UserAddressPage from '@/components/pages/user/address'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
     
     const user = await cookieService.verifySession()
+    const userAddress = await userService.getUserAdresses()
     if(!user)redirect('/')
         
 
@@ -17,7 +20,7 @@ export default async function UserPage({params}:{params:{options:string}}) {
                 params.options==='home'?<UserHome user={user}/>:
                 params.options==='my-info'?<></>:
                 params.options==='my-purchases'?<></>:
-                params.options==='address'?<></>:
+                params.options==='address'?<UserAddressPage userAddress={userAddress}/>:
                 params.options==='favorites'?<></>:
                 <></>
                 }
