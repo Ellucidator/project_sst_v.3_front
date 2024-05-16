@@ -1,6 +1,7 @@
-import { CreateUser } from "@/types/userTypes";
+import { CreateUser, UserAddress } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
+import { Purchase } from "@/types/purchaseTypes";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -86,7 +87,7 @@ async function getUserAdresses(){
         },
     })
 
-    const data = await adresses.json();
+    const data:UserAddress[] = await adresses.json();
     console.log(data)
     return data
 }
@@ -106,7 +107,7 @@ async function getUserPurchases(){
         },
     })
 
-    const data = await purchases.json();
+    const data:Purchase[] = await purchases.json();
     console.log(data)
     return data
 }

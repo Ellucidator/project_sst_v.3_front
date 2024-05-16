@@ -12,14 +12,15 @@ export default async function UserPage({params}:{params:{options:string}}) {
     const user = await cookieService.verifySession()
     const userAddress = await userService.getUserAdresses()
     const userPurchases = await userService.getUserPurchases()
-    console.log(userPurchases)
+    console.log(userPurchases[0])
+
     if(!user)redirect('/')
         
 
     return(
         <div className={styles.userInfo}>
             {
-                params.options==='home'?<UserHome user={user}/>:
+                params.options==='home'?<UserHome user={user} userPurchase={userPurchases[0]}/>:
                 params.options==='my-info'?<></>:
                 params.options==='my-purchases'?<></>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress}/>:
