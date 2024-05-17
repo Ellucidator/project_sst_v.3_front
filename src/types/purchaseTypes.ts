@@ -7,7 +7,8 @@ export interface ItemSell{
 export interface Purchase{
     id: number
     all_value: number
+    status: string
     createdAt: string
-    upstringdAt: string
+    updatedAt: string
     ItemSells: ItemSell[]
 }

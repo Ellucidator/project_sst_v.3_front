@@ -77,7 +77,7 @@ async function getUserAdresses(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU4ODI0NzcsImV4cCI6MTcxNTkxMTI3N30.1K7l9nftGeQnDB2fYfbP1tJ1TbQ5S9x8QLvSkAKtWJM`
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU5NjM5MzgsImV4cCI6MTcxNTk5MjczOH0.BzdwEPqMumzJcpZhcqdNZ_VyE-h9050XocsL8rYGxAs`
         },
         
         cache: 'no-store',
@@ -97,7 +97,7 @@ async function getUserPurchases(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU4ODI0NzcsImV4cCI6MTcxNTkxMTI3N30.1K7l9nftGeQnDB2fYfbP1tJ1TbQ5S9x8QLvSkAKtWJM`
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU5NjM5MzgsImV4cCI6MTcxNTk5MjczOH0.BzdwEPqMumzJcpZhcqdNZ_VyE-h9050XocsL8rYGxAs`
         },
         
         cache: 'no-store',
