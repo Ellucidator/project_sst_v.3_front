@@ -91,9 +91,9 @@ async function getUserAdresses(){
     console.log(data)
     return data
 }
-async function getUserPurchases(){
+async function getUserPurchases(page:number = 1,perPage:number = 10){
 
-    const purchases = await fetch(`http://localhost:3000/user/show/purchases`, {
+    const purchases = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${perPage}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
