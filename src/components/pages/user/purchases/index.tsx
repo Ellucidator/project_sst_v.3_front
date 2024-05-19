@@ -1,10 +1,11 @@
-import { userService } from '@/services/userService'
 import styles from './styles.module.scss'
 import CardPurchase from '@/components/common/cardPurchase'
+import {Purchases } from '@/types/purchaseTypes'
 
-
-const UserPurchasesPage = async() => {
-    const purchases = await userService.getUserPurchases()
+type Props = {
+    purchases: Purchases
+}
+const UserPurchasesPage = async({purchases}:Props) => {
 
     return (
         <div className={styles.pageBody}>
@@ -12,7 +13,7 @@ const UserPurchasesPage = async() => {
 
             <div className={styles.userPurchasesContainer}>
                 {
-                    purchases.map((elem)=>{
+                    purchases.rows.map((elem)=>{
                         return(
                             <CardPurchase key={elem.id} userPurchase={elem} />
                         )

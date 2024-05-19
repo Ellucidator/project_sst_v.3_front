@@ -1,7 +1,7 @@
 import { CreateUser, UserAddress } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
-import { Purchase } from "@/types/purchaseTypes";
+import { Purchases } from "@/types/purchaseTypes";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -77,7 +77,7 @@ async function getUserAdresses(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU5NjM5MzgsImV4cCI6MTcxNTk5MjczOH0.BzdwEPqMumzJcpZhcqdNZ_VyE-h9050XocsL8rYGxAs`
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTYxMzk3ODYsImV4cCI6MTcxNjE2ODU4Nn0.vQdyCRqFGas7KMnI9L2_jWOT5Ez-I2I4-eXGPm0NjrM`
         },
         
         cache: 'no-store',
@@ -97,7 +97,7 @@ async function getUserPurchases(page:number = 1,perPage:number = 10){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTU5NjM5MzgsImV4cCI6MTcxNTk5MjczOH0.BzdwEPqMumzJcpZhcqdNZ_VyE-h9050XocsL8rYGxAs`
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTYxMzk3ODYsImV4cCI6MTcxNjE2ODU4Nn0.vQdyCRqFGas7KMnI9L2_jWOT5Ez-I2I4-eXGPm0NjrM`
         },
         
         cache: 'no-store',
@@ -107,7 +107,7 @@ async function getUserPurchases(page:number = 1,perPage:number = 10){
         },
     })
 
-    const data:Purchase[] = await purchases.json();
+    const data:Purchases = await purchases.json();
     console.log(data)
     return data
 }

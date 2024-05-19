@@ -12,3 +12,8 @@ export interface Purchase{
     updatedAt: string
     ItemSells: ItemSell[]
 }
+
+export interface Purchases{
+    count: number
+    rows: Purchase[]
+}
