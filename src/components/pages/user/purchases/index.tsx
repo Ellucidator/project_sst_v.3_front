@@ -51,7 +51,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
                     })
                 }
             </div>
-            <PagCount count={7} page={page} setPage={setPage} perPage={6} />
+            <PagCount count={purchasesElements.count} page={page} setPage={setPage} perPage={6} />
         </div>
     )
 }

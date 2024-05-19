@@ -6,6 +6,7 @@ import UserHome from '@/components/pages/user/home'
 import { userService } from '@/services/userService'
 import UserAddressPage from '@/components/pages/user/address'
 import UserPurchasesPage from '@/components/pages/user/purchases'
+import FavoritesPage from '@/components/pages/user/favorites'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
@@ -29,7 +30,7 @@ export default async function UserPage({params}:{params:{options:string}}) {
                 params.options==='my-info'?<></>:
                 params.options==='my-purchases'?<UserPurchasesPage purchases={purchases}/>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress}/>:
-                params.options==='favorites'?<></>:
+                params.options==='favorites'?<FavoritesPage/>:
                 <></>
                 }
         </div>
