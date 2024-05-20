@@ -1,7 +1,7 @@
 import { CreateUser, UserAddress, UserFavorite } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
-import { Purchases } from "@/types/purchaseTypes";
+import { Purchase, Purchases } from "@/types/purchaseTypes";
 import { cookies } from "next/headers";
 
 
@@ -117,6 +117,29 @@ async function getUserPurchases(page:number = 1,perPage:number = 10){
     return data
 }
 
+async function getUserPurchaseById(purchaseId:string){
+    
+    const token = cookies().get('token')?.value
+    if(!token) return false
+
+    const purchases = await fetch(`http://localhost:3000/user/show/purchase/${purchaseId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        
+        cache: 'no-store',
+        next: {
+            revalidate: 10,
+            tags: ['one-purchase-user'],
+        },
+    })
+
+    const data:Purchase = await purchases.json();
+    return data
+}
+
 async function getUserFavorites(page:number = 1,perPage:number = 10){
     
     const token = cookies().get('token')?.value
@@ -146,5 +169,6 @@ export const userService = {
     getAvaliationByUserId,
     getUserAdresses,
     getUserPurchases,
+    getUserPurchaseById,
     getUserFavorites
 }
