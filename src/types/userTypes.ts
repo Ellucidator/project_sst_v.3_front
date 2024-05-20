@@ -1,4 +1,5 @@
 import { JWTPayload } from "jose"
+import { Item } from "./itemsTypes"
 
 export interface User{
     id: number
@@ -29,4 +30,8 @@ export interface UserAddress{
     complement?: string
     reference_point?: string
     active: boolean
+}
+
+export interface UserFavorite{
+    Item:Item
 }

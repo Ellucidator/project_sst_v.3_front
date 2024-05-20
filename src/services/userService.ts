@@ -1,4 +1,4 @@
-import { CreateUser, UserAddress } from "@/types/userTypes";
+import { CreateUser, UserAddress, UserFavorite } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchases } from "@/types/purchaseTypes";
@@ -92,7 +92,6 @@ async function getUserAdresses(){
     })
 
     const data:UserAddress[] = await adresses.json();
-    console.log(data)
     return data
 }
 async function getUserPurchases(page:number = 1,perPage:number = 10){
@@ -115,7 +114,29 @@ async function getUserPurchases(page:number = 1,perPage:number = 10){
     })
 
     const data:Purchases = await purchases.json();
-    console.log(data)
+    return data
+}
+
+async function getUserFavorites(page:number = 1,perPage:number = 10){
+    
+    const token = cookies().get('token')?.value
+    if(!token) return false
+
+    const purchases = await fetch(`http://localhost:3000/user/show/favorites?page=${page}&perPage=${perPage}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        
+        cache: 'no-store',
+        next: {
+            revalidate: 10,
+            tags: ['favorites-user'],
+        },
+    })
+
+    const data:UserFavorite[] = await purchases.json();
     return data
 }
 
@@ -124,5 +145,6 @@ export const userService = {
     createAvaliation,
     getAvaliationByUserId,
     getUserAdresses,
-    getUserPurchases
+    getUserPurchases,
+    getUserFavorites
 }
