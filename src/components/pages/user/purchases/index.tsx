@@ -6,19 +6,21 @@ import {Purchases } from '@/types/purchaseTypes'
 import { useEffect, useState } from 'react'
 
 type Props = {
-    purchases: Purchases
+    purchases: Purchases|false,
+    tooken: string|undefined
 }
-const UserPurchasesPage = ({purchases}:Props) => {
+const UserPurchasesPage = ({purchases,tooken}:Props) => {
 
-    const [purchasesElements, setPurchasesElements] = useState<Purchases>(purchases)
+    const [purchasesElements, setPurchasesElements] = useState<Purchases>(purchases?purchases:{rows:[],count:0})
     const [page, setPage] = useState(1)
-
     const getPurchases = async () => {
+        if(!tooken)return
+
         const data = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${10}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTYxMzk3ODYsImV4cCI6MTcxNjE2ODU4Nn0.vQdyCRqFGas7KMnI9L2_jWOT5Ez-I2I4-eXGPm0NjrM`
+                'Authorization': tooken
             },
             
             cache: 'no-store',
@@ -43,12 +45,13 @@ const UserPurchasesPage = ({purchases}:Props) => {
             <p className={styles.userPurchaseTitle}>Seus Pedidos</p>
 
             <div className={styles.userPurchasesContainer}>
-                {
+                {   purchasesElements.rows?
                     purchasesElements.rows.map((elem)=>{
                         return(
                             <CardPurchase key={elem.id} userPurchase={elem} />
                         )
-                    })
+                    }):
+                    <></>
                 }
             </div>
             <PagCount count={purchasesElements.count} page={page} setPage={setPage} perPage={6} />

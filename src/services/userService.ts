@@ -2,6 +2,7 @@ import { CreateUser, UserAddress } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchases } from "@/types/purchaseTypes";
+import { cookies } from "next/headers";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -73,11 +74,14 @@ const getAvaliationByUserId = async()=>{
 
 async function getUserAdresses(){
 
+    const token = cookies().get('token')?.value
+    if(!token) return false
+
     const adresses = await fetch(`http://localhost:3000/user/addresses`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTYxMzk3ODYsImV4cCI6MTcxNjE2ODU4Nn0.vQdyCRqFGas7KMnI9L2_jWOT5Ez-I2I4-eXGPm0NjrM`
+            'Authorization': token
         },
         
         cache: 'no-store',
@@ -92,12 +96,15 @@ async function getUserAdresses(){
     return data
 }
 async function getUserPurchases(page:number = 1,perPage:number = 10){
+    
+    const token = cookies().get('token')?.value
+    if(!token) return false
 
     const purchases = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${perPage}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbmRyYWRlZmoxM0Bob3RtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJNYXJjZWxvIiwiaW1nVXJsIjpudWxsLCJpYXQiOjE3MTYxMzk3ODYsImV4cCI6MTcxNjE2ODU4Nn0.vQdyCRqFGas7KMnI9L2_jWOT5Ez-I2I4-eXGPm0NjrM`
+            'Authorization': token
         },
         
         cache: 'no-store',

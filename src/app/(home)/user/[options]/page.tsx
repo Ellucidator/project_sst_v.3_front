@@ -7,10 +7,12 @@ import { userService } from '@/services/userService'
 import UserAddressPage from '@/components/pages/user/address'
 import UserPurchasesPage from '@/components/pages/user/purchases'
 import FavoritesPage from '@/components/pages/user/favorites'
+import { cookies } from 'next/headers'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
     
+    const tooken = cookies().get('token')?.value
     const user = await cookieService.verifySession()
     if(!user)redirect('/')
 
@@ -28,7 +30,7 @@ export default async function UserPage({params}:{params:{options:string}}) {
             {
                 params.options==='home'?<UserHome user={user} userPurchase={userPurchases.rows[0]}/>:
                 params.options==='my-info'?<></>:
-                params.options==='my-purchases'?<UserPurchasesPage purchases={purchases}/>:
+                params.options==='my-purchases'?<UserPurchasesPage tooken={tooken} purchases={purchases}/>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress}/>:
                 params.options==='favorites'?<FavoritesPage/>:
                 <></>
