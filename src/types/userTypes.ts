@@ -4,6 +4,7 @@ import { Item } from "./itemsTypes"
 export interface User{
     id: number
     first_name: string
+    last_name: string
     email: string
 };
 export interface UserInfo extends User {
@@ -11,7 +12,6 @@ export interface UserInfo extends User {
 }
 
 export interface CreateUser extends Omit<User, 'id'>{
-    last_name: string
     password: string
     phone: string
     birth: string
@@ -28,6 +28,7 @@ export interface UserAddress{
     street: string
     house_number: string
     complement?: string
+    phone_number: string
     reference_point?: string
     active: boolean
 }

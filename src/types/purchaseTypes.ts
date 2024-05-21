@@ -1,3 +1,5 @@
+import { UserAddress } from "./userTypes"
+
 export interface ItemSell{
     quantity: number
     price: number
@@ -11,6 +13,7 @@ export interface Purchase{
     createdAt: string
     updatedAt: string
     ItemSells: ItemSell[]
+    Address:UserAddress
 }
 
 export interface Purchases{

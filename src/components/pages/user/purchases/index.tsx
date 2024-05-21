@@ -6,12 +6,12 @@ import {Purchases } from '@/types/purchaseTypes'
 import { useEffect, useState } from 'react'
 
 type Props = {
-    purchases: Purchases|false,
-    tooken: string|undefined
+    purchases: Purchases,
+    tooken: string
 }
 const UserPurchasesPage = ({purchases,tooken}:Props) => {
 
-    const [purchasesElements, setPurchasesElements] = useState<Purchases>(purchases?purchases:{rows:[],count:0})
+    const [purchasesElements, setPurchasesElements] = useState<Purchases>(purchases)
     const [page, setPage] = useState(1)
     const getPurchases = async () => {
         if(!tooken)return
