@@ -1,6 +1,7 @@
 import { Purchase } from '@/types/purchaseTypes'
 import styles from './styles.module.scss'
 import Image from 'next/image'
+import PurchaseInfo from './purchaseInfo'
 
 
 type Props = {
@@ -21,30 +22,7 @@ const CardPurchase = ({ userPurchase }: Props) => {
             </div>
 
             <div className={styles.userPurchaseInfoContainer}>
-                <div className={styles.userPurchaseInfoDiv}>
-
-                    <div className={styles.userPurchaseInfo}>
-                        <p className={styles.userPurchaseInfoTitle}>Número do pedido</p>
-                        <p className={styles.userPurchaseInfoValue}>#{userPurchase.id}</p>
-                    </div>
-
-                    <div className={styles.userPurchaseInfo}>
-                        <p className={styles.userPurchaseInfoTitle}>Data/Hora</p>
-                        <p className={styles.userPurchaseInfoValue}>{new Date(userPurchase.createdAt).toLocaleString('pt-BR')}</p>
-                    </div>
-
-                    <div className={styles.userPurchaseInfo}>
-                        <p className={styles.userPurchaseInfoTitle}>Total</p>
-                        <p className={styles.userPurchaseInfoValue}>{userPurchase.all_value}</p>
-                    </div>
-
-                    <div className={styles.userPurchaseInfoStatus}>
-                        <p className={styles.userPurchaseInfoTitle}>Status</p>
-                        <p className={styles.userPurchaseInfoValue}>Pedido {userPurchase.status}</p>
-                    </div>
-
-                </div>
-
+                <PurchaseInfo purchase={userPurchase} />
                 <div className={styles.btnsUserPurchase}>
                     <button>Detalhes</button>
                     <button>Suporte</button>
