@@ -21,11 +21,47 @@
         flex-direction: column;
         gap: 10px;
         box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2) inset;
+        .divStatus{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .status{
+                width: 115px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb($primary,0.8);
+                font-size: small;
+                border: 3px solid $secondary;
+                padding: 5px;
+                border-radius: 10px;
+                img{
+                    filter: invert(90%);
+                }
+            }
+            .statusActive{
+                @extend .status;
+                border: 3px solid rgb(22, 172, 34);
+            }
+            .line{
+                width: 14%;
+                height: 3px;
+                background-color: $secondary;
+            }
+            .lineActive{
+                @extend .line;
+                background-color: rgb(22, 172, 34);
+            }
+
+        }
 
         .divAddress{
             display: flex;
             padding: 20px;
-
+            
             .divAddressInfo{
                 display: flex;
                 flex-direction: column;
