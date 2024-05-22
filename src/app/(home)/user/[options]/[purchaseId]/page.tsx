@@ -2,50 +2,54 @@ import { userService } from '@/services/userService'
 import styles from './page.module.scss'
 import PurchaseInfo from '@/components/common/cardPurchase/purchaseInfo'
 import Image from 'next/image'
-import { cookieService } from '@/services/cookieService'
-import { redirect } from 'next/navigation'
+import { revalidateTag } from 'next/cache'
+import Link from 'next/link'
+
 
 
 export default async function UserPage({ params }: { params: { purchaseId: string } }) {
-    const user = await cookieService.verifySession()
-    if (!user) redirect('/')
+    revalidateTag('one-purchase-user')
 
     const purchase = await userService.getUserPurchaseById(params.purchaseId)
+    if (!purchase) return
 
-
+    const purchaseStatus = purchase.status === 'Recebido' ? 1 :purchase.status === 'Transportadora' ? 2 : purchase.status === 'Enviado' ? 3 : purchase.status === 'Entregue' ? 4 : 0
 
     if (!purchase) return
 
     return (
         <div className={styles.pageBody}>
-            <p className={styles.userPurchaseTitle}>Pedido Nº {purchase.id}</p>
+            <div className={styles.titleContainer}>
+                <Link  href='/user/my-purchases'>{'<-VOLTAR'}</Link>
+                <p className={styles.userPurchaseTitle}>Pedido Nº {purchase.id}</p>
+            </div>
 
             <div className={styles.userPurchasesContainer}>
                 <PurchaseInfo purchase={purchase} />
 
                 <div className={styles.divStatus}>
-                    <div className={purchase.status==='Recebido'?styles.statusActive:styles.status}>
+                    <div className={purchaseStatus>0?styles.statusActive:styles.status}>
                         <Image src='/public/header/shop.svg' alt="search" className={styles.chatIcon}
                             width={30} height={30} />
                         <p>Recebido</p>
                     </div>
 
-                    <div className={purchase.status==='Transportadora'?styles.lineActive:styles.line}></div>
-                    <div className={purchase.status==='Transportadora'?styles.statusActive:styles.status}>
+                    <div className={purchaseStatus>1?styles.lineActive:styles.line}></div>
+                    <div className={purchaseStatus>1?styles.statusActive:styles.status}>
                         <Image src='/public/common/box-seam.svg' alt="search" className={styles.chatIcon}
                             width={30} height={30} />
                         <p>Transportadora</p>
                     </div>
 
-                    <div className={purchase.status==='Enviado'?styles.lineActive:styles.line}></div>
-                    <div className={purchase.status==='Enviado'?styles.statusActive:styles.status}>
+                    <div className={purchaseStatus>2?styles.lineActive:styles.line}></div>
+                    <div className={purchaseStatus>2?styles.statusActive:styles.status}>
                         <Image src='/public/common/truck.svg' alt="search" className={styles.chatIcon}
                             width={30} height={30} />
                         <p>Enviado</p>
                     </div>
 
-                    <div className={purchase.status==='Entregue'?styles.lineActive:styles.line}></div>
-                    <div className={purchase.status==='Entregue'?styles.statusActive:styles.status}>
+                    <div className={purchaseStatus>3?styles.lineActive:styles.line}></div>
+                    <div className={purchaseStatus>3?styles.statusActive:styles.status}>
                         <Image src='/public/common/house-check.svg' alt="search" className={styles.chatIcon}
                             width={30} height={30} />
                         <p>Entregue</p>
@@ -58,7 +62,7 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
 
                         <p className={styles.title}>Endereço de entrega:</p>
 
-                        <p>{`Destinatario: ${user.first_name} ${user.last_name}`}</p>
+                        <p>{`Destinatario: ${purchase.Address.receiver_name}`}</p>
                         <p>{`${purchase.Address.street} - ${purchase.Address.neighborhood} - nº${purchase.Address.house_number}`}</p>
                         <p>{`${purchase.Address.complement} - ${purchase.Address.reference_point}`}</p>
                         <p>{`${purchase.Address.city}, ${purchase.Address.state}, ${purchase.Address.zip_code}`}</p>

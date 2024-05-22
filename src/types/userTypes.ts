@@ -21,6 +21,7 @@ export interface UserPayload extends JWTPayload,User{}
 
 export interface UserAddress{
     id: number
+    receiver_name: string
     zip_code: number
     state: string
     city: string
