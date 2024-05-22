@@ -12,7 +12,6 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
 
     const purchase = await userService.getUserPurchaseById(params.purchaseId)
 
-    console.log(purchase)
 
 
     if (!purchase) return
@@ -23,6 +22,36 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
 
             <div className={styles.userPurchasesContainer}>
                 <PurchaseInfo purchase={purchase} />
+
+                <div className={styles.divStatus}>
+                    <div className={purchase.status==='Recebido'?styles.statusActive:styles.status}>
+                        <Image src='/public/header/shop.svg' alt="search" className={styles.chatIcon}
+                            width={30} height={30} />
+                        <p>Recebido</p>
+                    </div>
+
+                    <div className={purchase.status==='Transportadora'?styles.lineActive:styles.line}></div>
+                    <div className={purchase.status==='Transportadora'?styles.statusActive:styles.status}>
+                        <Image src='/public/common/box-seam.svg' alt="search" className={styles.chatIcon}
+                            width={30} height={30} />
+                        <p>Transportadora</p>
+                    </div>
+
+                    <div className={purchase.status==='Enviado'?styles.lineActive:styles.line}></div>
+                    <div className={purchase.status==='Enviado'?styles.statusActive:styles.status}>
+                        <Image src='/public/common/truck.svg' alt="search" className={styles.chatIcon}
+                            width={30} height={30} />
+                        <p>Enviado</p>
+                    </div>
+
+                    <div className={purchase.status==='Entregue'?styles.lineActive:styles.line}></div>
+                    <div className={purchase.status==='Entregue'?styles.statusActive:styles.status}>
+                        <Image src='/public/common/house-check.svg' alt="search" className={styles.chatIcon}
+                            width={30} height={30} />
+                        <p>Entregue</p>
+                    </div>
+                </div>
+
                 <div className={styles.divAddress}>
 
                     <div className={styles.divAddressInfo}>
@@ -38,7 +67,7 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
 
                     <div className={styles.divAddressInfo}>
 
-                        <p className={styles.title}>Metodo de Entrega:</p>
+                        <p className={styles.title}>Metodo de Envio:</p>
                         <p>...</p>
                     </div>
                     <div className={styles.divAddressInfo}>
@@ -47,8 +76,8 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
                     </div>
 
                 </div>
-                <div className={styles.divInfo}>
 
+                <div className={styles.divInfo}>
                     <div className={styles.divItems}>
                         <p className={styles.titleItems}>Itens:</p>
                         {purchase.ItemSells.map((elem) => {

@@ -2,6 +2,7 @@ import { Purchase } from '@/types/purchaseTypes'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import PurchaseInfo from './purchaseInfo'
+import Link from 'next/link'
 
 
 type Props = {
@@ -24,8 +25,8 @@ const CardPurchase = ({ userPurchase }: Props) => {
             <div className={styles.userPurchaseInfoContainer}>
                 <PurchaseInfo purchase={userPurchase} />
                 <div className={styles.btnsUserPurchase}>
-                    <button>Detalhes</button>
-                    <button>Suporte</button>
+                    <Link href={`purchase/${userPurchase.id}`}>Detalhes</Link>
+                    <Link href={`/support/${userPurchase.id}`}>Suporte</Link>
                 </div>
             </div>
 
