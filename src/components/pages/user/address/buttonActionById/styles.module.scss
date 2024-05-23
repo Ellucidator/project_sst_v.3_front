@@ -1,0 +1,16 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+.formButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: $tertiaryDark;
+    border: 1px solid $tertiary;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: $tertiary;
+    }
+}

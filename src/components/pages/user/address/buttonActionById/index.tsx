@@ -1,3 +1,5 @@
+import styles from './styles.module.scss'
+
 type Props = {
     buttonName: string
     idAction:number,
@@ -12,7 +14,7 @@ const ButtonActionById = async({buttonName,idAction,actionFunction}:Props) => {
 
     }
     return (
-        <form action={handlerSubmit} >
+        <form action={handlerSubmit} className={styles.formButton}>
             <input hidden name="id" defaultValue={idAction} />
             <button type="submit">{buttonName}</button>
         </form>
