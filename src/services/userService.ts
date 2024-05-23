@@ -101,8 +101,22 @@ async function deleteUserAddress(id:string){
     const token = cookies().get('token')?.value
     if(!token) return 
 
-    const adresses = await fetch(`http://localhost:3000/user/address/${id}`, {
+    await fetch(`http://localhost:3000/user/address/${id}`, {
         method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+    })
+    revalidateTag('adresses-user')
+}
+async function activeUserAddress(id:string){
+    'use server'
+    const token = cookies().get('token')?.value
+    if(!token) return 
+
+    await fetch(`http://localhost:3000/user/address/${id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token
@@ -185,6 +199,7 @@ export const userService = {
     getAvaliationByUserId,
     getUserAdresses,
     deleteUserAddress,
+    activeUserAddress,
     getUserPurchases,
     getUserPurchaseById,
     getUserFavorites
