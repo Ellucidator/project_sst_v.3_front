@@ -3,6 +3,7 @@ import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchase, Purchases } from "@/types/purchaseTypes";
 import { cookies } from "next/headers";
+import { revalidateTag } from "next/cache";
 
 
 const createUser = async(user:CreateUser)=>{
@@ -94,6 +95,21 @@ async function getUserAdresses(){
     const data:UserAddress[] = await adresses.json();
     return data
 }
+
+async function deleteUserAddress(id:string){
+    'use server'
+    const token = cookies().get('token')?.value
+    if(!token) return 
+
+    const adresses = await fetch(`http://localhost:3000/user/address/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+    })
+    revalidateTag('adresses-user')
+}
 async function getUserPurchases(page:number = 1,perPage:number = 10){
     
     const token = cookies().get('token')?.value
@@ -168,6 +184,7 @@ export const userService = {
     createAvaliation,
     getAvaliationByUserId,
     getUserAdresses,
+    deleteUserAddress,
     getUserPurchases,
     getUserPurchaseById,
     getUserFavorites
