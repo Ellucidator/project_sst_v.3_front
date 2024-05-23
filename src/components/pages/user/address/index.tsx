@@ -19,11 +19,13 @@ const UserAddressPage = async({ userAddress }: Props) => {
     return (
         <>
             <div className={styles.divAddress}>
-                <div className={styles.divAddressActive}>
-                    <p>Endereço Ativo</p>
+                <p className={styles.divAddressTitle}>Seus Endereços</p>
+                <div className={styles.divAddressList}>
                     {
                         activeAddress ?
-                            <div className={styles.divAddressInfo}>
+                            <div className={styles.divAddressItem}>
+                                <p className={styles.divAddressActive}>Endereço Ativo</p>
+
                                 <p>{`Destinatario: ${activeAddress.receiver_name}`}</p>
                                 <p>{`${activeAddress.street} - ${activeAddress.neighborhood} - nº${activeAddress.house_number}`}</p>
                                 <p>{`${activeAddress.complement} - ${activeAddress.reference_point}`}</p>
@@ -32,21 +34,20 @@ const UserAddressPage = async({ userAddress }: Props) => {
                             </div>
                             : <></>
                     }
-                </div>
-                <div className={styles.divAddressList}>
                     {
                         userAddress.map((address) => {
 
                             return (
-                                <div key={address.id}>
-                                    <div className={styles.divAddressInfo}>
+                                <div key={address.id} className={styles.divAddressItem}>
+                                    <div >
                                         <p>{`Destinatario: ${address.receiver_name}`}</p>
                                         <p>{`${address.street} - ${address.neighborhood} - nº${address.house_number}`}</p>
                                         <p>{`${address.complement} - ${address.reference_point}`}</p>
                                         <p>{`${address.city}, ${address.state}, ${address.zip_code}`}</p>
                                         <p>{`Telefone: ${address.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
                                     </div>
-                                    <div>
+                                    <div className={styles.divButtons}>
+                                        <ButtonActionById buttonName='ATIVAR' idAction={address.id} actionFunction={userService.activeUserAddress} />
                                         <ButtonActionById buttonName='EXCLUIR' idAction={address.id} actionFunction={userService.deleteUserAddress} />
                                     </div>
                                 </div>
