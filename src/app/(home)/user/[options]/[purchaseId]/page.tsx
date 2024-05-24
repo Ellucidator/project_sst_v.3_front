@@ -4,23 +4,25 @@ import PurchaseInfo from '@/components/common/cardPurchase/purchaseInfo'
 import Image from 'next/image'
 import { revalidateTag } from 'next/cache'
 import Link from 'next/link'
+import ButtonReturn from '@/components/common/btnReturn'
 
 
 
 export default async function UserPage({ params }: { params: { purchaseId: string } }) {
     revalidateTag('one-purchase-user')
 
+        
+
     const purchase = await userService.getUserPurchaseById(params.purchaseId)
     if (!purchase) return
 
     const purchaseStatus = purchase.status === 'Recebido' ? 1 :purchase.status === 'Transportadora' ? 2 : purchase.status === 'Enviado' ? 3 : purchase.status === 'Entregue' ? 4 : 0
 
-    if (!purchase) return
 
     return (
         <div className={styles.pageBody}>
             <div className={styles.titleContainer}>
-                <Link  href='/user/my-purchases'>{'<-VOLTAR'}</Link>
+                <ButtonReturn />
                 <p className={styles.userPurchaseTitle}>Pedido Nº {purchase.id}</p>
             </div>
 

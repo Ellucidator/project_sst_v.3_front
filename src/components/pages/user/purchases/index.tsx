@@ -10,13 +10,14 @@ type Props = {
     tooken: string
 }
 const UserPurchasesPage = ({purchases,tooken}:Props) => {
+    
 
     const [purchasesElements, setPurchasesElements] = useState<Purchases>(purchases)
     const [page, setPage] = useState(1)
     const getPurchases = async () => {
         if(!tooken)return
 
-        const data = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${10}`, {
+        const data = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${6}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

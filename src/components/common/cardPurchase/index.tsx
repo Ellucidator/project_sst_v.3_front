@@ -9,7 +9,7 @@ type Props = {
     userPurchase: Purchase
 }
 const CardPurchase = ({ userPurchase }: Props) => {
-
+    if(!userPurchase) return <></>
 
     return (
 

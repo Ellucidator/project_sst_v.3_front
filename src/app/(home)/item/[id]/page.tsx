@@ -11,6 +11,7 @@ import SlideSection from '@/components/common/slideSection'
 import DescriptionList from '@/components/common/descriptionList'
 import AvaliationsItem from '@/components/common/avaliationsItem'
 import { userService } from '@/services/userService'
+import ButtonReturn from '@/components/common/btnReturn'
 
 
 
@@ -43,6 +44,7 @@ export default async function Item({ params }: { params: { id: string } }) {
     return (
         <div className={styles.pageItem}>
             <div className={`container ${styles.itemContainer}`}>
+                <ButtonReturn />
                 <p className={styles.titleItem}>{item.name}</p>
                 <div className={styles.cardItem}>
 

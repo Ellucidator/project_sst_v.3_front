@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import { revalidateTag } from 'next/cache'
 import ButtonActionById from './buttonActionById'
+import Link from 'next/link'
 
 type Props = {
     userAddress: UserAddress[]
@@ -36,7 +37,7 @@ const UserAddressPage = async({ userAddress }: Props) => {
                     }
                     {
                         userAddress.map((address) => {
-
+                            if(address.id === activeAddress?.id) return
                             return (
                                 <div key={address.id} className={styles.divAddressItem}>
                                     <div >
@@ -48,6 +49,7 @@ const UserAddressPage = async({ userAddress }: Props) => {
                                     </div>
                                     <div className={styles.divButtons}>
                                         <ButtonActionById buttonName='ATIVAR' idAction={address.id} actionFunction={userService.activeUserAddress} />
+                                        <Link href={`/user/address/${address.id}`} className={styles.btnEdit}>EDITAR</Link>
                                         <ButtonActionById buttonName='EXCLUIR' idAction={address.id} actionFunction={userService.deleteUserAddress} />
                                     </div>
                                 </div>

@@ -20,11 +20,11 @@ export default async function UserPage({params}:{params:{options:string}}) {
     const [userAddress,userPurchases,purchases] = await Promise.all([
         userService.getUserAdresses(),
         userService.getUserPurchases(1,1),
-        userService.getUserPurchases()
+        userService.getUserPurchases(1,6)
 
     ])
 
-        
+    
 
     return(
         <div className={styles.userInfo}>
