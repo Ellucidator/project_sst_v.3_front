@@ -73,6 +73,36 @@ const getAvaliationByUserId = async()=>{
 
 }
 
+async function getUserAddessById(id:string){
+    const token = cookies().get('token')?.value
+    if(!token) return
+
+    const address = await fetch(`http://localhost:3000/user/address/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+    })
+
+    const data:UserAddress = await address.json();
+    if(!data)return {
+        receiver_name: '',
+        zip_code: 0,
+        state: '',
+        city: '',
+        neighborhood: '',
+        street: '',
+        house_number: '',
+        complement: '',
+        phone_number: '',
+        reference_point: '',
+        active: false
+    }
+    
+    return data
+
+}
 async function getUserAdresses(){
 
     const token = cookies().get('token')?.value
@@ -94,6 +124,22 @@ async function getUserAdresses(){
 
     const data:UserAddress[] = await adresses.json();
     return data
+}
+
+async function createAddress(address:UserAddress){
+
+    const token = cookies().get('token')?.value
+    if(!token) return false
+
+    await fetch(`http://localhost:3000/user/address`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(address)
+    })
+
 }
 
 async function deleteUserAddress(id:string){
@@ -197,7 +243,9 @@ export const userService = {
     createUser,
     createAvaliation,
     getAvaliationByUserId,
+    getUserAddessById,
     getUserAdresses,
+    createAddress,
     deleteUserAddress,
     activeUserAddress,
     getUserPurchases,
