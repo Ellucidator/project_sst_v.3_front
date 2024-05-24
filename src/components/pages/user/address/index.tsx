@@ -1,7 +1,6 @@
 import { UserAddress } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
-import { revalidateTag } from 'next/cache'
 import ButtonActionById from './buttonActionById'
 import Link from 'next/link'
 
@@ -10,12 +9,7 @@ type Props = {
 }
 const UserAddressPage = async({ userAddress }: Props) => {
     const activeAddress = userAddress.find(address => address.active === true)
-
-    const handlerSubmitDelete = async(form: FormData)=>{
-        'use server'
-        const id = form.get('id') as string
-        await userService.deleteUserAddress(id)
-    }
+    
 
     return (
         <>
@@ -57,6 +51,7 @@ const UserAddressPage = async({ userAddress }: Props) => {
                         })
                     }
                 </div>
+
             </div>
         </>
     )
