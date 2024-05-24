@@ -1,19 +1,18 @@
 import { userService } from '@/services/userService'
-import styles from './page.module.scss'
+import styles from './styles.module.scss'
 import PurchaseInfo from '@/components/common/cardPurchase/purchaseInfo'
 import Image from 'next/image'
 import { revalidateTag } from 'next/cache'
-import Link from 'next/link'
 import ButtonReturn from '@/components/common/btnReturn'
 
+type Props = {
+    purchaseId: string
+}
 
-
-export default async function UserPage({ params }: { params: { purchaseId: string } }) {
+const PurchasePage = async({purchaseId}: Props)=> {
     revalidateTag('one-purchase-user')
 
-        
-
-    const purchase = await userService.getUserPurchaseById(params.purchaseId)
+    const purchase = await userService.getUserPurchaseById(purchaseId)
     if (!purchase) return
 
     const purchaseStatus = purchase.status === 'Recebido' ? 1 :purchase.status === 'Transportadora' ? 2 : purchase.status === 'Enviado' ? 3 : purchase.status === 'Entregue' ? 4 : 0
@@ -101,3 +100,5 @@ export default async function UserPage({ params }: { params: { purchaseId: strin
         </div>
     )
 }
+
+export default PurchasePage
