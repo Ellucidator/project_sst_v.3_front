@@ -42,9 +42,9 @@ const UserAddressPage = async({ userAddress }: Props) => {
                                         <p>{`Telefone: ${address.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
                                     </div>
                                     <div className={styles.divButtons}>
-                                        <ButtonActionById buttonName='ATIVAR' idAction={address.id} actionFunction={userService.activeUserAddress} />
-                                        <Link href={`/user/address/${address.id}`} className={styles.btnEdit}>EDITAR</Link>
-                                        <ButtonActionById buttonName='EXCLUIR' idAction={address.id} actionFunction={userService.deleteUserAddress} />
+                                        <ButtonActionById buttonName='ATIVAR' idAction={address.id!} actionFunction={userService.activeUserAddress} />
+                                        <Link href={`/user/edit-address/${address.id}`} className={styles.btnEdit}>EDITAR</Link>
+                                        <ButtonActionById buttonName='EXCLUIR' idAction={address.id!} actionFunction={userService.deleteUserAddress} />
                                     </div>
                                 </div>
                             )

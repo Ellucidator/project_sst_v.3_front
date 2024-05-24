@@ -1,25 +1,54 @@
 import ButtonReturn from '@/components/common/btnReturn'
 import styles from './styles.module.scss'
+import { userService } from '@/services/userService'
+import { UserAddress } from '@/types/userTypes'
+import { revalidateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 type Props = {
     addressId: string
 }
 
 const AddressUpdate = async ({ addressId }: Props) => {
-    let addressValue = {
+    let addressValue: UserAddress = {
+        id: 0,
         receiver_name: '',
-        zip_code: undefined,
+        zip_code: 0,
         state: '',
         city: '',
         neighborhood: '',
         street: '',
-        house_number: undefined,
+        house_number: '',
         complement: '',
-        phone_number: undefined,
+        phone_number: '',
         reference_point: '',
+        active: false
     }
 
     if (addressId !=='0') {
+        addressValue = await userService.getUserAddessById(addressId).then(res => res!)
+    }
+
+    const handlerSubmit = async (form: FormData) => {
+        'use server'
+        const newAddress ={
+            id: parseInt(addressId),
+            receiver_name: form.get('receiver_name')?.toString()!,
+            zip_code: parseInt(form.get('zip_code')?.toString()!),
+            state: form.get('state')?.toString()!,
+            city: form.get('city')?.toString()!,
+            neighborhood: form.get('neighborhood')?.toString()!,
+            street: form.get('street')?.toString()!,
+            house_number: form.get('house_number')?.toString()!,
+            complement: form.get('complement')?.toString(),
+            phone_number: form.get('phone_number')?.toString()!,
+            reference_point: form.get('reference_point')?.toString(),
+            active: false
+        }
+
+        await userService.createAddress(newAddress)
+        revalidateTag('adresses-user')
+        redirect('/user/address')
     }
 
     return (
@@ -27,7 +56,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
             <ButtonReturn />
             <p className={styles.titleAddress}>Novo Endereço</p>
             
-            <form className={styles.formAddress}>
+            <form action={handlerSubmit} className={styles.formAddress}>
                 
                 <div className={styles.divInput}>
                     <input type="text"
@@ -40,7 +69,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
                         placeholder="DDD+Número"
                         name="phone_number"
                         required className={`${styles.input} ${styles.inputPhone}`}
-                        defaultValue={addressValue.phone_number}
+                        defaultValue={parseInt(addressValue.phone_number)}
                     />
                 </div>
                 <div className={styles.divInput} >
@@ -48,7 +77,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
                         placeholder="CEP"
                         name="zip_code"
                         required className={`${styles.input} ${styles.inputZip}`}
-                        defaultValue={addressValue.zip_code}
+                        defaultValue={addressValue.zip_code?addressValue.zip_code:''}
                     />
                     <input type="text"
                         placeholder="Estado"
@@ -70,7 +99,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
                         required className={`${styles.input} ${styles.inputStreet}`}
                         defaultValue={addressValue.street}
                     />
-                    <input type="number"
+                    <input type="text"
                         placeholder="Nº"
                         name="house_number"
                         required className={`${styles.input} ${styles.inputP}`}
