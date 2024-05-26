@@ -1,6 +1,6 @@
 import { cookieService } from '@/services/cookieService'
 import styles from './page.module.scss'
-import { UserAddress, UserPayload } from '@/types/userTypes'
+import { UserAddress, UserFavorite, UserPayload } from '@/types/userTypes'
 import { redirect } from 'next/navigation'
 import UserHome from '@/components/pages/user/home'
 import { userService } from '@/services/userService'
@@ -17,19 +17,21 @@ export default async function UserPage({params}:{params:{options:string}}) {
     const user = await cookieService.verifySession()
     if(!user)redirect('/')
 
-    const [userAddress,userPurchases,purchases] = await Promise.all([
+    const [userAddress,userPurchases,purchases,newestFavorites] = await Promise.all([
         userService.getUserAdresses(),
         userService.getUserPurchases(1,1),
-        userService.getUserPurchases(1,6)
-
+        userService.getUserPurchases(1,6),
+        userService.getUserFavorites(1,4)
     ])
+
+    console.log(newestFavorites)
 
     
 
     return(
         <div className={styles.userInfo}>
             {
-                params.options==='home'?<UserHome user={user} userPurchase={(userPurchases as Purchases).rows[0]}/>:
+                params.options==='home'?<UserHome user={user} userPurchase={(userPurchases as Purchases).rows[0]} newestFavorites={newestFavorites as UserFavorite[]}/>:
                 params.options==='my-info'?<></>:
                 params.options==='my-purchases'?<UserPurchasesPage tooken={tooken!} purchases={purchases as Purchases}/>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress as UserAddress[]}/>:
