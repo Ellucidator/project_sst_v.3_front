@@ -1,5 +1,5 @@
 
-import { CreateUser, UserAddress, UserFavorite } from "@/types/userTypes";
+import { CreateUser, Favorites, UserAddress, UserFavorite } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchase, Purchases } from "@/types/purchaseTypes";
@@ -218,11 +218,13 @@ async function getUserPurchaseById(purchaseId:string){
 }
 
 async function getUserFavorites(page:number = 1,perPage:number = 10){
-    
+    const pageCookie = cookies().get('page')?.value
+    if(pageCookie) page = parseInt(pageCookie)
+
     const token = cookies().get('token')?.value
     if(!token) return false
 
-    const purchases = await fetch(`http://localhost:3000/user/show/favorites?page=${page}&perPage=${perPage}`, {
+    const favorites = await fetch(`http://localhost:3000/user/show/favorites?page=${page}&perPage=${perPage}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -236,7 +238,7 @@ async function getUserFavorites(page:number = 1,perPage:number = 10){
         },
     })
 
-    const data:UserFavorite[] = await purchases.json();
+    const data:Favorites = await favorites.json();
     return data
 }
 async function deleteUserFavorites(id:string){

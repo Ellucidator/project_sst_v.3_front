@@ -37,3 +37,8 @@ export interface UserAddress{
 export interface UserFavorite{
     Item:Item
 }
+
+export interface Favorites{
+    count: number
+    rows: UserFavorite[]
+}

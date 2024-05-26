@@ -167,11 +167,20 @@ async function getItemsCart() {
 }
 
 
+async function setCookiePage(page: string) {
+    'use server'
+    const cookieValue = cookies().set('page', page, {
+        maxAge: 0
+    })
+    console.log(cookieValue)
+}
+
 export const cookieService = {
     verifySession,
     setSession,
     addCarItem,
     getItemsCart,
     verifyRegister,
-    verifyLogin
+    verifyLogin,
+    setCookiePage
 }
