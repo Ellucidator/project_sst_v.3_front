@@ -1,7 +1,9 @@
+'use server'
 import { ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
 import CardItemSearch from '@/components/common/inputSearch/searchModal/cardItemSearch'
 import { userService } from '@/services/userService'
+import ButtonActionById from '../address/buttonActionById'
 
 
 const FavoritesPage = async () => {
@@ -15,7 +17,12 @@ const FavoritesPage = async () => {
             <div className={styles.favoritesContainer}>
                 {   favorites?
                         favorites.map((item)=>{
-                            return <CardItemSearch key={item.Item.id} item={item.Item} />
+                            return (
+                                <div key={item.Item.id} className={styles.favoritesCard}>
+                                    <CardItemSearch item={item.Item} />
+                                    <ButtonActionById buttonName="x" actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!}/>
+                                </div>
+                            )
                         })
                     :<></>
                 }

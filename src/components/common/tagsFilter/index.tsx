@@ -1,3 +1,4 @@
+'use client'
 import { Tag } from '@/types/tagTypes'
 import styles from './styles.module.scss'
 import { ChangeEvent, MouseEvent, useState } from 'react'

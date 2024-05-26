@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+'use client'
 import styles from './styles.module.scss'
 
 type Props = {
