@@ -1,3 +1,4 @@
+
 import { CreateUser, UserAddress, UserFavorite } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
@@ -238,6 +239,20 @@ async function getUserFavorites(page:number = 1,perPage:number = 10){
     const data:UserFavorite[] = await purchases.json();
     return data
 }
+async function deleteUserFavorites(id:string){
+    'use server'
+    const token = cookies().get('token')?.value
+    if(!token) return false
+
+    await fetch(`http://localhost:3000/user/favorite/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+    })
+    revalidateTag('favorites-user')
+}
 
 export const userService = {
     createUser,
@@ -250,5 +265,6 @@ export const userService = {
     activeUserAddress,
     getUserPurchases,
     getUserPurchaseById,
-    getUserFavorites
+    getUserFavorites,
+    deleteUserFavorites
 }
