@@ -1,0 +1,32 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.formButton{
+    @extend .btn;
+
+    padding: 5px 10px;
+    background-color: $tertiaryDark;
+    border: 1px solid $tertiary;
+    &:hover{
+        background-color: $tertiary;
+    }
+}
+
+.btnCount{
+    @extend .btn;
+
+    width: 45px;
+    height: 35px;
+    background-color: $primary;
+}
+.btnCountActive{
+    @extend .btnCount;
+
+    background-color: $tertiaryDark;
+}

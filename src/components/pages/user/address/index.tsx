@@ -1,7 +1,7 @@
 import { UserAddress } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
-import ButtonActionById from './buttonActionById'
+import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
 import Link from 'next/link'
 
 type Props = {
