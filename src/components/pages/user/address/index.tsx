@@ -15,6 +15,7 @@ const UserAddressPage = async({ userAddress }: Props) => {
         <>
             <div className={styles.divAddress}>
                 <p className={styles.divAddressTitle}>Seus Endereços</p>
+                <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link>
                 <div className={styles.divAddressList}>
                     {
                         activeAddress ?
