@@ -44,7 +44,7 @@ export async function cepCalculator(cep:number,itemCharacteristics:ItemCharacter
         },
         cache: 'no-cache'
     })
-    if(res.status === 422)return false
+    if(res.status === 422)return [{name:'Product',error:'Frete Indisponivel',company:{name:'Error',picture:false}} ]
 
     const data = await res.json()
 

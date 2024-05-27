@@ -1,4 +1,4 @@
-import { UserFavorite, UserPayload } from '@/types/userTypes'
+import { Favorites, UserFavorite, UserPayload } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { Purchase } from '@/types/purchaseTypes'
 import Image from 'next/image'
@@ -8,7 +8,7 @@ import CardItem from '@/components/common/cardItem'
 type Props = {
     user: UserPayload
     userPurchase: Purchase
-    newestFavorites: UserFavorite[]
+    newestFavorites: Favorites
 }
 const UserHome = ({ user, userPurchase, newestFavorites }: Props) => {
 
@@ -20,7 +20,7 @@ const UserHome = ({ user, userPurchase, newestFavorites }: Props) => {
             <CardPurchase userPurchase={userPurchase} />
             <p className={styles.userPurchaseTitle}>Ultimos favoritos</p>
             <div className={styles.favoritesContainer}>
-                {newestFavorites?newestFavorites.map((favorite)=>{
+                {newestFavorites.rows?newestFavorites.rows.map((favorite)=>{
                     return(
                         <CardItem key={favorite.Item.id} item={favorite.Item}/>
                     )

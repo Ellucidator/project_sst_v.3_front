@@ -171,7 +171,10 @@ async function activeUserAddress(id:string){
     })
     revalidateTag('adresses-user')
 }
-async function getUserPurchases(page:number = 1,perPage:number = 10){
+async function getUserPurchases(page:number = 1,perPage:number = 6){
+    'use server'
+    const pageCookie = cookies().get('page')?.value
+    if(pageCookie) page = parseInt(pageCookie)
     
     const token = cookies().get('token')?.value
     if(!token) return false

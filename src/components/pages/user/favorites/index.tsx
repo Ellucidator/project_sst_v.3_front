@@ -11,26 +11,29 @@ import { cookies } from 'next/headers'
 const FavoritesPage = async () => {
     const favorites = await userService.getUserFavorites()
     
-    
-    
+
+
+
 
     return (
         <div className={styles.pageBody}>
             <p className={styles.favoritesTitle}>Seus Favoritos</p>
 
             <div className={styles.favoritesContainer}>
-                {   favorites?
-                        favorites.rows.map((item)=>{
+                {favorites ?
+                    <div>
+                        {favorites.rows.map((item) => {
                             return (
                                 <div key={item.Item.id} className={styles.favoritesCard}>
                                     <CardItemSearch item={item.Item} />
-                                    <ButtonActionById buttonName="x" actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!}/>
+                                    <ButtonActionById buttonName="x" actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!} />
                                 </div>
                             )
-                        })
-                    :<></>
+                        })}
+                    </div>
+                    : <></>
                 }
-                <PagCountServer count={7} perPage={6} page={1}/>
+                <PagCountServer count={favorites?favorites.count:0} perPage={6} page={1} />
             </div>
         </div>
     )

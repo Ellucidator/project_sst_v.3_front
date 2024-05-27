@@ -7,15 +7,18 @@ import Link from 'next/link'
 type Props = {
     userAddress: UserAddress[]
 }
-const UserAddressPage = async({ userAddress }: Props) => {
+const UserAddressPage = async ({ userAddress }: Props) => {
     const activeAddress = userAddress.find(address => address.active === true)
-    
+
 
     return (
         <>
             <div className={styles.divAddress}>
                 <p className={styles.divAddressTitle}>Seus Endereços</p>
-                <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link>
+                {userAddress.length < 6 ?
+                    <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link> :
+                    <></>
+                }
                 <div className={styles.divAddressList}>
                     {
                         activeAddress ?
@@ -32,7 +35,7 @@ const UserAddressPage = async({ userAddress }: Props) => {
                     }
                     {
                         userAddress.map((address) => {
-                            if(address.id === activeAddress?.id) return
+                            if (address.id === activeAddress?.id) return
                             return (
                                 <div key={address.id} className={styles.divAddressItem}>
                                     <div >
