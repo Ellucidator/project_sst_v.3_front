@@ -17,7 +17,7 @@ const FavoritesPage = async () => {
 
     return (
         <div className={styles.pageBody}>
-            <p className={styles.favoritesTitle}>Seus Favoritos</p>
+            <p className={styles.favoritesTitle}>Favoritos</p>
 
             <div className={styles.favoritesContainer}>
                 {favorites ?

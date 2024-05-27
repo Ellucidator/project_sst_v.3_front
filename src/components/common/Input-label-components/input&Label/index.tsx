@@ -13,7 +13,7 @@ const Input =({divWidth,inputOptions,labelOptions,labelText,mode}:Props)=>{
 
     if(mode === 'label&input'){
         return (
-            <div className={styles.inputAndLabel} style={{width:divWidth}}>
+            <div className={styles.inputAndLabel} style={divWidth?{width:divWidth}:{flex:1}}>
                 <label {...labelOptions} className={styles.label + ' ' + labelOptions?.className} >{labelText}</label>
                 <input {...inputOptions} className={styles.input + ' ' + inputOptions?.className}  />
             </div>

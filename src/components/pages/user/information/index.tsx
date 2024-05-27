@@ -33,28 +33,27 @@ const UserInformation = async () => {
 
             <form action={handlerSubmit} className={styles.formInformation}>
                 <div className={styles.inputsContainer}>
-                    <Input mode='label&input' divWidth='55%' labelText={'Primeiro Nome:'}
+                    <Input mode='label&input' divWidth='40%' labelText={'Primeiro Nome:'}
                         labelOptions={{ htmlFor: 'first_name' }}
                         inputOptions={{ id: 'first_name', type: 'text', name: 'first_name', defaultValue: infoValue.first_name }} />
 
-                    <Input mode='label&input' divWidth='40%' labelText={'Sobrenome:'}
+                    <Input mode='label&input' labelText={'Sobrenome:'}
                         labelOptions={{ htmlFor: 'last_name' }}
                         inputOptions={{ id: 'last_name', type: 'text', name: 'last_name', defaultValue: infoValue.last_name }} />
                 </div>
+                <Input mode='label&input' labelText={'Email:'} divWidth='100%'
+                    labelOptions={{ htmlFor: 'email' }}
+                    inputOptions={{ id: 'email', type: 'email', name: 'email', defaultValue: infoValue.email }} />
 
                 <div className={styles.inputsContainer}>
-                    <Input mode='label&input' divWidth='60%' labelText={'Email:'}
-                        labelOptions={{ htmlFor: 'email' }}
-                        inputOptions={{ id: 'email', type: 'email', name: 'email', defaultValue: infoValue.email }} />
-
-                    <Input mode='label&input' divWidth='35%' labelText={'Telefone:'}
+                    <Input mode='label&input' labelText={'Telefone:'}
                         labelOptions={{ htmlFor: 'phone' }}
                         inputOptions={{ id: 'phone', type: 'text', name: 'phone', defaultValue: infoValue.phone }} />
-                </div>
 
-                <Input mode='label&input' labelText={'Data de Nascimento:'} 
-                    labelOptions={{ htmlFor: 'birth' }}
-                    inputOptions={{ id: 'birth', type: 'date', name: 'birth', defaultValue: infoValue.birth.substring(0, 10) }} />
+                    <Input mode='label&input' labelText={'Data de Nascimento:'} 
+                        labelOptions={{ htmlFor: 'birth' }}
+                        inputOptions={{ id: 'birth', type: 'date', name: 'birth', defaultValue: infoValue.birth.substring(0, 10) }} />
+                </div>
 
                 <button className={styles.btnSave} type="submit">SALVAR</button>
             </form>

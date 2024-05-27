@@ -2,7 +2,8 @@
 
 .inputAndLabel{
     display: flex;
-    align-items: center;
+    height: auto;
+    flex-direction: column;
     font-size: 18px;
     padding: 5px;
     gap: 10px;
@@ -11,6 +12,7 @@
 
 .input{
     padding: 5px;
+    min-height: 45px;
     font-size: 17px;
     background-color: $primaryLight;
     flex: 1;

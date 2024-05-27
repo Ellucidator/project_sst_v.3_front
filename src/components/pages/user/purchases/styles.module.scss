@@ -7,16 +7,15 @@
     height: 100%;
     .userPurchaseTitle{
         font-size: 25px;
-        margin: 40px 0px 10px 0px;
-        border-left: 3px solid $tertiaryDark;
+        border-bottom: 3px solid $tertiaryDark;
         padding: 2px 5px;
         background-color: $primary;
-        max-width: fit-content;
+        text-align: center;
     }
 
     .userPurchasesContainer{
         width: 100%;
-        height: 90%;
+        height: 100%;
         padding: 15px;
         display: flex;
         flex-direction: column;

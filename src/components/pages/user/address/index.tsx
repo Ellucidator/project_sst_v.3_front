@@ -14,7 +14,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
     return (
         <>
             <div className={styles.divAddress}>
-                <p className={styles.divAddressTitle}>Seus Endereços</p>
+                <p className={styles.divAddressTitle}>Endereços</p>
                 {userAddress.length < 6 ?
                     <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link> :
                     <></>

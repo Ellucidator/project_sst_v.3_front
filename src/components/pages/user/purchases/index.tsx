@@ -12,7 +12,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
 
     return (
         <div className={styles.pageBody}>
-            <p className={styles.userPurchaseTitle}>Seus Pedidos</p>
+            <p className={styles.userPurchaseTitle}>Pedidos</p>
 
             <div className={styles.userPurchasesContainer}>
                 {   purchases.rows?
