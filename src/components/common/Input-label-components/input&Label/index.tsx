@@ -1,22 +1,28 @@
-import Input from '../input'
 import styles from './styles.module.scss'
 
-interface PropsLabel extends React.LabelHTMLAttributes<HTMLLabelElement>{
-    labelText: string
-}
+
 type Props = {
+    mode?:'input' | 'label&input'
+    divWidth?: string
     inputOptions?: React.InputHTMLAttributes<HTMLInputElement>
-    labelOptions?: PropsLabel
+    labelOptions?: React.LabelHTMLAttributes<HTMLLabelElement>
+    labelText?: string
 }
 
-const InputAndLabel =({inputOptions,labelOptions}:Props)=>{
+const Input =({divWidth,inputOptions,labelOptions,labelText,mode}:Props)=>{
 
-    return (
-        <div className={styles.inputAndLabel}>
-            <label {...labelOptions} className={styles.label + ' ' + labelOptions?.className} >{labelOptions?.labelText}</label>
-            <Input {...inputOptions}/>
-        </div>
-    )
+    if(mode === 'label&input'){
+        return (
+            <div className={styles.inputAndLabel} style={{width:divWidth}}>
+                <label {...labelOptions} className={styles.label + ' ' + labelOptions?.className} >{labelText}</label>
+                <input {...inputOptions} className={styles.input + ' ' + inputOptions?.className}  />
+            </div>
+        )
+    }else{
+        return (
+            <input {...inputOptions} className={styles.input + ' ' + inputOptions?.className}  />
+        )
+    }
 }
 
-export default InputAndLabel
+export default Input

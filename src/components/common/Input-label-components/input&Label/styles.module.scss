@@ -5,6 +5,19 @@
     align-items: center;
     font-size: 18px;
     padding: 5px;
-    gap: 5px;
+    gap: 10px;
     background-color: $primary;
+}
+
+.input{
+    padding: 5px;
+    font-size: 17px;
+    background-color: $primaryLight;
+    flex: 1;
+
+    &:focus{
+        outline: 1px solid $tertiary;
+        background-color: $secondary;
+        color: $primaryDark;
+    }
 }
