@@ -9,6 +9,8 @@ export interface User{
 };
 export interface UserInfo extends User {
     imgUrl: string
+    phone: string
+    birth: string
 }
 
 export interface CreateUser extends Omit<User, 'id'>{
