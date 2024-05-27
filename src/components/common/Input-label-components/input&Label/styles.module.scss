@@ -1,0 +1,10 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.inputAndLabel{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding: 5px;
+    gap: 5px;
+    background-color: $primary;
+}
