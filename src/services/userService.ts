@@ -1,5 +1,5 @@
 
-import { CreateUser, Favorites, UserAddress, UserFavorite } from "@/types/userTypes";
+import { CreateUser, Favorites, UserAddress, UserFavorite, UserInfo } from "@/types/userTypes";
 import { cookieService } from "./cookieService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchase, Purchases } from "@/types/purchaseTypes";
@@ -7,8 +7,8 @@ import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 
 
-const createUser = async(user:CreateUser)=>{
-    
+const createUser = async (user: CreateUser) => {
+
     try {
         const res = await fetch('http://localhost:3000/create-user', {
             method: 'POST',
@@ -19,17 +19,35 @@ const createUser = async(user:CreateUser)=>{
             cache: 'no-store'
         })
 
-        if(!res.ok) return false
+        if (!res.ok) return false
 
         await cookieService.setSession(user.email, user.password)
-        
+
         return true
     } catch (error) {
         return false
     }
 }
 
-const createAvaliation = async(avaliation:CreateAvaliation)=>{
+const showUser = async () => {
+    const token = cookies().get('token')?.value
+    if (!token) return
+
+
+    const res = await fetch('http://localhost:3000/user', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        cache: 'no-store'
+    })
+    const data:UserInfo = await res.json();
+
+    return data
+}
+
+const createAvaliation = async (avaliation: CreateAvaliation) => {
     try {
         const res = await fetch('http://localhost:3000/item/create-avaliation', {
             method: 'POST',
@@ -48,10 +66,10 @@ const createAvaliation = async(avaliation:CreateAvaliation)=>{
     }
 }
 
-const getAvaliationByUserId = async()=>{
+const getAvaliationByUserId = async () => {
     const user = await cookieService.verifySession()
-    if(!user) return false
-    
+    if (!user) return false
+
     try {
         const avaliation = await fetch(`http://localhost:3000/user/${user.id}/avaliation`, {
             method: 'GET',
@@ -65,18 +83,18 @@ const getAvaliationByUserId = async()=>{
             },
         })
 
-        const data:Avaliation = await avaliation.json();
+        const data: Avaliation = await avaliation.json();
         return data
 
     } catch (error) {
-        if(error) return false
+        if (error) return false
     }
 
 }
 
-async function getUserAddessById(id:string){
+async function getUserAddessById(id: string) {
     const token = cookies().get('token')?.value
-    if(!token) return
+    if (!token) return
 
     const address = await fetch(`http://localhost:3000/user/address/${id}`, {
         method: 'GET',
@@ -86,8 +104,8 @@ async function getUserAddessById(id:string){
         },
     })
 
-    const data:UserAddress = await address.json();
-    if(!data)return {
+    const data: UserAddress = await address.json();
+    if (!data) return {
         receiver_name: '',
         zip_code: 0,
         state: '',
@@ -100,14 +118,14 @@ async function getUserAddessById(id:string){
         reference_point: '',
         active: false
     }
-    
+
     return data
 
 }
-async function getUserAdresses(){
+async function getUserAdresses() {
 
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     const adresses = await fetch(`http://localhost:3000/user/addresses`, {
         method: 'GET',
@@ -115,7 +133,7 @@ async function getUserAdresses(){
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        
+
         cache: 'no-store',
         next: {
             revalidate: 10,
@@ -123,14 +141,14 @@ async function getUserAdresses(){
         },
     })
 
-    const data:UserAddress[] = await adresses.json();
+    const data: UserAddress[] = await adresses.json();
     return data
 }
 
-async function createAddress(address:UserAddress){
+async function createAddress(address: UserAddress) {
 
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     await fetch(`http://localhost:3000/user/address`, {
         method: 'POST',
@@ -143,10 +161,10 @@ async function createAddress(address:UserAddress){
 
 }
 
-async function deleteUserAddress(id:string){
+async function deleteUserAddress(id: string) {
     'use server'
     const token = cookies().get('token')?.value
-    if(!token) return 
+    if (!token) return
 
     await fetch(`http://localhost:3000/user/address/${id}`, {
         method: 'DELETE',
@@ -157,10 +175,10 @@ async function deleteUserAddress(id:string){
     })
     revalidateTag('adresses-user')
 }
-async function activeUserAddress(id:string){
+async function activeUserAddress(id: string) {
     'use server'
     const token = cookies().get('token')?.value
-    if(!token) return 
+    if (!token) return
 
     await fetch(`http://localhost:3000/user/address/${id}`, {
         method: 'PUT',
@@ -171,13 +189,13 @@ async function activeUserAddress(id:string){
     })
     revalidateTag('adresses-user')
 }
-async function getUserPurchases(page:number = 1,perPage:number = 6){
+async function getUserPurchases(page: number = 1, perPage: number = 6) {
     'use server'
     const pageCookie = cookies().get('page')?.value
-    if(pageCookie) page = parseInt(pageCookie)
-    
+    if (pageCookie) page = parseInt(pageCookie)
+
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     const purchases = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${perPage}`, {
         method: 'GET',
@@ -185,7 +203,7 @@ async function getUserPurchases(page:number = 1,perPage:number = 6){
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        
+
         cache: 'no-store',
         next: {
             revalidate: 10,
@@ -193,14 +211,14 @@ async function getUserPurchases(page:number = 1,perPage:number = 6){
         },
     })
 
-    const data:Purchases = await purchases.json();
+    const data: Purchases = await purchases.json();
     return data
 }
 
-async function getUserPurchaseById(purchaseId:string){
-    
+async function getUserPurchaseById(purchaseId: string) {
+
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     const purchases = await fetch(`http://localhost:3000/user/show/purchase/${purchaseId}`, {
         method: 'GET',
@@ -208,7 +226,7 @@ async function getUserPurchaseById(purchaseId:string){
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        
+
         cache: 'no-store',
         next: {
             revalidate: 10,
@@ -216,16 +234,16 @@ async function getUserPurchaseById(purchaseId:string){
         },
     })
 
-    const data:Purchase = await purchases.json();
+    const data: Purchase = await purchases.json();
     return data
 }
 
-async function getUserFavorites(page:number = 1,perPage:number = 10){
+async function getUserFavorites(page: number = 1, perPage: number = 10) {
     const pageCookie = cookies().get('page')?.value
-    if(pageCookie) page = parseInt(pageCookie)
+    if (pageCookie) page = parseInt(pageCookie)
 
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     const favorites = await fetch(`http://localhost:3000/user/show/favorites?page=${page}&perPage=${perPage}`, {
         method: 'GET',
@@ -233,7 +251,7 @@ async function getUserFavorites(page:number = 1,perPage:number = 10){
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        
+
         cache: 'no-store',
         next: {
             revalidate: 10,
@@ -241,13 +259,13 @@ async function getUserFavorites(page:number = 1,perPage:number = 10){
         },
     })
 
-    const data:Favorites = await favorites.json();
+    const data: Favorites = await favorites.json();
     return data
 }
-async function deleteUserFavorites(id:string){
+async function deleteUserFavorites(id: string) {
     'use server'
     const token = cookies().get('token')?.value
-    if(!token) return false
+    if (!token) return false
 
     await fetch(`http://localhost:3000/user/favorite/${id}`, {
         method: 'DELETE',
@@ -261,6 +279,7 @@ async function deleteUserFavorites(id:string){
 
 export const userService = {
     createUser,
+    showUser,
     createAvaliation,
     getAvaliationByUserId,
     getUserAddessById,

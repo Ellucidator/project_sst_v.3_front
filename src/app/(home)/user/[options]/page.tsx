@@ -1,6 +1,6 @@
 import { cookieService } from '@/services/cookieService'
 import styles from './page.module.scss'
-import { UserAddress, UserFavorite, UserPayload } from '@/types/userTypes'
+import { Favorites, UserAddress} from '@/types/userTypes'
 import { redirect } from 'next/navigation'
 import UserHome from '@/components/pages/user/home'
 import { userService } from '@/services/userService'
@@ -9,6 +9,7 @@ import UserPurchasesPage from '@/components/pages/user/purchases'
 import FavoritesPage from '@/components/pages/user/favorites'
 import { cookies } from 'next/headers'
 import { Purchases } from '@/types/purchaseTypes'
+import UserInformation from '@/components/pages/user/information'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
@@ -24,15 +25,14 @@ export default async function UserPage({params}:{params:{options:string}}) {
         userService.getUserFavorites(1,4)
     ])
 
-    console.log(newestFavorites)
-
+''
     
 
     return(
         <div className={styles.userInfo}>
             {
-                params.options==='home'?<UserHome user={user} userPurchase={(userPurchases as Purchases).rows[0]} newestFavorites={newestFavorites as UserFavorite[]}/>:
-                params.options==='my-info'?<></>:
+                params.options==='home'?<UserHome user={user} userPurchase={(userPurchases as Purchases).rows[0]} newestFavorites={newestFavorites as Favorites}/>:
+                params.options==='my-info'?<UserInformation/>:
                 params.options==='my-purchases'?<UserPurchasesPage tooken={tooken!} purchases={purchases as Purchases}/>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress as UserAddress[]}/>:
                 params.options==='favorites'?<FavoritesPage/>:
