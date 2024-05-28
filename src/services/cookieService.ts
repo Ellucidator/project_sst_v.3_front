@@ -3,6 +3,7 @@ import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
 import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { Console, error } from "console"
+import { revalidateTag } from "next/cache"
 
 
 
@@ -84,6 +85,8 @@ const setSession = async (email: string, password: string) => {
             })
             return true
         }
+
+        revalidateTag('user-info')
         return data
 
     } catch (error) {

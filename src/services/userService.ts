@@ -40,19 +40,21 @@ const showUser = async () => {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        cache: 'no-store'
+        cache: 'default',
+        next: {
+            tags: ['user-info'],
+        },
     })
     const data:UserInfo = await res.json();
 
     return data
 }
 
-const updatedUser = async (updateAtributes: Omit<UserInfo, 'imgUrl'>) => {
+const updatedUser = async (updateAtributes: Omit<UserInfo,'imgUrl'|'id'>) => {
     const token = cookies().get('token')?.value
     if (!token) return
 
-
-    await fetch('http://localhost:3000/user', {
+    const res = await fetch('http://localhost:3000/user', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -60,6 +62,8 @@ const updatedUser = async (updateAtributes: Omit<UserInfo, 'imgUrl'>) => {
         },
         body: JSON.stringify(updateAtributes),
     })
+    
+    revalidateTag('user-info')
 
 }
 
