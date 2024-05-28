@@ -28,13 +28,7 @@ const verifyRegister = async () => {
 }
 const verifyLogin = async () => {
     const cookieValue = cookies().get('login')?.value
-    const req = await fetch('http://localhost:3000/verify-login', {
-        cache: 'no-store',
-        next: {
-            tags: ['verify-login']
-        },
 
-    })
     if (cookieValue) {
         return await JSON.parse(cookieValue)
     } else {
