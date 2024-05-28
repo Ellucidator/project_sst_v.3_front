@@ -8,6 +8,7 @@ import { CreateUser } from '@/types/userTypes'
 import { cookieService } from '@/services/cookieService'
 import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
+import Input from '@/components/common/Input-label-components/input&Label'
 const Register = async () => {
 
     const verify = await cookieService.verifyRegister()
@@ -15,8 +16,8 @@ const Register = async () => {
     const handlerSubimit = async (form: FormData) => {
         'use server'
 
-        const first_name = form.get('firstName')?.valueOf()
-        const last_name = form.get('lastName')?.valueOf()
+        const first_name = form.get('first_name')?.valueOf()
+        const last_name = form.get('last_name')?.valueOf()
         const email = form.get('email')?.valueOf()
         const password = form.get('password')?.valueOf()
         const phone = form.get('phone')?.valueOf()
@@ -40,7 +41,6 @@ const Register = async () => {
                 phone,
                 birth
             }
-
             if (password === confirmPassword) {
                 const res = await userService.createUser(newUser)
 
@@ -77,95 +77,28 @@ const Register = async () => {
                 <h2 className={styles.registerTittle}>Formulario de cadastro </h2>
 
                 <form action={handlerSubimit} className={`container ${styles.registerForm}`}>
-                    <div className={styles.inputDivDuo}>
-                        <div className={styles.inputDiv}>
-                            <label className={styles.label} htmlFor="firstName">Primeiro nome:</label>
-                            <input
-                                required
-                                type="text"
-                                name="firstName"
-                                id="firstName"
-                                className={styles.input}
-                                placeholder='Seu primeiro nome'
-                                maxLength={20}
-                                minLength={3}
-                            />
-                        </div>
-                        <div className={styles.inputDiv}>
-                            <label className={styles.label} htmlFor="lastName">Sobrenome:</label>
-                            <input
-                                required
-                                type="text"
-                                name="lastName"
-                                id="lastName"
-                                className={styles.input}
-                                placeholder='Seu sobrenome'
-                                maxLength={20}
-                                minLength={3}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.inputDivFull}>
-                        <label className={styles.label} htmlFor="email">Email:</label>
-                        <input
-                            required
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder='ex: nomeabc@hotmail.com'
-                            className={styles.input}
-                        />
-                        {verify.email ? (<p className={styles.verifyP}>Email ja cadastrado</p>) : null}
-                    </div>
-                    <div className={styles.inputDivDuo}>
-                        <div className={styles.inputDiv}>
-                            <label htmlFor="password" className={styles.label}>Senha:</label>
-                            <input
-                                required
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder='ex: @Abc123987'
-                                className={styles.input}
-                            />
-                            {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
+                    <div className={styles.inputDiv}>
+                        <Input divWidth='35%' mode='label&input' labelText='Nome:' inputOptions={{ required: true, maxLength: 12, type: 'text', name: 'first_name', id: 'first_name', placeholder: 'Seu nome' }} />
 
-                        </div>
-                        <div className={styles.inputDiv}>
-                            <label htmlFor="confirmPassword" className={styles.label}>Confirme sua senha:</label>
-                            <input
-                                required
-                                type="password"
-                                name="confirmPassword"
-                                id="confirmPassword"
-                                className={styles.input}
-                            />
-                            {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
-
-                        </div>
+                        <Input mode='label&input' labelText='Sobrenome:' inputOptions={{ required: true, maxLength: 50, type: 'text', name: 'last_name', id: 'last_name', placeholder: 'Seu sobrenome' }} />
                     </div>
-                    <div className={styles.inputDivDuo}>
-                        <div className={styles.inputDiv}>
-                            <label htmlFor="phone" className={styles.label}>Telefone:</label>
-                            <input
-                                required
-                                type="number"
-                                name="phone"
-                                id="phone"
-                                placeholder='DDD+Número ex: 11999999999'
-                                className={styles.inputPhone}
-                            />
-                        </div>
-                        <div className={styles.inputDiv}>
-                            <label htmlFor="birth" className={styles.label}>Data de nascimento:</label>
-                            <input
-                                required
-                                type="date"
-                                name="birth"
-                                id="birth"
-                                className={styles.input}
-                            />
-                        </div>
+
+                    <Input divWidth='100%' mode='label&input' labelText='Email:' inputOptions={{ required: true, maxLength: 80, type: 'email', name: 'email', id: 'email', placeholder: 'ex: 5t8jz@example.com' }} />
+
+                    {verify.email ? (<p className={styles.verifyP}>E-mail ja cadastrado</p>) : null}
+
+                    <div className={styles.inputDiv}>
+                        <Input mode='label&input' labelText='Senha:' inputOptions={{ required: true, minLength: 8, type: 'password', name: 'password', id: 'password', placeholder: 'Sua senha' }} />
+
+                        <Input mode='label&input' labelText='Confirme sua senha:' inputOptions={{ required: true, type: 'password', name: 'confirmPassword', id: 'confirmPassword', placeholder: 'Confirme sua senha' }} />
+                    </div>
+
+                    {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
+
+                    <div className={styles.inputDiv}>
+                        <Input mode='label&input' labelText='Telefone:' inputOptions={{ required: true, maxLength: 11, type: 'tel', name: 'phone', id: 'phone', placeholder: 'ex: 11988999999' }} />
+
+                        <Input mode='label&input' labelText='Data de nascimento:' inputOptions={{ required: true, type: 'date', name: 'birth', id: 'birth', placeholder: 'Data de nascimento' }} />
                     </div>
                     <button type="submit" className={styles.buttonregister} >REGISTRAR</button>
                 </form>
