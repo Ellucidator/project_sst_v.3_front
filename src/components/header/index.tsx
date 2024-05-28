@@ -3,18 +3,16 @@ import styles from './styles.module.scss'
 import Link from "next/link";
 import Modal from "../modal";
 import Image from "next/image";
-import searchIcon from "../../../public/public/header/search.svg"
 import { cookieService } from "@/services/cookieService";
 import HeaderRightAuth from "./headerRightAuth";
 import HeaderRightGeneric from "./headerRightGeneric";
-import { UserPayload } from "@/types/userTypes";
 import InputSearch from "../common/inputSearch";
 import { cookies } from "next/headers";
 import { ItemToCar } from "@/types/itemsTypes";
 
 
 const HeaderPrimary = async () => {
-
+    
     const validate = await cookieService.verifySession();
     const catalog = await catalogService.getCatalog();
     let carCount:number
@@ -27,7 +25,6 @@ const HeaderPrimary = async () => {
             return acc+= item.quantity
         },0)
     }
-    console.log(carCount)
 
     return (
         <>

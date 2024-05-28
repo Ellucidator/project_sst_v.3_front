@@ -43,10 +43,23 @@ const verifySession = async () => {
     if (cookieValue) {
 
         try {
+
+            const verifyServer = await fetch('http://localhost:3000/verify-login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: cookieValue.value }),
+                cache: 'no-store',
+                next: {
+                    tags: ['verify-login']
+                }
+            })
+            
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
             const { payload }: { payload: UserPayload } = await jose.jwtVerify(cookieValue.value, secret)
 
-            if (typeof payload === 'string' || typeof payload === 'undefined') false
+            if (typeof payload === 'string' || typeof payload === 'undefined'|| !verifyServer.ok)return false
 
             return payload
 

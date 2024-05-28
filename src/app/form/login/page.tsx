@@ -6,6 +6,9 @@ import { cookies } from 'next/headers';
 import Input from '@/components/common/Input-label-components/input&Label';
 
 const Login = async () => {
+    const session = await cookieService.verifySession();
+    if (session) redirect('/user/home')
+
 
     const verify = await cookieService.verifyLogin();
 

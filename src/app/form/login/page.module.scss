@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1d1d1d ;
+    background-color: $primaryDark; ;
 
     .loginContainer{
         width: 50%;
@@ -21,6 +21,7 @@
         .loginForm{
             width: 60%;
             height: 100%;
+            padding: 0px 15px;
             background-color: $primary;
             display: flex;
             gap: 20px;
@@ -34,25 +35,6 @@
                 align-items: center;
                 flex-direction: column;
                 gap: 5px;
-            }
-            .input{
-                width: 90%;
-                height: 45px;
-                padding: 5px;
-                font-size: 20px;
-                background-color: $primaryLight;
-
-                &:focus{
-                    outline: 1px solid $tertiary;
-                    background-color: $secondary;
-                    color: $primaryDark;
-                }
-            }
-            .label{
-                width: 90%;
-                color: $secondaryLight;
-                font-size: 20px;
-                align-self:auto;
             }
 
             .buttonLogin{

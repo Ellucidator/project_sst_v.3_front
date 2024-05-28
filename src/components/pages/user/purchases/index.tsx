@@ -5,7 +5,6 @@ import {Purchases } from '@/types/purchaseTypes'
 
 type Props = {
     purchases: Purchases,
-    tooken: string
 }
 const UserPurchasesPage = ({purchases}:Props) => {
     

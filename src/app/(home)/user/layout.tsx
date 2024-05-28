@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import styles from './layout.module.scss'
 
+
 type Props = {
     children: React.ReactNode
 }
 
-export default function PageUserLayout({ children }: Props) {
+export default async function PageUserLayout({ children }: Props) {
     const options = [
         ['Inicio','home'],
         ['Minhas Informações','my-info'],
@@ -13,6 +14,8 @@ export default function PageUserLayout({ children }: Props) {
         ['Endereços','address'],
         ['Favoritos','favorites']
     ]
+
+
     
     return (
         <div className={styles.pageBody}>
