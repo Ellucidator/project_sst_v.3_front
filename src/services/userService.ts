@@ -47,6 +47,22 @@ const showUser = async () => {
     return data
 }
 
+const updatedUser = async (updateAtributes: Omit<UserInfo, 'imgUrl'>) => {
+    const token = cookies().get('token')?.value
+    if (!token) return
+
+
+    await fetch('http://localhost:3000/user', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(updateAtributes),
+    })
+
+}
+
 const createAvaliation = async (avaliation: CreateAvaliation) => {
     try {
         const res = await fetch('http://localhost:3000/item/create-avaliation', {
@@ -280,6 +296,7 @@ async function deleteUserFavorites(id: string) {
 export const userService = {
     createUser,
     showUser,
+    updatedUser,
     createAvaliation,
     getAvaliationByUserId,
     getUserAddessById,
