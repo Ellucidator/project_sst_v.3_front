@@ -120,14 +120,15 @@ async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 
         method: 'POST',
         body: JSON.stringify({tags})
     })
-    console.log(res)
     const data: SubCategories = await res.json();
-    console.log(data)
+
     return data;
 }
 
-async function getAllAvaliationsByItemId(itemId:string){
-    const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations`, {
+async function getAllAvaliationsByItemId(itemId:string,page:number = 1) {
+
+
+    const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations?page=${page}`, {
         next:{
             revalidate: 10,
             tags: ['all-avaliations-item']

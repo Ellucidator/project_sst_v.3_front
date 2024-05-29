@@ -12,6 +12,7 @@ import DescriptionList from '@/components/common/descriptionList'
 import AvaliationsItem from '@/components/common/avaliationsItem'
 import { userService } from '@/services/userService'
 import ButtonReturn from '@/components/common/btnReturn'
+import catalogServerService from '@/services/catalogServerService'
 
 
 
@@ -19,11 +20,12 @@ export default async function Item({ params }: { params: { id: string } }) {
     
     const [item, avaliations, userAvaliation, itemCharacteristics]= await Promise.all([
         catalogService.getOneItem(params.id),
-        catalogService.getAllAvaliationsByItemId(params.id),
+        catalogServerService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
         catalogService.getItemCharacteristics(params.id)
     ])
     item.ItemCharacteristic = itemCharacteristics
+
     
     const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
 

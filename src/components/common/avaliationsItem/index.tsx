@@ -1,17 +1,17 @@
 import { userService } from '@/services/userService'
 import Stars from './star'
 import styles from './styles.module.scss'
-import { Avaliation } from '@/types/avaliationTypes'
+import { Avaliation, AvaliationAndCount } from '@/types/avaliationTypes'
 import { revalidateTag } from 'next/cache'
+import PagCountServer from '../serverTestComponent/pagCount'
 
 type Props = {
     item_id: number | string
     user_id: number | string
     avaliation?: Avaliation | false
-    allAvaliation?: Avaliation[]
+    allAvaliation?: AvaliationAndCount
 }
 const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: Props) => {
-
     const formAvaliationAction = async (form: FormData) => {
         'use server'
 
@@ -49,8 +49,8 @@ const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: 
             <p className={styles.avaliationTitleP}>TODAS AS AVALIAÇÕES</p>
             <div className={styles.sectionAllAvaliations}>
                 
-                {allAvaliation ? (
-                    allAvaliation.map((avaliation,i) => {
+                {allAvaliation?.rows ? (
+                    allAvaliation.rows.map((avaliation,i) => {
                         return (
                             <div key={i + avaliation.title} className={styles.avaliationUser}>
                                 <p className={styles.avaliationStars}>{avaliation.rating}</p>
@@ -61,6 +61,7 @@ const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: 
                     })
                 ) : null}
             </div>
+            <PagCountServer count={allAvaliation?.count!}perPage={6}/>
         </section>
     )
 }

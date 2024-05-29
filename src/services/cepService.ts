@@ -1,6 +1,5 @@
 import { ItemCharacteristics } from "@/types/itemsTypes"
-import { error } from "console"
-import { cookies } from "next/headers"
+
 
 
 

@@ -9,3 +9,8 @@ export interface CreateAvaliation extends Avaliation{
     user_id: number | string
     item_id: number | string
 }
+
+export interface AvaliationAndCount{
+    count: number
+    rows: Avaliation[]
+}
