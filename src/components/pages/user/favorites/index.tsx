@@ -31,7 +31,7 @@ const FavoritesPage = async () => {
                     </div>
                     : <></>
                 }
-                <PagCountServer count={favorites?favorites.count:0} perPage={6} page={1} />
+                <PagCountServer count={favorites?favorites.count:0} perPage={6}/>
             </div>
         </div>
     )

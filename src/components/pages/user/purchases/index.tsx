@@ -23,7 +23,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
                     <></>
                 }
             </div>
-            <PagCountServer count={purchases.count} perPage={6} page={1} />
+            <PagCountServer count={purchases.count} perPage={6} />
         </div>
     )
 }

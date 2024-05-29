@@ -2,13 +2,16 @@
 import ButtonActionById from '@/components/common/serverTestComponent/buttonActionById'
 import styles from './styles.module.scss'
 import { cookieService } from '@/services/cookieService'
+import { cookies } from 'next/headers'
 
 type Props = {
     count: number
     perPage: number
-    page: number
 }
-const PagCountServer = ({count,perPage,page}: Props)=>{
+const PagCountServer = ({count,perPage}: Props)=>{
+    let page:number = 1
+    let pageCookie = cookies().get('page')?.value
+    if(pageCookie)page = parseInt(pageCookie)
 
     if(count <perPage) return (<></>)
 
@@ -42,7 +45,7 @@ const PagCountServer = ({count,perPage,page}: Props)=>{
                     )
                 }
             })}
-            {pagArray.length> 5 + page?<button>...</button>:<></>}
+            {pagArray.length> 9 + page?<button>...</button>:<></>}
         </div>
     )
 }
