@@ -7,12 +7,15 @@ import PriceItem from '../priceItem';
 type Props = {
     item: ItemPromotion | Item
     model?: 'horizontal'|'vertical'
+    sizeImgModelH?: string
 }
 
-export const CardItem = ({ item, model='vertical' }: Props) => {
+export const CardItem = ({ item, model='vertical', sizeImgModelH='180px' }: Props) => {
 
     return (
-        <Link href={`/item/${item.id}`} className={model === 'horizontal' ? styles.cardItemModelH : styles.cardItem}>
+        <Link href={`/item/${item.id}`} className={model === 'horizontal' ? styles.cardItemModelH : styles.cardItem}
+            style={{height:model==='horizontal'?sizeImgModelH:''}}
+        >
 
             <div className={styles.bannerAndName}>
                 <Image
@@ -21,6 +24,7 @@ export const CardItem = ({ item, model='vertical' }: Props) => {
                     className={styles.cardBanner}
                     width={220}
                     height={220}
+                    style={{width:model==='horizontal'?sizeImgModelH:'100%'}}
                 />
                 <p className={styles.name}>{item.name}</p>
             </div>
