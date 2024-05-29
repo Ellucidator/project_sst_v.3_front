@@ -1,12 +1,9 @@
 'use client'
 import ReactModal from "react-modal"
 import styles from './styles.module.scss'
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Item } from "@/types/itemsTypes";
-import Image from "next/image";
 import CardItem from "../../cardItem";
-import CardItemSearch from "./cardItemSearch";
 
 
 type Props = {
@@ -51,7 +48,7 @@ const SearchModal = ({items}: Props) => {
                 <div>
                     {items.map((item) => {
                         return (
-                            <CardItemSearch key={item.id} item={item} />
+                            <CardItem item={item} key={item.id} model="horizontal" sizeImgModelH="125px" />
                         )
                     })}
                 </div>

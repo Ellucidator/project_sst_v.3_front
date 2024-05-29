@@ -11,7 +11,7 @@ type Props = {
     perMove?: number
     itemId?: number
 }
-const SlideSection = ({allItems, perPage = 6, perMove = 1 ,itemId}: Props) => {
+const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
     if(allItems.length < 2) return (<></>)
 
     return (
@@ -20,26 +20,38 @@ const SlideSection = ({allItems, perPage = 6, perMove = 1 ,itemId}: Props) => {
                 tag="section"
                 options={{
                     type: 'loop',
+
                     perPage: perPage,
                     perMove: perMove,
-                    width: '100%',
-                    height:'100%',
-                    gap: '1.5rem',
+                    padding: { left: 30, right: 0 },
                     breakpoints: {
-                        1725: {
-                            perPage: 5,
-                        },
-                        1426: {
+                        1720: {
                             perPage: 4,
                         },
-                        1179: {
+                        1375: {
                             perPage: 3,
                         },
-                        900: {
+                        1061: {
                             perPage: 2,
+                            padding: { left: 60, right: 0 }
                         },
-                        400: {
+                        775: {
+                            perPage: 2,
+                            gap:'1.5rem',
+                            padding: { left: 0, right: 0 }
+                        },
+                        655: {
                             perPage: 1,
+                            gap:'2.5rem',
+                            padding: { left: 120, right: 0 }
+                        },
+                        575: {
+                            perPage: 1,
+                            padding: { left: 75, right: 0 }
+                        },
+                        434: {
+                            perPage: 1,
+                            padding: { left: 30, right: 0 }
                         }
                     }
                 }}
