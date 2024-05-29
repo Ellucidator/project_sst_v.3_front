@@ -24,8 +24,9 @@
         .favoritesCard{
             display: flex;
             flex-wrap: nowrap;
+            gap: 15px;
             align-items: center;
-            
+            background-color: $primary;
         }
     }
 }

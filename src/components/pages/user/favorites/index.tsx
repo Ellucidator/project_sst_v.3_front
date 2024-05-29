@@ -1,11 +1,9 @@
 'use server'
-import { ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
-import CardItemSearch from '@/components/common/inputSearch/searchModal/cardItemSearch'
 import { userService } from '@/services/userService'
 import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
 import PagCountServer from '@/components/common/serverTestComponent/pagCount'
-import { cookies } from 'next/headers'
+import CardItem from '@/components/common/cardItem'
 
 
 const FavoritesPage = async () => {
@@ -25,7 +23,7 @@ const FavoritesPage = async () => {
                         {favorites.rows.map((item) => {
                             return (
                                 <div key={item.Item.id} className={styles.favoritesCard}>
-                                    <CardItemSearch item={item.Item} />
+                                    <CardItem item={item.Item} model='horizontal'/>
                                     <ButtonActionById buttonName="x" actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!} />
                                 </div>
                             )
