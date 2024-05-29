@@ -38,7 +38,7 @@ const HeaderPrimary = async () => {
                     </div>
 
                     <div className={styles.headerDiv2}>
-
+                        
                         <InputSearch/>
                         
                         <div className={styles.headerRight}>

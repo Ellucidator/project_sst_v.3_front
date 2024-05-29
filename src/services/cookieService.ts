@@ -1,8 +1,7 @@
 import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
-import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
-import { Console, error } from "console"
+import { ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { revalidateTag } from "next/cache"
 
 
@@ -39,7 +38,7 @@ const verifyLogin = async () => {
 }
 const verifySession = async () => {
 
-    const cookieValue = cookies().get('token')
+    const cookieValue = cookies().get('token')?.value
     if (cookieValue) {
 
         try {
@@ -49,7 +48,7 @@ const verifySession = async () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ token: cookieValue.value }),
+                body: JSON.stringify({ token: cookieValue }),
                 cache: 'no-store',
                 next: {
                     tags: ['verify-login']
@@ -57,7 +56,7 @@ const verifySession = async () => {
             })
             
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
-            const { payload }: { payload: UserPayload } = await jose.jwtVerify(cookieValue.value, secret)
+            const { payload }: { payload: UserPayload } = await jose.jwtVerify(cookieValue, secret)
 
             if (typeof payload === 'string' || typeof payload === 'undefined'|| !verifyServer.ok)return false
 

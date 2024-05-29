@@ -1,19 +1,19 @@
 @import '../../../styles/colors/colors.module.scss';
 
 
-.price{
-    font-family:Verdana, Geneva, Tahoma, sans-serif  ;
-    font-size: 40px;
-    margin: 0px 0px 0px 5px;
-    color: rgb(26, 214, 42);
-}
 .priceContainer{
 
+    padding: 10px;
+    
+    .price{
+        font-family:Verdana, Geneva, Tahoma, sans-serif  ;
+        font-size: 28px;
+        color: rgb(26, 214, 42);
+    }
     .pricePromotion{
         font-family:Verdana, Geneva, Tahoma, sans-serif  ;
-        font-size: 18px;
+        font-size: 16px;
         text-decoration: line-through;
-        margin: 15px 0px 0px 5px;
         color: rgb(255, 0, 0);
     }
 }

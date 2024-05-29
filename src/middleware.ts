@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { cookieService } from './services/cookieService'
-import { revalidateTag } from 'next/cache'
 
 export async function middleware(request: NextRequest) {
     

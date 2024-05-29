@@ -10,7 +10,7 @@ import SearchModal from "./searchModal"
 const InputSearch = () => {
     const [items, setItems] = useState<Item[]>([]);
     const [inputValue, setInputValue] = useState("");
-
+    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         setInputValue(event.target.value);
@@ -27,7 +27,6 @@ const InputSearch = () => {
         getItems();
     },[inputValue]);
 
-    console.log(items)
     return (
         <div className={styles.headerCenter}>
             <input
