@@ -29,7 +29,7 @@
             justify-content: center;
             width: 100%;
             height: 600px;
-            padding: 5px 0px 0px 12px;
+            padding: 5px 0px 0px 0px;
     
             .promotionLink{
                 display: flex;
@@ -80,7 +80,35 @@
     }
 }
 
+
+@media(max-width:1023px) {
+
+    .homeContainer{
+        min-width: 100%;
+
+        .promotion{
+            max-height: 500px;
+        }
+    }
+}
+@media(max-width:768px) {
+
+    .homeContainer{
+        min-width: 100%;
+
+        .promotion{
+            max-height: 400px;
+        }
+    }
+}
 @media(max-width:560px) {
+    .homeContainer{
+        min-width: 100%;
+
+        .promotion{
+            max-height: 280px;
+        }
+    }
     .categoriesCards{
         flex-direction: column;
         align-items: center;

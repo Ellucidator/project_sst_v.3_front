@@ -7,7 +7,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    
     flex-wrap: nowrap;
     background-color: $primary;
 
@@ -112,9 +111,13 @@
 @media(max-width:1024px) {
     .header{
         .headerContainer{
+            
+
 
             .headerDiv2{
                 flex-wrap: wrap-reverse;
+
+                align-items: normal;
 
                 .headerCenter{
                     width: 100%;

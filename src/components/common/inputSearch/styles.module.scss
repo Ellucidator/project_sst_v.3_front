@@ -1,19 +1,17 @@
 @import '../../../styles/colors/colors.module.scss';
 
 .headerCenter{
-    width: 80%;
     height: 50px;
     display: flex;
-    
+    flex: 1;    
     flex-wrap: nowrap;
     margin-bottom: 20px;
-    border: none;
     background-color: $primaryLight;
     border-radius: 5px;
     padding: 5px;
+    
     .inputSearch{
         width: 100%;
-        height: 100%;
         border: none;
         background-color: transparent;
         color: $secondaryLight;
