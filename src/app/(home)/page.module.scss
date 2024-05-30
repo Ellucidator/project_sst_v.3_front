@@ -11,9 +11,6 @@
 
 
 .home{
-    background-image: url('../../../public/public/home/bg-home.svg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,7 +47,6 @@
             align-items: center;
             width: 95%;
             height: auto;
-            padding: 0px 0px 0px 12px;
             margin: 50px 0px 0px 0px;
 
             .slideTitle{
@@ -62,73 +58,11 @@
         }
 
         .categoriesCards{
-            width: 90%;
-            height: 150px;
+            width: 95%;
             display: flex;
-            padding-left: 12px;
             margin-top: 50px;
             gap: 15px;
             justify-content: center;
-            
-            .categoryCard1{
-                height: 100%;
-                width: 50%;
-                background-image: url('../../../public/public/home/categoryBanner1.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                border-radius: 5px;
-                border-color: transparent;
-                transition: 0.1s linear;
-
-                &:hover{
-                    border: 2px solid transparent;
-                    animation: girar-borda 2s linear infinite;
-                    
-                }
-
-                .categoryName{
-                    font-size: 55px;
-                    width:auto;
-                    background-image: linear-gradient(to right, yellow 0%, #ffffff 100%);
-                    color: transparent;
-                    -webkit-background-clip: text;
-                    background-clip: text;
-                    text-shadow: 2px 2px #ff000085;
-                    font-weight: bold;
-                    text-align: center;
-                    padding-top: 30px;
-                }
-            }
-            .categoryCard2{
-                height: 100%;
-                width: 50%;
-                background-image: url('../../../public/public/home/categoryBanner2.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                border-radius: 10px;
-                border-color: transparent;
-                transition: 0.1s linear;
-
-                &:hover{
-                    border: 2px solid transparent;
-                    animation: girar-borda 2s linear infinite;
-                    
-                }
-
-                .categoryName{
-                    font-size: 55px;
-                    width:auto;
-                    background-image: linear-gradient(to right, rgb(5, 202, 5) 0%, rgb(5, 202, 5) 100%);
-                    color: transparent;
-                    -webkit-background-clip: text;
-                    background-clip: text;
-                    text-shadow: 2px 2px $secondaryLight; ;
-                    font-weight: bold;
-                    text-align: center;
-                    padding-top: 30px;
-
-                }
-            }
         }
 
         .cardsContainer{
@@ -140,10 +74,15 @@
             gap: 20px;
             padding: 20px;
             background-color: $primary;
-            border-radius: 10px;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
     }
 }
 
+@media(max-width:560px) {
+    .categoriesCards{
+        flex-direction: column;
+        align-items: center;
+    }
+}

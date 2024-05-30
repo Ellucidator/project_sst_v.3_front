@@ -4,6 +4,9 @@ import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
 import SlideSection from "@/components/common/slideSection";
 import CardItem from "@/components/common/cardItem";
+import CategoryCard from "@/components/common/categoryCard";
+import imgBanner1 from '../../../public/public/home/categoryBanner1.png'
+import imgBanner2 from '../../../public/public/home/categoryBanner2.png'
 export default async function Home() {
 
   const [promotionFeature,catalog,newestsItens,featuredItems]= await Promise.all([
@@ -32,12 +35,10 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.categoriesCards}`}>
-          <Link href={`/catalog/${catalog[0].name.toLowerCase()}/${catalog[0].SubCategories[0].id}`} className={styles.categoryCard1}>
-            <p className={styles.categoryName}>{catalog[0].SubCategories[0].name}</p>
-          </Link>
-          <Link href={`/catalog/${catalog[1].name.toLowerCase()}/${catalog[0].SubCategories[1].id}`} className={styles.categoryCard2}>
-            <p className={styles.categoryName}>{catalog[0].SubCategories[1].name}</p>
-          </Link>
+          <CategoryCard cardLink={`${catalog[0].name.toLowerCase()}/${catalog[0].SubCategories[0].id}`}
+            cardName={catalog[0].SubCategories[0].name} imgUrl={imgBanner1.src} theme="dark" />
+
+          <CategoryCard cardLink={`${catalog[1].name.toLowerCase()}/${catalog[1].SubCategories[0].id}`} cardName={catalog[1].SubCategories[0].name} imgUrl={imgBanner2.src} theme="light" />
         </section>
 
         <section className={`container ${styles.slide}`}>
@@ -55,6 +56,7 @@ export default async function Home() {
           })}
           </div>
         </section>
+
       </div>
 
     </main>

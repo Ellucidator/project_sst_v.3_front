@@ -42,7 +42,7 @@ const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
                         },
                         575: {
                             perPage: perPage-4,
-                            padding: { left: 0, right: 0 }
+                            padding: { left: 10, right: 0 }
                         },
                         462: {
                             perPage: 1,
