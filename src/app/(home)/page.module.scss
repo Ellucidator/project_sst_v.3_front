@@ -25,29 +25,30 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 80%;
+        width: 100%;
 
         .promotion{
             display: flex;
             justify-content: center;
-            width: 90%;
-            height: 65%;
-            padding: 20px 0px 0px 12px;
+            width: 100%;
+            height: 600px;
+            padding: 5px 0px 0px 12px;
     
             .promotionLink{
+                display: flex;
+                height: 100%;
                 width: 100%;
     
                 .promotionBanner{
                     width: 100%;
                     height: 100%;
-                    border-radius: 5px;
                 }
             }
         }
 
         .slide{
             align-items: center;
-            width: 85%;
+            width: 95%;
             height: auto;
             padding: 0px 0px 0px 12px;
             margin: 50px 0px 0px 0px;

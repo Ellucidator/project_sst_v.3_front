@@ -23,35 +23,30 @@ const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
 
                     perPage: perPage,
                     perMove: perMove,
-                    padding: { left: 30, right: 0 },
+                    gap:'1.5rem',
                     breakpoints: {
-                        1720: {
-                            perPage: 4,
+                        1536: {
+                            perPage: perPage-1,
                         },
-                        1375: {
-                            perPage: 3,
+                        1281: {
+                            perPage: perPage-2,
                         },
-                        1061: {
-                            perPage: 2,
-                            padding: { left: 60, right: 0 }
-                        },
-                        775: {
-                            perPage: 2,
-                            gap:'1.5rem',
+                        1023: {
+                            perPage: perPage-3,
                             padding: { left: 0, right: 0 }
                         },
-                        655: {
-                            perPage: 1,
-                            gap:'2.5rem',
-                            padding: { left: 120, right: 0 }
+                        768: {
+                            perPage: perPage-4,
+                            gap:'4rem',
+                            padding: { left: 30, right: 0 }
                         },
                         575: {
-                            perPage: 1,
-                            padding: { left: 75, right: 0 }
+                            perPage: perPage-4,
+                            padding: { left: 0, right: 0 }
                         },
-                        434: {
+                        462: {
                             perPage: 1,
-                            padding: { left: 30, right: 0 }
+                            padding: { left: 100, right: 0 }
                         }
                     }
                 }}

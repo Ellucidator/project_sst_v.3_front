@@ -88,7 +88,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     {recomendedItems.Items ? (
                         <div className={styles.recomendedItems}>
                             <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>
-                            <SlideSection allItems={recomendedItems.Items} perPage={5} itemId={item.id} />
+                            <SlideSection allItems={recomendedItems.Items} perPage={4} itemId={item.id} />
                         </div>
                     ) : null}
 
