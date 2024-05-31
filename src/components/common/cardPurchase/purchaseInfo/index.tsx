@@ -19,7 +19,7 @@ const PurchaseInfo = ({ purchase }: { purchase: Purchase }) => {
 
             <div className={styles.userPurchaseInfo}>
                 <p className={styles.userPurchaseInfoTitle}>Total</p>
-                <p className={styles.userPurchaseInfoValue}>{purchase.all_value}</p>
+                <p className={styles.userPurchaseInfoValue}>{purchase.all_value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
             </div>
 
             <div className={styles.userPurchaseInfoStatus}>

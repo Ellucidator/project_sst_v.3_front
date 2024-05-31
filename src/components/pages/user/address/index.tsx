@@ -4,6 +4,7 @@ import { userService } from '@/services/userService'
 import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
 import Link from 'next/link'
 import Title from '@/components/common/tiltle'
+import Button from '@/components/common/button'
 
 type Props = {
     userAddress: UserAddress[]
@@ -18,7 +19,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                 <Title fontSize="25px" model='model5' titleText="Endereços" />
 
                 {userAddress.length < 6 ?
-                    <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link> :
+                    <Button href="/user/edit-address/0" btnModel='model2' btnAction='link' btnName='Adicionar Endereço' /> :
                     <></>
                 }
                 <div className={styles.divAddressList}>
@@ -49,7 +50,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                                     </div>
                                     <div className={styles.divButtons}>
                                         <ButtonActionById buttonName='ATIVAR' idAction={address.id!} actionFunction={userService.activeUserAddress} />
-                                        <Link href={`/user/edit-address/${address.id}`} className={styles.btnEdit}>EDITAR</Link>
+                                        <Button href={`/user/edit-address/${address.id}`} btnModel='model1' btnAction='link' btnName='EDITAR' />
                                         <ButtonActionById buttonName='EXCLUIR' idAction={address.id!} actionFunction={userService.deleteUserAddress} />
                                     </div>
                                 </div>

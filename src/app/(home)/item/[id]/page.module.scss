@@ -59,15 +59,7 @@
                 }
 
                 .itemStockF {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 50px;
-                    border-top: 1px solid;
-                    border-bottom: 1px solid;
-                    border-color: $primaryLight;
-                    font-size: 18px;
-                    font-weight: bold;
+                    @extend .itemStockT;
                     color: rgb(255, 0, 0);
                 }
 

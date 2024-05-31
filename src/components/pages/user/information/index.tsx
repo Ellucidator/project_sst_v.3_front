@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import Input from '@/components/common/Input-label-components/input&Label'
 import Title from '@/components/common/tiltle'
+import Button from '@/components/common/button'
 
 
 
@@ -64,7 +65,7 @@ const UserInformation = async () => {
                         inputOptions={{ id: 'birth', type: 'date', name: 'birth', defaultValue: infoValue.birth.substring(0, 10), required: true }} />
                 </div>
 
-                <button className={styles.btnSave} type="submit">SALVAR</button>
+                <Button btnModel='model2' btnName='SALVAR' btnAction='submit' btnWidth='100%'/>
             </form>
         </>
     )

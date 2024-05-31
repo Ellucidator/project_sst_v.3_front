@@ -5,6 +5,7 @@ import { UserAddress } from '@/types/userTypes'
 import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import Title from '@/components/common/tiltle'
+import Button from '@/components/common/button'
 
 type Props = {
     addressId: string
@@ -128,7 +129,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
                     />
                 </div>
 
-                <button className={styles.btnSave} type="submit">SALVAR</button>
+                <Button btnModel='model2' btnName='SALVAR' btnAction='submit' btnWidth='100%'/>
             </form>
         </>
     )
