@@ -15,11 +15,26 @@
     min-height: 45px;
     font-size: 17px;
     background-color: $primaryLight;
-    flex: 1;
 
     &:focus{
         outline: 1px solid $tertiary;
         background-color: $secondary;
         color: $primaryDark;
+    }
+}
+
+@media(max-width: 1000px) {
+    .inputAndLabel{
+        flex: 1;
+        min-width: 150px;
+        .input{
+            flex: 1;
+            max-height: 45px;
+            
+        }
+    }
+    .input{
+        flex: 1;
+        min-width: 150px;
     }
 }
