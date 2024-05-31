@@ -9,6 +9,7 @@ import { cookieService } from '@/services/cookieService'
 import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import Input from '@/components/common/Input-label-components/input&Label'
+import Button from '@/components/common/button'
 const Register = async () => {
 
     const verify = await cookieService.verifyRegister()
@@ -100,7 +101,7 @@ const Register = async () => {
 
                         <Input mode='label&input' labelText='Data de nascimento:' inputOptions={{ required: true, type: 'date', name: 'birth', id: 'birth', placeholder: 'Data de nascimento' }} />
                     </div>
-                    <button type="submit" className={styles.buttonregister} >REGISTRAR</button>
+                    <Button btnModel='model1' btnWidth='40%' btnAction='submit' btnName='REGISTRAR'/>
                 </form>
                 <div className={styles.divLogin}>
                     <p className={styles.tittle}>Já tem uma conta?</p>

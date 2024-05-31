@@ -20,7 +20,7 @@ const Input =({divWidth,inputOptions,labelOptions,labelText,mode}:Props)=>{
         )
     }else{
         return (
-            <input {...inputOptions} className={styles.input + ' ' + inputOptions?.className}  />
+            <input style={divWidth?{width:divWidth}:{flex:1}} {...inputOptions} className={styles.input + ' ' + inputOptions?.className}  />
         )
     }
 }

@@ -4,6 +4,7 @@ import { cookieService } from '@/services/cookieService';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import Input from '@/components/common/Input-label-components/input&Label';
+import Button from '@/components/common/button';
 
 const Login = async () => {
     const session = await cookieService.verifySession();
@@ -43,8 +44,9 @@ const Login = async () => {
 
                     <Input divWidth='100%' mode='label&input' labelText='Senha:' inputOptions={{ required: true, type: 'password', name: 'password', id: 'password', placeholder: 'Sua senha' }} />
                     {verify.error === 'password' ? <p className={styles.verifyP}>Senha incorreta</p> : null}
-
-                    <button type="submit" className={styles.buttonLogin} >ENTRAR</button>
+                    
+                    <br />
+                    <Button btnModel='model1' btnAction='submit' btnName='ENTRAR' btnWidth='80%'/>
                 </form>
                 <div className={styles.divRegister}>
                     <p className={styles.tittle}>Não tem uma conta?</p>

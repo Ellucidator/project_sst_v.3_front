@@ -6,6 +6,7 @@ import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import Title from '@/components/common/tiltle'
 import Button from '@/components/common/button'
+import Input from '@/components/common/Input-label-components/input&Label'
 
 type Props = {
     addressId: string
@@ -61,72 +62,28 @@ const AddressUpdate = async ({ addressId }: Props) => {
             <form action={handlerSubmit} className={styles.formAddress}>
                 
                 <div className={styles.divInput}>
-                    <input type="text"
-                        placeholder="Nome"
-                        name="receiver_name"
-                        required className={`${styles.input} ${styles.inputName}`}
-                        defaultValue={addressValue.receiver_name}
-                    />
-                    <input type="number"
-                        placeholder="DDD+Número"
-                        name="phone_number"
-                        required className={`${styles.input} ${styles.inputPhone}`}
-                        defaultValue={parseInt(addressValue.phone_number)}
-                    />
+                    <Input divWidth='55%' inputOptions={{type:'text',placeholder:'Nome',name:'receiver_name',required:true,defaultValue:addressValue.receiver_name}}/>
+
+                    <Input inputOptions={{type:'number',placeholder:'Telefone',name:'phone_number',required:true,defaultValue:addressValue.phone_number}}/>
                 </div>
                 <div className={styles.divInput} >
-                    <input type="number"
-                        placeholder="CEP"
-                        name="zip_code"
-                        required className={`${styles.input} ${styles.inputZip}`}
-                        defaultValue={addressValue.zip_code?addressValue.zip_code:''}
-                    />
-                    <input type="text"
-                        placeholder="Estado"
-                        name="state"
-                        required className={`${styles.input} ${styles.inputP}`}
-                        defaultValue={addressValue.state}
-                    />
-                    <input type="text"
-                        placeholder="Cidade"
-                        name="city"
-                        required className={`${styles.input} ${styles.inputCity}`}
-                        defaultValue={addressValue.city}
-                    />
+                    <Input divWidth='35%' inputOptions={{type:'number',placeholder:'CEP',name:'zip_code',required:true,defaultValue:addressValue.zip_code?addressValue.zip_code:''}}/>
+
+                    <Input divWidth='10%' inputOptions={{type:'text',placeholder:'Estado',name:'state',required:true,defaultValue:addressValue.state}}/>
+
+                    <Input inputOptions={{type:'text',placeholder:'Cidade',name:'city',required:true,defaultValue:addressValue.city}}/>
                 </div>
                 <div className={styles.divInput}>
-                    <input type="text"
-                        placeholder="Rua"
-                        name="street"
-                        required className={`${styles.input} ${styles.inputStreet}`}
-                        defaultValue={addressValue.street}
-                    />
-                    <input type="text"
-                        placeholder="Nº"
-                        name="house_number"
-                        required className={`${styles.input} ${styles.inputP}`}
-                        defaultValue={addressValue.house_number}
-                    />
-                    <input type="text"
-                        placeholder="Bairro"
-                        name="neighborhood"
-                        required className={`${styles.input} ${styles.inputNeighborhood}`}
-                        defaultValue={addressValue.neighborhood}
-                    />
+                    <Input inputOptions={{type:'text',placeholder:'Rua',name:'street',required:true,defaultValue:addressValue.street}}/>
+
+                    <Input divWidth='12%' inputOptions={{type:'text',placeholder:'Número',name:'house_number',required:true,defaultValue:addressValue.house_number}}/>
+
+                    <Input divWidth='30%' inputOptions={{type:'text',placeholder:'Bairro',name:'neighborhood',required:true,defaultValue:addressValue.neighborhood}}/>
                 </div>
                 <div className={styles.divInput}>
-                    <input type="text"
-                        placeholder="Complemento"
-                        name="complement"
-                        className={`${styles.input} ${styles.inputComplement}`}
-                        defaultValue={addressValue.complement}
-                    />
-                    <input type="text"
-                        placeholder="Ponto de Referência"
-                        name="reference_point"
-                        className={`${styles.input} ${styles.inputReference}`}
-                        defaultValue={addressValue.reference_point}
-                    />
+                    <Input divWidth='25%' inputOptions={{type:'text',placeholder:'Complemento',name:'complement',required:false,defaultValue:addressValue.complement}}/>
+
+                    <Input inputOptions={{type:'text',placeholder:'Ponto de referência',name:'reference_point',required:false,defaultValue:addressValue.reference_point}}/>
                 </div>
 
                 <Button btnModel='model2' btnName='SALVAR' btnAction='submit' btnWidth='100%'/>

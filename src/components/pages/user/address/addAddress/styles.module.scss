@@ -6,50 +6,21 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 60%;
-    height: 50%;
-    padding: 50px 40px 25px 40px;
+    width: 70%;
+    min-height: 50%;
+    padding: 50px 40px 20px 40px;
     border-radius: 10px;
     background-color: $primary;
     gap: 10px;
 
     .divInput{
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
         width: 100%;
         color: $secondaryLight;
 
-        .input{
-            width: 40%;
-            height: 40px;
-            padding: 5px;
-            font-size: 17px;
-            background-color: $primaryLight;
-    
-            &:focus{
-                outline: 1px solid $tertiary;
-                background-color: $secondary;
-                color: $primaryDark;
-            }
-        }
-        .inputP{
-            max-width: 63px;
-        }
-        .inputName{
-            width: 70%;
-        }
-        .inputCity{
-            width: 60%;
-        }
-        .inputStreet{
-            width: 90%;
-        }
-        .inputReference{
-            width: 100%;
-        }
     }
 
-}

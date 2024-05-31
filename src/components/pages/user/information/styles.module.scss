@@ -6,18 +6,18 @@
     margin-top: 50px;
     align-self: center;
     background-color: $primary;
-    width: 80%;
-    min-height: 55%;
+    width: 90%;
+    min-height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px 30px 20px;
-    gap: 10px;
+    gap: 20px;
 
     .inputsContainer{
         width: 100%;
-        height: auto;
+        
         justify-content: space-between;
         display: flex;
         flex-wrap: wrap;
