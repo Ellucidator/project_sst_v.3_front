@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import styles from './styles.module.scss'
+import Button from '../../button'
 
 type Props = {
     buttonName: string
@@ -13,9 +13,9 @@ const ButtonActionById = async({buttonName,idAction,actionFunction}:Props) => {
     
     const btnStyle = !isNaN(parseInt(buttonName))?
     cookiePage===buttonName?
-    styles.btnCountActive:
-    styles.btnCount:
-    styles.formButton
+    'model1':
+    'model3':
+    'model1'
 
     const handlerSubmit= async (form: FormData) => {
         'use server'
@@ -27,7 +27,7 @@ const ButtonActionById = async({buttonName,idAction,actionFunction}:Props) => {
     return (
         <form action={handlerSubmit} >
             <input hidden name="id" defaultValue={idAction} />
-            <button className={btnStyle} type="submit">{buttonName}</button>
+            <Button btnModel={btnStyle} btnAction='submit' btnName={buttonName} />
         </form>
     )
 }
