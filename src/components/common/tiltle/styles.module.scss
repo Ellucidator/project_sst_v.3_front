@@ -1,0 +1,34 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.title{
+    margin-bottom: 15px;
+    padding: 0px 5px;
+    width: fit-content;
+    background-color: $primary;
+
+}
+.model1{
+    border-left: 2px solid $tertiaryDark;
+    background-color: transparent;
+}
+
+.model2{
+    border-left: 3px solid $tertiaryDark;
+}
+
+.model3{
+    align-self: center;
+    border-top: 1px solid $tertiaryDark;
+    border-bottom: 1px solid $tertiaryDark;
+}
+
+.model4{
+    border-top: 2px solid $tertiaryDark;
+}
+
+.model5{
+    border-bottom: 3px solid $tertiaryDark;
+    padding: 2px 5px;
+    text-align: center;
+    width: 100%;
+}
