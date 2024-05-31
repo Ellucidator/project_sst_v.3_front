@@ -31,6 +31,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
     if (addressId !=='0') {
         addressValue = await userService.getUserAddessById(addressId).then(res => res!)
     }
+    
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
@@ -49,6 +50,20 @@ const AddressUpdate = async ({ addressId }: Props) => {
             active: false
         }
 
+        if(newAddress.receiver_name==addressValue.receiver_name &&
+            newAddress.zip_code==addressValue.zip_code &&
+            newAddress.state==addressValue.state &&
+            newAddress.city==addressValue.city &&
+            newAddress.neighborhood==addressValue.neighborhood &&
+            newAddress.street==addressValue.street &&
+            newAddress.house_number==addressValue.house_number &&
+            newAddress.complement==addressValue.complement &&
+            newAddress.phone_number==addressValue.phone_number &&
+            newAddress.reference_point==addressValue.reference_point
+            ){
+                redirect('/user/address')
+            }
+
         await userService.createAddress(newAddress)
         revalidateTag('adresses-user')
         redirect('/user/address')
@@ -64,7 +79,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
                 <div className={styles.divInput}>
                     <Input divWidth='55%' inputOptions={{type:'text',placeholder:'Nome',name:'receiver_name',required:true,defaultValue:addressValue.receiver_name}}/>
 
-                    <Input inputOptions={{type:'number',placeholder:'Telefone',name:'phone_number',required:true,defaultValue:addressValue.phone_number}}/>
+                    <Input inputOptions={{type:'number',placeholder:'Telefone',name:'phone_number',required:true,defaultValue:parseInt(addressValue.phone_number)}}/>
                 </div>
                 <div className={styles.divInput} >
                     <Input divWidth='35%' inputOptions={{type:'number',placeholder:'CEP',name:'zip_code',required:true,defaultValue:addressValue.zip_code?addressValue.zip_code:''}}/>

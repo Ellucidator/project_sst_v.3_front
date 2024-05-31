@@ -19,8 +19,10 @@ const UserInformation = async () => {
         birth: '',
     }
 
-    infoValue = await userService.showUser().then(data => data!)
-    console.log(infoValue)
+    infoValue = await userService.showUser().then(data => {
+        data!.birth = data!.birth.substring(0, 10) 
+        return data!
+    })
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
@@ -32,7 +34,15 @@ const UserInformation = async () => {
             phone: form.get('phone')?.toString()!,
             birth: form.get('birth')?.toString()!,
         }
-
+        
+        if(newInfo.first_name===infoValue.first_name &&
+            newInfo.last_name===infoValue.last_name &&
+            newInfo.email===infoValue.email &&
+            newInfo.phone===infoValue.phone &&
+            newInfo.birth===infoValue.birth
+            )return
+        
+        
         await userService.updatedUser(newInfo)
 
     }
@@ -62,7 +72,7 @@ const UserInformation = async () => {
 
                     <Input mode='label&input' labelText={'Data de Nascimento:'} 
                         labelOptions={{ htmlFor: 'birth' }}
-                        inputOptions={{ id: 'birth', type: 'date', name: 'birth', defaultValue: infoValue.birth.substring(0, 10), required: true }} />
+                        inputOptions={{ id: 'birth', type: 'date', name: 'birth', defaultValue: infoValue.birth, required: true }} />
                 </div>
 
                 <Button btnModel='model2' btnName='SALVAR' btnAction='submit' btnWidth='100%'/>

@@ -30,7 +30,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
 
                                 <p>{`Destinatario: ${activeAddress.receiver_name}`}</p>
                                 <p>{`${activeAddress.street} - ${activeAddress.neighborhood} - nº${activeAddress.house_number}`}</p>
-                                <p>{`${activeAddress.complement} - ${activeAddress.reference_point}`}</p>
+                                <p>{`${activeAddress.complement?activeAddress.complement:''} - ${activeAddress.reference_point?activeAddress.reference_point:''}`}</p>
                                 <p>{`${activeAddress.city}, ${activeAddress.state}, ${activeAddress.zip_code}`}</p>
                                 <p>{`Telefone: ${activeAddress.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
                             </div>
