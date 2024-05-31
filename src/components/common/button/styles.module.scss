@@ -1,0 +1,39 @@
+@import '../../../styles/colors/colors.module.scss';
+
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-size: large;
+}
+
+.model1{
+    border: 1px solid $tertiary;
+    background-color: $tertiaryDark;
+
+    &:hover{
+        background-color: $tertiary;
+    }
+}
+
+.model2{
+    border: 2px solid rgb(32, 141, 41);
+    background-color: rgb(2, 100, 10);
+
+    &:hover {
+        background-color:rgb(32, 141, 41);
+    }
+}
+
+.model3{
+    background-color: $primary;
+    border: 1px solid $primary;
+
+    &:hover{
+        background-color: $tertiary;
+        border: 1px solid $tertiary;
+    }
+}
