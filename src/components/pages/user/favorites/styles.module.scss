@@ -4,13 +4,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    .favoritesTitle{
-        font-size: 25px;
-        border-bottom: 3px solid $tertiaryDark;
-        padding: 2px 5px;
-        background-color: $primary;
-        text-align: center;
-    }
 
     .favoritesContainer{
         width: 100%;

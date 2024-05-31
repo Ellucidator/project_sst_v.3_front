@@ -7,6 +7,7 @@ import CardItem from "@/components/common/cardItem";
 import CategoryCard from "@/components/common/categoryCard";
 import imgBanner1 from '../../../public/public/home/categoryBanner1.png'
 import imgBanner2 from '../../../public/public/home/categoryBanner2.png'
+import Title from "@/components/common/tiltle";
 export default async function Home() {
 
   const [promotionFeature,catalog,newestsItens,featuredItems]= await Promise.all([
@@ -30,7 +31,7 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <h2 className={styles.slideTitle}>{promotionFeature.name}</h2>
+          <Title fontSize="25px" titleText={promotionFeature.name}/>
           <SlideSection allItems={promotionFeature.Items} perPage={6} />
         </section>
 
@@ -42,12 +43,12 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <p className={styles.slideTitle}>Produtos Novos</p>
+          <Title fontSize="25px" titleText="Produtos novos"/>
           <SlideSection allItems={newestsItens} perPage={6}  />
         </section>
 
         <section className={`container ${styles.slide} `}>
-          <p className={styles.slideTitle}>Produtos em Destaque</p>
+          <Title fontSize="25px" titleText="Produtos em destaque"/>
           <div className={styles.cardsContainer}>
           {featuredItems.map((item) => {
             return (

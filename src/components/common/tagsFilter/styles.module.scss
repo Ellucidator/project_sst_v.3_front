@@ -11,16 +11,9 @@
         justify-content: space-between;
         margin-bottom: 20px;
 
-        .filterTitle {
-            font-size: 20px;
-            width: fit-content;
-            border-top: 2px solid $tertiaryDark;
-            background-color: $primary;
-            padding: 0px 5px;
-
-        }
         .btnFilter{
             padding: 0px 6px;
+            height: 35px;
             background-color: $tertiaryDark;
             border: 1px solid $primary;
             border-radius: 3px;

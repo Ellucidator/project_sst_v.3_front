@@ -4,6 +4,7 @@ import { userService } from '@/services/userService'
 import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
 import PagCountServer from '@/components/common/serverTestComponent/pagCount'
 import CardItem from '@/components/common/cardItem'
+import Title from '@/components/common/tiltle'
 
 
 const FavoritesPage = async () => {
@@ -15,7 +16,7 @@ const FavoritesPage = async () => {
 
     return (
         <div className={styles.pageBody}>
-            <p className={styles.favoritesTitle}>Favoritos</p>
+            <Title fontSize="25px" model='model5' titleText="Meus favoritos" />
 
             <div className={styles.favoritesContainer}>
                 {favorites ?

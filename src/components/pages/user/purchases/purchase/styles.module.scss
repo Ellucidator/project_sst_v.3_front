@@ -8,15 +8,7 @@
     .titleContainer{
         display: flex;
         flex-direction: column;
-
-        .userPurchaseTitle{
-            font-size: 25px;
-            margin: 10px 0px 10px 0px;
-            border-left: 3px solid $tertiaryDark;
-            padding: 2px 5px;
-            background-color: $primary;
-            max-width: fit-content;
-        }
+        gap: 10px;
     }
 
     .userPurchasesContainer{

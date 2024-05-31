@@ -5,13 +5,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    .userPurchaseTitle{
-        font-size: 25px;
-        border-bottom: 3px solid $tertiaryDark;
-        padding: 2px 5px;
-        background-color: $primary;
-        text-align: center;
-    }
+
 
     .userPurchasesContainer{
         width: 100%;

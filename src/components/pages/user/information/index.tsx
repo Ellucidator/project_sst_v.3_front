@@ -2,6 +2,7 @@ import { UserInfo } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import Input from '@/components/common/Input-label-components/input&Label'
+import Title from '@/components/common/tiltle'
 
 
 
@@ -37,7 +38,7 @@ const UserInformation = async () => {
 
     return (
         <>
-            <p className={styles.title}>Minhas Informações</p>
+            <Title titleText='Minhas Informações' model='model5' fontSize='25px' />
 
             <form action={handlerSubmit} className={styles.formInformation}>
                 <div className={styles.inputsContainer}>

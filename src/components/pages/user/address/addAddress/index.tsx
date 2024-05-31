@@ -4,6 +4,7 @@ import { userService } from '@/services/userService'
 import { UserAddress } from '@/types/userTypes'
 import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
+import Title from '@/components/common/tiltle'
 
 type Props = {
     addressId: string
@@ -54,7 +55,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
     return (
         <>  
             <ButtonReturn />
-            <p className={styles.titleAddress}>Novo Endereço</p>
+            <Title fontSize="25px" model='model5' titleText="Novo endereço" />
             
             <form action={handlerSubmit} className={styles.formAddress}>
                 

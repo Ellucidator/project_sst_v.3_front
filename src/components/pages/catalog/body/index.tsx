@@ -7,6 +7,7 @@ import { SubCategories } from '@/types/catalogTypes';
 import PagCount from '@/components/common/pagCount';
 import { Tag } from '@/types/tagTypes';
 import TagsFilter from '@/components/common/tagsFilter';
+import Title from '@/components/common/tiltle';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 type Props = {
@@ -49,9 +50,7 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
 
             <div className={styles.catalogCardContainer}>
                 <div className={styles.catalogOrder}>
-                    
-                    <p className={styles.catalogTitle}>{categoryName.toUpperCase()}</p>
-
+                    <Title fontSize="25px" model='model2' titleText={categoryName.toUpperCase()} />
                     <select onChange={orderChange} className={styles.selectOrder} >
                         <option value={'created_at-DESC'}>Novidades</option>
                         <option value={'price-DESC'}>Maior Preço</option>
@@ -61,7 +60,7 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
                 <div className={styles.cardsContainer} >
                     {catalog ? (
                         <div className={styles.catalogCards}>
-                            <p className={styles.subCatalogTitle}>{catalog.name}</p>
+                            <Title fontSize="20px" model='model3' titleText={catalog.name} />
                             <div className={styles.cards}>
                                 {catalog.Items ? (
                                     catalog.Items.map(item => (

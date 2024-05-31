@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 import CardPurchase from '@/components/common/cardPurchase'
 import PagCountServer from '@/components/common/serverTestComponent/pagCount'
+import Title from '@/components/common/tiltle'
 import {Purchases } from '@/types/purchaseTypes'
 
 type Props = {
@@ -11,7 +12,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
 
     return (
         <div className={styles.pageBody}>
-            <p className={styles.userPurchaseTitle}>Pedidos</p>
+            <Title fontSize="25px" model='model5' titleText="Meus pedidos" />
 
             <div className={styles.userPurchasesContainer}>
                 {   purchases.rows?

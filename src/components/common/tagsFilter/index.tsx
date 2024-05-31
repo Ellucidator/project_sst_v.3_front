@@ -2,6 +2,7 @@
 import { Tag } from '@/types/tagTypes'
 import styles from './styles.module.scss'
 import { ChangeEvent, MouseEvent, useState } from 'react'
+import Title from '../tiltle'
 
 type Props = {
     tags: Tag[]
@@ -28,7 +29,7 @@ const TagsFilter=({tags,setFilter}:Props)=>{
     return (
         <div className={styles.tagsFilter}>
             <div className={styles.titleContainer}>
-                <p className={styles.filterTitle}>Filtros</p>
+                <Title fontSize="20px" titleText="Filtros" model="model4"/>
                 <button  className={styles.btnFilter} onClick={handleFilter}>APLICAR</button>
             </div>
             {

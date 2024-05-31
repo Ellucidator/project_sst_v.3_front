@@ -4,6 +4,7 @@ import PurchaseInfo from '@/components/common/cardPurchase/purchaseInfo'
 import Image from 'next/image'
 import { revalidateTag } from 'next/cache'
 import ButtonReturn from '@/components/common/btnReturn'
+import Title from '@/components/common/tiltle'
 
 type Props = {
     purchaseId: string
@@ -22,7 +23,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
         <div className={styles.pageBody}>
             <div className={styles.titleContainer}>
                 <ButtonReturn />
-                <p className={styles.userPurchaseTitle}>Pedido Nº {purchase.id}</p>
+                <Title fontSize="25px" model='model2' titleText={`Pedido Nº ${purchase.id}`} />
             </div>
 
             <div className={styles.userPurchasesContainer}>

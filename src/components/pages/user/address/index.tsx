@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
 import Link from 'next/link'
+import Title from '@/components/common/tiltle'
 
 type Props = {
     userAddress: UserAddress[]
@@ -14,7 +15,8 @@ const UserAddressPage = async ({ userAddress }: Props) => {
     return (
         <>
             <div className={styles.divAddress}>
-                <p className={styles.divAddressTitle}>Endereços</p>
+                <Title fontSize="25px" model='model5' titleText="Endereços" />
+
                 {userAddress.length < 6 ?
                     <Link href="/user/edit-address/0" className={styles.linkAdd}>Adicionar Endereço</Link> :
                     <></>

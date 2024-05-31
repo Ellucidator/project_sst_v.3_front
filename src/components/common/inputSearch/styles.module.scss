@@ -3,7 +3,7 @@
 .headerCenter{
     height: 50px;
     display: flex;
-    flex: 1;    
+    flex: content;    
     flex-wrap: nowrap;
     margin-bottom: 20px;
     background-color: $primaryLight;
