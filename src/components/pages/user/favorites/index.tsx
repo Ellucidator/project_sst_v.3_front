@@ -5,6 +5,7 @@ import ButtonActionById from '../../../common/serverTestComponent/buttonActionBy
 import PagCountServer from '@/components/common/serverTestComponent/pagCount'
 import CardItem from '@/components/common/cardItem'
 import Title from '@/components/common/tiltle'
+import Container from '@/components/common/container'
 
 
 const FavoritesPage = async () => {
@@ -18,7 +19,7 @@ const FavoritesPage = async () => {
         <div className={styles.pageBody}>
             <Title fontSize="25px" model='model5' titleText="Meus favoritos" />
 
-            <div className={styles.favoritesContainer}>
+            <Container direction='column'>
                 {favorites ?
                     <div>
                         {favorites.rows.map((item) => {
@@ -33,7 +34,7 @@ const FavoritesPage = async () => {
                     : <></>
                 }
                 <PagCountServer count={favorites?favorites.count:0} perPage={6}/>
-            </div>
+            </Container>
         </div>
     )
 }
