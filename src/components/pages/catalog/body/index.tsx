@@ -8,14 +8,15 @@ import PagCount from '@/components/common/pagCount';
 import { Tag } from '@/types/tagTypes';
 import TagsFilter from '@/components/common/tagsFilter';
 import Title from '@/components/common/tiltle';
+import Container from '@/components/common/container';
 // import CategoryFilter from '@/components/common/categoryFilter';
 
 type Props = {
     catalogServ: SubCategories;
     categoryName: string;
-    tagsServ:Tag[]
+    tagsServ: Tag[]
 }
-const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
+const CatalogBody = ({ catalogServ, categoryName, tagsServ }: Props) => {
     const [catalog, setCatalog] = useState<SubCategories>(catalogServ);
     const [itemsOrder, setItemsOrder] = useState('created_at-DESC')
     const [page, setPage] = useState(1)
@@ -24,19 +25,19 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
         setItemsOrder(ev.currentTarget.value)
     }
     const getCatalog = async () => {
-        if(filter.length>0){
+        if (filter.length > 0) {
             const data: SubCategories = await catalogService.getItensByTags(catalogServ.id.toString(), itemsOrder, page, filter);
             setCatalog(data);
-        }else{
+        } else {
             const data: SubCategories = await catalogService.getItensBySubCategory(catalogServ.id.toString(), itemsOrder, page);
             setCatalog(data);
         }
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getCatalog()
-    },[itemsOrder,page,filter])
+    }, [itemsOrder, page, filter])
 
 
 
@@ -57,25 +58,21 @@ const CatalogBody = ({catalogServ, categoryName, tagsServ}:Props)=> {
                         <option value={'price-ASC'}>Menor Preço</option>
                     </select>
                 </div>
-                <div className={styles.cardsContainer} >
-                    {catalog ? (
-                        <div className={styles.catalogCards}>
-                            <Title fontSize="20px" model='model3' titleText={catalog.name} />
-                            <div className={styles.cards}>
-                                {catalog.Items ? (
-                                    catalog.Items.map(item => (
-                                        <CardItem key={item.id} item={item} />
-                                    ))
-                                ) : (
-                                    <></>
-                                )}
-                            </div>
-                        </div>
-                    ) : (
-                        <></>
-                    )}
-                    <PagCount count={catalog.countItems!} page={page} setPage={setPage} perPage={10} />
-                </div>
+
+                {catalog ? (
+                    <Container titleModel='model3' title={catalog.name}>
+                        {catalog.Items ? (
+                            catalog.Items.map(item => (
+                                <CardItem key={item.id} item={item} />
+                            ))
+                        ) : (
+                            <></>
+                        )}
+                    </Container>
+                ) : (
+                    <></>
+                )}
+                <PagCount count={catalog.countItems!} page={page} setPage={setPage} perPage={10} />
             </div>
         </div>
     )
