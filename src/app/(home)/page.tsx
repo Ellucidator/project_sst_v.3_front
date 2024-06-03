@@ -47,14 +47,14 @@ export default async function Home() {
           <SlideSection allItems={newestsItens} perPage={6}  />
         </section>
 
-        <section className={`container ${styles.slide} `}>
-          <Title fontSize="25px" titleText="Produtos em destaque"/>
-          <div className={styles.cardsContainer}>
-          {featuredItems.map((item) => {
-            return (
-              <CardItem key={item.id} item={item} />
-            )
-          })}
+        <section className={`container ${styles.cardsContainer} `}>
+          <Title model="model5" fontSize="25px" titleText="Produtos em destaque"/>
+          <div className={styles.cards}>
+            {featuredItems.map((item) => {
+              return (
+                <CardItem key={item.id} item={item} />
+              )
+            })}
           </div>
         </section>
 
