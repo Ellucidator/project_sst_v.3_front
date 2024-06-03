@@ -7,13 +7,29 @@
     flex: content;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2) inset;
+    
 
     .containerBody{
         display: flex;
         flex: content;
-        justify-content: center;
+        flex-wrap: wrap;
         gap: 15px;
     }
 
+}
+
+.model1{
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+.model2{
+    width: 100%;
+    margin-top: 50px;
+    background-color: $primary;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    .containerBody{
+        justify-content: center;
+    }
 }
