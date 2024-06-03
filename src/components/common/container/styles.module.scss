@@ -1,0 +1,19 @@
+@import '../../../styles/colors/colors.module.scss';
+
+
+.container {
+    padding: 15px;
+    display: flex;
+    flex: content;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2) inset;
+
+    .containerBody{
+        display: flex;
+        flex: content;
+        justify-content: center;
+        gap: 15px;
+    }
+
+}
