@@ -1,3 +1,4 @@
+import Container from '@/components/common/container'
 import styles from './styles.module.scss'
 import CardPurchase from '@/components/common/cardPurchase'
 import PagCountServer from '@/components/common/serverTestComponent/pagCount'
@@ -14,7 +15,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
         <div className={styles.pageBody}>
             <Title fontSize="25px" model='model5' titleText="Meus pedidos" />
 
-            <div className={styles.userPurchasesContainer}>
+            <Container direction='column'>
                 {   purchases.rows?
                     purchases.rows.map((elem)=>{
                         return(
@@ -23,7 +24,7 @@ const UserPurchasesPage = ({purchases}:Props) => {
                     }):
                     <></>
                 }
-            </div>
+            </Container>
             <PagCountServer count={purchases.count} perPage={6} />
         </div>
     )

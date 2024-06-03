@@ -5,6 +5,7 @@ import Image from 'next/image'
 import CardPurchase from '@/components/common/cardPurchase'
 import CardItem from '@/components/common/cardItem'
 import Title from '@/components/common/tiltle'
+import Container from '@/components/common/container'
 
 type Props = {
     user: UserPayload
@@ -21,13 +22,13 @@ const UserHome = ({ user, userPurchase, newestFavorites }: Props) => {
             <CardPurchase userPurchase={userPurchase} />
             <br />
             <Title fontSize="21px" model='model2' titleText="Ultimos favoritos" />
-            <div className={styles.favoritesContainer}>
+            <Container model='model1' >
                 {newestFavorites.rows?newestFavorites.rows.map((favorite)=>{
                     return(
                         <CardItem key={favorite.Item.id} item={favorite.Item}/>
                     )
                 }):<></>}
-            </div>
+            </Container>
         </>
     )
 }
