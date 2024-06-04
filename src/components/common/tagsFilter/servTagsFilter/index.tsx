@@ -2,6 +2,7 @@ import { Tag } from '@/types/tagTypes'
 import styles from './styles.module.scss'
 import Title from '../../tiltle'
 import { cookies } from 'next/headers'
+import Button from '../../button'
 
 type Props = {
     tags: Tag[],
@@ -36,7 +37,7 @@ const TagsFilterServ=async({tags,subCategoryId}:Props)=>{
         <form className={styles.tagsFilter} action={actionFilter}>
             <div className={styles.titleContainer}>
                 <Title fontSize="20px" titleText="Filtros" model="model4"/>
-                <button  className={styles.btnFilter}>APLICAR</button>
+                <Button btnModel="model4" btnName="Aplicar" btnAction="submit" />
             </div>
             {
                 tags.map((tag)=>{
