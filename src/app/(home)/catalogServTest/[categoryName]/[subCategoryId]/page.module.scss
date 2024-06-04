@@ -34,20 +34,25 @@
             flex-direction: column;
             flex: content;        
     
-            .catalogOrder {
+            .catalogOrderContainer {
                 width: 100%;
                 height: 10%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
     
-    
-                .selectOrder {
-                    padding: 8px;
-                    background-color: $primary;
-    
+                .catalogOrder{
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    gap: 5px;
+                    
+                    .selectOrder {
+                        padding: 8px;
+                        background-color: $primary;
+        
+                    }
                 }
-    
             }
         }
     }
