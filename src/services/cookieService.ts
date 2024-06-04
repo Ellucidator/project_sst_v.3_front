@@ -3,6 +3,7 @@ import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
 import { ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { revalidateTag } from "next/cache"
+import { SubCategories } from "@/types/catalogTypes"
 
 
 
@@ -54,11 +55,11 @@ const verifySession = async () => {
                     tags: ['verify-login']
                 }
             })
-            
+
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
             const { payload }: { payload: UserPayload } = await jose.jwtVerify(cookieValue, secret)
 
-            if (typeof payload === 'string' || typeof payload === 'undefined'|| !verifyServer.ok)return false
+            if (typeof payload === 'string' || typeof payload === 'undefined' || !verifyServer.ok) return false
 
             return payload
 
@@ -152,8 +153,8 @@ async function getItemsCart() {
 
     for (let i = 0; i < data.length; i++) {
         const item = data.find((item) => item.id === cookieCart[i].id)
-        if(!item!.ItemCharacteristic){
-            item!.ItemCharacteristic={
+        if (!item!.ItemCharacteristic) {
+            item!.ItemCharacteristic = {
                 id: item!.id,
                 width: 0,
                 height: 0,
@@ -178,11 +179,57 @@ async function getItemsCart() {
 
 async function setCookiePage(page: string) {
     'use server'
-    const cookieValue = cookies().set('page', page, {
+    cookies().set('page', page, {
         maxAge: 0
     })
-    console.log(cookieValue)
 }
+
+async function getItensBySubCategoryServ(subCategoryId: string) {
+
+    let page = cookies().get('page')?.value
+    if (!page) page = '1'
+
+    let itemsOrder: string = 'created_at-DESC'
+    let tags: string[] = []
+
+    const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
+    
+    if (catalogCookie) {
+        const catalogCookieOn: { itemsOrder?: string, tags?: string[] } = JSON.parse(catalogCookie)
+
+        if (catalogCookieOn.itemsOrder) itemsOrder = catalogCookieOn.itemsOrder
+        if (catalogCookieOn.tags) tags = catalogCookieOn.tags
+    }
+
+
+    if (tags.length > 0) {
+        const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+            next: {
+                revalidate: 10
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache: 'no-cache',
+            method: 'POST',
+            body: JSON.stringify({ tags })
+        })
+        const data: SubCategories = await res.json();
+        return data;
+    } else {
+        const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+            next: {
+                revalidate: 10
+            },
+            cache: 'no-cache'
+        })
+        const data: SubCategories = await res.json();
+        return data;
+    }
+
+}
+
+
 
 export const cookieService = {
     verifySession,
@@ -191,5 +238,6 @@ export const cookieService = {
     getItemsCart,
     verifyRegister,
     verifyLogin,
-    setCookiePage
+    setCookiePage,
+    getItensBySubCategoryServ
 }

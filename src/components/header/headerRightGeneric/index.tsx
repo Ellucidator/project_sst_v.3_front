@@ -1,7 +1,7 @@
 import Link from "next/link"
 import styles from './styles.module.scss'
 import variables from '../../../styles/colors/colors.module.scss'
-const HeaderRightGeneric = () => {
+const HeaderRightGeneric = async() => {
     
     return(
         <div className="flex items-center">
