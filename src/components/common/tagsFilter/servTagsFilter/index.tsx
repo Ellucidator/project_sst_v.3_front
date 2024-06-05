@@ -3,59 +3,62 @@ import styles from './styles.module.scss'
 import Title from '../../tiltle'
 import { cookies } from 'next/headers'
 import Button from '../../button'
+import Loading from '../../loading'
 
 type Props = {
     tags: Tag[],
-    subCategoryId:string
+    subCategoryId: string
 }
-const TagsFilterServ=async({tags,subCategoryId}:Props)=>{
+const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
 
-    const actionFilter=async(form:FormData)=>{
+    const actionFilter = async (form: FormData) => {
         'use server'
 
         const filter = form.getAll('filter')
         const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
 
-        if(catalogCookie){
-            const catalogCookieOn: {itemsOrder?: string ,tags?: any[] } = JSON.parse(catalogCookie)
+        if (catalogCookie) {
+            const catalogCookieOn: { itemsOrder?: string, tags?: any[] } = JSON.parse(catalogCookie)
             catalogCookieOn.tags = filter
             cookies().set(`catalog${subCategoryId}`, JSON.stringify(catalogCookieOn),
-            {
-                maxAge: 60 * 60 * 24
-            })
-        }else{
-            cookies().set(`catalog${subCategoryId}`, JSON.stringify({itemsOrder:'created_at-DESC',tags:filter}),
-            {
-                maxAge: 60 * 60 * 24
-            })
+                {
+                    maxAge: 60 * 60 * 24
+                })
+        } else {
+            cookies().set(`catalog${subCategoryId}`, JSON.stringify({ itemsOrder: 'created_at-DESC', tags: filter }),
+                {
+                    maxAge: 60 * 60 * 24
+                })
         }
     }
-    
-    if(tags.length < 1) return (<></>)
-    
+
+    if (tags.length < 1) return (<></>)
+
     return (
         <form className={styles.tagsFilter} action={actionFilter}>
+            <Loading model='modelArea' />
+
             <div className={styles.titleContainer}>
-                <Title fontSize="20px" titleText="Filtros" model="model4"/>
+                <Title fontSize="20px" titleText="Filtros" model="model4" />
                 <Button btnModel="model4" btnName="Aplicar" btnAction="submit" />
             </div>
             {
-                tags.map((tag)=>{
-                    return(
+                tags.map((tag) => {
+                    return (
                         <div key={tag.id} className={styles.divTag}>
-                            <p className={styles.tagTitle}>{tag.name +' :'}</p>
+                            <p className={styles.tagTitle}>{tag.name + ' :'}</p>
                             <div className={styles.tagValues} >
                                 {
-                                    tag.TagValues?
-                                    tag.TagValues.map((value)=>{
-                                        return(
-                                            <div key={value.id} className={styles.tags}>
-                                                <input type="checkbox" name='filter' id={value.name} value={value.name}/>
-                                                <label htmlFor={value.name}>{value.name}</label>
-                                            </div>
-                                        )
-                                    })
-                                    :<></>
+                                    tag.TagValues ?
+                                        tag.TagValues.map((value) => {
+                                            return (
+                                                <div key={value.id} className={styles.tags}>
+                                                    <input type="checkbox" name='filter' id={value.name} value={value.name} />
+                                                    <label htmlFor={value.name}>{value.name}</label>
+                                                </div>
+                                            )
+                                        })
+                                        : <></>
                                 }
                             </div>
                         </div>

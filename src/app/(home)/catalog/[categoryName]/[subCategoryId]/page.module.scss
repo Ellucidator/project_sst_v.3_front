@@ -1,20 +1,12 @@
 @import '../../../../../styles/colors/colors.module.scss';
 
 
-.catalog{
-    min-height: 120vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
     .catalogContainer {
         display: flex;
         flex-wrap: nowrap;
         background-color: $primaryLight;
-        width: 100%;
-        min-height: 100vh;
-        padding: 10px;
-    
+        min-height: 120vh;
+        padding: 10px;    
     
         .catalogOptions {
             width: 18%;
@@ -32,8 +24,8 @@
         .catalogCardContainer {
             display: flex;
             flex-direction: column;
-            flex: content;        
-    
+            flex: content;  
+
             .catalogOrderContainer {
                 width: 100%;
                 height: 10%;
@@ -56,4 +48,3 @@
             }
         }
     }
-}
