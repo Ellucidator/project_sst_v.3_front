@@ -3,14 +3,30 @@
 
 .btn {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     padding: 5px 12px;
     border-radius: 2px;
-    height:fit-content;
-
+    height: fit-content;
     font-size: large;
 }
+
+.btnTexts {
+    .title {
+        font-size: 28px;
+    }
+
+    .subTitle {
+        padding-bottom: 8px;
+        font-size: 12px;
+    }
+}
+
+.icon {
+    filter: invert(100%);
+}
+
 
 .model1 {
     border: 1px solid $tertiary;
@@ -44,9 +60,17 @@
     background-color: $tertiaryDark;
     border: 1px solid $primary;
     font-size: 13px;
-    
+
     &:hover {
         border-color: $tertiaryDark;
         border: 1px solid $secondaryDark;
     }
+}
+
+.model5 {
+    gap: 20px;
+    border: 2px solid rgb(2, 100, 10);
+    background-color: rgb(32, 141, 41);
+    border-radius: 5px;
+    padding: 0px 15px;
 }
