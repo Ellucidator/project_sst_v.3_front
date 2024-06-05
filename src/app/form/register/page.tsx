@@ -10,6 +10,7 @@ import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import Input from '@/components/common/Input-label-components/input&Label'
 import Button from '@/components/common/button'
+import Loading from '@/components/common/loading'
 const Register = async () => {
 
     const verify = await cookieService.verifyRegister()
@@ -78,6 +79,8 @@ const Register = async () => {
                 <h2 className={styles.registerTittle}>Formulario de cadastro </h2>
 
                 <form action={handlerSubimit} className={`container ${styles.registerForm}`}>
+                    <Loading model='modelArea' />
+
                     <div className={styles.inputDiv}>
                         <Input divWidth='35%' mode='label&input' labelText='Nome:' inputOptions={{ required: true, maxLength: 12, type: 'text', name: 'first_name', id: 'first_name', placeholder: 'Seu nome' }} />
 
@@ -101,7 +104,7 @@ const Register = async () => {
 
                         <Input mode='label&input' labelText='Data de nascimento:' inputOptions={{ required: true, type: 'date', name: 'birth', id: 'birth', placeholder: 'Data de nascimento' }} />
                     </div>
-                    <Button btnModel='model1' btnWidth='40%' btnAction='submit' btnName='REGISTRAR'/>
+                    <Button btnModel='model1' btnWidth='40%' btnAction='submit' btnName='REGISTRAR' />
                 </form>
                 <div className={styles.divLogin}>
                     <p className={styles.tittle}>Já tem uma conta?</p>

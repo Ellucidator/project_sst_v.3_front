@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import Input from '@/components/common/Input-label-components/input&Label';
 import Button from '@/components/common/button';
+import Loading from '@/components/common/loading';
 
 const Login = async () => {
     const session = await cookieService.verifySession();
@@ -39,6 +40,8 @@ const Login = async () => {
             <div className={`container ${styles.loginContainer}`}>
 
                 <form action={handlerSubmit} className={`container ${styles.loginForm}`}>
+                    <Loading model='modelArea'/>
+
                     <Input divWidth='100%' mode='label&input' labelText='Email:' inputOptions={{ required: true, maxLength: 80, type: 'email', name: 'email', id: 'email', placeholder: 'ex: 5t8jz@example.com' }} />
                     {verify.error === 'email' ? <p className={styles.verifyP}>Email inválido</p> : null}
 

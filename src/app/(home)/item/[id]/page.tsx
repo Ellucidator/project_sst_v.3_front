@@ -1,7 +1,6 @@
 
 import { catalogService } from '@/services/catalogService'
 import styles from './page.module.scss'
-import Image from 'next/image'
 import SlideSectionItem from '@/components/common/slideSectionItem'
 import PriceItem from '@/components/common/priceItem'
 import { cookieService } from '@/services/cookieService'
@@ -13,6 +12,10 @@ import AvaliationsItem from '@/components/common/avaliationsItem'
 import { userService } from '@/services/userService'
 import ButtonReturn from '@/components/common/btnReturn'
 import catalogServerService from '@/services/catalogServerService'
+import Title from '@/components/common/tiltle'
+import Button from '@/components/common/button'
+import cartIcon from '../../../../../public/public/common/cart-plus.svg'
+import { cookies } from 'next/headers'
 
 
 
@@ -68,15 +71,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                 <form action={formAction}>
                                     <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
 
-                                    <button type='submit' className={styles.btnBuy} >
-                                        <div className={styles.btnTexts}>
-                                            <p className={styles.title}>Comprar</p>
-
-                                            <p className={styles.subTitle}>Adicionar ao carrinho</p>
-                                        </div>
-                                        <Image src="/public/common/cart-plus.svg" alt="catalog" className={styles.icon} width={35} height={35} />
-                                        <div className={styles.addItem}>+</div>
-                                    </button>
+                                    <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconUrl={cartIcon} />
 
                                 </form>
                             </section>
@@ -87,7 +82,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <CepCalculator item={item} quantityInStock={quantityInStock} />
                     {recomendedItems.Items ? (
                         <div className={styles.recomendedItems}>
-                            <p className={styles.recomendedItemsTitle}>Você pode gostar:</p>
+                            <Title model='model2' fontSize='20px' titleText='Voce pode gostar' />
                             <SlideSection allItems={recomendedItems.Items} perPage={4} itemId={item.id} />
                         </div>
                     ) : null}

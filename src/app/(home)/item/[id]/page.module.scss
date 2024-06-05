@@ -1,14 +1,5 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-
-
-
-@keyframes girar {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-
 .pageItem {
     width: 100%;
     min-height: 100vh;
@@ -80,48 +71,6 @@
                             margin: 20px;
                             align-self: flex-end;
 
-                            .btnBuy {
-
-                                .addItem{
-                                    display: none;
-                                    position: absolute;
-                                    z-index: 10;
-                                    top: 6.2%;
-                                    right: 11%;
-                                    color: greenyellow;
-                                    font-weight: bold;
-                                    transform: rotate(0deg);
-                                }
-
-                                display: flex;
-                                flex-wrap: nowrap;
-                                justify-content: center;
-                                align-items: center;
-                                gap: 15px;
-                                border: 2px solid rgb(2, 100, 10);
-                                background-color: rgb(32, 141, 41);
-                                border-radius: 5px;
-                                padding: 0px 15px;
-                                font-size: 28px;
-
-                                .icon {
-                                    filter: invert(100%);
-                                }
-
-                                .btnTexts {
-                                    .subTitle {
-                                        padding-bottom: 8px;
-                                        font-size: 12px;
-                                    }
-                                }
-
-                                &:active{
-                                    .addItem{
-                                        display: block;
-                                        animation: girar 0.2s ease-in-out infinite;
-                                    }
-                                }
-                            }
                         }
                     }
                 }
@@ -139,14 +88,6 @@
                 width: 70%;
                 padding: 0px 20px;
 
-                .recomendedItemsTitle {
-                    font-size: 20px;
-                    margin: 10px 0px;
-                    border-left: 3px solid $tertiaryDark;
-                    padding: 2px 4px;
-                    background-color: $primary;
-                    max-width: fit-content;
-                }
             }
         }
 

@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation'
 import Title from '@/components/common/tiltle'
 import Button from '@/components/common/button'
 import Input from '@/components/common/Input-label-components/input&Label'
+import Loading from '@/components/common/loading'
 
 type Props = {
     addressId: string
@@ -75,7 +76,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
             <Title fontSize="25px" model='model5' titleText="Novo endereço" />
             
             <form action={handlerSubmit} className={styles.formAddress}>
-                
+                <Loading model='modelArea' />
                 <div className={styles.divInput}>
                     <Input divWidth='55%' inputOptions={{type:'text',placeholder:'Nome',name:'receiver_name',required:true,defaultValue:addressValue.receiver_name}}/>
 
