@@ -1,0 +1,128 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+
+.btnHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // background-color: $primaryLight;
+    font-size: 18px;
+    border-radius: 20%;
+    padding: 10px 10px;
+    border-left: 4px solid $tertiaryDark;
+    border-bottom: 1px solid transparent;
+    transition: 0.5s linear;
+
+    .icon{
+        filter: invert(100%);
+    }
+    &:hover{
+        transition: 0.5s linear;
+        border-left: 4px solid $tertiary;
+        border-bottom: 1px solid $tertiary;
+    }
+}
+
+//Modal
+.modalBody {
+    position: fixed;
+    transition: 0.2s;
+    width: 0px;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+}
+.modalBodyOpen {
+    z-index: 10;
+    position: fixed;
+    transition: 0.2s;
+    width: 350px;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: $primary;
+    color: $secondary;
+    border-right: 2px solid $tertiaryDark;
+    border-top-right-radius: 30px;
+    box-shadow: 8px 6px 4px #0000007c;
+
+    /* CONTEÚDO DO MODAL */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 24px;
+
+    .btnModal {
+        align-self: flex-end;
+        color: $secondary;
+        font-weight: bold;
+        height: 60px;
+        width: 60px;
+        font-size: 20px;
+        transition: 0.2s;
+        &:hover {
+            color: $tertiary;
+            transform: scale(1.02);
+        }
+    }
+
+}
+.overlayModal {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.categoryTittle {
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+///Botão SubCategoty
+.btnSub{
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.5s;
+    transform: rotate(-135deg);
+    &:hover {
+        color: $tertiary;
+    }
+}
+.btnSubActive{
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.5s;
+    transform: rotate(45deg);
+    color: $tertiary;
+    &:hover {
+        color: $secondary;
+    }
+}
+
+///SubCategoty
+.subCategoryList {
+    display: none;
+}
+.subCategoryOpen {
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    transition: 0.5s;
+}
+.subCategory:hover, .categoryTittle:hover{
+    color: $tertiary;
+    transform: scale(1.015);
+    transition: 0.1s;
+}
+

@@ -22,12 +22,12 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
             catalogCookieOn.tags = filter
             cookies().set(`catalog${subCategoryId}`, JSON.stringify(catalogCookieOn),
                 {
-                    maxAge: 60 * 60 * 24
+                    maxAge: 60 * 60
                 })
         } else {
             cookies().set(`catalog${subCategoryId}`, JSON.stringify({ itemsOrder: 'created_at-DESC', tags: filter }),
                 {
-                    maxAge: 60 * 60 * 24
+                    maxAge: 60 * 60
                 })
         }
     }

@@ -30,12 +30,12 @@ export default async function Catalog({ params }: { params: { categoryName: stri
             catalogCookieOn.itemsOrder = order
             cookies().set(`catalog${params.subCategoryId}`, JSON.stringify(catalogCookieOn),
                 {
-                    maxAge: 60 * 30
+                    maxAge: 60 * 60
                 })
         } else {
             cookies().set(`catalog${params.subCategoryId}`, JSON.stringify({ itemsOrder: order, tags: [] }),
                 {
-                    maxAge: 60 * 30
+                    maxAge: 60 * 60
                 })
         }
     }

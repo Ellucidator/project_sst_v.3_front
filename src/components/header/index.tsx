@@ -9,6 +9,7 @@ import HeaderRightGeneric from "./headerRightGeneric";
 import InputSearch from "../common/inputSearch";
 import { cookies } from "next/headers";
 import { ItemToCar } from "@/types/itemsTypes";
+import ServerModal from "../common/serverTestComponent/modal";
 
 
 const HeaderPrimary = async () => {
@@ -32,7 +33,8 @@ const HeaderPrimary = async () => {
             <div id="header" className={`${styles.header}`}>
                 <main className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
-                        <Modal catalog={catalog} validate={validate} />
+                        <ServerModal catalog={catalog}/>
+                        {/* <Modal catalog={catalog} validate={validate} /> */}
                         <Link href="/" className={styles.logoHeader}>
                             <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
                         </Link>
