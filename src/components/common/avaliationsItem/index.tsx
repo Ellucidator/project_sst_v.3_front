@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import { Avaliation, AvaliationAndCount } from '@/types/avaliationTypes'
 import { revalidateTag } from 'next/cache'
 import PagCountServer from '../serverTestComponent/pagCount'
+import Button from '../button'
 
 type Props = {
     item_id: number | string
@@ -36,7 +37,7 @@ const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: 
 
                     <input className={styles.inputTitle} type="text" name='title' placeholder='Titulo' />
                     <textarea className={styles.inputComment} name='comment' placeholder='Comentario' />
-                    <button type="submit" >ENVIAR</button>
+                    <Button btnWidth='100%' btnModel='model1' btnName='ENVIAR' btnAction='submit' />
                 </form>
                 {avaliation ? (
                     <section className={styles.avaliationUser}>

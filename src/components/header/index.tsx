@@ -12,7 +12,8 @@ import { ItemToCar } from "@/types/itemsTypes";
 
 
 const HeaderPrimary = async () => {
-    
+
+
     const validate = await cookieService.verifySession();
     const catalog = await catalogService.getCatalog();
     let carCount:number

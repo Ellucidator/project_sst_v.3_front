@@ -45,18 +45,6 @@
                     outline: 1px solid $tertiary;
                 }
             }
-            button{
-                padding: 5px 0px;
-                background-color: $tertiaryDark;
-                border: 1px solid $primary;
-                border-radius: 3px;
-    
-                &:hover{
-                    border-color: $tertiaryDark;
-                    border: 1px solid $secondaryDark;
-    
-                }
-            }
         }
     
         .avaliationUser{
