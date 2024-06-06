@@ -7,6 +7,26 @@ type Props = {
     categories: Categories[]
 }
 const CategoriesAndSubList = async ({ categories }: Props) => {
+
+    const btnAction = cookies().get('sub-open')?.value
+    const classCondition: { name: string, open: boolean } = JSON.parse(btnAction ? btnAction : '{"name":"","open":false}')
+
+    const handlerSubmit = async (form: FormData) => {
+        'use server'
+
+        const category = form.get('category')!.toString()
+        if (classCondition.name === category) {
+            cookies().set('sub-open', JSON.stringify({ name: category, open: !classCondition.open }),
+                {
+                    maxAge: 0
+                })
+        } else {
+            cookies().set('sub-open', JSON.stringify({ name: category, open: true }),
+                {
+                    maxAge: 0
+                })
+        }
+    }
     return (
         <>
             {categories.map((category) => {
