@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import Link from "next/link";
 import Image from "next/image";
 import { cookies } from "next/headers";
+import CategoriesAndSubList from "../categories-sub-list";
 
 type Props = {
     catalog: Categories[]
@@ -19,11 +20,11 @@ const ServerModal = async ({ catalog }: Props) => {
 
         if (cookieControl === 'open') {
             cookies().set('modal', 'close', {
-                maxAge: 0
+                maxAge: 60*5
             })
         } else {
             cookies().set('modal', 'open', {
-                maxAge: 0
+                maxAge: 60*5
             })
         }
     }
@@ -49,6 +50,8 @@ const ServerModal = async ({ catalog }: Props) => {
                         <form action={handlerSubmit} className={styles.btnModal}>
                             <button type="submit" className={styles.btnModal} >X</button>
                         </form>
+
+                        <CategoriesAndSubList categories={catalog} />
                     </>
                     : <></>}
             </div>
