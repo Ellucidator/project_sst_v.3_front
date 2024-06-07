@@ -2,6 +2,8 @@ import { Categories } from '@/types/catalogTypes'
 import styles from './styles.module.scss'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
+import ButtonActionById from '../buttonActionById'
+import { cookieService } from '@/services/cookieService'
 
 type Props = {
     categories: Categories[]
@@ -45,9 +47,7 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
                         className={classCondition.name === category.name && classCondition.open === true? styles.subCategoryOpen : styles.subCategoryList}>
                             {classCondition.name === category.name && classCondition.open === true?category.SubCategories.map((subCategory) => (
                                 <li key={subCategory.id} className={styles.subCategory} >
-                                    <Link href={`/catalog/${category.name.toLowerCase()}/${subCategory.id}`}>
-                                        {subCategory.name}
-                                    </Link>
+                                    <ButtonActionById actionFunction={cookieService.btnSubCategoryAction} idAction={`${category.name.toLowerCase()}/${subCategory.id}`} btnModel='model6' buttonName={subCategory.name} fontSize='medium' />
                                 </li>
                             )):<></>}
                         </ul>

@@ -46,7 +46,7 @@
     margin-bottom: 10px;
     transition: 0.2s;
 }
-.subCategory:hover, .categoryTittle:hover{
+.categoryTittle:hover{
     color: $tertiary;
     transform: scale(1.015);
     transition: 0.1s;

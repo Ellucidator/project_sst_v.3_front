@@ -3,11 +3,13 @@ import Button from '../../button'
 import Loading from '../../loading'
 
 type Props = {
+    btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5'| 'model6'
     buttonName: string
-    idAction: number,
+    idAction: number | string
     actionFunction: Function
+    fontSize?: string
 }
-const ButtonActionById = async ({ buttonName, idAction, actionFunction }: Props) => {
+const ButtonActionById = async ({ buttonName, idAction, actionFunction, fontSize='larger',btnModel='model1' }: Props) => {
     let cookiePage = cookies().get('page')?.value
     if (!cookiePage) cookiePage = '1'
 
@@ -16,7 +18,7 @@ const ButtonActionById = async ({ buttonName, idAction, actionFunction }: Props)
         cookiePage === buttonName ?
             'model1' :
             'model3' :
-        'model1'
+            btnModel
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
@@ -29,7 +31,7 @@ const ButtonActionById = async ({ buttonName, idAction, actionFunction }: Props)
         <form action={handlerSubmit} >
             <Loading model='modelArea' />
             <input hidden name="id" defaultValue={idAction} />
-            <Button btnModel={btnStyle} btnAction='submit' btnName={buttonName} />
+            <Button btnOption={{style: {fontSize}}} btnModel={btnStyle} btnAction='submit' btnName={buttonName} />
         </form>
     )
 }
