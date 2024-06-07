@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
-import { ItemPromotion, ItemToCar } from "@/types/itemsTypes"
+import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { revalidateTag } from "next/cache"
 import { SubCategories } from "@/types/catalogTypes"
 
@@ -184,7 +184,9 @@ async function setCookiePage(page: string) {
     })
 }
 
+
 async function getItensBySubCategoryServ(subCategoryId: string) {
+
 
     let page = cookies().get('page')?.value
     if (!page) page = '1'
@@ -216,6 +218,21 @@ async function getItensBySubCategoryServ(subCategoryId: string) {
         })
         const data: SubCategories = await res.json();
         return data;
+    } else if(!(parseInt(subCategoryId) > 0)){
+
+        const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}`,{
+            next: {
+                revalidate: 10
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache: 'no-cache',
+            method: 'GET',
+        })
+        const data: SubCategories = await res.json();
+        return data
+
     } else {
         const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
             next: {
