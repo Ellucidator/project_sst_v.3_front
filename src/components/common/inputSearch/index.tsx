@@ -1,26 +1,19 @@
 import Image from "next/image"
 import searchIcon from "../../../../public/public/header/search.svg"
 import styles from "./styles.module.scss"
-import { useEffect, useState } from "react"
-import { catalogService } from "@/services/catalogService"
-import { Item } from "@/types/itemsTypes"
-import SearchModal from "./searchModal"
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
-const InputSearch = () => {
-    const [items, setItems] = useState<Item[]>([]);
-    const [inputValue, setInputValue] = useState("");
-    
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setInputValue(event.target.value);
-    };
 
-    const getItems = async ()=>{
-        if(!inputValue)return setItems([]);
-
-        const response = await catalogService.getSearchItems(inputValue)
-        setItems(response)
 const InputSearch = async() => {
+
+    const handleSubmit = async (form: FormData) => {
+        'use server'
+
+        const search = form.get('search')?.toString()
+        cookies().delete('catalog'+search)
+
+        redirect(`/catalog/pesquisa/${search}`)
     }
 
 
