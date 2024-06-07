@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image"
 import searchIcon from "../../../../public/public/header/search.svg"
 import styles from "./styles.module.scss"
@@ -21,27 +20,23 @@ const InputSearch = () => {
 
         const response = await catalogService.getSearchItems(inputValue)
         setItems(response)
+const InputSearch = async() => {
     }
 
-    useEffect(() => {
-        getItems();
-    },[inputValue]);
 
     return (
-        <div className={styles.headerCenter}>
+        <form action={handleSubmit} className={styles.headerCenter}>
             <input
-            id="search" 
+            name="search"
             type="search" 
+            required
             className={styles.inputSearch} 
             placeholder="Pesquise por um produto"
-            value={inputValue}
-            onChange={handleChange}
             />
-            <button type="button" className={styles.btnSearch}>
+            <button type="submit" className={styles.btnSearch}>
                 <Image src={searchIcon} alt="search" className={styles.searchIcon} />
             </button>
-            <SearchModal items={items}/>
-        </div>
+        </form>
     )
 }
 
