@@ -4,6 +4,7 @@ import { UserPayload } from "@/types/userTypes"
 import { Item, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
 import { revalidateTag } from "next/cache"
 import { SubCategories } from "@/types/catalogTypes"
+import { redirect } from "next/navigation"
 
 
 
@@ -246,6 +247,14 @@ async function getItensBySubCategoryServ(subCategoryId: string) {
 
 }
 
+async function btnSubCategoryAction(url:string){
+    'use server'
+    const [categoryName, subCategoryId] = url.split('/')
+
+    cookies().delete(`catalog${subCategoryId}`)
+    redirect(`/catalog/${url}`)
+}
+
 
 
 export const cookieService = {
@@ -256,5 +265,6 @@ export const cookieService = {
     verifyRegister,
     verifyLogin,
     setCookiePage,
-    getItensBySubCategoryServ
+    getItensBySubCategoryServ,
+    btnSubCategoryAction
 }
