@@ -11,12 +11,14 @@
     padding: 5px;
     
     .inputSearch{
+        padding: 0px 5px;
         width: 100%;
         border: none;
         background-color: transparent;
         color: $secondaryLight;
         outline: none;
-        padding-left: 10px;
+        border-radius: 2px;
+        
     }
     .btnSearch{
         width: 40px;

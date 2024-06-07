@@ -10,6 +10,7 @@ type Props = {
     subCategoryId: string
 }
 const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
+    if (tags.length < 1 ) return (<></>)
 
     const actionFilter = async (form: FormData) => {
         'use server'
@@ -32,7 +33,6 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
         }
     }
 
-    if (tags.length < 1) return (<></>)
 
     return (
         <form className={styles.tagsFilter} action={actionFilter}>

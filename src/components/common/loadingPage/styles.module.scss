@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb($primary, 0.5);
+    background-color: $primaryDark;
     
     .loading {
         align-self: center;

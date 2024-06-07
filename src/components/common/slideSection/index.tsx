@@ -20,7 +20,6 @@ const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
                 tag="section"
                 options={{
                     type: 'loop',
-
                     perPage: perPage,
                     perMove: perMove,
                     gap:'1.5rem',

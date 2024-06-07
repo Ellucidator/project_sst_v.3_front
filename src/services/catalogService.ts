@@ -23,6 +23,8 @@ async function getTags(subCategoryId:string) {
         },
         cache: 'no-cache'
     })
+    if(res.status !== 200) return []
+
     const data: Tag[] = await res.json();
     return data;
 }

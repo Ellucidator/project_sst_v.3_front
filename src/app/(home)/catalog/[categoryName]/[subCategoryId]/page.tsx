@@ -16,7 +16,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
         cookieService.getItensBySubCategoryServ(params.subCategoryId),
         catalogService.getTags(params.subCategoryId)
     ])
-
+    
     const actionSelect = async (form: FormData) => {
         'use server'
 
