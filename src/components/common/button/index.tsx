@@ -6,7 +6,7 @@ import Image from 'next/image'
 type Props = {
     btnOption?: React.ButtonHTMLAttributes<HTMLButtonElement>
     href?: string
-    btnModel: 'model1' | 'model2' | 'model3' | 'model4' | 'model5'
+    btnModel: 'model1' | 'model2' | 'model3' | 'model4' | 'model5'| 'model6'
     btnWidth?: string
     btnName: string
     btnAction?: 'link' | 'submit' | 'button'

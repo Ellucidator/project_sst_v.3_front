@@ -9,7 +9,6 @@
     padding: 5px 12px;
     border-radius: 2px;
     height: fit-content;
-    font-size: large;
 }
 
 .btnTexts {
@@ -73,4 +72,16 @@
     background-color: rgb(32, 141, 41);
     border-radius: 5px;
     padding: 0px 15px;
+}
+
+.model6 {
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        color: $tertiary;
+        transform: scale(1.015);
+        transition: 0.1s;
+    }
 }
