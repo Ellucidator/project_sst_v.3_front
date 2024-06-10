@@ -1,62 +1,93 @@
 @import '../../../styles/colors/colors.module.scss';
 
 @keyframes girar-borda {
-    0% { border-color: transparent; }
-    25% { border-left-color: #ff000085; }
-    50% { border-top-color: #ff000085; }
-    75% { border-right-color: #ff000085; }
-    80% { border-bottom-color: #ff000085; }
-    100% { border-color: transparent;}
+    0% {
+        border-color: transparent;
+    }
+
+    25% {
+        border-left-color: #ff000085;
+    }
+
+    50% {
+        border-top-color: #ff000085;
+    }
+
+    75% {
+        border-right-color: #ff000085;
+    }
+
+    80% {
+        border-bottom-color: #ff000085;
+    }
+
+    100% {
+        border-color: transparent;
+    }
 }
 
-
-.categoryCard1{
+.container {
     display: flex;
-    flex: 1;
-    height: 150px;
-    font-size: 55px;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border: 2px solid transparent;
-    transition: 0.1s linear;
+    flex: 1;
 
-    &:hover{
+    .categoryCard1 {
+        display: flex;
+        width: 100%;
+        height: 150px;
+        font-size: 55px;
+        justify-content: center;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
         border: 2px solid transparent;
-        animation: girar-borda 2s linear infinite;
-        
-    }
+        transition: 0.1s linear;
 
-    .categoryName{
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-        font-weight: bold;
-        text-align: center;
+        &:hover {
+            border: 2px solid transparent;
+            animation: girar-borda 2s linear infinite;
+
+        }
+
+        .categoryName {
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            font-weight: bold;
+            text-align: center;
+        }
     }
 }
 
-.dark{
+
+.dark {
     background-image: linear-gradient(to right, yellow 0%, #ffffff 100%);
     text-shadow: 2px 2px $tertiaryLight;
 }
 
-.light{
+.light {
     background-image: linear-gradient(to right, rgb(5, 202, 5) 0%, rgb(5, 202, 5) 100%);
     text-shadow: 2px 2px $secondaryLight;
 }
 
 @media(max-width:770px) {
-    .categoryCard1{
-        height: 125px;
-        font-size: 40px;
+    .container {
+        .categoryCard1 {
+            height: 125px;
+            font-size: 40px;
+        }
     }
 }
+
 @media(max-width:560px) {
-    .categoryCard1{
-        min-height: 100px;
-        font-size: 45px;
+    .container {
         width: 100%;
+
+        .categoryCard1 {
+            min-height: 100px;
+            font-size: 45px;
+        }
     }
+
 }
