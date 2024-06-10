@@ -252,6 +252,8 @@ async function btnSubCategoryAction(url:string){
     const [categoryName, subCategoryId] = url.split('/')
 
     cookies().delete(`catalog${subCategoryId}`)
+    cookies().delete(`modal`)
+
     redirect(`/catalog/${url}`)
 }
 
