@@ -1,24 +1,23 @@
 import { cookies } from 'next/headers'
-import Button from '../../button'
+import Button, { NewButton } from '../../button'
 import Loading from '../../loading'
 
 type Props = {
-    btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5'| 'model6'
-    buttonName: string
+    buttonAttribute:NewButton
     idAction: number | string
     actionFunction: Function
     fontSize?: string
 }
-const ButtonActionById = async ({ buttonName, idAction, actionFunction, fontSize='larger',btnModel='model1' }: Props) => {
+const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, fontSize='medium'}: Props) => {
     let cookiePage = cookies().get('page')?.value
     if (!cookiePage) cookiePage = '1'
 
 
-    const btnStyle = !isNaN(parseInt(buttonName)) ?
-        cookiePage === buttonName ?
+    const btnStyle = !isNaN(parseInt(buttonAttribute.btnName)) ?
+        cookiePage === buttonAttribute.btnName ?
             'model1' :
             'model3' :
-            btnModel
+            buttonAttribute.btnModel
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
@@ -31,7 +30,7 @@ const ButtonActionById = async ({ buttonName, idAction, actionFunction, fontSize
         <form action={handlerSubmit} >
             <Loading model='modelArea' />
             <input hidden name="id" defaultValue={idAction} />
-            <Button btnOption={{style: {fontSize}}} btnModel={btnStyle} btnAction='submit' btnName={buttonName} />
+            <Button {...buttonAttribute} btnOption={{style: {fontSize}}} btnModel={btnStyle} btnAction='submit' />
         </form>
     )
 }

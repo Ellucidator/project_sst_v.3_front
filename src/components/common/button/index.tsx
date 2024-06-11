@@ -3,10 +3,10 @@ import styles from './styles.module.scss'
 import React from 'react'
 import Image from 'next/image'
 
-type Props = {
+export interface NewButton {
     btnOption?: React.ButtonHTMLAttributes<HTMLButtonElement>
     href?: string
-    btnModel: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'
+    btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'
     btnWidth?: string
     btnName: string
     btnAction?: 'link'| 'link_blank' | 'submit' | 'button' | 'static'
@@ -18,7 +18,7 @@ type Props = {
     }
 }
 
-const Button = ({ btnOption, btnModel, btnName, btnAction = 'button', href, btnWidth = 'fit-content', subTitle, iconElem }: Props) => {
+const Button = ({ btnOption, btnModel='model1', btnName, btnAction = 'button', href, btnWidth = 'fit-content', subTitle, iconElem }: NewButton) => {
     if (btnAction === 'link' || btnAction === 'link_blank') {
         return (
             <Link target={btnAction === 'link_blank' ? '_blank' : ''} style={{ width: btnWidth }} href={href!} className={styles.btn + ' ' + styles[btnModel]} >
