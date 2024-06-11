@@ -85,3 +85,29 @@
         transition: 0.1s;
     }
 }
+
+.model7{
+    padding: 0px;
+    gap: 5px;
+}
+
+.model8{
+    gap: 5px;
+    border: 2px solid transparent;
+    border-radius: 0px;
+    padding: 3px;
+    transition: 0.1s;
+
+    &:hover{
+        
+        border-top: 2px solid $tertiary;
+        border-bottom: 2px solid $tertiary;
+        transform: scale(1.02);
+        color: $tertiary;
+        transition: 0.1s;
+        .text{
+            color: $tertiaryLight;
+        }
+    }
+
+}
