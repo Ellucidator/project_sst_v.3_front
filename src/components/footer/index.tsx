@@ -2,6 +2,11 @@ import { companyService } from '@/services/companyService'
 import styles from './styles.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
+import Button from '../common/button'
+import geoIcon from '../../../public/public/common/geo-alt.svg'
+import envelopeIcon from '../../../public/public/common/envelope.svg'
+import telephoneIcon from '../../../public/public/common/telephone.svg'
+import instagramIcon from '../../../public/public/common/instagram.svg'
 
 const Footer = async () => {
     const companyInfo = await companyService.getCompanyInfo()
@@ -14,32 +19,17 @@ const Footer = async () => {
             </Link>
             <div className={styles.footerInfo}>
                 <p>{`© ${companyInfo.name} | CNPJ:${companyInfo.cnpj}`}</p>
-                <div className={styles.divIcon} >
-                    <Image src='/public/common/geo-alt.svg' alt="logo" className={styles.icon} width={15} height={15} />
-                    <p>{companyInfo.address}</p>
-                </div>
-                <div className={styles.divIcon}>
-                    <Image src='/public/common/envelope.svg' alt="logo" className={styles.icon} width={15} height={15} />
-                    <p>{companyInfo.email}</p>
-                </div>
-                <div className={styles.divIcon}>
-                    <Image src='/public/common/telephone.svg' alt="logo" className={styles.icon} width={15} height={15} />
-                    <p>{companyInfo.phone.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}</p>
-                </div>
+                <Button btnModel='model7' btnAction='static' btnName={companyInfo.address} iconElem={{src:geoIcon, position:'left', width:15}} />
+                <Button btnModel='model7' btnAction='static' btnName={companyInfo.email} iconElem={{src:envelopeIcon, position:'left', width:15}} />
+                <Button btnModel='model7' btnAction='static' btnName={companyInfo.phone.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')} iconElem={{src:telephoneIcon, position:'left', width:15}} />
             </div>
+
             <div className={styles.footerInfo}>
                 {companyInfo.address_url ?
-                    <Link href={companyInfo.address_url} className={styles.divIcon + ' ' + styles.link} target='_blank'>
-                            <Image src='/public/common/geo-alt.svg' alt="logo" className={styles.icon} width={22} height={22} />
-                            <p className={styles.text}>Localização</p>
-                    </Link>
+                    <Button btnModel='model8' btnAction='link_blank' href={companyInfo.address_url} btnName='Localização' iconElem={{src:geoIcon, position:'left', width:22}} />
                     : <></>}
                 {companyInfo.instagram_url ?
-                    <Link href={companyInfo.instagram_url} className={styles.divIcon + ' ' + styles.link} target='_blank' >
-                            <Image src='/public/common/instagram.svg' alt="logo" className={styles.icon} width={22} height={22} />
-                            <p className={styles.text}>{regex.exec(companyInfo.instagram_url)![1]}</p>
-
-                    </Link>
+                    <Button btnModel='model8' btnAction='link_blank' href={companyInfo.instagram_url} btnName={regex.exec(companyInfo.instagram_url)![1]} iconElem={{src:instagramIcon, position:'left', width:22}} />
                     : <></>}
             </div>
 

@@ -71,7 +71,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                 <form action={formAction}>
                                     <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
 
-                                    <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconUrl={cartIcon} />
+                                    <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconElem={{ src: cartIcon, position: 'right', width: 35 }} />
 
                                 </form>
                             </section>

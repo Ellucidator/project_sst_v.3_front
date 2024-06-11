@@ -18,32 +18,3 @@
         max-width: 350px;
     }
 }
-
-.divIcon{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    .icon{
-        filter: invert(100%);
-    }
-}
-
-.link{
-    border: 2px solid transparent;
-    padding: 3px;
-    transition: 0.1s;
-
-    &:hover{
-        
-        border-top: 2px solid $tertiary;
-        border-bottom: 2px solid $tertiary;
-        transform: scale(1.02);
-        color: $tertiary;
-        transition: 0.1s;
-        .text{
-            color: $tertiaryLight;
-        }
-    }
-
-}
