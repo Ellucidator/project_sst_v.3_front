@@ -30,18 +30,18 @@ const PagCountServer = ({count,perPage}: Props)=>{
                     if(limit >= pagArray.length){
                         if(i+1>pagArray.length-10){
                             return(
-                                <ButtonActionById buttonName={value.toString()} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
+                                <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
                             )
                         }
                     }
                     else if(i +1 > page -5 && i < limit){
                         return(
-                            <ButtonActionById buttonName={value.toString()} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
+                            <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
                         )
                     }
                 }else if(i < limit){
                     return(
-                        <ButtonActionById buttonName={value.toString()} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
+                        <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1} actionFunction={cookieService.setCookiePage}/>
                     )
                 }
             })}

@@ -1,6 +1,5 @@
 import { Categories } from "@/types/catalogTypes";
 import styles from './styles.module.scss'
-import Link from "next/link";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import CategoriesAndSubList from "../categories-sub-list";

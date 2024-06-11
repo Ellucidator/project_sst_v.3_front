@@ -26,7 +26,7 @@ const FavoritesPage = async () => {
                             return (
                                 <div key={item.Item.id} className={styles.favoritesCard}>
                                     <CardItem item={item.Item} model='horizontal'/>
-                                    <ButtonActionById buttonName="x" actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!} />
+                                    <ButtonActionById buttonAttribute={{ btnName: 'x'}} actionFunction={userService.deleteUserFavorites} idAction={item.Item.id!} />
                                 </div>
                             )
                         })}
