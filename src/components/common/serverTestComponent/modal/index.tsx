@@ -5,25 +5,26 @@ import { cookies } from "next/headers";
 import CategoriesAndSubList from "../categories-sub-list";
 
 type Props = {
-    catalog: Categories[]
+    catalog?: Categories[]
+    cookieName?: 'modal' | 'modal-user'
 }
 
-const ServerModal = async ({ catalog }: Props) => {
-    let classModal = styles.modalBody
-    const cookieControl = cookies().get('modal')?.value
-    if (cookieControl === 'open') classModal = styles.modalBodyOpen
+const ServerModal = async ({ catalog, cookieName = 'modal' }: Props) => {
+    let classModal = cookieName === 'modal' ? styles.modalBody : styles.modalBodyUser
+    const cookieControl = cookies().get(cookieName)?.value
+    if (cookieControl === 'open') classModal = cookieName === 'modal' ? styles.modalBodyOpen : styles.modalBodyUserOpen
 
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
 
         if (cookieControl === 'open') {
-            cookies().set('modal', 'close', {
-                maxAge: 60*5
+            cookies().set(cookieName, 'close', {
+                maxAge: 60 * 5
             })
         } else {
-            cookies().set('modal', 'open', {
-                maxAge: 60*5
+            cookies().set(cookieName, 'open', {
+                maxAge: 60 * 5
             })
         }
     }
@@ -43,19 +44,27 @@ const ServerModal = async ({ catalog }: Props) => {
                 </button>
             </form>
 
-            <div className={classModal}>
-                {classModal === styles.modalBodyOpen ?
-                    <>
-                        <form action={handlerSubmit} className={styles.btnModal}>
-                            <button type="submit" className={styles.btnModal} >X</button>
-                        </form>
+            {cookieName === 'modal' ?
+                <div className={classModal}>
+                    {classModal === styles.modalBodyOpen ?
+                        <>
+                            <form action={handlerSubmit} className={styles.btnModal}>
+                                <button type="submit" className={styles.btnModal} >X</button>
+                            </form>
 
-                        <CategoriesAndSubList categories={catalog} />
-                    </>
-                    : <></>}
-            </div>
-
-            {classModal === styles.modalBodyOpen ?
+                            <CategoriesAndSubList categories={catalog!} />
+                        </>
+                        : <></>}
+                </div>
+                :
+                <div className={classModal}>
+                    {classModal === styles.modalBodyUserOpen ?
+                        <>
+                            
+                        </>
+                        : <></>}
+                </div>}
+            {classModal === styles.modalBodyOpen || classModal === styles.modalBodyUserOpen ?
                 <form action={handlerSubmit}>
                     <button type="submit" className={styles.overlayModal}></button>
                 </form> :

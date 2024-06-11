@@ -12,10 +12,10 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
     const btnAction = cookies().get('sub-open')?.value
     const classCondition: { name: string, open: boolean } = JSON.parse(btnAction ? btnAction : '{"name":"","open":false}')
 
-    const handlerSubmit = async (form: FormData) => {
+    const handlerSubmit = async (category: string) => {
         'use server'
 
-        const category = form.get('category')!.toString()
+        
         if (classCondition.name === category) {
             cookies().set('sub-open', JSON.stringify({ name: category, open: !classCondition.open }),
                 {
@@ -33,15 +33,8 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
             {categories.map((category) => {
                 return (
                     <div key={category.id} className={styles.category}>
-                        <form action={handlerSubmit} >
-                            <button className={styles.categoryBtn} type='submit' >
-                                <input type='hidden' name='category' value={category.name} />
-                                <p className={styles.categoryTittle}>
-                                    {category.name}
-                                </p>
-                                <p className={classCondition.name === category.name && classCondition.open === true ? styles.btnSubActive : styles.btnSub}>⇱</p>
-                            </button>
-                        </form>
+                        <ButtonActionById actionFunction={handlerSubmit} idAction={category.name} buttonAttribute={{ btnName: category.name,arrow:classCondition.name === category.name && classCondition.open === true?'arrowUp':'arrowDown',subTitle:'⇱' ,btnModel:'model6'}} fontSize='large' />
+                        
                         <ul key={`${category.id}`} id={`${category.name}-${category.id}`} 
                         className={classCondition.name === category.name && classCondition.open === true? styles.subCategoryOpen : styles.subCategoryList}>
                             {classCondition.name === category.name && classCondition.open === true?category.SubCategories.map((subCategory) => (
