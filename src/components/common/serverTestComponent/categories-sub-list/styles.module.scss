@@ -1,41 +1,5 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.categoryBtn{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    .categoryTittle {
-        font-weight: bold;
-        font-size: 20px;
-        cursor: pointer;
-        transition: 0.5s;
-    }
-    
-    ///Botão SubCategoty
-    .btnSub{
-        font-weight: bold;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.5s;
-        transform: rotate(-135deg);
-        &:hover {
-            color: $tertiary;
-        }
-    }
-    .btnSubActive{
-        font-weight: bold;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.5s;
-        transform: rotate(45deg);
-        color: $tertiary;
-        &:hover {
-            color: $secondary;
-        }
-    }
-}
-
-///SubCategoty
 .subCategoryList {
     margin-left: 0px;
     margin-bottom: 5px;

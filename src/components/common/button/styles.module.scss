@@ -80,8 +80,6 @@
     border: none;
     
     .btnTextsArrow{
-        display: flex;
-        flex-wrap: nowrap;
         &:hover{
             .title{color: $tertiary;}
             .arrowDown{color: $tertiary;}
@@ -123,6 +121,8 @@
 }
 
 .btnTextsArrow{
+    display: flex;
+    flex-wrap: nowrap;
     .arrowUp{
         margin-left: 15px;
         font-weight: bold;

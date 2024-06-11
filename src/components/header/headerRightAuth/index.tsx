@@ -2,6 +2,7 @@ import Link from "next/link"
 import styles from './styles.module.scss'
 import ModalUser from "./modalUser"
 import { UserPayload } from "@/types/userTypes"
+import ServerModal from "@/components/common/serverTestComponent/modal"
 
 type Props = {
     payload: UserPayload
