@@ -6,21 +6,34 @@ import Image from 'next/image'
 type Props = {
     btnOption?: React.ButtonHTMLAttributes<HTMLButtonElement>
     href?: string
-    btnModel: 'model1' | 'model2' | 'model3' | 'model4' | 'model5'| 'model6'
+    btnModel: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'
     btnWidth?: string
     btnName: string
-    btnAction?: 'link' | 'submit' | 'button'
+    btnAction?: 'link'| 'link_blank' | 'submit' | 'button' | 'static'
     subTitle?: string
-    iconUrl?: string
+    iconElem?: {
+        src: string
+        position: 'left' | 'right'
+        width: number
+    }
 }
 
-const Button = ({ btnOption, btnModel, btnName, btnAction = 'button', href, btnWidth = 'fit-content', subTitle, iconUrl }: Props) => {
-
-    if (btnAction === 'link') {
+const Button = ({ btnOption, btnModel, btnName, btnAction = 'button', href, btnWidth = 'fit-content', subTitle, iconElem }: Props) => {
+    if (btnAction === 'link' || btnAction === 'link_blank') {
         return (
-            <Link style={{ width: btnWidth }} href={href!} className={styles.btn + ' ' + styles[btnModel]} >
-                {btnName}
+            <Link target={btnAction === 'link_blank' ? '_blank' : ''} style={{ width: btnWidth }} href={href!} className={styles.btn + ' ' + styles[btnModel]} >
+                {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
+                <p>{btnName}</p>
+                {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
             </Link>
+        )
+    } else if (btnAction === 'static') {
+        return (
+            <div style={{ width: btnWidth }} className={styles.btn + ' ' + styles[btnModel]} >
+                {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
+                <p>{btnName}</p>
+                {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
+            </div>
         )
     } else {
         return (
@@ -29,6 +42,7 @@ const Button = ({ btnOption, btnModel, btnName, btnAction = 'button', href, btnW
                 className={styles.btn + ' ' + styles[btnModel]}
                 {...btnOption}
             >
+                {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
                 {subTitle ?
                     <div className={styles.btnTexts}>
                         <p className={styles.title}>{btnName}</p>
@@ -36,7 +50,7 @@ const Button = ({ btnOption, btnModel, btnName, btnAction = 'button', href, btnW
                         <p className={styles.subTitle}>{subTitle}</p>
                     </div>
                     : btnName}
-                {iconUrl?<Image src={iconUrl} alt="icon" className={styles.icon} width={35} height={35} />:<></>}
+                {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
             </button>
         )
     }
