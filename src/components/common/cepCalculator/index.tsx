@@ -4,12 +4,12 @@ import styles from './styles.module.scss'
 import { revalidateTag } from 'next/cache'
 import InputQuantity from '../inputQuantity'
 import { CepResponse } from '@/types/cepTypes'
-import Image from 'next/image'
 import Loading from '../loading'
-import Link from 'next/link'
 import { cepCalculator } from '@/services/cepService'
 import ResultCepCalculator from './resultCepCalculator'
 import { Item, ItemCharacteristics } from '@/types/itemsTypes'
+import Input from '../Input-label-components/input&Label'
+import Button from '../button'
 
 type Props = {
     quantityInStock?: number[],
@@ -81,16 +81,8 @@ const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics}: Pro
                     ) : <></>}
 
                     <div className={styles.divInput}>
-                        <label htmlFor="cep">CEP:</label>
-                        <input
-                            className={styles.inputCep}
-                            required
-                            type="number"
-                            name="cep"
-                            id="cep"
-                            placeholder='10000100'
-                        />
-                        <button type="submit" className={styles.btnCep}>Calcular</button>
+                        <Input labelText='CEP:' mode='label&input' inputOptions={{ type: 'number', name: 'cep', id: 'cep', placeholder: '10000100' }} inputColor='dark' direction='row' />
+                        <Button btnAction='submit' btnName='Calcular' btnModel='model3' />
                     </div>
                     <div className={styles.cepResult}>
                         {resultsCepCalculator ? (
