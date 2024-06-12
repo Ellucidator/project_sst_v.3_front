@@ -22,17 +22,6 @@
             gap: 10px;
             width: 45%;
             padding: 15px 20px;
-            .inputTitle{
-                height: 40px;
-                border-radius: 5px;
-                font-size: 20px;
-                padding: 5px;
-                background-color: $primary;
-        
-                &:focus{
-                    outline: 1px solid $tertiary;
-                }
-            }
         
             .inputComment{
                 height: 130px;
