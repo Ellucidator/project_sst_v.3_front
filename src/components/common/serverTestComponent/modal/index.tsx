@@ -4,6 +4,9 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import CategoriesAndSubList from "../categories-sub-list";
 import ButtonActionById from "../buttonActionById";
+import userIcon from '../../../../../public/public/header/user-icon.svg'
+import logoutIcon from '../../../../../public/public/header/box-arrow-left.svg'
+import Button from "../../button";
 
 type Props = {
     catalog?: Categories[]
@@ -15,7 +18,6 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
     let classModal = cookieName === 'modal' ? styles.modalBody : styles.modalBodyUser
     const cookieControl = cookies().get(cookieName)?.value
     if (cookieControl === 'open') classModal = cookieName === 'modal' ? styles.modalBodyOpen : styles.modalBodyUserOpen
-
     const btnAction = async(name: string) => {
         'use server'
         if (cookieControl === 'open') {
@@ -28,9 +30,13 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
             })
         }
     }
+    const handlerLogout = async () => {
+        'use server'
+        cookies().delete('token')
+        cookies().delete(cookieName)
+    }
     const handlerSubmit = async (form: FormData) => {
         'use server'
-
         await btnAction(cookieName)
     }
 
@@ -66,17 +72,22 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                 </>
                 :
                 <>
-                    <ButtonActionById buttonAttribute={{ arrow: 'arrowUp', subTitle: '⇱',btnName: user_name!, btnModel: 'model6', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} />
-                    <div className={classModal}>
-                        {classModal === styles.modalBodyUserOpen ?
+                    <ButtonActionById buttonAttribute={{ arrow:cookieControl === 'open'?'arrowUp':'arrowDown',iconElem:{src:userIcon,position: 'left', width: 25}, subTitle: '⇱',btnName: user_name!, btnModel: 'model9', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
+                    <form action={handlerLogout} className={classModal}>
+                        {cookieControl === 'open' ?
                             <>
-
+                                <Button href="/user/home" btnName="Minha Conta" btnAction="link" btnModel="model6" />
+                                <Button href="/user/my-info" btnName="Minhas Informações" btnAction="link" btnModel="model6" />
+                                <Button href="/user/my-purchases" btnName="Pedidos" btnAction="link" btnModel="model6" />
+                                <Button href="/user/address" btnName="Endereços" btnAction="link" btnModel="model6" />
+                                <Button href="/user/favorites" btnName="Favoritos" btnAction="link" btnModel="model6" />
+                                <Button btnName="Sair" btnAction="submit" btnModel="model6" iconElem={{ src: logoutIcon, position: 'left', width: 22 }} />
                             </>
                             : <></>}
-                    </div>
+                    </form>
                 </>
             }
-            {classModal === styles.modalBodyOpen || classModal === styles.modalBodyUserOpen ?
+            {cookieControl === 'open' ?
                 <form action={handlerSubmit}>
                     <button type="submit" className={styles.overlayModal}></button>
                 </form> :
