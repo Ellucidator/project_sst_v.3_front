@@ -7,8 +7,9 @@ type Props = {
     idAction: number | string
     actionFunction: Function
     fontSize?: string
+    loading?: boolean
 }
-const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, fontSize='medium'}: Props) => {
+const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, fontSize='medium', loading=true}: Props) => {
     let cookiePage = cookies().get('page')?.value
     if (!cookiePage) cookiePage = '1'
 
@@ -28,7 +29,7 @@ const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, font
     }
     return (
         <form action={handlerSubmit} >
-            <Loading model='modelArea' />
+            {loading?<Loading model='modelArea' />:<></>}
             <input hidden name="id" defaultValue={idAction} />
             <Button {...buttonAttribute} btnOption={{style: {fontSize}}} btnModel={btnStyle} btnAction='submit' />
         </form>
