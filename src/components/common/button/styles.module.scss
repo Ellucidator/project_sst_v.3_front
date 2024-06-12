@@ -9,6 +9,7 @@
     padding: 5px 12px;
     border-radius: 2px;
     height: fit-content;
+    gap: 5px;
 }
 
 .btnTexts {
@@ -88,7 +89,7 @@
 
     &:hover {
         color: $tertiary;
-        transform: scale(1.015);
+        transform: scale(1.05);
         transition: 0.1s;
         
     }
@@ -96,11 +97,9 @@
 
 .model7{
     padding: 0px;
-    gap: 5px;
 }
 
 .model8{
-    gap: 5px;
     border: 2px solid transparent;
     border-radius: 0px;
     padding: 3px;
@@ -143,5 +142,27 @@
         transition: 0.5s;
         transform: rotate(-135deg);
 
+    }
+}
+
+.model9 {
+    padding: 10px 15px;
+    background-color: $primaryDark;
+    border-left: 1px solid $tertiaryDark;
+    border-right: 1px solid $tertiaryDark;
+    border-radius: 6px;
+    gap: 15px;
+    .btnTextsArrow{
+        &:hover{
+            .title{color: $tertiary;}
+            .arrowDown{color: $tertiary;}
+        }
+    }
+
+    &:hover {
+        color: $tertiary;
+        transform: scale(1.015);
+        transition: 0.1s;
+        
     }
 }

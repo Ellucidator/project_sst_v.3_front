@@ -6,7 +6,7 @@ import Image from 'next/image'
 export interface NewButton {
     btnOption?: React.ButtonHTMLAttributes<HTMLButtonElement>
     href?: string
-    btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'
+    btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'| 'model9'
     btnWidth?: string
     btnName: string
     btnAction?: 'link'| 'link_blank' | 'submit' | 'button' | 'static'
@@ -24,7 +24,7 @@ const Button = ({ btnOption, btnModel='model1', btnName, btnAction = 'button', h
         return (
             <Link target={btnAction === 'link_blank' ? '_blank' : ''} style={{ width: btnWidth }} href={href!} className={styles.btn + ' ' + styles[btnModel]} >
                 {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
-                <p>{btnName}</p>
+                {btnName}
                 {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
             </Link>
         )
