@@ -33,7 +33,7 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
             {categories.map((category) => {
                 return (
                     <div key={category.id} className={styles.category}>
-                        <ButtonActionById actionFunction={handlerSubmit} idAction={category.name} buttonAttribute={{ btnName: category.name,arrow:classCondition.name === category.name && classCondition.open === true?'arrowUp':'arrowDown',subTitle:'⇱' ,btnModel:'model6'}} fontSize='large' />
+                        <ButtonActionById actionFunction={handlerSubmit} idAction={category.name} buttonAttribute={{ btnName: category.name,arrow:classCondition.name === category.name && classCondition.open === true?'arrowUp':'arrowDown',subTitle:'⇱' ,btnModel:'model6'}} fontSize='large' loading={false} />
                         
                         <ul key={`${category.id}`} id={`${category.name}-${category.id}`} 
                         className={classCondition.name === category.name && classCondition.open === true? styles.subCategoryOpen : styles.subCategoryList}>
