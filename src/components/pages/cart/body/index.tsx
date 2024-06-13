@@ -1,9 +1,9 @@
-import { Item, ItemCharacteristics, ItemPromotion } from '@/types/itemsTypes'
+import { ItemCharacteristics, ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
-import PriceItem from '@/components/common/priceItem'
-import Image from 'next/image'
 import CartTable from './cartTable'
 import CepCalculator from '@/components/common/cepCalculator'
+import Title from '@/components/common/tiltle'
+import Button from '@/components/common/button'
 
 type Props = {
     items: ItemPromotion[] | null
@@ -25,14 +25,14 @@ const CartBody = ({ items }: Props) => {
         total: 0
     }) : { sub_total: 0, total: 0 }
 
-    const itemsCharacteristics:ItemCharacteristics[] =items? items!.map((item)=>{
+    const itemsCharacteristics: ItemCharacteristics[] = items ? items!.map((item) => {
         return item.ItemCharacteristic!
-    }):[]
+    }) : []
 
     return (
         <>
             <div className={`container ${styles.cartBody}`}>
-                <p className={styles.cartTitle}>MEU CARRINHO</p>
+                <Title fontSize="25px" titleText="MEU CARRINHO" />
                 <div className={styles.cartInfo}>
                     <CartTable items={items} />
                     <div className={styles.cartTotal}>
@@ -47,10 +47,9 @@ const CartBody = ({ items }: Props) => {
                                 <p>{resumo.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                             </div>
                         </div>
-                        <button type='submit' className={styles.btnBuy} >
-                            <Image src="/public/common/bag-check.svg" alt="catalog" className={styles.icon} width={35} height={35} />
-                            <p className={styles.subTitle}>FINALIZAR COMPRAS</p>
-                        </button>
+                        <Button btnName='FINALIZAR COMPRA' btnModel='model5' btnAction='submit'
+                            iconElem={{ src: '/public/common/bag-check.svg', position: 'left', width: 35 }}
+                            btnOption={{ style: { padding: '10px 20px', fontSize: '22px' } }} />
                     </div>
                 </div>
                 <div className={styles.cartFrete}>

@@ -59,31 +59,8 @@
                 .resumoItemsTotal {
                     @extend .resumoItems;
                     font-size: x-large;
+                    margin-bottom: 80px;
                 }
-            }
-    
-            .btnBuy {
-    
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: center;
-                align-items: center;
-                gap: 8px;
-                border: 2px solid rgb(2, 100, 10);
-                background-color: rgb(32, 141, 41);
-                border-radius: 5px;
-                padding: 6px 10px;
-                font-size: 28px;
-    
-                .icon {
-                    filter: invert(100%);
-                }
-    
-    
-                .subTitle {
-                    font-size: 20px;
-                }
-    
             }
         }
     }
