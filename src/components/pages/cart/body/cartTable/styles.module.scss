@@ -3,64 +3,82 @@
 
 
 .tableItems {
+    padding: 10px;
     border-radius: 5px;
     width: 100%;
     height: fit-content;
     background-color: $primary;
 
-    .tableTitle {
-        font-size: 20px;
-        font-weight: bold;
+    .tableHeader {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        border-bottom: 1px solid $tertiaryDark;
 
-    }
-
-
-    tr {
-        
-        border-bottom: 1px solid $secondaryDark;
-
-        td {
-            padding: 10px;
+        .tableTitle {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .tableTitle1{
+            @extend .tableTitle;
+            width: 38%;
+        }
+        .tableTitle2{
+            @extend .tableTitle;
+            width: 35%;
+            text-align: center;
+        }
+        .tableTitle3{
+            @extend .tableTitle;
+            flex: 1;
         }
     }
-}
 
-.quantity {
+    .tableBody {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
 
-    .btnQuantity {
-        border-radius: 5px;
-        margin: 0px 8px;
-        padding: 0px 8px;
-        border: 1px solid $secondaryDark;
-        &:hover{
-            background-color: $primaryLight;
+        .tableRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-bottom: 1px solid $tertiaryDark;
+
+            .bannerAndName {
+                width: 50%;
+                display: flex;
+                gap: 10px;
+
+                .cardBanner {
+                    width: 100px;
+                    height: 100px;
+                }
+
+            }
+            .quantity{
+                display: flex;
+                align-items: center;
+                flex: 1;
+                gap: 10px;
+            }
+            .priceAndPromotion {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                .price {
+                    font-size: 20px;
+                }
+                .pricePromotion {
+                    font-size: 15px;
+                    text-decoration: line-through;
+                    color: $tertiaryDark;
+                }
+            }
         }
-    }
-}
-
-.price {
-    font-size: 17px;
-}
-
-.pricePromotion {
-    text-decoration: line-through;
-    color: $secondaryDark;
-    font-size: 15px;
-}
-
-.cardBanner {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-}
-
-.btnDel{
-    padding: 0px 8px;
-    text-align: center;
-    border: 1px solid $secondaryDark;
-    border-radius: 5px;
-
-    &:hover{
-        background-color: $primaryLight;
     }
 }
