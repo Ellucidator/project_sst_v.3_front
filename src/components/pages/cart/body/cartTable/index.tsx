@@ -1,10 +1,8 @@
-'use client'
-import { ItemPromotion, ItemToCar } from '@/types/itemsTypes'
+import { ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
 import Image from 'next/image'
-import Cookies from 'js-cookie';
-import { MouseEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import ButtonActionById from '@/components/common/serverTestComponent/buttonActionById';
+import { cartServices } from '@/services/cartService';
 
 
 type Props = {
@@ -12,64 +10,39 @@ type Props = {
 }
 
 const CartTable = ({ items }: Props) => {
-    const router = useRouter()
-    async function updateQuantity(ev: MouseEvent<HTMLButtonElement>, item: ItemPromotion) {
-        ev.preventDefault()
-        const btnValue = ev.currentTarget.innerText
-        
-        const cookieValidation = Cookies.get('car')
-        if(!cookieValidation)return
-
-        const carCookie:ItemToCar[] = JSON.parse(cookieValidation)
-
-        const itemVerify = carCookie.find((elem)=> elem.id === item.id)
-        
-
-        if(btnValue === '-')itemVerify!.quantity = itemVerify!.quantity - 1
-        else if(btnValue === '+')itemVerify!.quantity = itemVerify!.quantity + 1
-        else if(btnValue === 'x')itemVerify!.quantity = 0
-
-        if(itemVerify!.quantity > 0){
-            if(itemVerify!.quantity > item.in_stock)return
-
-            Cookies.set('car', JSON.stringify(carCookie))
-
-        }else{
-            Cookies.set('car', JSON.stringify(carCookie.filter((elem)=> elem.id !== item.id)))
-        }
-        router.refresh()
-    }
-
     
 
     return (
 
-        <table className={styles.tableItems}>
-            <thead>
-                <tr>
-                    <td className={styles.tableTitle}>Produtos</td>
-                    <td className={styles.tableTitle}>Qtd</td>
-                    <td className={styles.tableTitle}>Preço</td>
-                </tr>
-            </thead>
-            <tbody>
+        <div className={styles.tableItems}>
+            <section className={styles.tableHeader}>
+                    <p className={styles.tableTitle1}>Produtos</p>
+                    <p className={styles.tableTitle2}>Qtd</p>
+                    <p className={styles.tableTitle3}>Preço</p>
+            </section>
+            <section className={styles.tableBody}>
                 {
                     items ? items.map((item) => {
                         return (
                             <>
-                                <tr key={item.id}>
-                                    <td className='flex gap-5'>
+                                <div className={styles.tableRow}  key={item.id}>
+                                    <section className={styles.bannerAndName}>
                                         <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
                                         <p>{item.name}</p>
-                                    </td>
+                                    </section>
 
-                                    <td className={styles.quantity}>
-                                        <button className={styles.btnQuantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>-</button>
+                                    <section className={styles.quantity}>
+                                        <ButtonActionById 
+                                            buttonAttribute={{btnName:'-', btnModel:'model4',btnOption:{style:{width:'20px',height:'20px'}}}} 
+                                            actionFunction={cartServices.getCookiesCart} idAction={`${item.id}/-/${item.in_stock}`}  />
+
                                         {item.in_stock === 0 ? 'Indisponível' : item.ItemCharacteristic?.quantity}
-                                        <button className={styles.btnQuantity} disabled={item.in_stock === item.ItemCharacteristic?.quantity} onClick={async(ev)=>{await updateQuantity(ev,item)}}>+</button>
-                                    </td>
+                                        <ButtonActionById
+                                            buttonAttribute={{btnName:'+', btnModel:'model4', btnOption:{style:{width:'20px',height:'20px'}}}} 
+                                            actionFunction={cartServices.getCookiesCart} idAction={`${item.id}/+/${item.in_stock}`}  />
+                                    </section>
                                     
-                                    <td>
+                                    <section className={styles.priceAndPromotion}>
                                         {item.promotion ? (
                                             <>
                                                 <p className={styles.pricePromotion}>{(item.price * item.ItemCharacteristic?.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
@@ -78,17 +51,19 @@ const CartTable = ({ items }: Props) => {
                                         ) : (
                                             <p className={styles.price}>{(item.price * item.ItemCharacteristic?.quantity!).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                         )}
-                                    </td>
-                                    <td>
-                                        <button className={styles.btnDel} onClick={async(ev)=>{await updateQuantity(ev,item)}}>x</button>
-                                    </td>
-                                </tr>
+                                    </section>
+                                    <section>
+                                    <ButtonActionById 
+                                            buttonAttribute={{btnName:'x', btnModel:'model4',btnOption:{style:{width:'20px',height:'20px'}}}} 
+                                            actionFunction={cartServices.getCookiesCart} idAction={`${item.id}/x/${item.in_stock}`}  />
+                                    </section>
+                                </div>
                             </>
                         )
                     }) : null
                 }
-            </tbody>
-        </table>
+            </section>
+        </div>
 
     )
 }
