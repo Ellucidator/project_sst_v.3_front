@@ -32,7 +32,7 @@ const Button = ({ btnOption, btnModel='model1', btnName, btnAction = 'button', h
         return (
             <div style={{ width: btnWidth }} className={styles.btn + ' ' + styles[btnModel]} >
                 {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
-                <p>{btnName}</p>
+                {btnName}
                 {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
             </div>
         )

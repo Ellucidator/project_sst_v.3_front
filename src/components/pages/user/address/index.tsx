@@ -26,14 +26,21 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                     {
                         activeAddress ?
                             <div className={styles.divAddressItem}>
-                                <p className={styles.divAddressActive}>Endereço Ativo</p>
+                                <div>
+                                    <p className={styles.divAddressActive}>Endereço Ativo</p>
 
-                                <p>{`Destinatario: ${activeAddress.receiver_name}`}</p>
-                                <p>{`${activeAddress.street} - ${activeAddress.neighborhood} - nº${activeAddress.house_number}`}</p>
-                                <p>{`${activeAddress.complement?activeAddress.complement:''} - ${activeAddress.reference_point?activeAddress.reference_point:''}`}</p>
-                                <p>{`${activeAddress.city}, ${activeAddress.state}, ${activeAddress.zip_code}`}</p>
-                                <p>{`Telefone: ${activeAddress.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
+                                    <p>{`Destinatario: ${activeAddress.receiver_name}`}</p>
+                                    <p>{`${activeAddress.street} - ${activeAddress.neighborhood} - nº${activeAddress.house_number}`}</p>
+                                    <p>{`${activeAddress.complement ? activeAddress.complement : ''} - ${activeAddress.reference_point ? activeAddress.reference_point : ''}`}</p>
+                                    <p>{`${activeAddress.city}, ${activeAddress.state}, ${activeAddress.zip_code}`}</p>
+                                    <p>{`Telefone: ${activeAddress.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
+                                </div>
+                                <div className={styles.divButtons}>
+                                        <Button href={`/user/edit-address/${activeAddress.id}`} btnModel='model3' btnAction='link' btnName='EDITAR' />
+                                        <ButtonActionById  buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model3' }} idAction={activeAddress.id!} actionFunction={userService.deleteUserAddress} />
+                                    </div>
                             </div>
+
                             : <></>
                     }
                     {
@@ -51,7 +58,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                                     <div className={styles.divButtons}>
                                         <ButtonActionById buttonAttribute={{ btnName: 'ATIVAR', btnModel: 'model1' }} idAction={address.id!} actionFunction={userService.activeUserAddress} />
                                         <Button href={`/user/edit-address/${address.id}`} btnModel='model1' btnAction='link' btnName='EDITAR' />
-                                        <ButtonActionById  buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model1' }} idAction={address.id!} actionFunction={userService.deleteUserAddress} />
+                                        <ButtonActionById buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model1' }} idAction={address.id!} actionFunction={userService.deleteUserAddress} />
                                     </div>
                                 </div>
                             )
