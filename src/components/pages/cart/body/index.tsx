@@ -4,6 +4,9 @@ import CartTable from './cartTable'
 import CepCalculator from '@/components/common/cepCalculator'
 import Title from '@/components/common/tiltle'
 import Button from '@/components/common/button'
+import { cookieService } from '@/services/cookieService'
+import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 type Props = {
     items: ItemPromotion[] | null
@@ -29,13 +32,23 @@ const CartBody = ({ items }: Props) => {
         return item.ItemCharacteristic!
     }) : []
 
+    const handlerSubmit = async (form: FormData) => {
+        'use server'
+
+        const verify = await cookieService.verifySession()
+            return redirect('/login')
+        }
+        
+        return redirect('/checkout')
+    }
+
     return (
         <>
             <div className={`container ${styles.cartBody}`}>
                 <Title fontSize="25px" titleText="MEU CARRINHO" />
                 <div className={styles.cartInfo}>
                     <CartTable items={items} />
-                    <div className={styles.cartTotal}>
+                    <form className={styles.cartTotal}>
                         <div className={styles.resumo}>
                             <p className={styles.resumoTitle}>RESUMO</p>
                             <div className={styles.resumoItems}>
@@ -50,7 +63,7 @@ const CartBody = ({ items }: Props) => {
                         <Button btnName='FINALIZAR COMPRA' btnModel='model5' btnAction='submit'
                             iconElem={{ src: '/public/common/bag-check.svg', position: 'left', width: 35 }}
                             btnOption={{ style: { padding: '10px 20px', fontSize: '22px' } }} />
-                    </div>
+                    </form>
                     
                 </div>
                 <div className={styles.cartFrete}>
