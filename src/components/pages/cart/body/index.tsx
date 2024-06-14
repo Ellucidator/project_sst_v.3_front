@@ -36,10 +36,16 @@ const CartBody = ({ items }: Props) => {
         'use server'
 
         const verify = await cookieService.verifySession()
-            return redirect('/login')
+
+        if(!verify){
+            cookies().set('redirect','/cart/checkout', {
+                maxAge: 60 * 60
+            })
+
+            redirect('/form/login')
         }
         
-        return redirect('/checkout')
+        redirect('/cart/checkout')
     }
 
     return (
@@ -48,7 +54,7 @@ const CartBody = ({ items }: Props) => {
                 <Title fontSize="25px" titleText="MEU CARRINHO" />
                 <div className={styles.cartInfo}>
                     <CartTable items={items} />
-                    <form className={styles.cartTotal}>
+                    <form action={handlerSubmit} className={styles.cartTotal}>
                         <div className={styles.resumo}>
                             <p className={styles.resumoTitle}>RESUMO</p>
                             <div className={styles.resumoItems}>

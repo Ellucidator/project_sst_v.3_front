@@ -26,7 +26,11 @@ const Login = async () => {
             const session = await cookieService.setSession(login, password);
 
             if (!session.error) {
-                redirect('/user/home')
+                const redirectCookie = cookies().get('redirect')?.value
+                if(redirectCookie) redirect(redirectCookie)
+                else redirect('/user/home')
+
+                
             } else {
                 cookies().set('login', JSON.stringify(session), {
                     maxAge: 0
