@@ -1,0 +1,10 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.container{
+    padding: 10px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: $primaryLight;
+    width: 90%;
+}
