@@ -51,6 +51,7 @@ const CartBody = ({ items }: Props) => {
                             iconElem={{ src: '/public/common/bag-check.svg', position: 'left', width: 35 }}
                             btnOption={{ style: { padding: '10px 20px', fontSize: '22px' } }} />
                     </div>
+                    
                 </div>
                 <div className={styles.cartFrete}>
                     <CepCalculator itemsCharacteristics={itemsCharacteristics} />
