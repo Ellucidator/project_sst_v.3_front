@@ -1,10 +1,4 @@
-@import '../../../../styles/colors/colors.module.scss';
-
-.pageItem {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+@import '../../../../../styles/colors/colors.module.scss';
 
     .itemContainer {
         padding-top: 20px;
@@ -80,7 +74,7 @@
         .sectionSecond {
             align-self: center;
             display: flex;
-            width: 90%;
+            width: 100%;
             justify-content: space-between;
             margin-top: 50px;
 
@@ -93,15 +87,14 @@
 
         .itemDescription {
             margin: 70px 0px;
-            width: 90%;
+            width: 100%;
             align-self: center;
         }
 
         .avaliations{
-            width: 90%;
+            width: 100%;
             align-self: center;
             margin-bottom: 50px
         }
 
     }
-}

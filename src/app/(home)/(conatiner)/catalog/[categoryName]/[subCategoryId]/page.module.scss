@@ -1,13 +1,7 @@
-@import '../../../../../styles/colors/colors.module.scss';
+@import '../../../../../../styles/colors/colors.module.scss';
 
 
-    .catalogContainer {
-        display: flex;
-        flex-wrap: nowrap;
-        background-color: $primaryLight;
-        min-height: 120vh;
-        padding: 10px;    
-    
+
         .catalogOptions {
             width: 18%;
             min-width: 250px;
@@ -47,4 +41,3 @@
                 }
             }
         }
-    }

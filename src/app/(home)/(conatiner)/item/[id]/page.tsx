@@ -14,8 +14,7 @@ import ButtonReturn from '@/components/common/btnReturn'
 import catalogServerService from '@/services/catalogServerService'
 import Title from '@/components/common/tiltle'
 import Button from '@/components/common/button'
-import cartIcon from '../../../../../public/public/common/cart-plus.svg'
-import { cookies } from 'next/headers'
+import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
 
 
 
@@ -47,8 +46,8 @@ export default async function Item({ params }: { params: { id: string } }) {
     }
 
     return (
-        <div className={styles.pageItem}>
-            <div className={`container ${styles.itemContainer}`}>
+        <>
+            <div className={` ${styles.itemContainer}`}>
                 <ButtonReturn />
                 <p className={styles.titleItem}>{item.name}</p>
                 <div className={styles.cardItem}>
@@ -95,6 +94,6 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <AvaliationsItem item_id={item.id} user_id={1} avaliation={userAvaliation} allAvaliation={avaliations}/>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

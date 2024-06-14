@@ -42,7 +42,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
 
     return (
 
-        <div className={`container ${styles.catalogContainer}`}>
+        <>
 
             <div className={styles.catalogOptions}>
                 <TagsFilterServ tags={tags} subCategoryId={params.subCategoryId} />
@@ -64,7 +64,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 </form>
 
                 {catalog ? (
-                    <Container titleModel='model3' title={catalog.name}>
+                    <Container titleModel='model3' title={catalog.name} justifyContent='space-between'>
                         {catalog.Items ? (
                             catalog.Items.map(item => (
                                 <CardItem key={item.id} item={item} />
@@ -78,6 +78,6 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 )}
                 <PagCountServer count={catalog.countItems!} perPage={6} />
             </div>
-        </div>
+        </>
     )
 }
