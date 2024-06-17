@@ -1,38 +1,25 @@
 import styles from './styles.module.scss'
-import { Item, ItemFull, ItemPromotion } from '@/types/itemsTypes';
 
 type Props = {
-    item: ItemPromotion | Item | ItemFull
+    price: number
+    pricePromotion?: number
+    model?: 'model1' | 'model2'
 }
 
-export const PriceItem = ({ item }: Props) => {
-
-    const itemP = item.promotion ? (item as ItemPromotion) : undefined
+export const PriceItem = ({ price, pricePromotion, model = 'model1' }: Props) => {
 
     return (
-        <>
-            {
-                itemP ? (
-                        <div className={styles.priceContainer}>
-                            <p className={styles.pricePromotion}>{
-                                `${itemP.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
-                            }
-                            </p>
-                            <p className={styles.price}>{
-                                `${ itemP.ItemPromotion.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
-                            }
-                            </p>
-                        </div>
-                ) : (
-                    <div className={styles.priceContainer}>
-                        <p className={styles.price}>
-                            {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                        </p>
-                    </div>
-                )
-            }
-
-        </>
+        <div className={`${styles.priceContainer} ${styles[model]}`}>
+            <p className={pricePromotion? styles.pricePromotion : styles.price}>
+                {`${price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+            </p>
+            {pricePromotion ?
+                <p className={styles.price}>
+                    {`${pricePromotion!.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+                </p>
+                :
+                <></>}
+        </div>
     )
 }
 
