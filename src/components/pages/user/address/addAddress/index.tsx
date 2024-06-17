@@ -78,28 +78,38 @@ const AddressUpdate = async ({ addressId }: Props) => {
             <form action={handlerSubmit} className={styles.formAddress}>
                 <Loading model='modelArea' />
                 <div className={styles.divInput}>
-                    <Input divWidth='55%' inputOptions={{type:'text',placeholder:'Nome',name:'receiver_name',required:true,defaultValue:addressValue.receiver_name}}/>
+                    <Input divWidth='55%' 
+                        inputOptions={{type:'text',placeholder:'Nome',name:'receiver_name',required:true,defaultValue:addressValue.receiver_name}}/>
 
-                    <Input inputOptions={{type:'number',placeholder:'Telefone',name:'phone_number',required:true,defaultValue:parseInt(addressValue.phone_number)}}/>
+                    <Input 
+                        inputOptions={{type:'number',placeholder:'Telefone',name:'phone_number',required:true,defaultValue:parseInt(addressValue.phone_number)}}/>
                 </div>
                 <div className={styles.divInput} >
-                    <Input divWidth='35%' inputOptions={{type:'number',placeholder:'CEP',name:'zip_code',required:true,defaultValue:addressValue.zip_code?addressValue.zip_code:''}}/>
+                    <Input divWidth='35%' 
+                        inputOptions={{type:'number',placeholder:'CEP',name:'zip_code',required:true,defaultValue:addressValue.zip_code?addressValue.zip_code:''}}/>
 
-                    <Input divWidth='10%' inputOptions={{type:'text',placeholder:'Estado',name:'state',required:true,defaultValue:addressValue.state}}/>
+                    <Input divWidth='10%' 
+                        inputOptions={{type:'text',placeholder:'Estado',name:'state',required:true,defaultValue:addressValue.state}}/>
 
-                    <Input inputOptions={{type:'text',placeholder:'Cidade',name:'city',required:true,defaultValue:addressValue.city}}/>
+                    <Input 
+                        inputOptions={{type:'text',placeholder:'Cidade',name:'city',required:true,defaultValue:addressValue.city}}/>
                 </div>
                 <div className={styles.divInput}>
-                    <Input inputOptions={{type:'text',placeholder:'Rua',name:'street',required:true,defaultValue:addressValue.street}}/>
+                    <Input 
+                        inputOptions={{type:'text',placeholder:'Rua',name:'street',required:true,defaultValue:addressValue.street}}/>
 
-                    <Input divWidth='12%' inputOptions={{type:'text',placeholder:'Número',name:'house_number',required:true,defaultValue:addressValue.house_number}}/>
+                    <Input divWidth='12%' 
+                        inputOptions={{type:'text',placeholder:'Número',name:'house_number',required:true,defaultValue:addressValue.house_number}}/>
 
-                    <Input divWidth='30%' inputOptions={{type:'text',placeholder:'Bairro',name:'neighborhood',required:true,defaultValue:addressValue.neighborhood}}/>
+                    <Input divWidth='30%' 
+                        inputOptions={{type:'text',placeholder:'Bairro',name:'neighborhood',required:true,defaultValue:addressValue.neighborhood}}/>
                 </div>
                 <div className={styles.divInput}>
-                    <Input divWidth='25%' inputOptions={{type:'text',placeholder:'Complemento',name:'complement',required:false,defaultValue:addressValue.complement}}/>
+                    <Input divWidth='25%' 
+                        inputOptions={{type:'text',placeholder:'Complemento',name:'complement',required:false,defaultValue:addressValue.complement}}/>
 
-                    <Input inputOptions={{type:'text',placeholder:'Ponto de referência',name:'reference_point',required:false,defaultValue:addressValue.reference_point}}/>
+                    <Input 
+                        inputOptions={{type:'text',placeholder:'Ponto de referência',name:'reference_point',required:false,defaultValue:addressValue.reference_point}}/>
                 </div>
 
                 <Button btnModel='model2' btnName='SALVAR' btnAction='submit' btnWidth='100%'/>

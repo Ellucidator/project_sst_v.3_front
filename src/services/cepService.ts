@@ -3,7 +3,7 @@ import { ItemCharacteristics } from "@/types/itemsTypes"
 
 
 
-export async function cepCalculator(cep:number,itemCharacteristics:ItemCharacteristics[]) {
+export async function cepCalculator(cep:string,itemCharacteristics:ItemCharacteristics[]) {
     const verify = itemCharacteristics.every((item)=>{
         return (item.height>0 && 
                 item.insurance_value>0&& 

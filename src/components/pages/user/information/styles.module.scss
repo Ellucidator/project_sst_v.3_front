@@ -16,10 +16,9 @@
     gap: 20px;
 
     .inputsContainer{
-        width: 100%;
-        
-        justify-content: space-between;
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
     }
 }
