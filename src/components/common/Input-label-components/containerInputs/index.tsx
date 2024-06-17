@@ -1,52 +1,46 @@
-import Input from '../input&Label'
+import Input, { InputAttributes } from '../input&Label'
 import styles from './styles.module.scss'
 
 
-export interface InputsContainerArgs{
-    divWidth?: string
-    inputOptions?: React.InputHTMLAttributes<HTMLInputElement>
-    labelOptions?: React.LabelHTMLAttributes<HTMLLabelElement>
-    labelText?: string
+interface InputContainerAttributes {
+    containerOptions?: React.HTMLAttributes<HTMLDivElement>
+    divArgs: InputAttributes[]
+
 }
 type Props = {
-    containerType?: 'Input' | 'InputAndLabel'
-    containerArgs: InputsContainerArgs[]
-    containerOptions?: React.HTMLAttributes<HTMLDivElement>
+    containerType?: 'input' | 'label&input'
+    containerArgs: InputContainerAttributes[]
+    model?: 'light' | 'dark'
 }
 
-const InputsContainer =({containerArgs,containerOptions,containerType}:Props)=>{
+const InputsContainer = ({ containerType = 'input', containerArgs, model = 'light' }: Props) => {
 
-    if(containerType === 'InputAndLabel'){
-        return (
-            <div {...containerOptions} className={styles.inputsContainer + ' ' + containerOptions?.className}>
-                {
-                    containerArgs.map((item,index)=>{
-                        return (
-                            <Input
-                                key={index}
-                                divWidth={item?.divWidth}
-                                inputOptions={item?.inputOptions}
-                                labelOptions={item?.labelOptions}
-                                labelText={item?.labelText}
-                            />
-                        )
-                    })
-                }
-            </div>
-        )
-    }else{
-        return (
-            <div {...containerOptions} className={styles.inputsContainer + ' ' + containerOptions?.className}>
-                {
-                    containerArgs.map((item,index)=>{
-                        return (
-                            <Input mode='input' key={index} inputOptions={item?.inputOptions}/>
-                        )
-                    })
-                }
-            </div>
-        )
-    }
+    return (
+        <>
+            {
+                containerArgs.map((di) => {
+                    return (
+                        <>
+                            {
+                                di.divArgs.length > 1 ?
+                                    <div {...di.containerOptions} className={styles.containerDiv}>
+                                        {
+                                            di.divArgs.map((inp) => {
+                                                return (
+                                                    <Input mode={containerType} {...inp} inputColor={model} />
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    : <Input mode={containerType} {...di.divArgs[0]} inputColor={model} />
+                            }
+                        </>
+                    )
+                })
+            }
+        </>
+    )
+
 }
 
 export default InputsContainer
