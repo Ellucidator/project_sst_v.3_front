@@ -29,7 +29,7 @@ export const CardItem = ({ item, model='vertical', sizeImgModelH='180px' }: Prop
                 <p className={styles.name}>{item.name}</p>
             </div>
 
-            <PriceItem item={item} />
+            <PriceItem price={item.price} pricePromotion={item.promotion? (item as ItemPromotion).ItemPromotion.price : undefined}/>
 
         </Link>
 

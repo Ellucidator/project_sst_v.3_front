@@ -66,7 +66,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                             </section>
 
                             <section className={styles.sectionBuy}>
-                                <PriceItem item={item} />
+                                <PriceItem  price={item.price} pricePromotion={item.promotion? item.ItemPromotion.price : undefined} />
                                 <form action={formAction}>
                                     <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
 

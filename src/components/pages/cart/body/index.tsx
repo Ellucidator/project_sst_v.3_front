@@ -73,7 +73,7 @@ const CartBody = ({ items }: Props) => {
                     
                 </div>
                 <div className={styles.cartFrete}>
-                    <CepCalculator itemsCharacteristics={itemsCharacteristics} />
+                    <CepCalculator type='multi' itemsCharacteristics={itemsCharacteristics} />
                 </div>
             </div>
         </>
