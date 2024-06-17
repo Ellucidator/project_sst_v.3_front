@@ -1,7 +1,9 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.inputsContainer{
-    justify-content: space-between;
+.containerDiv{
     display: flex;
-    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    gap: 2px;
 }
