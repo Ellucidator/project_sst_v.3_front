@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation'
 import Button from '@/components/common/button'
 import CepCalculator from '@/components/common/cepCalculator'
 import CartTable from '@/components/pages/cart/cartTable'
+import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 
 interface Resumo {
     sub_total: number
@@ -48,6 +49,7 @@ export default async function Cart() {
     return (
         <>
             <div className={`container ${styles.cartBody}`}>
+                <ButtonReturn/>
                 <Title model='model1' fontSize="25px" titleText="MEU CARRINHO" />
                 <div className={styles.cartInfo}>
                     <CartTable items={items} />

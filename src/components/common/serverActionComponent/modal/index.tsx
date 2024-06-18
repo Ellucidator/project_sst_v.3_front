@@ -72,7 +72,8 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                 </>
                 :
                 <>
-                    <ButtonActionById buttonAttribute={{ arrow:cookieControl === 'open'?'arrowUp':'arrowDown',iconElem:{src:userIcon,position: 'left', width: 25}, subTitle: '⇱',btnName: user_name!, btnModel: 'model9', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
+                    <ButtonActionById buttonAttribute={{ arrow:cookieControl === 'open'?'arrowUp':'arrowDown',
+                        iconElem:{src:userIcon,position: 'left', width: 25}, subTitle: '⇱',btnName: user_name!, btnModel: 'model9', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
                     <form action={handlerLogout} className={classModal}>
                         {cookieControl === 'open' ?
                             <>
