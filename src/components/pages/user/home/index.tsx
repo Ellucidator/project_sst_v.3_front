@@ -1,11 +1,10 @@
-import { Favorites, UserFavorite, UserPayload } from '@/types/userTypes'
+import { Favorites, UserPayload } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { Purchase } from '@/types/purchaseTypes'
-import Image from 'next/image'
-import CardPurchase from '@/components/common/cardPurchase'
-import CardItem from '@/components/common/cardItem'
-import Title from '@/components/common/tiltle'
+import CardItem from '@/components/common/cards/cardItem'
 import Container from '@/components/common/container'
+import Title from '@/components/common/texts/tiltle'
+import CardPurchase from '@/components/common/cards/cardPurchase'
 
 type Props = {
     user: UserPayload

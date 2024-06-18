@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { cookieService } from "@/services/cookieService";
 import HeaderRightGeneric from "./headerRightGeneric";
-import InputSearch from "../common/inputSearch";
+import InputSearch from "./inputSearch";
 import { cookies } from "next/headers";
 import { ItemToCar } from "@/types/itemsTypes";
-import ServerModal from "../common/serverTestComponent/modal";
+import ServerModal from "../common/serverActionComponent/modal";
 
 
 const HeaderPrimary = async () => {

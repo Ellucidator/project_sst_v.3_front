@@ -2,16 +2,16 @@ import Image from "next/image";
 import styles from './page.module.scss'
 import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
-import SlideSection from "@/components/common/slideSection";
-import CardItem from "@/components/common/cardItem";
-import CategoryCard from "@/components/common/categoryCard";
+import CardItem from "@/components/common/cards/cardItem";
 import imgBanner1 from '../../../public/public/home/categoryBanner1.png'
 import imgBanner2 from '../../../public/public/home/categoryBanner2.png'
-import Title from "@/components/common/tiltle";
 import Container from "@/components/common/container";
+import Title from "@/components/common/texts/tiltle";
+import SlideSection from "@/components/common/clientOnlyComponents/slideSection";
+import CategoryCard from "@/components/common/cards/categoryCard";
 export default async function Home() {
 
-  const [promotionFeature,catalog,newestsItens,featuredItems]= await Promise.all([
+  const [promotionFeature, catalog, newestsItens, featuredItems] = await Promise.all([
     catalogService.getFeaturedPromotion(),
     catalogService.getCatalog(),
     catalogService.getNewestsItems(),
@@ -32,7 +32,7 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <Title fontSize="25px" titleText={promotionFeature.name}/>
+          <Title fontSize="25px" titleText={promotionFeature.name} />
           <SlideSection allItems={promotionFeature.Items} perPage={6} />
         </section>
 
@@ -44,16 +44,17 @@ export default async function Home() {
         </section>
 
         <section className={`container ${styles.slide}`}>
-          <Title fontSize="25px" titleText="Produtos novos"/>
-          <SlideSection allItems={newestsItens} perPage={6}  />
+          <Title fontSize="25px" titleText="Produtos novos" />
+          <SlideSection allItems={newestsItens} perPage={6} />
         </section>
 
-        <Container title="Produtos em destaque" titleModel="model5" model="model2">
-            {featuredItems.map((item) => {
-              return (
-                <CardItem key={item.id} item={item} />
-              )
-            })}
+        <Container title={{ titleText: "Produtos em destaque", model: "model5", width: "100%", fontSize: "25px" }}
+          model="model2">
+          {featuredItems.map((item) => {
+            return (
+              <CardItem key={item.id} item={item} />
+            )
+          })}
         </Container>
 
       </div>

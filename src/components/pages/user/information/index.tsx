@@ -2,9 +2,9 @@ import { UserInfo } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import Input from '@/components/common/Input-label-components/input&Label'
-import Title from '@/components/common/tiltle'
+import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
-import Loading from '@/components/common/loading'
+import Loading from '@/components/common/clientOnlyComponents/loading'
 
 
 
@@ -50,7 +50,7 @@ const UserInformation = async () => {
 
     return (
         <>
-            <Title titleText='Minhas Informações' model='model5' fontSize='25px' />
+            <Title width='100%' titleText='Minhas Informações' model='model5' fontSize='25px' />
 
             <form action={handlerSubmit} className={styles.formInformation}>
                 <Loading model='modelArea' />

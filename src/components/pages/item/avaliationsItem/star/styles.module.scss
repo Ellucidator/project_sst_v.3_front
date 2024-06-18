@@ -1,0 +1,15 @@
+
+.stars{
+    align-self: flex-end;
+    margin: 10px 0px;
+    .listStars{
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 5px;
+
+
+        .starOff{
+            filter: brightness(0) saturate(100%) invert(100%);
+        }
+    }
+}

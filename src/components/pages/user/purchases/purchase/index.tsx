@@ -1,10 +1,10 @@
 import { userService } from '@/services/userService'
 import styles from './styles.module.scss'
-import PurchaseInfo from '@/components/common/cardPurchase/purchaseInfo'
 import Image from 'next/image'
 import { revalidateTag } from 'next/cache'
-import ButtonReturn from '@/components/common/btnReturn'
-import Title from '@/components/common/tiltle'
+import Title from '@/components/common/texts/tiltle';
+import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
+import PurchaseInfo from '@/components/common/cards/cardPurchase/purchaseInfo';
 
 type Props = {
     purchaseId: string

@@ -1,6 +1,5 @@
 
 import AddressUpdate from '@/components/pages/user/address/addAddress'
-import styles from './page.module.scss'
 
 import PurchasePage from '@/components/pages/user/purchases/purchase'
 

@@ -1,0 +1,13 @@
+@import '../../../styles/colors/colors.module.scss';
+
+.search{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex: content;    
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    background-color: $primaryLight;
+    border-radius: 5px;
+    padding: 5px 5px;
+}

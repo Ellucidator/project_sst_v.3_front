@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import Input from '@/components/common/Input-label-components/input&Label';
 import Button from '@/components/common/button';
-import Loading from '@/components/common/loading';
+import Loading from '@/components/common/clientOnlyComponents/loading';
 
 const Login = async () => {
     const session = await cookieService.verifySession();

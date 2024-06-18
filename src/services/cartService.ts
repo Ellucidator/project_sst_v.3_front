@@ -1,7 +1,7 @@
 import { ItemToCar } from "@/types/itemsTypes"
 import { cookies } from "next/headers"
 
-async function getCookiesCart(value: string) {
+async function updateCart(value: string) {
     'use server'
     const [itemId, btnValue, inStock] = value.split('/')
 
@@ -28,5 +28,5 @@ async function getCookiesCart(value: string) {
 }
 
 export const cartServices = {
-    getCookiesCart
+    updateCart
 }

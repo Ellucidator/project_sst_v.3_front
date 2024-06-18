@@ -7,11 +7,9 @@ import { userService } from '@/services/userService'
 import UserAddressPage from '@/components/pages/user/address'
 import UserPurchasesPage from '@/components/pages/user/purchases'
 import FavoritesPage from '@/components/pages/user/favorites'
-import { cookies } from 'next/headers'
 import { Purchases } from '@/types/purchaseTypes'
 import UserInformation from '@/components/pages/user/information'
 import { redirect } from 'next/navigation'
-import { revalidateTag } from 'next/cache'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {

@@ -1,9 +1,8 @@
 import { UserAddress } from '@/types/userTypes'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
-import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
-import Link from 'next/link'
-import Title from '@/components/common/tiltle'
+import ButtonActionById from '../../../common/serverActionComponent/buttonActionById'
+import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 
 type Props = {
@@ -16,7 +15,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
     return (
         <>
             <div className={styles.divAddress}>
-                <Title fontSize="25px" model='model5' titleText="Endereços" />
+                <Title width='100%' fontSize="25px" model='model5' titleText="Endereços" />
 
                 {userAddress.length < 6 ?
                     <Button href="/user/edit-address/0" btnModel='model2' btnAction='link' btnName='Adicionar Endereço' /> :

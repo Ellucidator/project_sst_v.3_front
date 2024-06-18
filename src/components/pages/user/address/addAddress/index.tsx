@@ -1,13 +1,13 @@
-import ButtonReturn from '@/components/common/btnReturn'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import { UserAddress } from '@/types/userTypes'
 import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
-import Title from '@/components/common/tiltle'
+import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 import Input from '@/components/common/Input-label-components/input&Label'
-import Loading from '@/components/common/loading'
+import Loading from '@/components/common/clientOnlyComponents/loading'
+import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
 
 type Props = {
     addressId: string
@@ -73,7 +73,7 @@ const AddressUpdate = async ({ addressId }: Props) => {
     return (
         <>  
             <ButtonReturn />
-            <Title fontSize="25px" model='model5' titleText="Novo endereço" />
+            <Title width='100%' fontSize="25px" model='model5' titleText="Novo endereço" />
             
             <form action={handlerSubmit} className={styles.formAddress}>
                 <Loading model='modelArea' />

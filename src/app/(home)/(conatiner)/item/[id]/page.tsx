@@ -1,20 +1,20 @@
 
 import { catalogService } from '@/services/catalogService'
 import styles from './page.module.scss'
-import SlideSectionItem from '@/components/common/slideSectionItem'
-import PriceItem from '@/components/common/priceItem'
+import SlideSectionItem from '@/components/pages/item/slideSectionItem'
+import PriceItem from '@/components/common/texts/priceItem'
 import { cookieService } from '@/services/cookieService'
-import InputQuantity from '@/components/common/inputQuantity'
+import InputQuantity from '@/components/common/cepCalculator/inputQuantity'
 import CepCalculator from '@/components/common/cepCalculator'
-import SlideSection from '@/components/common/slideSection'
-import DescriptionList from '@/components/common/descriptionList'
-import AvaliationsItem from '@/components/common/avaliationsItem'
+import DescriptionList from '@/components/pages/item/descriptionList'
+import AvaliationsItem from '@/components/pages/item/avaliationsItem'
 import { userService } from '@/services/userService'
-import ButtonReturn from '@/components/common/btnReturn'
 import catalogServerService from '@/services/catalogServerService'
-import Title from '@/components/common/tiltle'
+import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
+import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
+import SlideSection from '@/components/common/clientOnlyComponents/slideSection'
 
 
 

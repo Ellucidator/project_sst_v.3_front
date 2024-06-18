@@ -1,0 +1,41 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+};
+
+.loadingLocal {
+    align-self: center;
+    border: 5px solid #f3f3f3;
+    border-top-color: $tertiary;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: rotate 2s linear infinite;
+}
+
+.loadingArea{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb($primary, 0.5);
+    
+    .loading{
+        @extend .loadingLocal;
+        height: 60px;
+        width: 60px;
+    }
+
+}

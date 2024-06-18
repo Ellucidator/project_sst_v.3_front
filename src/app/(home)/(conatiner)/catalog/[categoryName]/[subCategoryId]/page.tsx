@@ -1,14 +1,14 @@
 import styles from './page.module.scss'
 import { catalogService } from '@/services/catalogService'
 import { cookieService } from '@/services/cookieService'
-import TagsFilterServ from '@/components/common/tagsFilter/servTagsFilter'
-import Title from '@/components/common/tiltle'
+import Title from '@/components/common/texts/tiltle';
 import Container from '@/components/common/container'
-import CardItem from '@/components/common/cardItem'
-import PagCountServer from '@/components/common/serverTestComponent/pagCount'
+import CardItem from '@/components/common/cards/cardItem'
+import PagCountServer from '@/components/common/serverActionComponent/pagCount'
 import Button from '@/components/common/button'
 import { cookies } from 'next/headers'
-import Loading from '@/components/common/loading'
+import Loading from '@/components/common/clientOnlyComponents/loading'
+import TagsFilterServ from '@/components/pages/catalog/servTagsFilter';
 
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
@@ -64,7 +64,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 </form>
 
                 {catalog ? (
-                    <Container titleModel='model3' title={catalog.name} justifyContent='space-between'>
+                    <Container title={{titleText:catalog.name,model:'model3',fontSize:'22px'}} justifyContent='space-between'>
                         {catalog.Items ? (
                             catalog.Items.map(item => (
                                 <CardItem key={item.id} item={item} />
@@ -76,7 +76,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 ) : (
                     <></>
                 )}
-                <PagCountServer count={catalog.countItems!} perPage={6} />
+                <PagCountServer count={catalog.countItems!} perPage={10} />
             </div>
         </>
     )

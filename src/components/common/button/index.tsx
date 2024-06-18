@@ -8,7 +8,7 @@ export interface NewButton {
     href?: string
     btnModel?: 'model1' | 'model2' | 'model3' | 'model4' | 'model5' | 'model6' | 'model7' | 'model8'| 'model9'
     btnWidth?: string
-    btnName: string
+    btnName?: string
     btnAction?: 'link'| 'link_blank' | 'submit' | 'button' | 'static'
     subTitle?: string
     iconElem?: {

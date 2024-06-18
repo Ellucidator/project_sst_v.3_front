@@ -1,10 +1,9 @@
-'use server'
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
-import ButtonActionById from '../../../common/serverTestComponent/buttonActionById'
-import PagCountServer from '@/components/common/serverTestComponent/pagCount'
-import CardItem from '@/components/common/cardItem'
-import Title from '@/components/common/tiltle'
+import ButtonActionById from '../../../common/serverActionComponent/buttonActionById'
+import PagCountServer from '@/components/common/serverActionComponent/pagCount'
+import CardItem from '@/components/common/cards/cardItem'
+import Title from '@/components/common/texts/tiltle';
 import Container from '@/components/common/container'
 
 
@@ -17,7 +16,7 @@ const FavoritesPage = async () => {
 
     return (
         <div className={styles.pageBody}>
-            <Title fontSize="25px" model='model5' titleText="Meus favoritos" />
+            <Title width='100%' fontSize="25px" model='model5' titleText="Meus favoritos" />
 
             <Container direction='column'>
                 {favorites ?

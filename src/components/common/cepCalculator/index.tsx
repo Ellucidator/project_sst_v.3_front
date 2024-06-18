@@ -1,13 +1,13 @@
-
 import { cookies } from 'next/headers'
 import styles from './styles.module.scss'
-import InputQuantity from '../inputQuantity'
+import InputQuantity from './inputQuantity'
 import { cepCalculator } from '@/services/cepService'
 import { Item, ItemCharacteristics } from '@/types/itemsTypes'
 import Input from '../Input-label-components/input&Label'
 import Button from '../button'
 import ResultCepCalculator from './resultCepCalculator'
-import Loading from '../loading'
+import Loading from '../clientOnlyComponents/loading'
+import Title from '../texts/tiltle'
 
 type Props = {
     quantityInStock?: number[],
@@ -40,7 +40,7 @@ const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics, type
     return (
 
         <form action={formAction} className={styles.cep} >
-            <p className={styles.title}>Fretes e prazos</p>
+            <Title titleText='Fretes e prazos' fontSize='22px' model='simple' width='fit-content' fontWeight='bold' />
 
             {type === 'unique' ? (
                 <div className={styles.divInput}>
