@@ -8,6 +8,7 @@ import InputSearch from "./inputSearch";
 import { cookies } from "next/headers";
 import { ItemToCar } from "@/types/itemsTypes";
 import ServerModal from "../common/serverActionComponent/modal";
+import Button from "../common/button";
 
 
 const HeaderPrimary = async () => {
@@ -15,6 +16,7 @@ const HeaderPrimary = async () => {
 
     const validate = await cookieService.verifySession();
     const catalog = await catalogService.getCatalog();
+
     let carCount: number
     const cartItems = cookies().get('car')?.value
 
@@ -29,7 +31,7 @@ const HeaderPrimary = async () => {
     return (
         <>
             <div id="header" className={`${styles.header}`}>
-                <main className={`container ${styles.headerContainer}`}>
+                <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
                         <ServerModal cookieName="modal" catalog={catalog} />
                         <Link href="/" className={styles.logoHeader}>
@@ -41,14 +43,7 @@ const HeaderPrimary = async () => {
 
                         <InputSearch />
 
-                        <div className={styles.headerRight}>
-                            <div className={styles.linkHeader}>
-                                <Link href="/" >
-                                    Contato
-                                </Link>
-                                <Image src='/public/header/chat-dots.svg' alt="search" className={styles.chatIcon}
-                                    width={20} height={20} />
-                            </div>
+                        <div className={styles.headerAuth}>
                             {validate ? <ServerModal cookieName="modal-user" user_name={validate.first_name} />
                             : <HeaderRightGeneric />}
                         </div>
@@ -63,7 +58,7 @@ const HeaderPrimary = async () => {
                         </Link>
                     </div>
 
-                </main>
+                </div>
             </div>
         </>
     )

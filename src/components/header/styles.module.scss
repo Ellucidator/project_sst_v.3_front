@@ -37,44 +37,19 @@
 
         .headerDiv2 {
             display: flex;
-            justify-content: flex-end;
             align-items: flex-end;
+            gap: 20px;
             flex-wrap: nowrap;
             width: 70%;
             height: 100%;
 
-            .headerRight {
+            .headerAuth {
                 display: flex;
                 flex-wrap: nowrap;
                 flex-direction: column;
                 justify-content: center;
                 align-self: center;
-                margin: 10px 0px 10px 25px;
-
-                .linkHeader {
-                    margin: 5px 0px;
-                    display: flex;
-                    color: $secondaryLight;
-                    font-size: 16px;
-                    cursor: pointer;
-                    transition: 0.2s;
-
-                    .chatIcon {
-                        filter: invert(100%);
-                        padding: 0px 0px 10px 5px;
-                    }
-
-                    &:hover {
-                        transform: scale(1.02);
-                        color: $tertiary;
-                        padding-left: 3px;
-                        border-left: 2px solid $tertiary;
-
-                        .chatIcon {
-                            filter: invert(70%);
-                        }
-                    }
-                }
+                padding-top: 10px;
 
                 .division {
                     color: $secondaryLight;
