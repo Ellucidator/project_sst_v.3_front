@@ -37,6 +37,11 @@ const Footer = async () => {
                         href={companyInfo.instagram_url} btnName={regex.exec(companyInfo.instagram_url)![1]}
                         iconElem={{ src: '/public/common/instagram.svg', position: 'left', width: 22 }} />
                     : <></>}
+                {companyInfo.phone_url ?
+                    <Button btnModel='model8' btnAction='link_blank'
+                        href={companyInfo.phone_url} btnName='Whats-app'
+                        iconElem={{ src: '/public/common/whatsapp.svg', position: 'left', width: 22 }} />
+                    : <></>}
             </div>
 
         </div>
