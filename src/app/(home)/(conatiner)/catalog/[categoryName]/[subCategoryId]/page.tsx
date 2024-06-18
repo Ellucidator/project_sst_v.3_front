@@ -9,6 +9,7 @@ import Button from '@/components/common/button'
 import { cookies } from 'next/headers'
 import Loading from '@/components/common/clientOnlyComponents/loading'
 import TagsFilterServ from '@/components/pages/catalog/servTagsFilter';
+import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop';
 
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
@@ -43,7 +44,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
     return (
 
         <>
-
+            <ScrollToTop />
             <div className={styles.catalogOptions}>
                 <TagsFilterServ tags={tags} subCategoryId={params.subCategoryId} />
             </div>

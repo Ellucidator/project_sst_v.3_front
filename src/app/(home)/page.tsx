@@ -25,7 +25,7 @@ export default async function Home() {
 
       <div className={`container ${styles.homeContainer}`}>
 
-        <section className={styles.promotion}>
+        <section className={styles.promotion} >
           <Link href="/" className={styles.promotionLink}>
             <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={1000} height={600} />
           </Link>
