@@ -1,11 +1,15 @@
-@import '../../../styles/colors/colors.module.scss';
+@import '../../../../styles/colors/colors.module.scss';
 
 .title{
     margin-bottom: 15px;
     padding: 0px 5px;
-    width: fit-content;
     background-color: $primary;
 
+}
+
+.simple{
+    margin: 0px;
+    background-color: transparent;
 }
 .model1{
     border-left: 2px solid $tertiaryDark;
@@ -30,5 +34,4 @@
     border-bottom: 3px solid $tertiaryDark;
     padding: 2px 5px;
     text-align: center;
-    width: 100%;
 }
