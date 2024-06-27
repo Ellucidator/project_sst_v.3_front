@@ -2,7 +2,7 @@ import { catalogService } from "@/services/catalogService";
 import styles from './styles.module.scss'
 import Link from "next/link";
 import Image from "next/image";
-import { cookieService } from "@/services/cookieService";
+import { authService } from "@/services/authService";
 import HeaderRightGeneric from "./headerRightGeneric";
 import InputSearch from "./inputSearch";
 import { cookies } from "next/headers";
@@ -14,7 +14,7 @@ import Button from "../common/button";
 const HeaderPrimary = async () => {
 
 
-    const validate = await cookieService.verifySession();
+    const validate = await authService.verifySession();
     const catalog = await catalogService.getCatalog();
 
     let carCount: number

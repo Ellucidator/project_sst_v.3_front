@@ -1,6 +1,6 @@
 import Loading from '../../clientOnlyComponents/loading'
 import styles from './styles.module.scss'
-import { cookieService } from '@/services/cookieService'
+import { cookieService } from '@/services/authService'
 
 type Props = {
     cardLink: string

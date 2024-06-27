@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './page.module.scss'
-import { cookieService } from '@/services/cookieService';
+import { authService } from '@/services/authService';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import Input from '@/components/common/Input-label-components/input&Label';
@@ -8,11 +8,11 @@ import Button from '@/components/common/button';
 import Loading from '@/components/common/clientOnlyComponents/loading';
 
 const Login = async () => {
-    const session = await cookieService.verifySession();
+    const session = await authService.verifySession();
     if (session) redirect('/user/home')
 
 
-    const verify = await cookieService.verifyLogin();
+    const verify = await authService.verifyLogin();
 
 
     const handlerSubmit = async (form: FormData) => {
@@ -23,7 +23,7 @@ const Login = async () => {
 
         if (typeof login === 'string' && typeof password === 'string') {
 
-            const session = await cookieService.setSession(login, password);
+            const session = await authService.setSession(login, password);
 
             if (!session.error) {
                 const redirectCookie = cookies().get('redirect')?.value

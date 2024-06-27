@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { cookieService } from './services/cookieService'
+import { cookieService } from './services/authService'
 
 export async function middleware(request: NextRequest) {
     

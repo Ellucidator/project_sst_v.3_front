@@ -22,7 +22,7 @@ const InputSearch = async() => {
         <form action={handleSubmit} className={styles.search}>
             <Input inputColor="light" 
                 inputOptions={{ id: 'search',name: 'search', type: 'search', placeholder: 'Pesquisar',required: true }} />
-            
+
             <Button btnModel="model8" btnAction="submit" iconElem={{ src: searchIcon.src, position: 'left', width: 20 }} />
         </form>
     )

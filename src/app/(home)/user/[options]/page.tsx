@@ -1,5 +1,5 @@
 
-import { cookieService } from '@/services/cookieService'
+import { cookieService } from '@/services/authService'
 import styles from './page.module.scss'
 import { Favorites, UserAddress} from '@/types/userTypes'
 import UserHome from '@/components/pages/user/home'

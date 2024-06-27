@@ -1,6 +1,6 @@
 import Title from '@/components/common/texts/tiltle';
 import styles from './page.module.scss'
-import { cookieService } from '@/services/cookieService'
+import { authService } from '@/services/authService'
 import { ItemCharacteristics } from '@/types/itemsTypes'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -8,6 +8,7 @@ import Button from '@/components/common/button'
 import CepCalculator from '@/components/common/cepCalculator'
 import CartTable from '@/components/pages/cart/cartTable'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
+import { cartServices } from '@/services/cartService';
 
 interface Resumo {
     sub_total: number
@@ -15,7 +16,7 @@ interface Resumo {
 }
 
 export default async function Cart() {
-    const items = await cookieService.getItemsCart()
+    const items = await cartServices.getItemsCart()
 
     const resumo = items ? items.reduce((acc: Resumo, item) => {
         acc.sub_total += (item.price * item.ItemCharacteristic!.quantity!)
@@ -33,7 +34,7 @@ export default async function Cart() {
     const handlerSubmit = async (form: FormData) => {
         'use server'
 
-        const verify = await cookieService.verifySession()
+        const verify = await authService.verifySession()
 
         if (!verify) {
             cookies().set('redirect', '/cart', {

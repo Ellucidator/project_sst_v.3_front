@@ -1,6 +1,6 @@
 
 import { CreateUser, Favorites, UserAddress, UserFavorite, UserInfo } from "@/types/userTypes";
-import { cookieService } from "./cookieService";
+import { authService } from "./authService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchase, Purchases } from "@/types/purchaseTypes";
 import { cookies } from "next/headers";
@@ -21,7 +21,7 @@ const createUser = async (user: CreateUser) => {
 
         if (!res.ok) return false
 
-        await cookieService.setSession(user.email, user.password)
+        await authService.setSession(user.email, user.password)
 
         return true
     } catch (error) {
@@ -87,7 +87,7 @@ const createAvaliation = async (avaliation: CreateAvaliation) => {
 }
 
 const getAvaliationByUserId = async () => {
-    const user = await cookieService.verifySession()
+    const user = await authService.verifySession()
     if (!user) return false
 
     try {

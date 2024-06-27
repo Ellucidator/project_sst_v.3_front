@@ -1,6 +1,5 @@
 import styles from './page.module.scss'
 import { catalogService } from '@/services/catalogService'
-import { cookieService } from '@/services/cookieService'
 import Title from '@/components/common/texts/tiltle';
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
@@ -14,7 +13,7 @@ import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop';
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
     const [catalog, tags] = await Promise.all([
-        cookieService.getItensBySubCategoryServ(params.subCategoryId),
+        catalogService.getItensBySubCategory(params.subCategoryId),
         catalogService.getTags(params.subCategoryId)
     ])
     
@@ -65,7 +64,9 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 </form>
 
                 {catalog ? (
-                    <Container title={{titleText:catalog.name,model:'model3',fontSize:'22px'}} justifyContent='space-between'>
+                    <Container title={{titleText:catalog.name,model:'model3',fontSize:'22px'}} 
+                        justifyContent={catalog.Items!.length>3?'space-between':''}>
+
                         {catalog.Items ? (
                             catalog.Items.map(item => (
                                 <CardItem key={item.id} item={item} />

@@ -5,7 +5,7 @@ import registerIcon from '../../../../public/public/register/registerIcon.svg'
 import { redirect } from 'next/navigation'
 import { userService } from '@/services/userService'
 import { CreateUser } from '@/types/userTypes'
-import { cookieService } from '@/services/cookieService'
+import { authService } from '@/services/authService'
 import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import Input from '@/components/common/Input-label-components/input&Label'
@@ -13,7 +13,7 @@ import Button from '@/components/common/button'
 import Loading from '@/components/common/clientOnlyComponents/loading'
 const Register = async () => {
 
-    const verify = await cookieService.verifyRegister()
+    const verify = await authService.verifyRegister()
 
     const handlerSubimit = async (form: FormData) => {
         'use server'

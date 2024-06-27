@@ -3,33 +3,33 @@ import { catalogService } from '@/services/catalogService'
 import styles from './page.module.scss'
 import SlideSectionItem from '@/components/pages/item/slideSectionItem'
 import PriceItem from '@/components/common/texts/priceItem'
-import { cookieService } from '@/services/cookieService'
 import InputQuantity from '@/components/common/cepCalculator/inputQuantity'
 import CepCalculator from '@/components/common/cepCalculator'
 import DescriptionList from '@/components/pages/item/descriptionList'
 import AvaliationsItem from '@/components/pages/item/avaliationsItem'
 import { userService } from '@/services/userService'
-import catalogServerService from '@/services/catalogServerService'
+import {itemService} from '@/services/itemService'
 import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
 import SlideSection from '@/components/common/clientOnlyComponents/slideSection'
+import { cartServices } from '@/services/cartService'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
     
     const [item, avaliations, userAvaliation, itemCharacteristics]= await Promise.all([
-        catalogService.getOneItem(params.id),
-        catalogServerService.getAllAvaliationsByItemId(params.id),
+        itemService.getOneItem(params.id),
+        itemService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
-        catalogService.getItemCharacteristics(params.id)
+        itemService.getItemCharacteristics(params.id)
     ])
     item.ItemCharacteristic = itemCharacteristics
 
     
-    const recomendedItems = await catalogService.getItensBySubCategory(item.sub_category_id!)
+    const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`)
 
 
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
@@ -38,7 +38,7 @@ export default async function Item({ params }: { params: { id: string } }) {
         'use server'
         const buyQuantity = parseInt(form.get('quantity')!.toString())
 
-        await cookieService.addCarItem(item.in_stock,{
+        await cartServices.addCarItem(item.in_stock,{
             id: item.id,
             quantity: buyQuantity
         })
