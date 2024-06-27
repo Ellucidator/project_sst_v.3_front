@@ -1,8 +1,8 @@
-import { Avaliation } from "@/types/avaliationTypes";
 import { Categories, SubCategories } from "@/types/catalogTypes";
-import { Item, ItemCharacteristics, ItemFull } from "@/types/itemsTypes";
+import { Item } from "@/types/itemsTypes";
 import { PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
+import { cookies } from "next/headers";
 
 
 async function getCatalog() {
@@ -39,35 +39,6 @@ async function getFeaturedPromotion(){
     return data;
 }
 
-
-async function getOneItem(itemId:string) {
-    const res = await fetch(`http://localhost:3000/items/${itemId}`, {
-        next:{
-            revalidate: 10,
-        },
-        cache: 'no-store'
-    })
-
-
-    const data: ItemFull = await res.json();
-    return data;
-}
-
-async function getItemCharacteristics(itemId:string) {
-    const res = await fetch(`http:/localhost:3000/item/${itemId}/characteristics`, {
-        next:{
-            revalidate: 10,
-        },
-        cache: 'no-store'
-    })
-
-
-    const data: ItemCharacteristics = await res.json();
-
-    return data;
-}
-
-
 async function getNewestsItems(){
     const res = await fetch(`http://localhost:3000/items/newests`, {
         next:{
@@ -98,15 +69,65 @@ async function getSearchItems(name:string){
     return data
 }
 
-async function getItensBySubCategory(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:number = 1) {
-    const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
-        next:{
-            revalidate: 10
-        },
-        cache: 'no-cache'
-    })
-    const data: SubCategories = await res.json();
-    return data;
+async function getItensBySubCategory(subCategoryId: string) {
+
+
+    let page = cookies().get('page')?.value
+    if (!page) page = '1'
+
+    let itemsOrder: string = 'created_at-DESC'
+    let tags: string[] = []
+
+    const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
+    
+    if (catalogCookie) {
+        const catalogCookieOn: { itemsOrder?: string, tags?: string[] } = JSON.parse(catalogCookie)
+
+        if (catalogCookieOn.itemsOrder) itemsOrder = catalogCookieOn.itemsOrder
+        if (catalogCookieOn.tags) tags = catalogCookieOn.tags
+    }
+
+
+    if (tags.length > 0) {
+        const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+            next: {
+                revalidate: 10
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache: 'no-cache',
+            method: 'POST',
+            body: JSON.stringify({ tags })
+        })
+        const data: SubCategories = await res.json();
+        return data;
+    } else if(!(parseInt(subCategoryId) > 0)){
+
+        const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}`,{
+            next: {
+                revalidate: 10
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache: 'no-cache',
+            method: 'GET',
+        })
+        const data: SubCategories = await res.json();
+        return data
+
+    } else {
+        const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+            next: {
+                revalidate: 10
+            },
+            cache: 'no-cache'
+        })
+        const data: SubCategories = await res.json();
+        return data;
+    }
+
 }
 
 async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:number = 1,tags:string[]) {
@@ -127,19 +148,6 @@ async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 
     return data;
 }
 
-async function getAllAvaliationsByItemId(itemId:string,page:number = 1) {
-
-
-    const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations?page=${page}`, {
-        next:{
-            revalidate: 10,
-            tags: ['all-avaliations-item']
-        },
-        cache: 'no-cache'
-    })
-    const data: Avaliation[] = await res.json();
-    return data;
-}
 
 
 export const catalogService = {
@@ -149,9 +157,6 @@ export const catalogService = {
     getFeaturedItems,
     getItensBySubCategory,
     getSearchItems,
-    getOneItem,
     getTags,
     getItensByTags,
-    getAllAvaliationsByItemId,
-    getItemCharacteristics
 }
