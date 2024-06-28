@@ -1,5 +1,5 @@
 
-import { cookieService } from '@/services/authService'
+import { authService } from '@/services/authService'
 import styles from './page.module.scss'
 import { Favorites, UserAddress} from '@/types/userTypes'
 import UserHome from '@/components/pages/user/home'
@@ -13,7 +13,7 @@ import { redirect } from 'next/navigation'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
-    const user = await cookieService.verifySession()
+    const user = await authService.verifySession()
 
     if(!user)redirect('/')
 
