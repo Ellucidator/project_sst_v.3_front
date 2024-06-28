@@ -10,11 +10,12 @@ import Button from "../../button";
 
 type Props = {
     catalog?: Categories[]
-    cookieName?: 'modal' | 'modal-user',
+    cookieName?: 'modal' | 'modal-user'|'address-modal',
     user_name?:string
 }
 
 const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) => {
+    
     let classModal = cookieName === 'modal' ? styles.modalBody : styles.modalBodyUser
     const cookieControl = cookies().get(cookieName)?.value
     if (cookieControl === 'open') classModal = cookieName === 'modal' ? styles.modalBodyOpen : styles.modalBodyUserOpen
@@ -70,7 +71,7 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                             : <></>}
                     </div>
                 </>
-                :
+                : cookieName === 'modal-user' ?
                 <>
                     <ButtonActionById buttonAttribute={{ arrow:cookieControl === 'open'?'arrowUp':'arrowDown',
                         iconElem:{src:userIcon,position: 'left', width: 25}, subTitle: '⇱',btnName: user_name!, btnModel: 'model9', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
@@ -86,6 +87,10 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                             </>
                             : <></>}
                     </form>
+                </>:
+                <>
+                    <ButtonActionById buttonAttribute={{btnName: 'Mudar Endereço', btnModel: 'model2'}} idAction={'address-modal'} actionFunction={btnAction} loading={false} />
+                    <form action="" className={classModal}></form>
                 </>
             }
             {cookieControl === 'open' ?
