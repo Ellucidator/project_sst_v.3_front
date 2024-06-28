@@ -19,7 +19,8 @@ export default async function CheckoutPage() {
             <Title fontSize="25px" model='model5' titleText="Finalizar pedido" />
             <div className={styles.addressAndPayment}>
                 <div className={styles.divAddress}>
-                    <ServerModal cookieName="address-modal" />
+                    <ServerModal cookieName="modalAddress" 
+                        adresses={adresses||[]}/>
                     {addressActiv?<CardAddress address={addressActiv} />:<></>}
                 </div>
                 <div className={styles.divPayment}></div>

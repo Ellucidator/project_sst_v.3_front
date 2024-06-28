@@ -44,7 +44,7 @@ const HeaderPrimary = async () => {
                         <InputSearch />
 
                         <div className={styles.headerAuth}>
-                            {validate ? <ServerModal cookieName="modal-user" user_name={validate.first_name} />
+                            {validate ? <ServerModal cookieName="modalUser" user_name={validate.first_name} />
                             : <HeaderRightGeneric />}
                         </div>
 
