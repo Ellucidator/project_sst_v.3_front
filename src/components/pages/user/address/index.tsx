@@ -1,9 +1,8 @@
 import { UserAddress } from '@/types/userTypes'
 import styles from './styles.module.scss'
-import { userService } from '@/services/userService'
-import ButtonActionById from '../../../common/serverActionComponent/buttonActionById'
 import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
+import { CardAddress } from '@/components/common/cards/cardAddress';
 
 type Props = {
     userAddress: UserAddress[]
@@ -24,21 +23,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                 <div className={styles.divAddressList}>
                     {
                         activeAddress ?
-                            <div className={styles.divAddressItem}>
-                                <div>
-                                    <p className={styles.divAddressActive}>Endereço Ativo</p>
-
-                                    <p>{`Destinatario: ${activeAddress.receiver_name}`}</p>
-                                    <p>{`${activeAddress.street} - ${activeAddress.neighborhood} - nº${activeAddress.house_number}`}</p>
-                                    <p>{`${activeAddress.complement ? activeAddress.complement : ''} - ${activeAddress.reference_point ? activeAddress.reference_point : ''}`}</p>
-                                    <p>{`${activeAddress.city}, ${activeAddress.state}, ${activeAddress.zip_code}`}</p>
-                                    <p>{`Telefone: ${activeAddress.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
-                                </div>
-                                <div className={styles.divButtons}>
-                                        <Button href={`/user/edit-address/${activeAddress.id}`} btnModel='model3' btnAction='link' btnName='EDITAR' />
-                                        <ButtonActionById  buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model3' }} idAction={activeAddress.id!} actionFunction={userService.deleteUserAddress} />
-                                    </div>
-                            </div>
+                            <CardAddress address={activeAddress} buttons />
 
                             : <></>
                     }
@@ -46,20 +31,7 @@ const UserAddressPage = async ({ userAddress }: Props) => {
                         userAddress.map((address) => {
                             if (address.id === activeAddress?.id) return
                             return (
-                                <div key={address.id} className={styles.divAddressItem}>
-                                    <div >
-                                        <p>{`Destinatario: ${address.receiver_name}`}</p>
-                                        <p>{`${address.street} - ${address.neighborhood} - nº${address.house_number}`}</p>
-                                        <p>{`${address.complement} - ${address.reference_point}`}</p>
-                                        <p>{`${address.city}, ${address.state}, ${address.zip_code}`}</p>
-                                        <p>{`Telefone: ${address.phone_number.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}`}</p>
-                                    </div>
-                                    <div className={styles.divButtons}>
-                                        <ButtonActionById buttonAttribute={{ btnName: 'ATIVAR', btnModel: 'model1' }} idAction={address.id!} actionFunction={userService.activeUserAddress} />
-                                        <Button href={`/user/edit-address/${address.id}`} btnModel='model1' btnAction='link' btnName='EDITAR' />
-                                        <ButtonActionById buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model1' }} idAction={address.id!} actionFunction={userService.deleteUserAddress} />
-                                    </div>
-                                </div>
+                                <CardAddress address={address} buttons />
                             )
                         })
                     }

@@ -8,6 +8,13 @@ async function setCookiePage(page: string) {
     })
 }
 
+async function setCookieModal(modal: string) {
+    'use server'
+    cookies().set('modal', modal, {
+        maxAge: 0
+    })
+}
+
 async function btnSubCategoryAction(url:string){
     'use server'
     const [categoryName, subCategoryId] = url.split('/')
@@ -21,6 +28,6 @@ async function btnSubCategoryAction(url:string){
 export const btnActionService = {
 
     btnSubCategoryAction,
-    setCookiePage
-    
+    setCookiePage,
+    setCookieModal
 }

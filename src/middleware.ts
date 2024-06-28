@@ -1,9 +1,9 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { cookieService } from './services/authService'
+import { authService } from './services/authService'
 
 export async function middleware(request: NextRequest) {
     
-    const verifyLogin = await cookieService.verifySession()
+    const verifyLogin = await authService.verifySession()
     if(!verifyLogin) return NextResponse.redirect(new URL('/', request.url))
 }
 
