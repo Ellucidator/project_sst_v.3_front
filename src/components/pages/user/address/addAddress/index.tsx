@@ -8,12 +8,15 @@ import Button from '@/components/common/button'
 import Input from '@/components/common/Input-label-components/input&Label'
 import Loading from '@/components/common/clientOnlyComponents/loading'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
+import { cookies } from 'next/headers'
 
 type Props = {
     addressId: string
+    btnBack?: boolean
+    modal?:boolean
 }
 
-const AddressUpdate = async ({ addressId }: Props) => {
+const AddressUpdate = async ({ addressId, btnBack=true ,modal }: Props) => {
     let addressValue: UserAddress = {
         id: 0,
         receiver_name: '',
@@ -62,17 +65,21 @@ const AddressUpdate = async ({ addressId }: Props) => {
             newAddress.phone_number==addressValue.phone_number &&
             newAddress.reference_point==addressValue.reference_point
             ){
-                redirect('/user/address')
+                if(modal) cookies().delete('modalAddressOption')
+                else redirect('/user/address')
             }
 
         await userService.createAddress(newAddress)
         revalidateTag('adresses-user')
-        redirect('/user/address')
+
+        if(modal) cookies().delete('modalAddressOption')
+        else redirect('/user/address')
+        
     }
 
     return (
         <>  
-            <ButtonReturn />
+            {btnBack?<ButtonReturn />:<></>}
             <Title width='100%' fontSize="25px" model='model5' titleText="Novo endereço" />
             
             <form action={handlerSubmit} className={styles.formAddress}>
