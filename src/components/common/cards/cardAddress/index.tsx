@@ -4,13 +4,21 @@ import Button from '../../button'
 import ButtonActionById from '../../serverActionComponent/buttonActionById'
 import { userService } from '@/services/userService'
 import Title from '../../texts/tiltle'
+import { cookies } from 'next/headers'
 
 type Props = {
     address: UserAddress
     buttons?: boolean
+    btnModal?: boolean
 }
-export const CardAddress = ({ address, buttons }: Props) => {
+export const CardAddress = ({ address, buttons, btnModal }: Props) => {
 
+    const modalAction = async(id:string)=>{
+        'use server'
+        cookies().set('modalAddressOption', id, {
+            maxAge: 0
+        })
+    }
 
     return (
         <div className={styles.cardAddress}>
@@ -26,7 +34,10 @@ export const CardAddress = ({ address, buttons }: Props) => {
             </div>
             {buttons?<div className={styles.divButtons}>
                 {address.active ? <></> : <ButtonActionById buttonAttribute={{ btnName: 'ATIVAR', btnModel: 'model3' }} idAction={address.id!} actionFunction={userService.activeUserAddress} />}
-                <Button href={`/user/edit-address/${address.id}`} btnModel='model3' btnAction='link' btnName='EDITAR' />
+                { !btnModal ?
+                    <Button href={`/user/edit-address/${address.id}`} btnModel='model3' btnAction='link' btnName='EDITAR' />:
+                    <ButtonActionById buttonAttribute={{ btnName: 'EDITAR', btnModel: 'model3' }} idAction={address.id!} actionFunction={modalAction}/>
+                    }
                 <ButtonActionById buttonAttribute={{ btnName: 'EXCLUIR', btnModel: 'model3' }} idAction={address.id!} actionFunction={userService.deleteUserAddress} />
             </div>:<></>}
         </div>
