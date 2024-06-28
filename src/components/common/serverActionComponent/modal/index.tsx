@@ -7,16 +7,19 @@ import ButtonActionById from "../buttonActionById";
 import userIcon from '../../../../../public/public/header/user-icon.svg'
 import logoutIcon from '../../../../../public/public/header/box-arrow-left.svg'
 import Button from "../../button";
+import UserAddressPage from "@/components/pages/user/address";
+import AddressUpdate from "@/components/pages/user/address/addAddress";
+import { UserAddress } from "@/types/userTypes";
 
 type Props = {
     catalog?: Categories[]
-    cookieName?: 'modal' | 'modal-user'|'address-modal',
-    user_name?:string
+    cookieName?: 'modal' | 'modalUser' | 'modalAddress'
+    user_name?: string
+    adresses?: UserAddress[]
 }
 
-const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) => {
-    
-    let classModal = cookieName === 'modal' ? styles.modalBody : styles.modalBodyUser
+const ServerModal = async ({ catalog, cookieName = 'modal', user_name, adresses = [] }: Props) => {
+
     const cookieControl = cookies().get(cookieName)?.value
     if (cookieControl === 'open') classModal = cookieName === 'modal' ? styles.modalBodyOpen : styles.modalBodyUserOpen
     const btnAction = async(name: string) => {
@@ -42,9 +45,7 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
     }
 
     return (
-        <div className={styles.modal}>
-
-
+        <div>
             {cookieName === 'modal' ?
                 <>
                     <form action={handlerSubmit}>
@@ -59,8 +60,8 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                             </p>
                         </button>
                     </form>
-                    <div className={classModal}>
-                        {classModal === styles.modalBodyOpen ?
+                    <div className={styles[classModal]}>
+                        {cookieControl === 'open' ?
                             <>
                                 <form action={handlerSubmit} className={styles.btnModal}>
                                     <button type="submit" className={styles.btnModal} >X</button>
@@ -71,27 +72,40 @@ const ServerModal = async ({ catalog, cookieName = 'modal', user_name }: Props) 
                             : <></>}
                     </div>
                 </>
-                : cookieName === 'modal-user' ?
-                <>
-                    <ButtonActionById buttonAttribute={{ arrow:cookieControl === 'open'?'arrowUp':'arrowDown',
-                        iconElem:{src:userIcon,position: 'left', width: 25}, subTitle: '⇱',btnName: user_name!, btnModel: 'model9', btnAction: 'submit' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
-                    <form action={handlerLogout} className={classModal}>
-                        {cookieControl === 'open' ?
-                            <>
-                                <Button href="/user/home" btnName="Minha Conta" btnAction="link" btnModel="model6" />
-                                <Button href="/user/my-info" btnName="Minhas Informações" btnAction="link" btnModel="model6" />
-                                <Button href="/user/my-purchases" btnName="Pedidos" btnAction="link" btnModel="model6" />
-                                <Button href="/user/address" btnName="Endereços" btnAction="link" btnModel="model6" />
-                                <Button href="/user/favorites" btnName="Favoritos" btnAction="link" btnModel="model6" />
-                                <Button btnName="Sair" btnAction="submit" btnModel="model6" iconElem={{ src: logoutIcon, position: 'left', width: 22 }} />
-                            </>
-                            : <></>}
-                    </form>
-                </>:
-                <>
-                    <ButtonActionById buttonAttribute={{btnName: 'Mudar Endereço', btnModel: 'model2'}} idAction={'address-modal'} actionFunction={btnAction} loading={false} />
-                    <form action="" className={classModal}></form>
-                </>
+                : cookieName === 'modalUser' ?
+                    <>
+                        <ButtonActionById buttonAttribute={{
+                            arrow: cookieControl === 'open' ? 'arrowUp' : 'arrowDown',
+                            iconElem: { src: userIcon, position: 'left', width: 25 }, subTitle: '⇱', btnName: user_name!, btnModel: 'model9', btnAction: 'submit'
+                        }} idAction={cookieName} actionFunction={btnAction} loading={false} />
+                        <form action={handlerLogout} className={styles[classModal]}>
+                            {cookieControl === 'open' ?
+                                <>
+                                    <Button href="/user/home" btnName="Minha Conta" btnAction="link" btnModel="model6" />
+                                    <Button href="/user/my-info" btnName="Minhas Informações" btnAction="link" btnModel="model6" />
+                                    <Button href="/user/my-purchases" btnName="Pedidos" btnAction="link" btnModel="model6" />
+                                    <Button href="/user/address" btnName="Endereços" btnAction="link" btnModel="model6" />
+                                    <Button href="/user/favorites" btnName="Favoritos" btnAction="link" btnModel="model6" />
+                                    <Button btnName="Sair" btnAction="submit" btnModel="model6" iconElem={{ src: logoutIcon, position: 'left', width: 22 }} />
+                                </>
+                                : <></>}
+                        </form>
+                    </> :
+                    <>
+                        <ButtonActionById buttonAttribute={{ btnName: 'Mudar Endereço', btnModel: 'model2' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
+                        <div className={styles[classModal]}>
+                            {cookieControl === 'open' ?
+                                <>
+                                    <div className={styles.divButtons}>
+                                        {addressOpt?<ButtonActionById buttonAttribute={{ btnName: '< - return', btnModel: 'model7' }} idAction={cookieName} actionFunction={returnAction}/>:<></>}
+
+                                        <ButtonActionById buttonAttribute={{ btnName: 'x', btnModel: 'model4' }} idAction={cookieName} actionFunction={btnAction} loading={false} />
+                                    </div>
+
+                                    {addressOpt ? <AddressUpdate addressId={addressOpt} btnBack={false} modal={true} /> : <UserAddressPage modal={true} userAddress={adresses} />}
+                                </> : <></>}
+                        </div>
+                    </>
             }
             {cookieControl === 'open' ?
                 <form action={handlerSubmit}>
