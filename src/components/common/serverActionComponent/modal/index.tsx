@@ -20,9 +20,17 @@ type Props = {
 
 const ServerModal = async ({ catalog, cookieName = 'modal', user_name, adresses = [] }: Props) => {
 
+    let classModal = cookieName
     const cookieControl = cookies().get(cookieName)?.value
-    if (cookieControl === 'open') classModal = cookieName === 'modal' ? styles.modalBodyOpen : styles.modalBodyUserOpen
-    const btnAction = async(name: string) => {
+    const addressOpt = cookies().get(cookieName + 'Option')?.value
+
+    if (cookieControl === 'open') classModal += 'Open'
+
+    const returnAction = async () => {
+        'use server'
+        cookies().delete(cookieName + 'Option')
+    }
+    const btnAction = async (name: string) => {
         'use server'
         if (cookieControl === 'open') {
             cookies().set(name, 'close', {
