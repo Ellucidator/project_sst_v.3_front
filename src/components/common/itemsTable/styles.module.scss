@@ -1,0 +1,27 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.divInfo{
+    display: flex;
+    margin-top: 30px;
+    .divItems{
+        display: flex;
+        flex-direction: column;
+        background-color: rgb($primary,0.8);
+        padding: 20px;
+        gap: 10px;
+        width: 50%;
+
+        .titleItems{
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0px 5px 0px;
+            border-bottom: 1px solid $secondaryDark;
+        }
+    }
+}

@@ -24,7 +24,6 @@ export default async function UserPage({params}:{params:{options:string}}) {
         userService.getUserFavorites(1,4)
     ])
 
-''
     
 
     return(
