@@ -10,22 +10,15 @@ import CartTable from '@/components/pages/cart/cartTable'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 import { cartServices } from '@/services/cartService';
 
-interface Resumo {
-    sub_total: number
-    total: number
-}
+
 
 export default async function Cart() {
-    const items = await cartServices.getItemsCart()
-
-    const resumo = items ? items.reduce((acc: Resumo, item) => {
-        acc.sub_total += (item.price * item.ItemCharacteristic!.quantity!)
-        acc.total += (item.promotion ? item.ItemPromotion.price * item.ItemCharacteristic!.quantity! : item.price * item.ItemCharacteristic!.quantity!)
+    const [items,total] = await cartServices.getItemsCart()
+    
+    const subTotal = items ? items.reduce((acc:number, item) => {
+        acc += (item.price * item.ItemCharacteristic!.quantity!)
         return acc
-    }, {
-        sub_total: 0,
-        total: 0
-    }) : { sub_total: 0, total: 0 }
+    }, 0) : 0
 
     const itemsCharacteristics: ItemCharacteristics[] = items ? items!.map((item) => {
         return item.ItemCharacteristic!
@@ -60,12 +53,12 @@ export default async function Cart() {
                             <div className={styles.resumoItems}>
                                 <Title model='simple' titleText='Subtotal' />
                                 <Title model='simple' 
-                                    titleText={resumo.sub_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
+                                    titleText={subTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
                             </div>
                             <div className={styles.resumoItemsTotal}>
                                 <Title model='simple' fontSize='28px' titleText='Total' />
                                 <Title model='simple' fontSize='28px' 
-                                    titleText={resumo.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
+                                    titleText={total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
                             </div>
                         </div>
                         <Button btnName='FINALIZAR COMPRA' btnModel='model5' btnAction='submit'
