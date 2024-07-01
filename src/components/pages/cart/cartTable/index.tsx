@@ -18,9 +18,9 @@ const CartTable = ({ items }: Props) => {
 
         <div className={styles.tableItems}>
             <section className={styles.tableHeader}>
-                <Title titleText='Produto' model='simple' fontWeight='bold' width='51%' />
-                <Title titleText='Qtd' model='simple' fontWeight='bold' width='24%' />
-                <Title titleText='Preço' model='simple' fontWeight='bold' width='24%' />
+                <Title titleText='Produto' model='simple' fontWeight='bold' width='35%' />
+                <Title titleText='Qtd' model='simple' fontWeight='bold'  />
+                <Title titleText='Preço' model='simple' fontWeight='bold' width='29%' />
             </section>
             <section className={styles.tableBody}>
                 {
@@ -44,7 +44,7 @@ const CartTable = ({ items }: Props) => {
                                             actionFunction={cartServices.updateCart} idAction={`${item.id}/+/${item.in_stock}`} />
                                     </section>
 
-                                    <PriceItem model='model2'
+                                    <PriceItem model='model2' width='15%' 
                                         price={item.price * item.ItemCharacteristic?.quantity!}
                                         pricePromotion={item.promotion ? item.ItemPromotion.price * item.ItemCharacteristic?.quantity! : undefined}
                                     />
