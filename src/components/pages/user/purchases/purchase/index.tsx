@@ -5,6 +5,7 @@ import { revalidateTag } from 'next/cache'
 import Title from '@/components/common/texts/tiltle';
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 import PurchaseInfo from '@/components/common/cards/cardPurchase/purchaseInfo';
+import ItemsTable from '@/components/common/itemsTable';
 
 type Props = {
     purchaseId: string
@@ -83,20 +84,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
 
                 </div>
 
-                <div className={styles.divInfo}>
-                    <div className={styles.divItems}>
-                        <p className={styles.titleItems}>Itens:</p>
-                        {purchase.ItemSells.map((elem) => {
-                            return (
-                                <div key={elem.Item.name} className={styles.item}>
-                                    <Image src={`http://localhost:3000/files/${elem.Item.thumbnail_url}`} alt={elem.Item.name} width={50} height={50} />
-                                    <p>{`${elem.quantity}x ${elem.Item.name}`}</p>
-                                    <p>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
+                <ItemsTable items={purchase} type='Purchase' />
             </div>
         </div>
     )
