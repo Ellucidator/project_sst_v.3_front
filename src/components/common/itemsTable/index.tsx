@@ -1,28 +1,30 @@
-import { Item } from '@/types/itemsTypes'
+import { ItemPromotion } from '@/types/itemsTypes'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import { Purchase } from '@/types/purchaseTypes'
+import PriceItem from '../texts/priceItem'
 
 type Props = {
-    items: Item[] | Purchase
-    type: 'Common' | 'Purchase'
+    items: ItemPromotion[] | Purchase
+    type?: 'Common' | 'Purchase'
+    model?: 'model1' | 'model2'
 }
-const ItemsTable = ({ items, type }: Props) => {
+const ItemsTable = ({ items, type='Common', model='model1'}: Props) => {
 
 
     if (type === 'Common') {
-        items = items as Item[]
+        items = items as ItemPromotion[]
 
         return (
-            <div className={styles.divInfo}>
+            <div className={styles[model]}>
                 <div className={styles.divItems}>
                     <p className={styles.titleItems}>Itens:</p>
                     {items.map((elem) => {
                         return (
                             <div key={elem.name} className={styles.item}>
                                 <Image src={`http://localhost:3000/files/${elem.thumbnail_url}`} alt={elem.name} width={50} height={50} />
-                                <p>{`${elem.quantity}x ${elem.name}`}</p>
-                                <p>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                <p>{`${elem.ItemCharacteristic?.quantity}x ${elem.name}`}</p>
+                                <PriceItem model='model2' width='fit-content' pricePromotion={elem.promotion ? elem.price : undefined} price={elem.price} />
                             </div>
                         )
                     })}
@@ -33,7 +35,7 @@ const ItemsTable = ({ items, type }: Props) => {
         items = items as Purchase
 
         return (
-            <div className={styles.divInfo}>
+            <div className={styles[model]}>
                 <div className={styles.divItems}>
                     <p className={styles.titleItems}>Itens:</p>
                     {items.ItemSells.map((elem) => {
