@@ -28,7 +28,7 @@ export default async function Item({ params }: { params: { id: string } }) {
     ])
     item.ItemCharacteristic = itemCharacteristics
 
-    
+    console.log(item.promotion)
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`)
 
 
@@ -37,9 +37,11 @@ export default async function Item({ params }: { params: { id: string } }) {
     const formAction = async (form: FormData) => {
         'use server'
         const buyQuantity = parseInt(form.get('quantity')!.toString())
-
+        const price = parseFloat(form.get('price')!.toString())
+        
         await cartServices.addCarItem(item.in_stock,{
             id: item.id,
+            price,
             quantity: buyQuantity
         })
 
@@ -60,15 +62,18 @@ export default async function Item({ params }: { params: { id: string } }) {
                         ) : (
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
+                        
                         <div className={styles.itemInfo}>
                             <section className={styles.sectionPayInfo}>
 
                             </section>
 
                             <section className={styles.sectionBuy}>
-                                <PriceItem  price={item.price} pricePromotion={item.promotion? item.ItemPromotion.price : undefined} />
+                                <PriceItem  price={item.price} pricePromotion={item.promotion? item.ItemPromotion!.price : undefined} />
                                 <form action={formAction}>
                                     <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
+
+                                    <input type="hidden" name='price' value={item.promotion? item.ItemPromotion!.price : item.price} />
 
                                     <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconElem={{ src: cartIcon, position: 'right', width: 35 }} />
 

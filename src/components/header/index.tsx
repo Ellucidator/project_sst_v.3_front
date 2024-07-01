@@ -6,7 +6,7 @@ import { authService } from "@/services/authService";
 import HeaderRightGeneric from "./headerRightGeneric";
 import InputSearch from "./inputSearch";
 import { cookies } from "next/headers";
-import { ItemToCar } from "@/types/itemsTypes";
+import { Cart, ItemToCar } from "@/types/itemsTypes";
 import ServerModal from "../common/serverActionComponent/modal";
 import Button from "../common/button";
 
@@ -22,10 +22,10 @@ const HeaderPrimary = async () => {
 
     if (!cartItems) carCount = 0
     else {
-        const carItemsA: ItemToCar[] = JSON.parse(cartItems)
-        carCount = carItemsA.reduce((acc, item) => {
+        const carItemsA: Cart = JSON.parse(cartItems)
+        carCount = carItemsA.items?carItemsA.items.reduce((acc, item) => {
             return acc += item.quantity
-        }, 0)
+        }, 0):0
     }
 
     return (
