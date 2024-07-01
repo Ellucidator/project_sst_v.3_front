@@ -2,7 +2,12 @@ import { TagValue } from "./tagTypes";
 
 export interface ItemToCar{
     id:number
+    price:number
     quantity:number
+}
+export interface Cart{
+    items:ItemToCar[]
+    total:number
 }
 
 export interface ItemCharacteristics{
@@ -34,7 +39,7 @@ export interface ItemPromotionAtributes{
 }
 
 export interface ItemPromotion extends Item {
-    ItemPromotion:ItemPromotionAtributes;
+    ItemPromotion?:ItemPromotionAtributes;
 }
 
 export interface ItemFull extends ItemPromotion {

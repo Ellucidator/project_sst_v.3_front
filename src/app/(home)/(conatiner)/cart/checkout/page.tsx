@@ -9,7 +9,7 @@ import ItemsTable from '@/components/common/itemsTable'
 
 
 export default async function CheckoutPage() {
-    const items = await cartServices.getItemsCart()
+    const [items,total] = await cartServices.getItemsCart()
     const adresses = await userService.getUserAdresses()
     let addressActiv: UserAddress | undefined
 

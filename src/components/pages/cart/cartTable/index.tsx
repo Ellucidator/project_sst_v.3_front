@@ -46,7 +46,7 @@ const CartTable = ({ items }: Props) => {
 
                                     <PriceItem model='model2' width='15%' 
                                         price={item.price * item.ItemCharacteristic?.quantity!}
-                                        pricePromotion={item.promotion ? item.ItemPromotion.price * item.ItemCharacteristic?.quantity! : undefined}
+                                        pricePromotion={item.promotion ? item.ItemPromotion!.price * item.ItemCharacteristic?.quantity! : undefined}
                                     />
 
                                     <ButtonActionById
