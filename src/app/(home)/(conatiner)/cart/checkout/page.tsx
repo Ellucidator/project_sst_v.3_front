@@ -26,7 +26,7 @@ export default async function CheckoutPage() {
                     {addressActiv?<CardAddress address={addressActiv} />:<></>}
                 </div>
                 <div className={styles.divPayment}></div>
-                <ItemsTable items={items||[]} type='Common' model='model2'/>
+                <ItemsTable items={items||[]} type='Common' model='model2' total={total}/>
             </div>
         </div>
     )

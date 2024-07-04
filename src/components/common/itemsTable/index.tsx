@@ -6,11 +6,11 @@ import PriceItem from '../texts/priceItem'
 
 type Props = {
     items: ItemPromotion[] | Purchase
+    total?: number
     type?: 'Common' | 'Purchase'
     model?: 'model1' | 'model2'
 }
-const ItemsTable = ({ items, type='Common', model='model1'}: Props) => {
-
+const ItemsTable = ({ items, type='Common', model='model1', total=0}: Props) => {
 
     if (type === 'Common') {
         items = items as ItemPromotion[]
@@ -22,12 +22,16 @@ const ItemsTable = ({ items, type='Common', model='model1'}: Props) => {
                     {items.map((elem) => {
                         return (
                             <div key={elem.name} className={styles.item}>
-                                <Image src={`http://localhost:3000/files/${elem.thumbnail_url}`} alt={elem.name} width={50} height={50} />
+                                <Image className={styles.itemImg} src={`http://localhost:3000/files/${elem.thumbnail_url}`} alt={elem.name} width={50} height={50} />
                                 <p>{`${elem.ItemCharacteristic?.quantity}x ${elem.name}`}</p>
-                                <PriceItem model='model2' width='fit-content' pricePromotion={elem.promotion ? elem.price : undefined} price={elem.price} />
+                                <PriceItem model='model2' width='fit-content' pricePromotion={elem.promotion ? elem.ItemPromotion?.price : undefined} price={elem.price} />
                             </div>
                         )
                     })}
+                    <div className={styles.item}>
+                        <p className={styles.titleItems}>Total:</p>
+                        <p className={styles.titleItems} > {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    </div>
                 </div>
             </div>
         )
