@@ -9,13 +9,20 @@ import ItemsTable from '@/components/common/itemsTable'
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 import ApiMp from '@/components/common/apiMp/apiMp'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
+import { redirect } from 'next/navigation'
 
 
 export default async function CheckoutPage() {
-    const client = new MercadoPagoConfig({ accessToken: 'APP_USR-1682299063331004-070414-57654f1818c2c7881d67bf58f7a58e8d-156112622' });
+    const adresses = await userService.getUserAdresses()
+    let addressActiv: UserAddress | undefined
+    if (adresses) addressActiv = adresses.find((address) => address.active === true)
+
+    const client = new MercadoPagoConfig({ accessToken: 'APP_USR-658438204342310-070510-884ee4cac7fc572dc65f9a5c11bee043-1888685170' });
     const preference = new Preference(client);
 
     const [items, total] = await cartServices.getItemsCart()
+    if(!items || items.length === 0) redirect('/')
+    
 
     const res = await preference.create({
         body: {
@@ -26,14 +33,17 @@ export default async function CheckoutPage() {
                     quantity: item.ItemCharacteristic!.quantity!,
                     unit_price: item.promotion? item.ItemPromotion!.price: item.price,
                 }
-            })
+            }),
+            back_urls:{
+                success: `http://localhost:3001/api/checkoutOk?address_id=${addressActiv?.id}`,
+                pending: `http://localhost:3001/api/checkoutOk?address_id=${addressActiv?.id}`,
+            },
+            auto_return: 'approved'
         }
     })
-
-    const adresses = await userService.getUserAdresses()
-    let addressActiv: UserAddress | undefined
-
-    if (adresses) addressActiv = adresses.find((address) => address.active === true)
+    console.log()
+    
+    
 
 
     return (
@@ -48,7 +58,7 @@ export default async function CheckoutPage() {
                 <div className={styles.divPayment}>
                     <ItemsTable items={items || []} type='Common' model='model2' total={total} />
 
-                    <ApiMp id={res.id!} />
+                    {addressActiv?<ApiMp id={res.id!} />:<></>}
                 </div>
             </div>
         </div>
