@@ -15,6 +15,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
     revalidateTag('one-purchase-user')
 
     const purchase = await userService.getUserPurchaseById(purchaseId)
+
     if (!purchase) return
 
     const purchaseStatus = purchase.status === 'Recebido' ? 1 :purchase.status === 'Transportadora' ? 2 : purchase.status === 'Enviado' ? 3 : purchase.status === 'Entregue' ? 4 : 0
@@ -84,7 +85,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
 
                 </div>
 
-                <ItemsTable items={purchase} type='Purchase' />
+                <ItemsTable items={purchase} total={purchase.all_value} type='Purchase' />
             </div>
         </div>
     )

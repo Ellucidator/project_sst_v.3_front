@@ -3,7 +3,6 @@ import styles from './styles.module.scss'
 
 
 const PurchaseInfo = ({ purchase }: { purchase: Purchase }) => {
-
     return (
         <div key={purchase.id} className={styles.userPurchaseInfoDiv}>
 

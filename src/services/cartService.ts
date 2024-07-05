@@ -1,5 +1,6 @@
 import { cookies } from "next/headers"
 import { Cart, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
+import { redirect } from "next/navigation"
 
 
 const addCarItem = async (inStock: number, item: ItemToCar) => {

@@ -36,13 +36,17 @@ export default async function Item({ params }: { params: { id: string } }) {
     
     const formAction = async (form: FormData) => {
         'use server'
-        const buyQuantity = parseInt(form.get('quantity')!.toString())
+        const buyQuantity = form.get('quantity')?.toString()
+        if(!buyQuantity) return
+        
+
+
         const price = parseFloat(form.get('price')!.toString())
         
         await cartServices.addCarItem(item.in_stock,{
             id: item.id,
             price,
-            quantity: buyQuantity
+            quantity: parseInt(buyQuantity)
         })
 
     }

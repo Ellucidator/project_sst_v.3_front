@@ -1,6 +1,7 @@
+import { btnActionService } from '@/services/btnActionService'
 import Loading from '../../clientOnlyComponents/loading'
 import styles from './styles.module.scss'
-import { cookieService } from '@/services/authService'
+
 
 type Props = {
     cardLink: string
@@ -12,7 +13,7 @@ type Props = {
 const CategoryCard = async({ cardName, cardLink, imgUrl, theme }: Props) => {
     const handlerSubmit = async (form: FormData) => {
         'use server'
-        await cookieService.btnSubCategoryAction(form.get('cardLink')!.toString())
+        await btnActionService.btnSubCategoryAction(form.get('cardLink')!.toString())
     }
 
     return (
