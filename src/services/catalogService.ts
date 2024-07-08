@@ -102,6 +102,7 @@ async function getItensBySubCategory(subCategoryId: string) {
         })
         const data: SubCategories = await res.json();
         return data;
+        
     } else if(!(parseInt(subCategoryId) > 0)){
 
         const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}`,{
