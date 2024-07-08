@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     cookies().delete('car')
 
 
-    return NextResponse.redirect(`${request.nextUrl.origin}/user/home`)
+    return NextResponse.redirect(`${request.nextUrl.origin}/user/pay`)
 
 }
 

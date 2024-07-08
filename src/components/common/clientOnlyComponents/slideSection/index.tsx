@@ -12,8 +12,7 @@ type Props = {
     itemId?: number
 }
 const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
-    if(allItems.length < 2) return (<></>)
-
+    if(allItems.length < 1) return (<></>)
     return (
         <>
             <Splide

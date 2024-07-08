@@ -11,13 +11,12 @@ type Props = {
 }
 const CardPurchase = ({ userPurchase }: Props) => {
     if(!userPurchase) return <></>
-
     return (
 
         <div className={styles.userPurchase}>
             <div className={styles.userPurchaseImg}>
                 {userPurchase.ItemSells.map((item, i) => {
-                    if (i < 3) return (
+                    if (i < 4) return (
                         <Image key={item.Item.name} src={`http://localhost:3000/files/${item.Item.thumbnail_url}`} alt={item.Item.name} width={50} height={50} />
                     )
                 })}

@@ -11,6 +11,7 @@ import SlideSection from "@/components/common/clientOnlyComponents/slideSection"
 import CategoryCard from "@/components/common/cards/categoryCard";
 export default async function Home() {
 
+
   const [promotionFeature, catalog, newestsItens, featuredItems] = await Promise.all([
     catalogService.getFeaturedPromotion(),
     catalogService.getCatalog(),

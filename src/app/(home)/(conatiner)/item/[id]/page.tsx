@@ -28,7 +28,6 @@ export default async function Item({ params }: { params: { id: string } }) {
     ])
     item.ItemCharacteristic = itemCharacteristics
 
-    console.log(item.promotion)
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`)
 
 

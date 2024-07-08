@@ -6,6 +6,7 @@ async function getOneItem(itemId:string) {
     const res = await fetch(`http://localhost:3000/items/${itemId}`, {
         next:{
             revalidate: 10,
+            tags: ['one-item']
         },
         cache: 'no-store'
     })

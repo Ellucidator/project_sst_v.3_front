@@ -6,9 +6,10 @@ type Props = {
 }
 const ApiMp = ({id}:Props) => {
     initMercadoPago('APP_USR-f5c11a33-799e-4429-b66b-23920954cd39')
+
     return(
         <Wallet 
-            initialization={{ preferenceId: id,redirectMode: 'self'}}
+            initialization={{ preferenceId: id,redirectMode: 'modal'}}
             locale="pt-BR"
             customization={{ texts:{ valueProp: 'payment_methods_logos',action: 'pay', actionComplement: 'brand'}}} />
     )
