@@ -1,1 +1,14 @@
-@import '../../../../../../styles/colors/colors.module.scss';
+@import '../../../../../styles/colors/colors.module.scss';
+
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+
+    .pageBanner{
+        position: relative;
+        width: 100%;
+        height: 550px;
+    }
+}
