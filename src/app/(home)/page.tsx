@@ -24,11 +24,17 @@ export default async function Home() {
   return (
     <main className={`${styles.home}`}>
 
-      <div className={`container ${styles.homeContainer}`}>
+      <div className={` ${styles.homeContainer}`}>
 
         <section className={styles.promotion} >
-          <Link href="/" className={styles.promotionLink}>
-            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={1000} height={600} />
+          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
+            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
+          </Link>
+          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
+            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
+          </Link>
+          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
+            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
           </Link>
         </section>
 

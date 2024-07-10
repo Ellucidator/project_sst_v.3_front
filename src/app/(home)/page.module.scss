@@ -28,19 +28,27 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            height: 650px;
-            padding: 5px 0px 0px 0px;
+            height: 550px;
+            
     
             .promotionLink{
                 display: flex;
-                height: 100%;
-                width: 100%;
-    
+                flex: 1;
+                transition: 0.3s linear;
+                opacity: 0.8;
+
+
                 .promotionBanner{
                     width: 100%;
                     height: 100%;
                 }
+                &:hover{
+                    transition: 0.3s linear;
+                    flex: 2;
+                    opacity: 1;
+                }
             }
+
         }
 
         .slide{

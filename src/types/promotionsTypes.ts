@@ -9,4 +9,5 @@ export interface Promotion{
 
 export interface PromotionWithItems extends Promotion{
     Items: ItemPromotion[]
+    countItems?: number
 }
