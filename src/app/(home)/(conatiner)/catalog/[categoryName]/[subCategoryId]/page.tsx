@@ -1,14 +1,12 @@
 import styles from './page.module.scss'
 import { catalogService } from '@/services/catalogService'
-import Title from '@/components/common/texts/tiltle';
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
 import PagCountServer from '@/components/common/serverActionComponent/pagCount'
-import Button from '@/components/common/button'
 import { cookies } from 'next/headers'
-import Loading from '@/components/common/clientOnlyComponents/loading'
 import TagsFilterServ from '@/components/pages/catalog/servTagsFilter';
 import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop';
+import SelectOrder from '@/components/common/serverActionComponent/selectOrder';
 
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
@@ -50,18 +48,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
 
             <div className={styles.catalogCardContainer}>
 
-                <form action={actionSelect} className={styles.catalogOrderContainer}>
-                    <Loading model='modelArea' />
-                    <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
-                    <div className={styles.catalogOrder}>
-                        <select className={styles.selectOrder} name='order' >
-                            <option value={'created_at-DESC'}>Novidades</option>
-                            <option value={'price-DESC'}>Maior Preço</option>
-                            <option value={'price-ASC'}>Menor Preço</option>
-                        </select>
-                        <Button btnModel="model4" btnName="Aplicar" btnAction="submit" />
-                    </div>
-                </form>
+                <SelectOrder title={params.categoryName} type='order' formFunction={actionSelect} />
 
                 {catalog ? (
                     <Container title={{titleText:catalog.name,model:'model3',fontSize:'22px'}} 
