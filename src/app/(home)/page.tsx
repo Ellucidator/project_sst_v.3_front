@@ -9,6 +9,7 @@ import Container from "@/components/common/container";
 import Title from "@/components/common/texts/tiltle";
 import SlideSection from "@/components/common/clientOnlyComponents/slideSection";
 import CategoryCard from "@/components/common/cards/categoryCard";
+import Banner from "@/components/common/clientOnlyComponents/banner";
 export default async function Home() {
 
 
@@ -19,24 +20,14 @@ export default async function Home() {
     catalogService.getFeaturedItems()
   ])
 
-
+  
 
   return (
     <main className={`${styles.home}`}>
-
+      
       <div className={` ${styles.homeContainer}`}>
 
-        <section className={styles.promotion} >
-          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
-            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
-          </Link>
-          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
-            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
-          </Link>
-          <Link href={`/promotion/${promotionFeature.id}`} className={styles.promotionLink}>
-            <Image src={`http://localhost:3000/files/${promotionFeature.thumbnail_url}`} alt="banner" className={styles.promotionBanner} width={700} height={550} />
-          </Link>
-        </section>
+        <Banner promotions={[promotionFeature]} />
 
         <section className={`container ${styles.slide}`}>
           <Title fontSize="25px" titleText={promotionFeature.name} />
