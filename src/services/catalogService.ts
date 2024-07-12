@@ -1,6 +1,6 @@
 import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item } from "@/types/itemsTypes";
-import { PromotionWithItems } from "@/types/promotionsTypes";
+import { Promotion, PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
 import { cookies } from "next/headers";
 
@@ -38,6 +38,17 @@ async function getTags(subCategoryId:string) {
     if(res.status !== 200) return []
 
     const data: Tag[] = await res.json();
+    return data;
+}
+
+async function getAllPromotions(){
+    const res = await fetch('http://localhost:3000/promotions', {
+        next:{
+            revalidate: 10
+        },
+        cache: 'force-cache'
+    })
+    const data: Promotion[] = await res.json();
     return data;
 }
 async function getFeaturedPromotion(){
@@ -185,6 +196,7 @@ async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 
 export const catalogService = {
     getCatalog,
     getSubCategories,
+    getAllPromotions,
     getFeaturedPromotion,
     getPromotionById,
     getNewestsItems,
