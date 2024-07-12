@@ -1,6 +1,4 @@
-import Image from "next/image";
 import styles from './page.module.scss'
-import Link from "next/link";
 import { catalogService } from "@/services/catalogService";
 import CardItem from "@/components/common/cards/cardItem";
 import imgBanner1 from '../../../public/public/home/categoryBanner1.png'
@@ -9,7 +7,7 @@ import Container from "@/components/common/container";
 import Title from "@/components/common/texts/tiltle";
 import SlideSection from "@/components/common/clientOnlyComponents/slideSection";
 import CategoryCard from "@/components/common/cards/categoryCard";
-import Banner from "@/components/common/clientOnlyComponents/banner";
+import Banners from "@/components/common/banners";
 export default async function Home() {
 
 
@@ -28,7 +26,7 @@ export default async function Home() {
       
       <div className={` ${styles.homeContainer}`}>
 
-        <Banner promotions={promotions} />
+        <Banners promotions={promotions} />
 
         <section className={`container ${styles.slide}`}>
           <Title fontSize="25px" titleText={promotionFeature.name} />

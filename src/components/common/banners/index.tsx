@@ -7,7 +7,7 @@ type Props = {
     promotions:Promotion[]
 }
 
-const Banner = ({ promotions }: Props) => {
+const Banners = ({ promotions }: Props) => {
 
 
     return (
@@ -24,4 +24,4 @@ const Banner = ({ promotions }: Props) => {
     )
 }
 
-export default Banner
+export default Banners
