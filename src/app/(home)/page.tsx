@@ -13,7 +13,8 @@ import Banner from "@/components/common/clientOnlyComponents/banner";
 export default async function Home() {
 
 
-  const [promotionFeature, catalog, newestsItens, featuredItems] = await Promise.all([
+  const [promotions,promotionFeature, catalog, newestsItens, featuredItems] = await Promise.all([
+    catalogService.getAllPromotions(),
     catalogService.getFeaturedPromotion(),
     catalogService.getCatalog(),
     catalogService.getNewestsItems(),
@@ -27,7 +28,7 @@ export default async function Home() {
       
       <div className={` ${styles.homeContainer}`}>
 
-        <Banner promotions={[promotionFeature]} />
+        <Banner promotions={promotions} />
 
         <section className={`container ${styles.slide}`}>
           <Title fontSize="25px" titleText={promotionFeature.name} />
