@@ -29,22 +29,20 @@ const SlideSection = ({allItems, perPage = 5, perMove = 1 ,itemId}: Props) => {
                         1281: {
                             perPage: perPage-2,
                         },
-                        1023: {
-                            perPage: perPage-3,
-                            padding: { left: 0, right: 0 }
-                        },
                         768: {
-                            perPage: perPage-4,
-                            gap:'4rem',
+                            perPage: perPage-3,
                             padding: { left: 30, right: 0 }
                         },
                         575: {
-                            perPage: perPage-4,
                             padding: { left: 10, right: 0 }
                         },
-                        462: {
-                            perPage: 1,
-                            padding: { left: 100, right: 0 }
+                        481: {
+                            perPage: 2,
+                            padding: { left: 50, right: 0 }
+                        },
+                        440: {
+                            perPage: 2,
+                            padding: { left: 20, right: 0 }
                         }
                     }
                 }}
