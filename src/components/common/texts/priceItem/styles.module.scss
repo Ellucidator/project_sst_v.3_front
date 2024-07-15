@@ -33,3 +33,12 @@
         color: $tertiaryDark;
     }
 }
+
+
+@media(max-width: 1024px) {
+    .model1 {
+        .price {
+            font-size: 22px;
+        }
+    }
+}

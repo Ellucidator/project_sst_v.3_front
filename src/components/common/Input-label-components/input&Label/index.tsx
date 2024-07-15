@@ -8,7 +8,7 @@ export interface InputAttributes {
     inputOptions?: React.InputHTMLAttributes<HTMLInputElement>
     labelOptions?: React.LabelHTMLAttributes<HTMLLabelElement>
     labelText?: string
-    inputColor?: 'light' | 'dark'
+    inputColor?: 'light' | 'dark' | 'model1'
 }
 
 const Input =({divWidth,inputOptions,labelOptions,labelText,mode,inputColor='light',direction='column'}:InputAttributes)=>{

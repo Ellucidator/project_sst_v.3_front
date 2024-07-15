@@ -7,12 +7,13 @@ type Props = {
     direction?: 'row'|'column'
     justifyContent?: string
     title?: TitleProps
+    modelTw?:'container'
 }
 
-const Container = ({children,title,model='model1',direction='row',justifyContent}:Props)=>{
+const Container = ({children,title,model='model1',direction='row',justifyContent,modelTw}:Props)=>{
 
     return(
-        <div className={styles.container + ' ' + styles[model]}>
+        <div className={ `${modelTw} ${styles.container} ${styles[model]}`}>
             {title?<Title {...title}/>:<></>}
             <div className={styles.containerBody} style={{flexDirection:direction,justifyContent:justifyContent}}>
                 {children}
