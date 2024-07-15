@@ -9,6 +9,7 @@
     background-color: $primaryDark; ;
 
     .loginContainer{
+        padding: 5px;
         width: 50%;
         height: 60%;
         display: flex;
@@ -41,7 +42,7 @@
         }
         .divRegister{
             display: flex;
-            width: 50%;
+            flex: 1;
             justify-content: center;
             align-items: center;
             flex-direction: column;

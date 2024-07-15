@@ -46,7 +46,7 @@ export default async function Home() {
         </section>
 
         <Container title={{ titleText: "Produtos em destaque", model: "model5", width: "100%", fontSize: "25px" }}
-          model="model2">
+          model="model2" modelTw='container'>
           {featuredItems.map((item) => {
             return (
               <CardItem key={item.id} item={item} />

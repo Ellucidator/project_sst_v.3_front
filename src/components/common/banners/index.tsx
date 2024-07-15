@@ -11,7 +11,7 @@ const Banners = ({ promotions }: Props) => {
 
 
     return (
-        <section className={styles.promotion} >
+        <div className={styles.promotion} >
             {promotions.map((promotion) => {
                 return (
                     <Link href={`/promotion/${promotion.id}`} key={promotion.id} 
@@ -20,7 +20,7 @@ const Banners = ({ promotions }: Props) => {
                     </Link>
                 )
             })}
-        </section>
+        </div>
     )
 }
 

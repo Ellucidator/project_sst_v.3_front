@@ -49,10 +49,6 @@
 
     .homeContainer{
         min-width: 100%;
-
-        .promotion{
-            max-height: 500px;
-        }
     }
 }
 @media(max-width:768px) {
@@ -60,18 +56,11 @@
     .homeContainer{
         min-width: 100%;
 
-        .promotion{
-            max-height: 400px;
-        }
     }
 }
 @media(max-width:560px) {
     .homeContainer{
         min-width: 100%;
-
-        .promotion{
-            max-height: 280px;
-        }
     }
     .categoriesCards{
         flex-direction: column;
