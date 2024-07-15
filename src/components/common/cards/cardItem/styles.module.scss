@@ -77,3 +77,24 @@
         background-color: rgb($secondaryDark, 0.1);
     }
 }
+
+@media(max-width: 1024px) {
+    .cardItem {
+        min-height: 315px;
+        width: 160px;
+        height: fit-content;
+    
+        .bannerAndName {    
+            .cardBanner {
+                width: 100%;
+                height: 150px;
+            }
+    
+            .name {
+                padding: 10px;
+                font-size: medium;
+                word-wrap: break-word;
+            }
+        }
+    }
+}
