@@ -7,6 +7,8 @@ import { cookies } from 'next/headers'
 import TagsFilterServ from '@/components/pages/catalog/servTagsFilter';
 import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop';
 import SelectOrder from '@/components/common/serverActionComponent/selectOrder';
+import Title from '@/components/common/texts/tiltle'
+import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
 
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
@@ -49,10 +51,14 @@ export default async function Catalog({ params }: { params: { categoryName: stri
             <div className={styles.catalogCardContainer}>
 
                 <SelectOrder title={params.categoryName} type='order' formFunction={actionSelect} />
+                <div className={styles.responsiveFilters} >
+                    <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
+                    {/* <ButtonActionById buttonAttribute={{btnName:'||| Filtros', btnModel:'model4'}} /> */}
+                </div>
 
                 {catalog ? (
                     <Container title={{titleText:catalog.name,model:'model3',fontSize:'22px'}} 
-                        justifyContent={catalog.Items!.length>3?'space-between':''}>
+                        justifyContent={'center'}>
 
                         {catalog.Items ? (
                             catalog.Items.map(item => (
