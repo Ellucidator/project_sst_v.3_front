@@ -1,10 +1,5 @@
 @import '../../../styles/colors/colors.module.scss';
 
-@keyframes flex-a {
-    0% { flex: 1; }
-    50% { flex: 7;}
-    100% { flex: 1; }
-}
 .promotion{
     display: flex;
     justify-content: center;
@@ -30,4 +25,16 @@
         }
     }
 
+}
+
+@media(max-width: 1024px) {
+    .promotion{
+        height: 350px;
+    }
+}
+
+@media(max-width: 550px) {
+    .promotion{
+        height: 250px;
+    }
 }
