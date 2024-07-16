@@ -1,21 +1,19 @@
 import { SubCategories } from '@/types/catalogTypes'
 import Button from '../../button'
 import Loading from '../../clientOnlyComponents/loading'
-import Title from '../../texts/tiltle'
 import styles from './styles.module.scss'
+import Title from '../../texts/tiltle'
 
 type Props = {
-    title: string
     type:'order'|'order&subCategoryId'
     formFunction: ((formData: FormData) => void)
     subCategories?: SubCategories[]
 }
-const SelectOrder = ({title,formFunction,type,subCategories}: Props) => {
+const SelectOrder = ({formFunction,type,subCategories}: Props) => {
 
     return (
         <form action={formFunction} className={styles.catalogOrderContainer}>
             <Loading model='modelArea' />
-            <Title fontSize="25px" model='model2' titleText={title.toUpperCase()} />
             {type === 'order&subCategoryId' 
                 ?<div className={styles.catalogOrder}>
                     <Title fontSize="18px" model='model1' titleText="Categoria:" />

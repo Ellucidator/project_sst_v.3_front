@@ -1,12 +1,9 @@
 @import '../../../../styles/colors/colors.module.scss';
 
 .catalogOrderContainer {
-    width: 100%;
     height: 80px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
     .catalogOrder{
         display: flex;
         flex-wrap: nowrap;
@@ -16,7 +13,6 @@
         .selectOrder {
             padding: 8px;
             background-color: $primary;
-
         }
     }
 }

@@ -19,6 +19,17 @@
     flex-direction: column;
     flex: content;
 
+    .select {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .filters{
+            color: $tertiary;
+            text-decoration: underline;
+        }
+    }
     .responsiveFilters{
         display: none;
         flex-wrap: nowrap;
