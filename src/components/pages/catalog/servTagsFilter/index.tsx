@@ -17,7 +17,7 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
 
         const filter = form.getAll('filter')
         const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
-
+        console.log(filter)
         if (catalogCookie) {
             const catalogCookieOn: { itemsOrder?: string, tags?: any[] } = JSON.parse(catalogCookie)
             catalogCookieOn.tags = filter
@@ -31,6 +31,7 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
                     maxAge: 60 * 60
                 })
         }
+        cookies().delete('modal')
     }
 
 

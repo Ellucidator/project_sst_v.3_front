@@ -9,6 +9,7 @@ import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop';
 import SelectOrder from '@/components/common/serverActionComponent/selectOrder';
 import Title from '@/components/common/texts/tiltle'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
+import ServerModal from '@/components/common/serverActionComponent/modal'
 
 
 export default async function Catalog({ params }: { params: { categoryName: string, subCategoryId: string } }) {
@@ -53,7 +54,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                 <SelectOrder title={params.categoryName} type='order' formFunction={actionSelect} />
                 <div className={styles.responsiveFilters} >
                     <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
-                    {/* <ButtonActionById buttonAttribute={{btnName:'||| Filtros', btnModel:'model4'}} /> */}
+                    <ServerModal cookieName='modal' commonType='filters' tags={tags} subCategoryId={params.subCategoryId}/>
                 </div>
 
                 {catalog ? (
