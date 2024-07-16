@@ -18,11 +18,11 @@ export default async function Catalog({ params }: { params: { categoryName: stri
         catalogService.getTags(params.subCategoryId)
     ])
 
-    let filters:string[]=[]
+    let filters: string[] = []
     const catalogCookie = cookies().get(`catalog${params.subCategoryId}`)?.value
-    if(catalogCookie){
+    if (catalogCookie) {
         filters = JSON.parse(catalogCookie).tags
-        
+
     }
 
     const actionSelect = async (form: FormData) => {
@@ -61,11 +61,11 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                     <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
                     <p className={styles.filters}>{`${filters.join(', ')}`}</p>
                     <SelectOrder type='order' formFunction={actionSelect} />
+                    <div className={styles.responsiveFilters} >
+                        <ServerModal cookieName='modal' commonType='filters' tags={tags} subCategoryId={params.subCategoryId} />
+                    </div>
                 </div>
-                <div className={styles.responsiveFilters} >
-                    <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
-                    <ServerModal cookieName='modal' commonType='filters' tags={tags} subCategoryId={params.subCategoryId} />
-                </div>
+
 
                 {catalog ? (
                     <Container title={{ titleText: catalog.name, model: 'model3', fontSize: '22px' }}

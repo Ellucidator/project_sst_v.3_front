@@ -25,3 +25,8 @@
     border-bottom: 2px solid $tertiaryDark;
 }
 
+@media(max-width: 891px){
+    .modalUserOpen{
+        margin-top: 90px;
+    }
+}
