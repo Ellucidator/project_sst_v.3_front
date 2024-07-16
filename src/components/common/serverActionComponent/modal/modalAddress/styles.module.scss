@@ -1,0 +1,37 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+///////ModalAddress///////
+.modalAddress {
+    width: 1000px;
+    position: fixed;
+    transition: 0.5s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalAddressOpen {
+    position: fixed;
+    z-index: 10;
+    min-width: 1050px;
+    min-height: 725px;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+    background-color: rgb($primaryLight, 0.98);
+    color: $secondary;
+    box-shadow: 4px 4px 4px #0000007c, -4px 4px 4px #0000007c;
+    /* CONTEÚDO DO MODAL */
+    display: flex;
+    flex-direction: column;
+    padding: 15px 24px;
+    gap: 5px;
+    border-bottom: 2px solid $tertiaryDark;
+
+    .divButtons{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
