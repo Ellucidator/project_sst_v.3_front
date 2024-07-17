@@ -33,8 +33,8 @@
             border-bottom: 1px solid $tertiaryDark;
 
             .bannerAndName {
+                width: 50%;
                 display: flex;
-                flex: 2;
                 gap: 10px;
 
                 .cardBanner {
@@ -49,45 +49,17 @@
                 flex: 1;
                 gap: 10px;
             }
-            .price{
+            .priceAndPromotion {
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                flex-direction: column;
                 flex: 1;
-                gap: 10px;
-            }
-        }
-    }
-}
-
-@media(max-width:600px){
-    .tableItems {
-        .tableHeader {
-            display: none;
-        }
-        .tableBody {
-            .tableRow {
-                flex-wrap: wrap;
-
-                .bannerAndName {
-                    .cardBanner {
-                        height: 50px;
-                        width: 50px;
-                    }
-    
+                .price {
+                    font-size: 20px;
                 }
-            }
-        }
-    }
-}
-
-@media(max-width:500px){
-    .tableItems {
-        .tableBody {
-            .tableRow {
-                .bannerAndName {
-                    width: 100%;
-                    flex: none;
+                .pricePromotion {
+                    font-size: 15px;
+                    text-decoration: line-through;
+                    color: $tertiaryDark;
                 }
             }
         }

@@ -19,7 +19,7 @@ const CartTable = ({ items }: Props) => {
         <div className={styles.tableItems}>
             <section className={styles.tableHeader}>
                 <Title titleText='Produto' model='simple' fontWeight='bold' width='35%' />
-                <Title titleText='Qtd' model='simple' fontWeight='bold' />
+                <Title titleText='Qtd' model='simple' fontWeight='bold'  />
                 <Title titleText='Preço' model='simple' fontWeight='bold' width='29%' />
             </section>
             <section className={styles.tableBody}>
@@ -44,16 +44,14 @@ const CartTable = ({ items }: Props) => {
                                             actionFunction={cartServices.updateCart} idAction={`${item.id}/+/${item.in_stock}`} />
                                     </section>
 
-                                    <section className={styles.price}>
-                                        <PriceItem model='model2' width='fit-content'
-                                            price={item.price * item.ItemCharacteristic?.quantity!}
-                                            pricePromotion={item.promotion ? item.ItemPromotion!.price * item.ItemCharacteristic?.quantity! : undefined}
-                                        />
+                                    <PriceItem model='model2' width='15%' 
+                                        price={item.price * item.ItemCharacteristic?.quantity!}
+                                        pricePromotion={item.promotion ? item.ItemPromotion!.price * item.ItemCharacteristic?.quantity! : undefined}
+                                    />
 
-                                        <ButtonActionById
-                                            buttonAttribute={{ btnName: 'x', btnModel: 'model4', btnOption: { style: { width: '20px', height: '20px' } } }}
-                                            actionFunction={cartServices.updateCart} idAction={`${item.id}/x/${item.in_stock}`} />
-                                    </section>
+                                    <ButtonActionById
+                                        buttonAttribute={{ btnName: 'x', btnModel: 'model4', btnOption: { style: { width: '20px', height: '20px' } } }}
+                                        actionFunction={cartServices.updateCart} idAction={`${item.id}/x/${item.in_stock}`} />
                                 </div>
                             </>
                         )
