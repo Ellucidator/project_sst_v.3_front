@@ -35,3 +35,13 @@
         width: 100%;
     }
 }
+
+@media(max-width: 1065px){
+    .modalAddressOpen{
+        top: 52%;
+        min-height: auto;
+        min-width: auto;
+        max-height: 800px;
+        overflow-y: auto;
+    }
+}
