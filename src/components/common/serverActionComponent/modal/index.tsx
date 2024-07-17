@@ -16,8 +16,8 @@ type Props = {
     user_name?: string
     adresses?: UserAddress[]
     commonType?: 'categories-sub-list' | 'filters'
-    tags: Tag[],
-    subCategoryId: string
+    tags?: Tag[],
+    subCategoryId?: string
 }
 
 const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'categories-sub-list', user_name, adresses = [], tags, subCategoryId }: Props) => {
@@ -68,7 +68,7 @@ const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'catego
 
                                 {commonType === 'categories-sub-list' ? 
                                     <CategoriesAndSubList categories={catalog!} />:
-                                    <TagsFilterServ tags={tags} subCategoryId={subCategoryId} />
+                                    <TagsFilterServ tags={tags!} subCategoryId={subCategoryId!} />
                                 }
                             </>
                             : <></>}
