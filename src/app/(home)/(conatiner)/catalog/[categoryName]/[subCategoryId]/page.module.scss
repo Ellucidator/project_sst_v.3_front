@@ -21,19 +21,19 @@
 
     .select {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
 
         .filters{
             color: $tertiary;
             text-decoration: underline;
+            word-break: keep-all;
         }
     }
     .responsiveFilters{
         display: none;
         flex-wrap: nowrap;
-        justify-content: space-between;
         align-items: center;
     }
 }

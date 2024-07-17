@@ -8,8 +8,9 @@ type Props = {
     type:'order'|'order&subCategoryId'
     formFunction: ((formData: FormData) => void)
     subCategories?: SubCategories[]
+    subAc?:string
 }
-const SelectOrder = ({formFunction,type,subCategories}: Props) => {
+const SelectOrder = ({formFunction,type,subCategories,subAc}: Props) => {
 
     return (
         <form action={formFunction} className={styles.catalogOrderContainer}>
@@ -17,7 +18,7 @@ const SelectOrder = ({formFunction,type,subCategories}: Props) => {
             {type === 'order&subCategoryId' 
                 ?<div className={styles.catalogOrder}>
                     <Title fontSize="18px" model='model1' titleText="Categoria:" />
-                    <select className={styles.selectOrder} name='subCategoryId' >
+                    <select defaultValue={subAc} className={styles.selectOrder} name='subCategoryId' >
                         <option value={'all'}>Todas</option>
                         {subCategories?.map((subCategory) => {
                             return (

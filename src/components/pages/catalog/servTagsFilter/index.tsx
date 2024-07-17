@@ -7,9 +7,10 @@ import Button from '@/components/common/button'
 
 type Props = {
     tags: Tag[],
-    subCategoryId: string
+    subCategoryId: string,
+    filters?:string[]
 }
-const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
+const TagsFilterServ = async ({ tags, subCategoryId,filters=[] }: Props) => {
     if (tags.length < 1 ) return (<></>)
 
     const actionFilter = async (form: FormData) => {
@@ -17,7 +18,6 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
 
         const filter = form.getAll('filter')
         const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
-        console.log(filter)
         if (catalogCookie) {
             const catalogCookieOn: { itemsOrder?: string, tags?: any[] } = JSON.parse(catalogCookie)
             catalogCookieOn.tags = filter
@@ -54,7 +54,7 @@ const TagsFilterServ = async ({ tags, subCategoryId }: Props) => {
                                         tag.TagValues.map((value) => {
                                             return (
                                                 <div key={value.id} className={styles.tags}>
-                                                    <input type="checkbox" name='filter' id={value.name} value={value.name} />
+                                                    <input defaultChecked={filters.some(fil=>fil===value.name)} type="checkbox" name='filter' id={value.name} value={value.name} />
                                                     <label htmlFor={value.name}>{value.name}</label>
                                                 </div>
                                             )

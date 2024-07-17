@@ -2,6 +2,7 @@
 
 .catalogOrderContainer {
     height: 80px;
+    gap: 15px;
     display: flex;
     align-items: center;
     .catalogOrder{
@@ -19,6 +20,6 @@
 
 @media(max-width: 735px) {
     .catalogOrderContainer{
-        display: none;
+        // display: none;
     }
 }

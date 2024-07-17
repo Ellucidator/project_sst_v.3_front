@@ -53,17 +53,18 @@ export default async function Catalog({ params }: { params: { categoryName: stri
         <>
             <ScrollToTop />
             <div className={styles.catalogOptions}>
-                <TagsFilterServ tags={tags} subCategoryId={params.subCategoryId} />
+                <TagsFilterServ filters={filters} tags={tags} subCategoryId={params.subCategoryId} />
             </div>
 
             <div className={styles.catalogCardContainer}>
                 <div className={styles.select}>
                     <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
                     <p className={styles.filters}>{`${filters.join(', ')}`}</p>
-                    <SelectOrder type='order' formFunction={actionSelect} />
                     <div className={styles.responsiveFilters} >
-                        <ServerModal cookieName='modal' commonType='filters' tags={tags} subCategoryId={params.subCategoryId} />
+                        <ServerModal cookieName='modal' commonType='filters' tags={tags} filters={filters} subCategoryId={params.subCategoryId} />
                     </div>
+                    <SelectOrder type='order' formFunction={actionSelect} />
+                    
                 </div>
 
 
