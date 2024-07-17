@@ -1,22 +1,23 @@
 @import '../../../styles/colors/colors.module.scss';
 
-.model1{
+.model1 {
     display: flex;
     margin-top: 30px;
-    .divItems{
+
+    .divItems {
         display: flex;
         flex-direction: column;
-        background-color: rgb($primary,0.8);
+        background-color: rgb($primary, 0.8);
         padding: 20px;
         gap: 10px;
         width: 50%;
 
-        .titleItems{
+        .titleItems {
             font-size: 22px;
             margin-bottom: 10px;
         }
 
-        .item{
+        .item {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -26,33 +27,59 @@
     }
 }
 
-.model2{
+.model2 {
     display: flex;
     flex: 1;
-    .divItems{
+
+    .divItems {
         display: flex;
         flex-direction: column;
-        background-color: rgb($primary,0.8);
+        background-color: rgb($primary, 0.8);
         padding: 20px;
         gap: 10px;
         width: 100%;
 
-        .titleItems{
+        .titleItems {
             font-size: 22px;
             margin-bottom: 10px;
         }
 
-        .item{
-            width: 100%;
+        .item {
             display: flex;
+            flex: 1;
             align-items: center;
+            gap: 10px;
             justify-content: space-between;
             margin: 5px 0px 5px 0px;
             border-bottom: 1px solid $secondaryDark;
 
-            .itemImg{
+            .itemImg {
                 width: 80px;
                 height: 80px;
+            }
+
+            .infoAndPrice{
+                display: flex;
+                flex: 1;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+
+@media(max-width:525px) {
+    .model2 {
+        .divItems {
+            .item {
+                .infoAndPrice{
+                    flex-wrap: wrap;
+                }
+                .itemImg {
+                    width: 100px;
+                    height: 100px;
+                }
             }
         }
     }

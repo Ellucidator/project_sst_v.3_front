@@ -10,7 +10,7 @@ type Props = {
     type?: 'Common' | 'Purchase'
     model?: 'model1' | 'model2'
 }
-const ItemsTable = ({ items, type='Common', model='model1', total=0}: Props) => {
+const ItemsTable = ({ items, type = 'Common', model = 'model1', total = 0 }: Props) => {
 
     if (type === 'Common') {
         items = items as ItemPromotion[]
@@ -23,8 +23,10 @@ const ItemsTable = ({ items, type='Common', model='model1', total=0}: Props) => 
                         return (
                             <div key={elem.name} className={styles.item}>
                                 <Image className={styles.itemImg} src={`http://localhost:3000/files/${elem.thumbnail_url}`} alt={elem.name} width={50} height={50} />
-                                <p>{`${elem.ItemCharacteristic?.quantity}x ${elem.name}`}</p>
-                                <PriceItem model='model2' width='fit-content' pricePromotion={elem.promotion ? elem.ItemPromotion?.price : undefined} price={elem.price} />
+                                <div className={styles.infoAndPrice}>
+                                    <p>{`${elem.ItemCharacteristic?.quantity}x ${elem.name}`}</p>
+                                    <PriceItem model='model2' width='fit-content' pricePromotion={elem.promotion ? elem.ItemPromotion?.price : undefined} price={elem.price} />
+                                </div>
                             </div>
                         )
                     })}
@@ -46,8 +48,10 @@ const ItemsTable = ({ items, type='Common', model='model1', total=0}: Props) => 
                         return (
                             <div key={elem.Item.name} className={styles.item}>
                                 <Image src={`http://localhost:3000/files/${elem.Item.thumbnail_url}`} alt={elem.Item.name} width={80} height={80} />
-                                <p>{`${elem.quantity}x ${elem.Item.name}`}</p>
-                                <p>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                <div className={styles.infoAndPrice}>
+                                    <p>{`${elem.quantity}x ${elem.Item.name}`}</p>
+                                    <p>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                </div>
                             </div>
                         )
                     })}
