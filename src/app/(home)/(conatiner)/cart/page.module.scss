@@ -39,6 +39,25 @@
         }
     }
     .cartFrete{
-        width: 30%;
+        width: fit-content;
+    }
+}
+
+@media(max-width:1024px){
+    .cartBody{
+        .cartInfo{
+            flex-direction: column;
+
+            .cartTotal{
+                gap: 10px;
+                width: auto;
+                flex: 1;
+                .resumo{
+                    .resumoItemsTotal{
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
     }
 }
