@@ -60,6 +60,12 @@
     }
 }
 
+@media(max-width:1025px){
+    .tableItems{
+        min-height: auto;
+    }
+}
+
 @media(max-width:600px){
     .tableItems {
         .tableHeader {

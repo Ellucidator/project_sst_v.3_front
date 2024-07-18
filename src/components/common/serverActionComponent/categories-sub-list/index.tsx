@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { cookies } from 'next/headers'
 import ButtonActionById from '../buttonActionById'
 import { btnActionService } from '@/services/btnActionService'
+import Button from '../../button'
 
 type Props = {
     categories: Categories[]
@@ -40,9 +41,10 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
                         className={classCondition.name === category.name && classCondition.open === true? styles.subCategoryOpen : styles.subCategoryList}>
                             {classCondition.name === category.name && classCondition.open === true?category.SubCategories.map((subCategory) => (
                                 <li key={subCategory.id} className={styles.subCategory} >
-                                    <ButtonActionById actionFunction={btnActionService.btnSubCategoryAction} 
+                                    {/* <ButtonActionById actionFunction={btnActionService.btnSubCategoryAction} 
                                         idAction={`${category.name.toLowerCase()}/${subCategory.id}`} 
-                                        buttonAttribute={{ btnName: subCategory.name, btnModel:'model6',btnOption:{style:{fontSize:'medium'}}}} />
+                                        buttonAttribute={{ btnName: subCategory.name, btnModel:'model6',btnOption:{style:{fontSize:'medium'}}}} /> */}
+                                        <Button btnAction='link' href={`http://localhost:3001/api/catalog/${category.name.toLowerCase()}-${subCategory.id}`} btnName={subCategory.name} btnModel='model6' btnOption={{style:{fontSize:'medium'}}} />
                                 </li>
                             )):<></>}
                         </ul>

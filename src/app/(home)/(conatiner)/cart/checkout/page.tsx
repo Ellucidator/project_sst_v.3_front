@@ -40,10 +40,7 @@ export default async function CheckoutPage() {
             },
             auto_return: 'approved'
         }
-    })
-    console.log()
-    
-    
+    })    
 
 
     return (
