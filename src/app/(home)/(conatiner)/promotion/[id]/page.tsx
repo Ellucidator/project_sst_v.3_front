@@ -51,7 +51,7 @@ export default async function PromotionPage({ params }: { params: { id: string }
                 <Title titleText={promotion.name} model='model3' fontSize='25px'/>
                 <SelectOrder subAc={subId} formFunction={actionSelect} type='order&subCategoryId' subCategories={subCategories} />
             </div>
-            <Container>
+            <Container justifyContent='center'>
                 {
                     promotion.Items.length > 0 ?
                         promotion.Items.map((item) => {

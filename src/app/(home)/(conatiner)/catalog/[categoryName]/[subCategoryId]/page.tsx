@@ -61,7 +61,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
                     <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
                     <p className={styles.filters}>{`${filters.join(', ')}`}</p>
                     <div className={styles.responsiveFilters} >
-                        <ServerModal cookieName='modal' commonType='filters' tags={tags} filters={filters} subCategoryId={params.subCategoryId} />
+                        <ServerModal cookieName='modalFilters' tags={tags} filters={filters} subCategoryId={params.subCategoryId} />
                     </div>
                     <SelectOrder type='order' formFunction={actionSelect} />
                     

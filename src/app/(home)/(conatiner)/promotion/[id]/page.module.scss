@@ -14,6 +14,23 @@
     .titleAndSelects{
         padding: 10px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
+    }
+}
+
+@media(max-width:1250px){
+    .pageContainer{
+        .pageBanner{
+            height: 400px;
+        }
+    }
+}
+
+@media(max-width:975px){
+    .pageContainer{
+        .pageBanner{
+            height: 300px;
+        }
     }
 }
