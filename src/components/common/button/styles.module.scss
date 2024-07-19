@@ -74,6 +74,19 @@
     padding: 0px 15px;
 }
 
+@media(max-width: 1050px) {
+    .model5 {
+        gap: 5px;
+
+        .btnTexts{
+            white-space: nowrap;
+            .title{
+                font-size: 18px;
+            }
+        }
+    }
+}
+
 .model6 {
     padding: 0px;
     background-color: transparent;
@@ -92,7 +105,10 @@
         transition: 0.1s;
         
     }
+
 }
+
+
 
 .model7{
     padding: 0px;

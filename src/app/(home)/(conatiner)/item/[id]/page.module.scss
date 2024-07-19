@@ -52,11 +52,11 @@
                     display: flex;
 
                     .sectionPayInfo{
-                        width: 50%;
+                        width: 30%;
                     }
                     
                     .sectionBuy {
-                        width: 50%;
+                        flex: 1;
                         
                         form {
                             display: flex;
@@ -97,4 +97,13 @@
             margin-bottom: 50px
         }
 
+    }
+
+
+    @media(max-width: 1350px) {
+        .itemContainer {
+            .cardItem {
+                
+            }
+        }
     }

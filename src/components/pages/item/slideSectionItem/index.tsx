@@ -20,7 +20,18 @@ const SlideSectionItem = ({ allItems }: Props) => {
             pagination: false,
             arrows: quantImg && quantImg > 1 ? true : false,
             focus: 'center',
-            height:650
+            height:650,
+            breakpoints: {
+                1350: {
+                    height: 500
+                },
+                1050: {
+                    height: 400
+                },
+                850: {
+                    height: 300
+                }
+            }
 
         })
         var miniSlide = new Splide('#miniSlide', {
@@ -35,6 +46,14 @@ const SlideSectionItem = ({ allItems }: Props) => {
                 mouse: 4,
                 touch: 10,
             },
+            breakpoints: {
+                1350: {
+                    fixedWidth: 100
+                },
+                1050: {
+                    fixedWidth: 80,
+                }
+            }
 
         })
         main.sync(miniSlide)
