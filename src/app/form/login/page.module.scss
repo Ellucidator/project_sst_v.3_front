@@ -20,29 +20,21 @@
 
 
         .loginForm{
-            width: 60%;
+            flex: 1;
             height: 100%;
-            padding: 0px 15px;
+            min-width: 350px;
+            padding: 15px 15px;
             background-color: $primary;
             display: flex;
             gap: 20px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            .inputDiv{
-                width: 100%;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 5px;
-            }
-
-
         }
         .divRegister{
             display: flex;
-            flex: 1;
+            width: 35%;
+            padding: 10px;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -62,8 +54,6 @@
                     transition: 0.5s;
                     color: $tertiary;
                     border-bottom: 2px solid $tertiary;
-
-
                     border-radius: 5px;
                 }
             }
@@ -77,4 +67,42 @@
     align-self: flex-start;
     color: $tertiary;
     font-size: 14px;
+}
+
+@media(max-width:1350px){
+
+    .login{
+        .loginContainer{
+            width: 85%;
+        }
+    }
+}
+
+@media(max-width:775px){
+
+    .login{
+        height: auto;
+        min-height: 70vh;
+        .loginContainer{
+            width: 95%;
+            flex-wrap: wrap;
+
+            .loginForm{
+                width: auto;
+                flex: 1;
+            }
+
+            .divRegister{
+                width: auto;
+                min-height: 100px;
+                .tittle{
+                    font-size: 20px;
+                }
+
+                .link{
+                    font-size: 17px;
+                }
+            }
+        }
+    }
 }
