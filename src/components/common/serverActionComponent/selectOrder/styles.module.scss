@@ -1,9 +1,10 @@
 @import '../../../../styles/colors/colors.module.scss';
 
 .catalogOrderContainer {
-    height: 80px;
+    height: auto;
     gap: 15px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     .catalogOrder{
         display: flex;
@@ -18,8 +19,3 @@
     }
 }
 
-@media(max-width: 735px) {
-    .catalogOrderContainer{
-        // display: none;
-    }
-}

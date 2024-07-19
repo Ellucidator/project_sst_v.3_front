@@ -33,7 +33,7 @@ const HeaderPrimary = async () => {
             <div id="header" className={`${styles.header}`}>
                 <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
-                        <ServerModal cookieName="modal" catalog={catalog} />
+                        <ServerModal cookieName="modal" commonType="categories-sub-list" catalog={catalog} />
                         <Link href="/" className={styles.logoHeader}>
                             <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
                         </Link>

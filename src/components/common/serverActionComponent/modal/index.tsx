@@ -9,19 +9,20 @@ import ModalUser from "./modalUser";
 import ModalAddress from "./modalAddress";
 import TagsFilterServ from "@/components/pages/catalog/servTagsFilter";
 import { Tag } from "@/types/tagTypes";
+import ModalFilters from "./modalFilters";
 
 type Props = {
     catalog?: Categories[]
-    cookieName?: 'modal' | 'modalUser' | 'modalAddress'
+    cookieName?: 'modal' | 'modalUser' | 'modalAddress' | 'modalFilters'
     user_name?: string
     adresses?: UserAddress[]
     commonType?: 'categories-sub-list' | 'filters'
     tags?: Tag[],
-    filters?:string[]
+    filters?: string[]
     subCategoryId?: string
 }
 
-const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'categories-sub-list', user_name, adresses = [], tags,filters, subCategoryId }: Props) => {
+const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'categories-sub-list', user_name, adresses = [], tags, filters, subCategoryId }: Props) => {
 
     let classModal = cookieName
     const cookieControl = cookies().get(cookieName)?.value
@@ -49,7 +50,7 @@ const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'catego
             {cookieName === 'modal' ?
                 <>
                     <form action={handlerSubmit}>
-                        {commonType === 'categories-sub-list' ? <button type="submit" className={styles.btnHeader}>
+                        <button type="submit" className={styles.btnHeader}>
                             <p className="flex gap-2 border-b-2">
                                 Catalogo
                                 <Image src="/public/header/shop.svg" alt="catalog" className={styles.icon} width={20} height={20} />
@@ -58,7 +59,7 @@ const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'catego
                                 Serviços
                                 <Image src="/public/header/pc-display.svg" alt="services" className={styles.icon} width={20} height={20} />
                             </p>
-                        </button> : <Button btnModel="model4" btnName="||| Filtros" btnAction="submit" />}
+                        </button>
                     </form>
                     <div className={styles[classModal]}>
                         {cookieControl === 'open' ?
@@ -66,18 +67,16 @@ const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'catego
                                 <form action={handlerSubmit} className={styles.btnModal}>
                                     <button type="submit" className={styles.btnModal} >X</button>
                                 </form>
-
-                                {commonType === 'categories-sub-list' ? 
-                                    <CategoriesAndSubList categories={catalog!} />:
-                                    <TagsFilterServ filters={filters} tags={tags!} subCategoryId={subCategoryId!} />
-                                }
+                                <CategoriesAndSubList categories={catalog!} />
                             </>
                             : <></>}
                     </div>
                 </>
                 : cookieName === 'modalUser' ?
-                    <ModalUser cookieControl={cookieControl!} user_name={user_name!} classModal={classModal} btnAction={btnAction} /> :
+                    <ModalUser cookieControl={cookieControl!} user_name={user_name!} classModal={classModal} btnAction={btnAction} /> 
+                : cookieName === 'modalAddress' ?
                     <ModalAddress cookieControl={cookieControl!} adresses={adresses} classModal={classModal} btnAction={btnAction} />
+                : <ModalFilters btnAction={btnAction} cookieControl={cookieControl!} classModal={classModal} filters={filters!} tags={tags!} subCategoryId={subCategoryId!} />
             }
             {cookieControl === 'open' ?
                 <form action={handlerSubmit}>

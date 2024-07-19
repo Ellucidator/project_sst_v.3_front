@@ -31,14 +31,14 @@
     background-color: $primary;
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 700px) {
     .inputAndLabel{
         flex: 1;
+        max-height: 90px;
         min-width: 150px;
         .input{
             flex: 1;
             max-height: 45px;
-            
         }
     }
     .input{
