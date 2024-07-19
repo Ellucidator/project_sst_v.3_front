@@ -28,7 +28,6 @@
             font-size: 22px;
             color: $secondaryLight;
             border-bottom: 2px solid $tertiary;
-            
             margin-bottom: 50px;
         }
 
@@ -91,8 +90,6 @@
                     transition: 0.5s;
                     color: $tertiary;
                     border-bottom: 2px solid $tertiary;
-
-
                     border-radius: 5px;
                 }
             }
@@ -103,4 +100,27 @@
 .verifyP{
     color: $tertiary;
     font-size: 14px;
+}
+
+
+@media(max-width:1250px){
+    .register{
+
+        .registerContainer{
+            width: 85%;
+        }
+    }
+}
+
+@media(max-width:650px){
+    .register{
+
+        .registerContainer{
+            .registerForm{
+                .inputDiv{
+                    flex-wrap: wrap;
+                }
+            }
+        }
+    }
 }
