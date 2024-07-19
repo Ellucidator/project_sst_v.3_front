@@ -1,0 +1,46 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+.modalFilters {
+    position: fixed;
+    transition: 0.2s;
+    width: 0px;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+.modalFiltersOpen {
+    z-index: 10;
+    position: fixed;
+    transition: 0.2s;
+    width: 350px;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: $primary;
+    color: $secondary;
+    border-right: 2px solid $tertiaryDark;
+    border-top-right-radius: 30px;
+    box-shadow: 8px 6px 4px #0000007c;
+
+    /* CONTEÚDO DO MODAL */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 24px;
+
+    .btnModal {
+        align-self: flex-end;
+        color: $secondary;
+        font-weight: bold;
+        height: 60px;
+        width: 60px;
+        font-size: 20px;
+        transition: 0.2s;
+
+        &:hover {
+            color: $tertiary;
+            transform: scale(1.02);
+        }
+    }
+
+}
