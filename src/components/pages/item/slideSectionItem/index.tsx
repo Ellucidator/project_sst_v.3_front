@@ -28,8 +28,14 @@ const SlideSectionItem = ({ allItems }: Props) => {
                 1050: {
                     height: 400
                 },
-                850: {
-                    height: 300
+                800: {
+                    height: 500
+                },
+                600: {
+                    height: 350
+                },
+                475: {
+                    height: 250
                 }
             }
 
