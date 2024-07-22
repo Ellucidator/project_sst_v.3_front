@@ -39,10 +39,49 @@
             
         }
         .divInfo{
-            width: 75%;
             padding: 10px;
             display: flex;
+            flex: 1;
             flex-direction: column;
+        }
+    }
+}
+
+
+@media(max-width:1250px){
+    .pageBody{
+
+        .pageContainer{
+
+            .divOptions{
+
+                .option{
+                    font-size: 17px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1000px){
+    .pageBody{
+
+        .pageContainer{
+            flex-direction: column;
+
+            .divOptions{
+                padding: 20px;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .option{
+                    width: auto;
+                    font-size: 13px;
+                }
+            }
         }
     }
 }
