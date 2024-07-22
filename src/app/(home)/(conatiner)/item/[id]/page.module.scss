@@ -1,109 +1,141 @@
 @import '../../../../../styles/colors/colors.module.scss';
 
-    .itemContainer {
-        padding-top: 20px;
-        height: 100%;
+.itemContainer {
+    padding-top: 20px;
+    height: 100%;
+    width: 100%;
+    background-color: $primaryLight;
+    display: flex;
+    flex-direction: column;
+
+    .titleItem {
+        margin: 0px 0px 10px 80px;
+        font-size: 36px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .cardItem {
         width: 100%;
-        background-color: $primaryLight;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        background-color: $primary;
+        border-bottom: 1px solid $primaryLight;
+        padding: 5px 10px;
 
-        .titleItem {
-            margin: 0px 0px 10px 80px;
-            font-size: 36px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .cardItem {
-            width: 100%;
+        .itemBuy {
+            width: 40%;
             display: flex;
-            justify-content: center;
-            background-color: $primary;
-            border-bottom: 1px solid $primaryLight;
+            justify-content: space-between;
+            padding: 10px;
+            flex-direction: column;
 
-            padding: 5px 10px;
+            .itemStockT {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                border-top: 1px solid;
+                border-bottom: 1px solid;
+                border-color: $primaryLight;
+                font-size: 18px;
+                font-weight: bold;
+                color: rgb(26, 214, 42);
+            }
+
+            .itemStockF {
+                @extend .itemStockT;
+                color: rgb(255, 0, 0);
+            }
+
+            .itemInfo {
+                display: flex;
+
+                .sectionPayInfo {
+                    width: 30%;
+                }
+
+                .sectionBuy {
+                    flex: 1;
+
+                    form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        margin: 20px;
+                        align-self: flex-end;
+
+                    }
+                }
+            }
+        }
+    }
+
+    .sectionSecond {
+        align-self: center;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 50px;
+
+        .recomendedItems {
+            width: 70%;
+            padding: 0px 20px;
+
+        }
+    }
+
+    .itemDescription {
+        margin: 70px 0px;
+        width: 100%;
+        align-self: center;
+    }
+
+    .avaliations {
+        width: 100%;
+        align-self: center;
+        margin-bottom: 50px
+    }
+
+}
+
+@media(max-width: 1281px) {
+    .itemContainer {
+
+        .sectionSecond {
+            .recomendedItems {
+                width: 55%;
+            }
+        }
+    }
+}
+
+@media(max-width: 800px) {
+    .itemContainer {
+        .cardItem {
+            flex-direction: column;
 
             .itemBuy {
-                width: 40%;
-                display: flex;
-                justify-content: space-between;
-                padding: 10px;
-                flex-direction: column;
-
-                .itemStockT {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 50px;
-                    border-top: 1px solid;
-                    border-bottom: 1px solid;
-                    border-color: $primaryLight;
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: rgb(26, 214, 42);
-                }
-
-                .itemStockF {
-                    @extend .itemStockT;
-                    color: rgb(255, 0, 0);
-                }
-
-                .itemInfo {
-                    display: flex;
-
-                    .sectionPayInfo{
-                        width: 30%;
-                    }
-                    
-                    .sectionBuy {
-                        flex: 1;
-                        
-                        form {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
-                            margin: 20px;
-                            align-self: flex-end;
-
-                        }
-                    }
-                }
+                width: 100%;
             }
         }
 
         .sectionSecond {
-            align-self: center;
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 50px;
+            flex-wrap: wrap;
 
             .recomendedItems {
-                width: 70%;
-                padding: 0px 20px;
-
-            }
-        }
-
-        .itemDescription {
-            margin: 70px 0px;
-            width: 100%;
-            align-self: center;
-        }
-
-        .avaliations{
-            width: 100%;
-            align-self: center;
-            margin-bottom: 50px
-        }
-
-    }
-
-
-    @media(max-width: 1350px) {
-        .itemContainer {
-            .cardItem {
-                
+                width: 100%;
             }
         }
     }
+}
+
+@media(max-width: 610px) {
+    .itemContainer {
+
+        .sectionSecond {
+            .recomendedItems {
+                display: none;
+            }
+        }
+    }
+}
