@@ -21,6 +21,7 @@
             flex-direction: column;
             gap: 10px;
             width: 45%;
+            min-width: 300px;
             padding: 15px 20px;
         
             .inputComment{
@@ -70,5 +71,21 @@
         justify-content: center;
         gap: 15px;
         
+    }
+}
+
+
+@media(max-width:975px){
+    .avaliation{
+        .sectionAvaliationUser{
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .sectionAllAvaliations{
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
     }
 }
