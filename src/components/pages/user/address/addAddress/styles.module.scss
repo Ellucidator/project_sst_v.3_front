@@ -15,7 +15,6 @@
 
     .divInput{
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
@@ -36,8 +35,10 @@
         width: 95%;
     }
 }
-@media(max-width: 1300px) {
+@media(max-width: 700px) {
     .formAddress{
-        width: 95%;
+        .divInput{
+            flex-wrap: wrap;
+        }
     }
 }

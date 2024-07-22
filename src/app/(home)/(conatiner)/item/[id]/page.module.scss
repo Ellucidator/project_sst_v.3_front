@@ -131,7 +131,9 @@
 
 @media(max-width: 610px) {
     .itemContainer {
-
+        .titleItem{
+            font-size: 28px;
+        }
         .sectionSecond {
             .recomendedItems {
                 display: none;
