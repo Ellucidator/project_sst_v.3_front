@@ -24,7 +24,7 @@ const HeaderPrimary = async () => {
     else {
         const carItemsA: Cart = JSON.parse(cartItems)
         carCount = carItemsA.items?carItemsA.items.reduce((acc, item) => {
-            return acc += item.quantity
+            return acc += item.ItemCharacteristics.quantity
         }, 0):0
     }
 

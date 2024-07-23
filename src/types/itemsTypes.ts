@@ -3,7 +3,7 @@ import { TagValue } from "./tagTypes";
 export interface ItemToCar{
     id:number
     price:number
-    quantity:number
+    ItemCharacteristics: ItemCharacteristics
 }
 export interface Cart{
     items:ItemToCar[]

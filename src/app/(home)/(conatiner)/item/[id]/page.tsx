@@ -45,7 +45,10 @@ export default async function Item({ params }: { params: { id: string } }) {
         await cartServices.addCarItem(item.in_stock,{
             id: item.id,
             price,
-            quantity: parseInt(buyQuantity)
+            ItemCharacteristics: {
+                ...itemCharacteristics,
+                quantity:parseInt(buyQuantity)
+            }
         })
 
     }
