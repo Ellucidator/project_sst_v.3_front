@@ -1,13 +1,12 @@
 import { cookies } from "next/headers"
 import { Cart, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
-import { redirect } from "next/navigation"
 
 
 const addCarItem = async (inStock: number, item: ItemToCar) => {
 
     const cart = cookies().get('car')?.value
     if (!cart) {
-        cookies().set('car', JSON.stringify({ items: [item], total: item.price * item.quantity }),
+        cookies().set('car', JSON.stringify({ items: [item], total: item.price * item.ItemCharacteristics.quantity }),
             {
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
             }
@@ -17,12 +16,11 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
         const verifyItem = cartItems.items.find(elem => elem.id === item.id)
 
         if (verifyItem) {
-            if((verifyItem.quantity + item.quantity) > inStock){
-                verifyItem.quantity = inStock
-            }else{
-                verifyItem.quantity += item.quantity
-                cartItems.total += item.price
-            }
+            if ((verifyItem.ItemCharacteristics.quantity + item.ItemCharacteristics.quantity) > inStock) return
+
+            verifyItem.ItemCharacteristics.quantity += item.ItemCharacteristics.quantity
+            cartItems.total += item.price
+
         } else {
             cartItems.items.push(item)
             cartItems.total += item.price
