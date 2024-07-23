@@ -39,11 +39,11 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
 
 async function getItemsCart(): Promise<[ItemPromotion[], number]> {
     const cart = cookies().get('car')?.value
-    if (!cart) return [[],0]
+    if (!cart) return [[], 0]
 
     const cookieCart: Cart = JSON.parse(cart)
     const ids = cookieCart.items.map((item) => item.id)
-    
+
     const res = await fetch('http://localhost:3000/items/show-cart', {
         method: 'POST',
         headers: {
@@ -59,27 +59,16 @@ async function getItemsCart(): Promise<[ItemPromotion[], number]> {
 
     for (let i = 0; i < data.length; i++) {
         const item = data.find((item) => item.id === cookieCart.items[i].id)
-        if (!item!.ItemCharacteristic) {
-            item!.ItemCharacteristic = {
-                id: item!.id,
-                width: 0,
-                height: 0,
-                length: 0,
-                weight: 0,
-                insurance_value: 0,
-                quantity: 0
-            }
-        }
         if (item) {
-            if (item.in_stock < cookieCart.items[i].quantity) {
-                item.ItemCharacteristic!.quantity = item.in_stock
-            } else {
-                item.ItemCharacteristic!.quantity = cookieCart.items[i].quantity
+            item.ItemCharacteristic = cookieCart.items[i].ItemCharacteristics
+
+            if (item.in_stock < item.ItemCharacteristic.quantity) {
+                item.ItemCharacteristic.quantity = item.in_stock
             }
         }
     }
 
-    return [data,cookieCart.total]
+    return [data, cookieCart.total]
 }
 async function updateCart(value: string) {
     'use server'
