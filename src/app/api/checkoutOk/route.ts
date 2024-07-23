@@ -8,11 +8,11 @@ export async function GET(request: NextRequest) {
     if (!token) return
 
     const address = searchParams.get('address_id')
-    
+
     const cookieCart = cookies().get('car')?.value
     
     
-    fetch(`http://localhost:3000/user/purchase/${address}`,{
+    fetch(`http://localhost:3000/user/purchase/${address}?payment_type=${searchParams.get('payment_type')}`,{
         headers: {
             'Authorization': token,
             'Content-Type': 'application/json'
@@ -23,10 +23,10 @@ export async function GET(request: NextRequest) {
     
 
     
-    cookies().delete('car')
+    // cookies().delete('car')
 
-
-    return NextResponse.redirect(`${request.nextUrl.origin}/user/pay`)
+    return NextResponse.json({})
+    // return NextResponse.redirect(`${request.nextUrl.origin}/user/pay`)
 
 }
 
