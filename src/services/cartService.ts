@@ -82,28 +82,25 @@ async function updateCart(value: string) {
     const itemVerify = carCookie.items.find((elem) => elem.id === parseInt(itemId))
 
 
-    if (btnValue === '-'){
-        itemVerify!.quantity = itemVerify!.quantity - 1
+    if (btnValue === '-') {
+        itemVerify!.ItemCharacteristics.quantity = itemVerify!.ItemCharacteristics.quantity - 1
         carCookie.total = carCookie.total - itemVerify!.price
-    } 
-    else if (btnValue === '+'){
-        itemVerify!.quantity = itemVerify!.quantity + 1
-        carCookie.total = carCookie.total + itemVerify!.price
-    } 
-    else if (btnValue === 'x'){
-        carCookie.total = carCookie.total - (itemVerify!.price * itemVerify!.quantity)
-        carCookie.items = carCookie.items.filter((elem) => elem.id !== parseInt(itemId))
-        itemVerify!.quantity = 0
-    } 
-
-    if (itemVerify!.quantity > 0) {
-        if (itemVerify!.quantity > parseInt(inStock)) return
-
-        cookies().set('car', JSON.stringify(carCookie))
-
-    } else {
-        cookies().set('car', JSON.stringify(carCookie))
     }
+    else if (btnValue === '+') {
+        itemVerify!.ItemCharacteristics.quantity = itemVerify!.ItemCharacteristics.quantity + 1
+
+        if (itemVerify!.ItemCharacteristics.quantity > parseInt(inStock)) return
+
+        carCookie.total = carCookie.total + itemVerify!.price
+    }
+    else if (btnValue === 'x') {
+        carCookie.total = carCookie.total - (itemVerify!.price * itemVerify!.ItemCharacteristics.quantity)
+        carCookie.items = carCookie.items.filter((elem) => elem.id !== parseInt(itemId))
+        itemVerify!.ItemCharacteristics.quantity = 0
+    }
+
+    cookies().set('car', JSON.stringify(carCookie))
+
 }
 
 export const cartServices = {
