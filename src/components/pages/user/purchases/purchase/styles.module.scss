@@ -59,15 +59,34 @@
         .divAddress{
             display: flex;
             padding: 20px;
-            
+            gap: 15px;
+            flex-wrap: wrap;
             .divAddressInfo{
                 display: flex;
                 flex-direction: column;
                 font-size: smaller;
-                width: 25%;
+                min-width: 25%;
+                min-width:165px ;
                 .title{
                     font-size: 16px;
                     margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 475px){
+    .pageBody{
+        .userPurchasesContainer{
+            .divStatus{
+                .status{
+                    width: 100px;
+                    font-size: x-small;
+                    border: 1px solid $secondary;
+                }
+                .statusActive{
+                    border-color:rgb(22, 172, 34) ;
                 }
             }
         }
