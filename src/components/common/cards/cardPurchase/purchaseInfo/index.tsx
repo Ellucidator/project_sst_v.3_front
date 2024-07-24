@@ -11,7 +11,7 @@ const PurchaseInfo = ({ purchase }: { purchase: Purchase }) => {
                 <p className={styles.userPurchaseInfoValue}>#{purchase.id}</p>
             </div>
 
-            <div className={styles.userPurchaseInfo}>
+            <div className={`${styles.userPurchaseInfo} ${styles.userPurchaseInfoDate}`}>
                 <p className={styles.userPurchaseInfoTitle}>Data/Hora</p>
                 <p className={styles.userPurchaseInfoValue}>{new Date(purchase.createdAt).toLocaleString('pt-BR')}</p>
             </div>
@@ -21,7 +21,7 @@ const PurchaseInfo = ({ purchase }: { purchase: Purchase }) => {
                 <p className={styles.userPurchaseInfoValue}>{purchase.all_value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
             </div>
 
-            <div className={styles.userPurchaseInfoStatus}>
+            <div className={`${styles.userPurchaseInfo} ${styles.userPurchaseInfoStatus}`}>
                 <p className={styles.userPurchaseInfoTitle}>Status</p>
                 <p className={styles.userPurchaseInfoValue}>Pedido {purchase.status}</p>
             </div>
