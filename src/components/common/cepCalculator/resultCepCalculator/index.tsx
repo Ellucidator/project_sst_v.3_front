@@ -4,18 +4,32 @@ import styles from './styles.module.scss'
 import { cookies } from "next/headers"
 
 
+type Props = {
+    resultCepCalc?: CepResponse[]
+}
+const ResultCepCalculator = ({ resultCepCalc }: Props) => {
+    
+    let resultsCepCalculator: CepResponse[] =[]
 
-const ResultCepCalculator = () => {
-    const result = cookies().get('cep-result')?.value
-    if(!result) return <></>
+    if(!resultCepCalc){
+        const result = cookies().get('cep-result')?.value
+        if(!result) return <></>
+        resultsCepCalculator = JSON.parse(result)
+    }else{
+        resultsCepCalculator = resultCepCalc
+    }
+    
 
-    const resultsCepCalculator: CepResponse[] = JSON.parse(result)
 
     return (
         <>
             {resultsCepCalculator.map((result) => {
                 return (
                     <div key={result.name} className={styles.cepResultItem}>
+                        {resultCepCalc?
+                            <input type="radio" value={result.error?result.error:`${result.name}-${result.price}`}></input>
+                            :<></>
+                        }
                         <Image
                             src={result.company.picture ? result.company.picture : '/public/common/ban.svg'}
                             alt={result.company.name}

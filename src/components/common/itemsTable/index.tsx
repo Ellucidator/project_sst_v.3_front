@@ -50,7 +50,7 @@ const ItemsTable = ({ items, type = 'Common', model = 'model1', total = 0 }: Pro
                                 <Image src={`http://localhost:3000/files/${elem.Item.thumbnail_url}`} alt={elem.Item.name} width={80} height={80} />
                                 <div className={styles.infoAndPrice}>
                                     <p>{`${elem.quantity}x ${elem.Item.name}`}</p>
-                                    <p>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                    <p className={styles.price}>{elem.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                 </div>
                             </div>
                         )

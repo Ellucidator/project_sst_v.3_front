@@ -10,12 +10,15 @@ import { MercadoPagoConfig, Preference } from 'mercadopago';
 import ApiMp from '@/components/common/apiMp/apiMp'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
 import { redirect } from 'next/navigation'
+import { cepCalculatorByCart } from '@/services/cepService'
+import ResultCepCalculator from '@/components/common/cepCalculator/resultCepCalculator'
 
 
 export default async function CheckoutPage() {
     const adresses = await userService.getUserAdresses()
     let addressActiv: UserAddress | undefined
     if (adresses) addressActiv = adresses.find((address) => address.active === true)
+    const cepResponse = await cepCalculatorByCart(`${addressActiv?.zip_code!}`)
 
     const client = new MercadoPagoConfig({ accessToken: 'APP_USR-658438204342310-070510-884ee4cac7fc572dc65f9a5c11bee043-1888685170' });
     const preference = new Preference(client);
@@ -53,9 +56,12 @@ export default async function CheckoutPage() {
                     {addressActiv ? <CardAddress address={addressActiv} /> : <></>}
                 </div>
                 <div className={styles.divPayment}>
+                    <div className={styles.divFrete}>
+                        <ResultCepCalculator resultCepCalc={cepResponse}/>
+                    </div>
                     <ItemsTable items={items || []} type='Common' model='model2' total={total} />
 
-                    {addressActiv?<ApiMp id={res.id!} />:<></>}
+                    {/* {addressActiv?<ApiMp id={res.id!} />:<></>} */}
                 </div>
             </div>
         </div>
