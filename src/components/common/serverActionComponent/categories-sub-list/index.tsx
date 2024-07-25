@@ -4,14 +4,14 @@ import { cookies } from 'next/headers'
 import ButtonActionById from '../buttonActionById'
 import { btnActionService } from '@/services/btnActionService'
 import Button from '../../button'
+import { helpers } from '@/helpers/helpers'
 
 type Props = {
     categories: Categories[]
 }
 const CategoriesAndSubList = async ({ categories }: Props) => {
 
-    const btnAction = cookies().get('sub-open')?.value
-    const classCondition: { name: string, open: boolean } = JSON.parse(btnAction ? btnAction : '{"name":"","open":false}')
+    const classCondition: { name: string, open: boolean } = helpers.getCookieValue('sub-open')
 
     const handlerSubmit = async (category: string) => {
         'use server'

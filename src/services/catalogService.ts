@@ -1,9 +1,8 @@
+import { helpers } from "@/helpers/helpers";
 import { Categories, SubCategories } from "@/types/catalogTypes";
 import { Item } from "@/types/itemsTypes";
 import { Promotion, PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
-import { cookies } from "next/headers";
-
 
 async function getCatalog() {
     const res = await fetch('http://localhost:3000/categories', {
@@ -63,14 +62,12 @@ async function getFeaturedPromotion(){
 }
 
 async function getPromotionById(id:string){
-    let queryParams = { itemsOrder: 'created_at-DESC', subCategoryId: 'all' }
-    const catalogCookie = cookies().get(`promotion${id}`)?.value
-    let page = cookies().get('page')?.value
 
-    if (!page) page = '1'
-    if(catalogCookie) queryParams = JSON.parse(catalogCookie)
+    const { itemsOrder, subCategoryId }:{ itemsOrder: string, subCategoryId: string } = helpers.getCookieValue(`promotion${id}`) || { itemsOrder: 'created_at-DESC', subCategoryId: 'all' }
 
-    const res = await fetch(`http://localhost:3000/promotions/${id}?page=${page}&perPage=12&order=${queryParams.itemsOrder}${queryParams.subCategoryId === 'all' ? '' : `&subCategoryId=${queryParams.subCategoryId}`}`, {
+    const page = helpers.getCookieIsNumber('page')
+
+    const res = await fetch(`http://localhost:3000/promotions/${id}?page=${page}&perPage=12&order=${itemsOrder}${subCategoryId === 'all' ? '' : `&subCategoryId=${subCategoryId}`}`, {
         method: 'GET',
         next:{
             revalidate: 10
@@ -112,23 +109,10 @@ async function getSearchItems(name:string){
 }
 
 async function getItensBySubCategory(subCategoryId: string) {
+    const page = helpers.getCookieIsNumber('page')
 
-
-    let page = cookies().get('page')?.value
-    if (!page) page = '1'
-
-    let itemsOrder: string = 'created_at-DESC'
-    let tags: string[] = []
-
-    const catalogCookie = cookies().get(`catalog${subCategoryId}`)?.value
+    const { itemsOrder, tags }: { itemsOrder: string, tags: string[] } = helpers.getCookieValue(`catalog${subCategoryId}`) || { itemsOrder: 'created_at-DESC', tags: [] }
     
-    if (catalogCookie) {
-        const catalogCookieOn: { itemsOrder?: string, tags?: string[] } = JSON.parse(catalogCookie)
-
-        if (catalogCookieOn.itemsOrder) itemsOrder = catalogCookieOn.itemsOrder
-        if (catalogCookieOn.tags) tags = catalogCookieOn.tags
-    }
-
 
     if (tags.length > 0) {
         const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
@@ -173,25 +157,6 @@ async function getItensBySubCategory(subCategoryId: string) {
 
 }
 
-async function getItensByTags(subCategoryId: string|number ,itemsOrder:string = 'created_at-DESC',page:number = 1,tags:string[]) {
-
-    const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
-        next:{
-            revalidate: 10
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        cache: 'no-cache',
-        method: 'POST',
-        body: JSON.stringify({tags})
-    })
-    const data: SubCategories = await res.json();
-
-    return data;
-}
-
-
 
 export const catalogService = {
     getCatalog,
@@ -204,5 +169,4 @@ export const catalogService = {
     getItensBySubCategory,
     getSearchItems,
     getTags,
-    getItensByTags,
 }

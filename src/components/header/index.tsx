@@ -5,25 +5,21 @@ import Image from "next/image";
 import { authService } from "@/services/authService";
 import HeaderRightGeneric from "./headerRightGeneric";
 import InputSearch from "./inputSearch";
-import { cookies } from "next/headers";
-import { Cart, ItemToCar } from "@/types/itemsTypes";
+import { Cart } from "@/types/itemsTypes";
 import ServerModal from "../common/serverActionComponent/modal";
-import Button from "../common/button";
+import { helpers } from "@/helpers/helpers";
 
 
 const HeaderPrimary = async () => {
 
-
     const validate = await authService.verifySession();
     const catalog = await catalogService.getCatalog();
 
-    let carCount: number
-    const cartItems = cookies().get('car')?.value
+    let carCount: number = 0
+    const cartItems: Cart = helpers.getCookieValue('car')
 
-    if (!cartItems) carCount = 0
-    else {
-        const carItemsA: Cart = JSON.parse(cartItems)
-        carCount = carItemsA.items?carItemsA.items.reduce((acc, item) => {
+    if (cartItems) {
+        carCount = cartItems.items?cartItems.items.reduce((acc, item) => {
             return acc += item.ItemCharacteristics.quantity
         }, 0):0
     }

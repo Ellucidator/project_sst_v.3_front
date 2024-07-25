@@ -1,32 +1,21 @@
 import { CepResponse } from "@/types/cepTypes"
 import Image from "next/image"
 import styles from './styles.module.scss'
-import { cookies } from "next/headers"
 
 
 type Props = {
     resultCepCalc?: CepResponse[]
+    type?:'form'|'static'
 }
-const ResultCepCalculator = ({ resultCepCalc }: Props) => {
-    
-    let resultsCepCalculator: CepResponse[] =[]
-
-    if(!resultCepCalc){
-        const result = cookies().get('cep-result')?.value
-        if(!result) return <></>
-        resultsCepCalculator = JSON.parse(result)
-    }else{
-        resultsCepCalculator = resultCepCalc
-    }
-    
-
+const ResultCepCalculator = ({ resultCepCalc, type='static' }: Props) => {
+    if(!resultCepCalc || resultCepCalc.length === 0) return <></>
 
     return (
         <>
-            {resultsCepCalculator.map((result) => {
+            {resultCepCalc.map((result) => {
                 return (
                     <div key={result.name} className={styles.cepResultItem}>
-                        {resultCepCalc?
+                        {type === 'form'?
                             <input type="radio" value={result.error?result.error:`${result.name}-${result.price}`}></input>
                             :<></>
                         }

@@ -1,7 +1,5 @@
+import { helpers } from "@/helpers/helpers"
 import { Cart, ItemCharacteristics } from "@/types/itemsTypes"
-import { cookies } from "next/headers"
-
-
 
 export async function cepCalculator(cep:string,itemCharacteristics:ItemCharacteristics[]) {
     const verify = itemCharacteristics.every((item)=>{
@@ -52,14 +50,13 @@ export async function cepCalculator(cep:string,itemCharacteristics:ItemCharacter
 }
 
 export async function cepCalculatorByCart(cep:string) {
-    const cartCookies = cookies().get('car')?.value
+    const cartCookies:Cart = helpers.getCookieValue('car')
     if(!cartCookies) return []
 
-    const cart:Cart = JSON.parse(cartCookies)
-
-    const itemsCharacteristics:ItemCharacteristics[] = cart.items.map((item)=>{
+    const itemsCharacteristics:ItemCharacteristics[] = cartCookies.items.map((item)=>{
         return item.ItemCharacteristics
     })
+
     return await cepCalculator(cep,itemsCharacteristics)
 }
 

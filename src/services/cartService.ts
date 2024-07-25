@@ -1,10 +1,11 @@
 import { cookies } from "next/headers"
 import { Cart, ItemPromotion, ItemToCar } from "@/types/itemsTypes"
+import { helpers } from "@/helpers/helpers"
 
 
 const addCarItem = async (inStock: number, item: ItemToCar) => {
 
-    const cart = cookies().get('car')?.value
+    const cart:Cart = helpers.getCookieValue('car')
     if (!cart) {
         cookies().set('car', JSON.stringify({ items: [item], total: item.price * item.ItemCharacteristics.quantity }),
             {
@@ -12,21 +13,20 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
             }
         )
     } else {
-        const cartItems: Cart = JSON.parse(cart)
-        const verifyItem = cartItems.items.find(elem => elem.id === item.id)
+        const verifyItem = cart.items.find(elem => elem.id === item.id)
 
         if (verifyItem) {
             if ((verifyItem.ItemCharacteristics.quantity + item.ItemCharacteristics.quantity) > inStock) return
 
             verifyItem.ItemCharacteristics.quantity += item.ItemCharacteristics.quantity
-            cartItems.total += item.price
+            cart.total += item.price
 
         } else {
-            cartItems.items.push(item)
-            cartItems.total += item.price
+            cart.items.push(item)
+            cart.total += item.price
         }
 
-        cookies().set('car', JSON.stringify(cartItems),
+        cookies().set('car', JSON.stringify(cart),
             {
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
             }
@@ -38,11 +38,10 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
 }
 
 async function getItemsCart(): Promise<[ItemPromotion[], number]> {
-    const cart = cookies().get('car')?.value
+    const cart:Cart = helpers.getCookieValue('car')
     if (!cart) return [[], 0]
 
-    const cookieCart: Cart = JSON.parse(cart)
-    const ids = cookieCart.items.map((item) => item.id)
+    const ids = cart.items.map((item) => item.id)
 
     const res = await fetch('http://localhost:3000/items/show-cart', {
         method: 'POST',
@@ -58,9 +57,9 @@ async function getItemsCart(): Promise<[ItemPromotion[], number]> {
     const data: ItemPromotion[] = await res.json();
 
     for (let i = 0; i < data.length; i++) {
-        const item = data.find((item) => item.id === cookieCart.items[i].id)
+        const item = data.find((item) => item.id === cart.items[i].id)
         if (item) {
-            item.ItemCharacteristic = cookieCart.items[i].ItemCharacteristics
+            item.ItemCharacteristic = cart.items[i].ItemCharacteristics
 
             if (item.in_stock < item.ItemCharacteristic.quantity) {
                 item.ItemCharacteristic.quantity = item.in_stock
@@ -68,35 +67,28 @@ async function getItemsCart(): Promise<[ItemPromotion[], number]> {
         }
     }
 
-    return [data, cookieCart.total]
+    return [data, cart.total]
 }
 async function updateCart(value: string) {
     'use server'
     const [itemId, btnValue, inStock] = value.split('/')
 
-    const cookieValidation = cookies().get('car')?.value
-    if (!cookieValidation) return
-
-    const carCookie: Cart = JSON.parse(cookieValidation)
+    const carCookie: Cart = helpers.getCookieValue('car')
+    if (!carCookie) return
 
     const itemVerify = carCookie.items.find((elem) => elem.id === parseInt(itemId))
 
-
-    if (btnValue === '-') {
+    if (btnValue === '-' && itemVerify!.ItemCharacteristics.quantity > 1) {
         itemVerify!.ItemCharacteristics.quantity = itemVerify!.ItemCharacteristics.quantity - 1
         carCookie.total = carCookie.total - itemVerify!.price
     }
-    else if (btnValue === '+') {
+    else if (btnValue === '+' && itemVerify!.ItemCharacteristics.quantity < parseInt(inStock)) {
         itemVerify!.ItemCharacteristics.quantity = itemVerify!.ItemCharacteristics.quantity + 1
-
-        if (itemVerify!.ItemCharacteristics.quantity > parseInt(inStock)) return
-
         carCookie.total = carCookie.total + itemVerify!.price
     }
     else if (btnValue === 'x') {
         carCookie.total = carCookie.total - (itemVerify!.price * itemVerify!.ItemCharacteristics.quantity)
         carCookie.items = carCookie.items.filter((elem) => elem.id !== parseInt(itemId))
-        itemVerify!.ItemCharacteristics.quantity = 0
     }
 
     cookies().set('car', JSON.stringify(carCookie))

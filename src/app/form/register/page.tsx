@@ -11,9 +11,11 @@ import { cookies } from 'next/headers'
 import Input from '@/components/common/Input-label-components/input&Label'
 import Button from '@/components/common/button'
 import Loading from '@/components/common/clientOnlyComponents/loading'
+import { error } from 'console'
+import { helpers } from '@/helpers/helpers'
 const Register = async () => {
 
-    const verify = await authService.verifyRegister()
+    const verify:{error: string} =  helpers.getCookieValue('register')
 
     const handlerSubimit = async (form: FormData) => {
         'use server'
@@ -46,26 +48,21 @@ const Register = async () => {
             if (password === confirmPassword) {
                 const res = await userService.createUser(newUser)
 
-
                 if (!res) {
                     cookies().set('register', JSON.stringify({
-                        email: true,
-                        password: false
-                    }), {
+                        error: 'email',
+                        }), {
                         maxAge: 0
                     })
-                    revalidateTag('verify-register')
                 } else {
                     redirect('/')
                 }
             } else {
                 cookies().set('register', JSON.stringify({
-                    email: false,
-                    password: true
+                    error: 'password',
                 }), {
                     maxAge: 0
                 })
-                revalidateTag('verify-register')
             }
         }
     }
@@ -89,7 +86,7 @@ const Register = async () => {
 
                     <Input divWidth='100%' mode='label&input' labelText='Email:' inputOptions={{ required: true, maxLength: 80, type: 'email', name: 'email', id: 'email', placeholder: 'ex: 5t8jz@example.com' }} />
 
-                    {verify.email ? (<p className={styles.verifyP}>E-mail ja cadastrado</p>) : null}
+                    {verify.error === 'email' ? (<p className={styles.verifyP}>E-mail ja cadastrado</p>) : null}
 
                     <div className={styles.inputDiv}>
                         <Input mode='label&input' labelText='Senha:' inputOptions={{ required: true, minLength: 8, type: 'password', name: 'password', id: 'password', placeholder: 'Sua senha' }} />
@@ -97,7 +94,7 @@ const Register = async () => {
                         <Input mode='label&input' labelText='Confirme sua senha:' inputOptions={{ required: true, type: 'password', name: 'confirmPassword', id: 'confirmPassword', placeholder: 'Confirme sua senha' }} />
                     </div>
 
-                    {verify.password ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
+                    {verify.error === 'password' ? (<p className={styles.verifyP}>As senhas precisam ser iguais</p>) : null}
 
                     <div className={styles.inputDiv}>
                         <Input mode='label&input' labelText='Telefone:' inputOptions={{ required: true, maxLength: 11, type: 'tel', name: 'phone', id: 'phone', placeholder: 'ex: 11988999999' }} />

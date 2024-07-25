@@ -2,37 +2,27 @@ import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
 import { revalidateTag } from "next/cache"
+import { helpers } from "@/helpers/helpers"
 
 
-const verifyRegister = async () => {
+const verifyRegister = ():{error: string} => {
 
-    const cookieValue = cookies().get('register')?.value
-    const req = await fetch('http://localhost:3000/verify-register', {
-        cache: 'no-store',
-        next: {
-            tags: ['verify-register']
-        },
-
-    })
-    if (cookieValue) {
-        return await JSON.parse(cookieValue)
-    } else {
-        return {
-            email: false,
-            password: false
-        }
+    const cookieValue = helpers.getCookieValue('register')
+    
+    if (!cookieValue) return {
+        error:''
     }
+
+    return cookieValue
 }
-const verifyLogin = async () => {
-    const cookieValue = cookies().get('login')?.value
+const verifyLogin = ():{error: string} => {
+    const cookieValue = helpers.getCookieValue('login')
 
-    if (cookieValue) {
-        return await JSON.parse(cookieValue)
-    } else {
-        return {
-            error: null
-        }
+    if (!cookieValue)return {
+        error:''
     }
+
+    return cookieValue
 }
 const verifySession = async () => {
 

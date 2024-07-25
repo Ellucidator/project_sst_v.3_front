@@ -1,10 +1,11 @@
 
-import { CreateUser, Favorites, UserAddress, UserFavorite, UserInfo } from "@/types/userTypes";
+import { CreateUser, Favorites, UserAddress, UserInfo } from "@/types/userTypes";
 import { authService } from "./authService";
 import { Avaliation, CreateAvaliation } from "@/types/avaliationTypes";
 import { Purchase, Purchases } from "@/types/purchaseTypes";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { helpers } from "@/helpers/helpers";
 
 
 const createUser = async (user: CreateUser) => {
@@ -209,10 +210,9 @@ async function activeUserAddress(id: string) {
     })
     revalidateTag('adresses-user')
 }
-async function getUserPurchases(page: number = 1, perPage: number = 6) {
+async function getUserPurchases( perPage: number = 6) {
     'use server'
-    const pageCookie = cookies().get('page')?.value
-    if (pageCookie) page = parseInt(pageCookie)
+    const page = helpers.getCookieIsNumber('page')
 
     const token = cookies().get('token')?.value
     if (!token) return false
@@ -258,9 +258,8 @@ async function getUserPurchaseById(purchaseId: string) {
     return data
 }
 
-async function getUserFavorites(page: number = 1, perPage: number = 10) {
-    const pageCookie = cookies().get('page')?.value
-    if (pageCookie) page = parseInt(pageCookie)
+async function getUserFavorites( perPage: number = 10) {
+    const page = helpers.getCookieIsNumber('page')
 
     const token = cookies().get('token')?.value
     if (!token) return false

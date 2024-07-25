@@ -18,6 +18,7 @@ export default async function CheckoutPage() {
     const adresses = await userService.getUserAdresses()
     let addressActiv: UserAddress | undefined
     if (adresses) addressActiv = adresses.find((address) => address.active === true)
+    
     const cepResponse = await cepCalculatorByCart(`${addressActiv?.zip_code!}`)
 
     const client = new MercadoPagoConfig({ accessToken: 'APP_USR-658438204342310-070510-884ee4cac7fc572dc65f9a5c11bee043-1888685170' });
@@ -57,7 +58,7 @@ export default async function CheckoutPage() {
                 </div>
                 <div className={styles.divPayment}>
                     <div className={styles.divFrete}>
-                        <ResultCepCalculator resultCepCalc={cepResponse}/>
+                        <ResultCepCalculator type='form' resultCepCalc={cepResponse}/>
                     </div>
                     <ItemsTable items={items || []} type='Common' model='model2' total={total} />
 

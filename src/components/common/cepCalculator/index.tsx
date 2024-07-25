@@ -8,6 +8,8 @@ import Button from '../button'
 import ResultCepCalculator from './resultCepCalculator'
 import Loading from '../clientOnlyComponents/loading'
 import Title from '../texts/tiltle'
+import { CepResponse } from '@/types/cepTypes'
+import { helpers } from '@/helpers/helpers'
 
 type Props = {
     quantityInStock?: number[],
@@ -17,8 +19,10 @@ type Props = {
 }
 
 const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics, type = 'unique' }: Props) => {
+    
+    const result:CepResponse[] = helpers.getCookieValue('cep-result')
 
-
+    
     async function formAction(form: FormData) {
         'use server'
 
@@ -55,7 +59,7 @@ const CepCalculator = async ({ quantityInStock, item, itemsCharacteristics, type
             </div>
             <div className={styles.cepResult}>
                 <Loading model='modelLocal' />
-                <ResultCepCalculator />
+                <ResultCepCalculator resultCepCalc={result} />
             </div>
         </form>
     )

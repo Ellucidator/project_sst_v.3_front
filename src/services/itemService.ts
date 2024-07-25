@@ -1,6 +1,6 @@
+import { helpers } from "@/helpers/helpers";
 import { AvaliationAndCount } from "@/types/avaliationTypes";
 import { ItemCharacteristics, ItemFull } from "@/types/itemsTypes";
-import { cookies } from "next/headers";
 
 async function getOneItem(itemId:string) {
     const res = await fetch(`http://localhost:3000/items/${itemId}`, {
@@ -30,10 +30,7 @@ async function getItemCharacteristics(itemId:string) {
     return data;
 }
 async function getAllAvaliationsByItemId(itemId:string) {
-    let page = 1
-    const pageCookie = cookies().get('page')?.value
-    if (pageCookie) page = parseInt(pageCookie)
-
+    let page = helpers.getCookieIsNumber('page')
 
     const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations?page=${page}`, {
         next:{
