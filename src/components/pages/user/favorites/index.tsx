@@ -11,9 +11,6 @@ const FavoritesPage = async () => {
     const favorites = await userService.getUserFavorites()
     
 
-
-
-
     return (
         <div className={styles.pageBody}>
             <Title width='100%' fontSize="25px" model='model5' titleText="Meus favoritos" />
