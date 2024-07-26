@@ -131,7 +131,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
         
     } else if(!(parseInt(subCategoryId) > 0)){
 
-        const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}`,{
+        const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,{
             next: {
                 revalidate: 10
             },
@@ -145,7 +145,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
         return data
 
     } else {
-        const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+        const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
             next: {
                 revalidate: 10
             },
@@ -156,6 +156,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
     }
 
 }
+
 
 
 export const catalogService = {

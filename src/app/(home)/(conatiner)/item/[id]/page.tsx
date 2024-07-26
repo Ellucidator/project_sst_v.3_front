@@ -17,6 +17,7 @@ import SlideSection from '@/components/common/clientOnlyComponents/slideSection'
 import { cartServices } from '@/services/cartService'
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
+import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
 
 
 
@@ -32,7 +33,6 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`,4)
 
-    console.log(recomendedItems)
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
     const formAction = async (form: FormData) => {
@@ -60,6 +60,11 @@ export default async function Item({ params }: { params: { id: string } }) {
             <div className={` ${styles.itemContainer}`}>
                 <ButtonReturn />
                 <p className={styles.titleItem}>{item.name}</p>
+                <ButtonActionById
+                idAction={item.id} actionFunction={userService.addUserFavorites}
+                formOption={{style: {position: 'absolute', alignSelf:'flex-end'}}}
+                buttonAttribute={{btnModel: 'model10', btnAction: 'submit',iconElem:{src:'/public/common/heart.svg',position:'left',width:15}}} 
+                />
                 <div className={styles.cardItem}>
 
                     <SlideSectionItem allItems={item} />
