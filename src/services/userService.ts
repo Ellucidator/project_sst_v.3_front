@@ -258,6 +258,21 @@ async function getUserPurchaseById(purchaseId: string) {
     return data
 }
 
+async function addUserFavorites(itemId: string) {
+    'use server'
+    const token = cookies().get('token')?.value
+    if (!token) return false
+
+    const res = await fetch(`http://localhost:3000/user/favorite`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({itemId:parseInt(itemId)})
+    })
+}
+
 async function getUserFavorites( perPage: number = 10) {
     const page = helpers.getCookieIsNumber('page')
 
@@ -311,6 +326,7 @@ export const userService = {
     activeUserAddress,
     getUserPurchases,
     getUserPurchaseById,
+    addUserFavorites,
     getUserFavorites,
     deleteUserFavorites
 }
