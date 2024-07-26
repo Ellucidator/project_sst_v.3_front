@@ -49,6 +49,7 @@
 .model3 {
     background-color: $primary;
     border: 1px solid $primary;
+
     &:hover {
         background-color: $tertiary;
         border: 1px solid $tertiary;
@@ -78,9 +79,10 @@
     .model5 {
         gap: 5px;
 
-        .btnTexts{
+        .btnTexts {
             white-space: nowrap;
-            .title{
+
+            .title {
                 font-size: 18px;
             }
         }
@@ -91,11 +93,16 @@
     padding: 0px;
     background-color: transparent;
     border: none;
-    
-    .btnTextsArrow{
-        &:hover{
-            .title{color: $tertiary;}
-            .arrowDown{color: $tertiary;}
+
+    .btnTextsArrow {
+        &:hover {
+            .title {
+                color: $tertiary;
+            }
+
+            .arrowDown {
+                color: $tertiary;
+            }
         }
     }
 
@@ -103,41 +110,43 @@
         color: $tertiary;
         transform: scale(1.05);
         transition: 0.1s;
-        
+
     }
 
 }
 
 
 
-.model7{
+.model7 {
     padding: 0px;
 }
 
-.model8{
+.model8 {
     border: 2px solid transparent;
     border-radius: 0px;
     padding: 3px;
     transition: 0.1s;
 
-    &:hover{
-        
+    &:hover {
+
         border-top: 2px solid $tertiary;
         border-bottom: 2px solid $tertiary;
         transform: scale(1.02);
         color: $tertiary;
         transition: 0.1s;
-        .text{
+
+        .text {
             color: $tertiaryLight;
         }
     }
 
 }
 
-.btnTextsArrow{
+.btnTextsArrow {
     display: flex;
     flex-wrap: nowrap;
-    .arrowUp{
+
+    .arrowUp {
         margin-left: 15px;
         font-weight: bold;
         font-size: 14px;
@@ -145,11 +154,13 @@
         transition: 0.5s;
         transform: rotate(45deg);
         color: $tertiary;
+
         &:hover {
             color: $secondary;
         }
     }
-    .arrowDown{
+
+    .arrowDown {
         margin-left: 15px;
         font-weight: bold;
         font-size: 14px;
@@ -167,10 +178,16 @@
     border-right: 1px solid $tertiaryDark;
     border-radius: 6px;
     gap: 15px;
-    .btnTextsArrow{
-        &:hover{
-            .title{color: $tertiary;}
-            .arrowDown{color: $tertiary;}
+
+    .btnTextsArrow {
+        &:hover {
+            .title {
+                color: $tertiary;
+            }
+
+            .arrowDown {
+                color: $tertiary;
+            }
         }
     }
 
@@ -178,6 +195,26 @@
         color: $tertiary;
         transform: scale(1.015);
         transition: 0.1s;
-        
+
+    }
+}
+
+.model10 {
+    border: 2px solid $tertiary;
+    border-radius: 100%;
+    padding: 7px;
+    transition: 0.1s;
+    margin: 5px 5px 0px 0px;
+    background-color: $primary;
+    .icon {
+        filter: invert(100%);
+    }
+
+    &:hover {
+        transform: scale(1.02);
+        background-color: $secondary;
+        .icon{
+            filter: invert(0%);
+        }
     }
 }
