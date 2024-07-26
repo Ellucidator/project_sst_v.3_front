@@ -24,14 +24,18 @@ export default async function Home() {
   return (
     <main className={`${styles.home}`}>
       
-      <div className={` ${styles.homeContainer}`}>
+      <div className={`${styles.homeContainer}`}>
 
         <Banners promotions={promotions} />
 
-        <section className={`container ${styles.slide}`}>
-          <Title fontSize="25px" titleText={promotionFeature.name} />
-          <SlideSection allItems={promotionFeature.Items} perPage={6} />
-        </section>
+        <Container title={{ titleText: promotionFeature.name, model: "model1", fontSize: "25px" }}
+          model="model1" modelTw='container' justifyContent='center' >
+          {promotionFeature.Items.map((item) => {
+            return (
+              <CardItem key={item.id} item={item} />
+            )
+          })}
+        </Container>
 
         <section className={`container ${styles.categoriesCards}`}>
           <CategoryCard cardLink={`${catalog[0].name.toLowerCase()}/${catalog[0].SubCategories[0].id}`}
@@ -40,10 +44,14 @@ export default async function Home() {
           <CategoryCard cardLink={`${catalog[1].name.toLowerCase()}/${catalog[1].SubCategories[0].id}`} cardName={catalog[1].SubCategories[0].name} imgUrl={imgBanner2.src} theme="light" />
         </section>
 
-        <section className={`container ${styles.slide}`}>
-          <Title fontSize="25px" titleText="Produtos novos" />
-          <SlideSection allItems={newestsItens} perPage={6} />
-        </section>
+        <Container title={{ titleText:'Recentemente adicionados', model: "model1", fontSize: "25px" }}
+          model="model1" modelTw='container' justifyContent='center' >
+          {newestsItens.map((item) => {
+            return (
+              <CardItem key={item.id} item={item} />
+            )
+          })}
+        </Container>
 
         <Container title={{ titleText: "Produtos em destaque", model: "model5", width: "100%", fontSize: "25px" }}
           model="model2" modelTw='container'>
