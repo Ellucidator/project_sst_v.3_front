@@ -108,14 +108,14 @@ async function getSearchItems(name:string){
     return data
 }
 
-async function getItensBySubCategory(subCategoryId: string) {
+async function getItensBySubCategory(subCategoryId: string, perPage: number = 10) {
     const page = helpers.getCookieIsNumber('page')
 
     const { itemsOrder, tags }: { itemsOrder: string, tags: string[] } = helpers.getCookieValue(`catalog${subCategoryId}`) || { itemsOrder: 'created_at-DESC', tags: [] }
     
 
     if (tags.length > 0) {
-        const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}`, {
+        const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
             next: {
                 revalidate: 10
             },

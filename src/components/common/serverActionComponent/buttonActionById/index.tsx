@@ -7,8 +7,9 @@ type Props = {
     idAction: number | string
     actionFunction: Function
     loading?: boolean
+    formOption?: React.FormHTMLAttributes<HTMLFormElement>
 }
-const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, loading=true}: Props) => {
+const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, loading=true, formOption}: Props) => {
     let cookiePage = cookies().get('page')?.value
     if (!cookiePage) cookiePage = '1'
 
@@ -27,7 +28,7 @@ const ButtonActionById = async ({buttonAttribute, idAction, actionFunction, load
 
     }
     return (
-        <form action={handlerSubmit} >
+        <form {...formOption} action={handlerSubmit} >
             {loading?<Loading model='modelArea' />:<></>}
             <input hidden name="id" defaultValue={idAction} />
             <Button {...buttonAttribute} btnModel={btnStyle} btnAction='submit' />

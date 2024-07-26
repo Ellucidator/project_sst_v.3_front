@@ -4,16 +4,16 @@
 .container {
     padding: 15px;
     display: flex;
-    flex: content;
+    flex: 1;
     flex-direction: column;
     gap: 10px;
     
 
     .containerBody{
         display: flex;
-        flex: content;
+        width: 100%;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 20px;
     }
 
 }

@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { Item, ItemPromotion } from '@/types/itemsTypes';
 import Link from 'next/link';
 import PriceItem from '../../texts/priceItem';
+import ButtonActionById from '../../serverActionComponent/buttonActionById';
 
 type Props = {
     item: ItemPromotion | Item
@@ -16,7 +17,10 @@ export const CardItem = ({ item, model='vertical', sizeImgModelH='180px' }: Prop
         <Link href={`/item/${item.id}`} className={model === 'horizontal' ? styles.cardItemModelH : styles.cardItem}
             style={{height:model==='horizontal'?sizeImgModelH:''}}
         >
-
+            <ButtonActionById
+                formOption={{style: {position: 'absolute', alignSelf:'flex-end'}}}
+                buttonAttribute={{btnModel: 'model10', btnAction: 'submit',iconElem:{src:'/public/common/heart.svg',position:'left',width:15}}} idAction={item.id} actionFunction={() => {}}
+                />
             <div className={styles.bannerAndName}>
                 <Image
                     src={`http://localhost:3000/files/${item.thumbnail_url}`}
@@ -29,7 +33,7 @@ export const CardItem = ({ item, model='vertical', sizeImgModelH='180px' }: Prop
                 <p className={styles.name}>{item.name}</p>
             </div>
 
-            <PriceItem price={item.price} pricePromotion={item.promotion? (item as ItemPromotion).ItemPromotion.price : undefined}/>
+            <PriceItem price={item.price} pricePromotion={item.promotion? (item as ItemPromotion).ItemPromotion!.price : undefined}/>
 
         </Link>
 
