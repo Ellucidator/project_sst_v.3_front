@@ -8,19 +8,21 @@ import CepCalculator from '@/components/common/cepCalculator'
 import DescriptionList from '@/components/pages/item/descriptionList'
 import AvaliationsItem from '@/components/pages/item/avaliationsItem'
 import { userService } from '@/services/userService'
-import {itemService} from '@/services/itemService'
+import { itemService } from '@/services/itemService'
 import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
 import SlideSection from '@/components/common/clientOnlyComponents/slideSection'
 import { cartServices } from '@/services/cartService'
+import Container from '@/components/common/container'
+import CardItem from '@/components/common/cards/cardItem'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
-    
-    const [item, avaliations, userAvaliation, itemCharacteristics]= await Promise.all([
+
+    const [item, avaliations, userAvaliation, itemCharacteristics] = await Promise.all([
         itemService.getOneItem(params.id),
         itemService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
@@ -28,26 +30,26 @@ export default async function Item({ params }: { params: { id: string } }) {
     ])
     item.ItemCharacteristic = itemCharacteristics
 
-    const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`)
+    const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`,4)
 
-
+    console.log(recomendedItems)
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
-    
+
     const formAction = async (form: FormData) => {
         'use server'
         const buyQuantity = form.get('quantity')?.toString()
-        if(!buyQuantity) return
-        
+        if (!buyQuantity) return
+
 
 
         const price = parseFloat(form.get('price')!.toString())
-        
-        await cartServices.addCarItem(item.in_stock,{
+
+        await cartServices.addCarItem(item.in_stock, {
             id: item.id,
             price,
             ItemCharacteristics: {
                 ...itemCharacteristics,
-                quantity:parseInt(buyQuantity)
+                quantity: parseInt(buyQuantity)
             }
         })
 
@@ -68,18 +70,18 @@ export default async function Item({ params }: { params: { id: string } }) {
                         ) : (
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
-                        
+
                         <div className={styles.itemInfo}>
                             <section className={styles.sectionPayInfo}>
 
                             </section>
 
                             <section className={styles.sectionBuy}>
-                                <PriceItem  price={item.price} pricePromotion={item.promotion? item.ItemPromotion!.price : undefined} />
+                                <PriceItem price={item.price} pricePromotion={item.promotion ? item.ItemPromotion!.price : undefined} />
                                 <form action={formAction}>
                                     <InputQuantity quantityInStock={quantityInStock} in_stock={item.in_stock} />
 
-                                    <input type="hidden" name='price' value={item.promotion? item.ItemPromotion!.price : item.price} />
+                                    <input type="hidden" name='price' value={item.promotion ? item.ItemPromotion!.price : item.price} />
 
                                     <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconElem={{ src: cartIcon, position: 'right', width: 35 }} />
 
@@ -90,19 +92,25 @@ export default async function Item({ params }: { params: { id: string } }) {
                 </div>
                 <div className={styles.sectionSecond}>
                     <CepCalculator item={item} quantityInStock={quantityInStock} />
-                    {recomendedItems.Items ? (
-                        <div className={styles.recomendedItems}>
-                            <Title model='model2' fontSize='20px' titleText='Voce pode gostar' />
-                            <SlideSection allItems={recomendedItems.Items} perPage={4} itemId={item.id} />
-                        </div>
-                    ) : null}
+                    <div className={styles.recomendedItems}>
+                        {recomendedItems.Items ? (
+                            <Container title={{ titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" }}
+                                model="model1" modelTw='container' justifyContent='center' >
+                                {recomendedItems.Items.map((item) => {
+                                    return (
+                                        <CardItem key={item.id} item={item} />
+                                    )
+                                })}
+                            </Container>
+                        ) : null}
+                    </div>
 
                 </div>
                 <div className={styles.itemDescription}>
                     <DescriptionList tagList={item.TagValues} />
                 </div>
                 <div className={styles.avaliations} >
-                    <AvaliationsItem item_id={item.id} user_id={1} avaliation={userAvaliation} allAvaliation={avaliations}/>
+                    <AvaliationsItem item_id={item.id} user_id={1} avaliation={userAvaliation} allAvaliation={avaliations} />
                 </div>
             </div>
         </>
