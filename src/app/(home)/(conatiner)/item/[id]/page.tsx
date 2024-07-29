@@ -23,14 +23,14 @@ import ButtonActionById from '@/components/common/serverActionComponent/buttonAc
 
 export default async function Item({ params }: { params: { id: string } }) {
 
-    const [item, avaliations, userAvaliation, itemCharacteristics] = await Promise.all([
+    const [item, avaliations, userAvaliation, itemCharacteristics, favorite] = await Promise.all([
         itemService.getOneItem(params.id),
         itemService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
-        itemService.getItemCharacteristics(params.id)
+        itemService.getItemCharacteristics(params.id),
+        userService.getUserFavoriteByItemId(params.id)
     ])
     item.ItemCharacteristic = itemCharacteristics
-
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`,4)
 
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
@@ -61,9 +61,9 @@ export default async function Item({ params }: { params: { id: string } }) {
                 <ButtonReturn />
                 <p className={styles.titleItem}>{item.name}</p>
                 <ButtonActionById
-                idAction={item.id} actionFunction={userService.addUserFavorites}
+                idAction={item.id} actionFunction={favorite?userService.deleteUserFavorites:userService.addUserFavorites}
                 formOption={{style: {position: 'absolute', alignSelf:'flex-end'}}}
-                buttonAttribute={{btnModel: 'model10', btnAction: 'submit',iconElem:{src:'/public/common/heart.svg',position:'left',width:15}}} 
+                buttonAttribute={{btnModel: 'model10', btnAction: 'submit',iconElem:{src:`/public/common/${favorite?'heart-fill':'heart'}.svg`,position:'left',width:15}}} 
                 />
                 <div className={styles.cardItem}>
 
