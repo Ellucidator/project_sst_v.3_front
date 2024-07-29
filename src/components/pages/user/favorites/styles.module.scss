@@ -5,3 +5,10 @@
     flex-direction: column;
     height: 100%;
 }
+
+.favoritesCard{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
