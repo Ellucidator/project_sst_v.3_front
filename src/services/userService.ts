@@ -263,7 +263,7 @@ async function addUserFavorites(itemId: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const res = await fetch(`http://localhost:3000/user/favorite`, {
+    await fetch(`http://localhost:3000/user/favorite`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -271,6 +271,8 @@ async function addUserFavorites(itemId: string) {
         },
         body: JSON.stringify({itemId:parseInt(itemId)})
     })
+    revalidateTag('favorites-user')
+
 }
 
 async function getUserFavorites( perPage: number = 10) {
@@ -295,6 +297,24 @@ async function getUserFavorites( perPage: number = 10) {
 
     const data: Favorites = await favorites.json();
     return data
+}
+
+async function getUserFavoriteByItemId(itemId: string) {
+    const token = cookies().get('token')?.value
+    if (!token) return false
+
+    const res =await fetch(`http://localhost:3000/user/show/favorite/${itemId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+    })
+    
+    const data = await res.json();
+    if(!data)return false
+
+    return true
 }
 async function deleteUserFavorites(id: string) {
     'use server'
@@ -328,5 +348,6 @@ export const userService = {
     getUserPurchaseById,
     addUserFavorites,
     getUserFavorites,
+    getUserFavoriteByItemId,
     deleteUserFavorites
 }
