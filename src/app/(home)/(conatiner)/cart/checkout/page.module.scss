@@ -14,13 +14,32 @@
         width: 90%;
         gap: 25px;
         flex-wrap: wrap;
+        justify-content: center;
 
-        .divAddress{
-            
+        .divAddressAndFrete{
             display: flex;
             flex-direction: column;
             gap: 10px;
+            .divAddress{
+                border: 1px solid $tertiaryDark;
+                padding: 10px;
+                border-radius: 5px;
+    
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            .divFrete{
+                width: 100%;
+                border: 1px solid $tertiaryDark;
+                border-radius: 5px;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+            }
         }
+
 
         .divPayment{
             display: flex;
