@@ -37,9 +37,9 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
 
 }
 
-async function getItemsCart(): Promise<[ItemPromotion[], number]> {
+async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
     const cart:Cart = helpers.getCookieValue('car')
-    if (!cart) return [[], 0]
+    if (!cart) return [[], 0, {}]
 
     const ids = cart.items.map((item) => item.id)
 
@@ -67,7 +67,7 @@ async function getItemsCart(): Promise<[ItemPromotion[], number]> {
         }
     }
 
-    return [data, cart.total]
+    return [data, cart.total, cart.frete]
 }
 async function updateCart(value: string) {
     'use server'

@@ -7,6 +7,11 @@ export interface ItemToCar{
 }
 export interface Cart{
     items:ItemToCar[]
+    frete?:{
+        address_id:string|number
+        name:string
+        price:number
+    }
     total:number
 }
 

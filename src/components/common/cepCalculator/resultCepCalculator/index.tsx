@@ -12,11 +12,11 @@ const ResultCepCalculator = ({ resultCepCalc, type='static' }: Props) => {
 
     return (
         <>
-            {resultCepCalc.map((result) => {
+            {resultCepCalc.map((result,i) => {
                 return (
                     <div key={result.name} className={styles.cepResultItem}>
                         {type === 'form'?
-                            <input type="radio" value={result.error?result.error:`${result.name}-${result.price}`}></input>
+                            <input required type="radio" defaultChecked={i===0?true:false} name="cep-result" value={result.error?result.error:`${result.name}-${result.price}`}></input>
                             :<></>
                         }
                         <Image
