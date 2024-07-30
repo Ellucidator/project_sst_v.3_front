@@ -61,7 +61,8 @@
         height: 100%;
 
         .cardBanner {
-            height: 100%;
+            height: 150px;
+            width: 150px;
         }
 
         .name {
@@ -86,14 +87,38 @@
     
         .bannerAndName {    
             .cardBanner {
-                width: 100%;
-                height: 150px;
+                width: 180px;
+                height: 180px;
             }
     
             .name {
                 padding: 10px;
                 font-size: medium;
                 word-wrap: break-word;
+            }
+        }
+    }
+}
+
+@media(max-width: 525px){
+
+    .cardItemModelH{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 140px;
+
+        .bannerAndName{
+            flex-direction: column;
+            width: 100%;
+
+            .cardBanner{
+                width: 100%;
+                height: 140px;
+            }
+
+            .name{
+                font-size: medium;
             }
         }
     }

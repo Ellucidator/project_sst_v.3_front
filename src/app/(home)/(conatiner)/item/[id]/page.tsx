@@ -101,9 +101,10 @@ export default async function Item({ params }: { params: { id: string } }) {
                         {recomendedItems.Items ? (
                             <Container title={{ titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" }}
                                 model="model1" modelTw='container' justifyContent='center' >
-                                {recomendedItems.Items.map((item) => {
+                                {recomendedItems.Items.map((elem) => {
+                                    if(elem.id === item.id) return
                                     return (
-                                        <CardItem key={item.id} item={item} />
+                                        <CardItem key={elem.id} item={elem} />
                                     )
                                 })}
                             </Container>
