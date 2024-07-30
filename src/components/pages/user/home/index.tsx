@@ -21,7 +21,7 @@ const UserHome = ({ user, userPurchase, newestFavorites }: Props) => {
             {userPurchase?<CardPurchase userPurchase={userPurchase} />:<></>}
             <br />
             <Title fontSize="21px" model='model2' titleText="Ultimos favoritos" />
-            {<Container model='model1' >
+            {<Container model='model1' justifyContent='center' >
                 {newestFavorites && newestFavorites.rows?newestFavorites.rows.map((favorite)=>{
                     return(
                         <CardItem key={favorite.Item.id} item={favorite.Item}/>

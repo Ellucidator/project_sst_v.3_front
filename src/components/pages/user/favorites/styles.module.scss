@@ -11,4 +11,9 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
+    background-color: $primary;
+    border-top: 1px solid $tertiaryDark;
+    border-bottom: 1px solid $tertiaryDark;
+    padding: 10px 20px;
+    gap: 20px;
 }

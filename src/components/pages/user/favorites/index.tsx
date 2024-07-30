@@ -17,7 +17,7 @@ const FavoritesPage = async () => {
 
             <Container direction='column'>
                 {favorites ?
-                    <div>
+                    <>
                         {favorites.rows.map((item) => {
                             return (
                                 <div key={item.Item.id} className={styles.favoritesCard}>
@@ -26,10 +26,10 @@ const FavoritesPage = async () => {
                                 </div>
                             )
                         })}
-                    </div>
+                    </>
                     : <></>
                 }
-                <PagCountServer count={favorites?favorites.count:0} perPage={6}/>
+                <PagCountServer count={favorites?favorites.count:0} perPage={5}/>
             </Container>
         </div>
     )
