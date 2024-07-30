@@ -15,12 +15,12 @@ const SlideSectionItem = ({ allItems }: Props) => {
     useEffect(() => {
         var main = new Splide('#mainSlide', {
             type: 'fade',
-            rewind:true,
+            rewind: true,
             heightRatio: 0.5,
             pagination: false,
             arrows: quantImg && quantImg > 1 ? true : false,
             focus: 'center',
-            height:650,
+            height: 650,
             breakpoints: {
                 1350: {
                     height: 500
@@ -45,7 +45,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
             fixedWidth: 130,
             isNavigation: true,
             // focus:'center',
-            arrows:false,
+            arrows: false,
             gap: 5,
             pagination: false,
             dragMinThreshold: {
@@ -72,7 +72,16 @@ const SlideSectionItem = ({ allItems }: Props) => {
         <div className={styles.slideItem}>
             <section className='splide' id='mainSlide'>
                 <div className="splide__track">
-                    <ul className="splide__list">
+                    <ul className={`splide__list`}>
+                        <li key={`img00`} className="splide__slide">
+                            <Image
+                                className={styles.itemImgs}
+                                src={`http://localhost:3000/files/${allItems.thumbnail_url}`}
+                                alt=''
+                                width={600}
+                                height={400}
+                            />
+                        </li>
                         {
                             allItems.images?.key.map((key, i) => {
                                 return (
@@ -94,16 +103,25 @@ const SlideSectionItem = ({ allItems }: Props) => {
             <section className={`splide`} id='miniSlide'>
                 <div className={`splide__track ${styles.miniSlide}`}>
                     <ul className={`splide__list ${styles.ulMiniSlide}`}>
+                        <li key={`img00`} className="splide__slide">
+                            <Image
+                                className={styles.itemImgsMini}
+                                src={`http://localhost:3000/files/${allItems.thumbnail_url}`}
+                                alt=''
+                                width={110}
+                                height={90}
+                            />
+                        </li>
                         {
-                            allItems.images?.key.map((key,i) => {
+                            allItems.images?.key.map((key, i) => {
                                 return (
                                     <li key={`img${i}`} className="splide__slide">
                                         <Image
-                                            className={styles.itemImgs}
+                                            className={styles.itemImgsMini}
                                             src={`http://localhost:3000/files/${key}`}
                                             alt=''
-                                            width={110}
-                                            height={90}
+                                            width={118}
+                                            height={118}
                                         />
                                     </li>
                                 )

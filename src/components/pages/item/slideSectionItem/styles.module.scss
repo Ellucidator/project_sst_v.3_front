@@ -1,8 +1,9 @@
 @import '../../../../styles/colors/colors.module.scss';
 
 .slideItem{
-    width: 60%;
+    flex: 1;
     display: flex;
+    justify-content: flex-end;
     flex-direction: row-reverse;
 }
 
@@ -30,9 +31,19 @@
     width: 100%;
     height: 100%;
 }
+.itemImgsMini{
+    width: 100%;
+    height: 100%;
+    min-height: 118px;
+}
 
 @media(max-width: 800px) {
     .slideItem{
         width: 100%;
+    }
+}
+@media(max-width: 1075px) {
+    .itemImgsMini{
+        min-height: 80px;
     }
 }
