@@ -1,0 +1,28 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+.pageBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary;
+    min-height: 100%;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+
+    .divPayment {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media(max-width:675px) {
+    .pageBody {
+        .divPayment {
+            width: 100%;
+        }
+
+    }
+}
