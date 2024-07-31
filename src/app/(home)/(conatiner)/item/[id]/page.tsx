@@ -9,11 +9,8 @@ import DescriptionList from '@/components/pages/item/descriptionList'
 import AvaliationsItem from '@/components/pages/item/avaliationsItem'
 import { userService } from '@/services/userService'
 import { itemService } from '@/services/itemService'
-import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
 import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
-import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn'
-import SlideSection from '@/components/common/clientOnlyComponents/slideSection'
 import { cartServices } from '@/services/cartService'
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
@@ -58,7 +55,6 @@ export default async function Item({ params }: { params: { id: string } }) {
     return (
         <>
             <div className={` ${styles.itemContainer}`}>
-                <ButtonReturn />
                 <p className={styles.titleItem}>{item.name}</p>
                 <ButtonActionById
                 idAction={item.id} actionFunction={favorite?userService.deleteUserFavorites:userService.addUserFavorites}

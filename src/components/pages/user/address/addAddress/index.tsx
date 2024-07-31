@@ -79,7 +79,7 @@ const AddressUpdate = async ({ addressId, btnBack=true ,modal }: Props) => {
 
     return (
         <>  
-            {btnBack?<ButtonReturn />:<></>}
+            {btnBack?<ButtonReturn model='model2' />:<></>}
             <Title width='100%' fontSize="25px" model='model5' titleText="Novo endereço" />
             
             <form action={handlerSubmit} className={styles.formAddress}>

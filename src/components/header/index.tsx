@@ -8,6 +8,7 @@ import InputSearch from "./inputSearch";
 import { Cart } from "@/types/itemsTypes";
 import ServerModal from "../common/serverActionComponent/modal";
 import { helpers } from "@/helpers/helpers";
+import ButtonReturn from "../common/clientOnlyComponents/btnReturn";
 
 
 const HeaderPrimary = async () => {
@@ -19,14 +20,16 @@ const HeaderPrimary = async () => {
     const cartItems: Cart = helpers.getCookieValue('car')
 
     if (cartItems) {
-        carCount = cartItems.items?cartItems.items.reduce((acc, item) => {
+        carCount = cartItems.items ? cartItems.items.reduce((acc, item) => {
             return acc += item.ItemCharacteristics.quantity
-        }, 0):0
+        }, 0) : 0
     }
 
     return (
         <>
             <div id="header" className={`${styles.header}`}>
+                <ButtonReturn />
+
                 <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
                         <ServerModal cookieName="modal" commonType="categories-sub-list" catalog={catalog} />
@@ -41,7 +44,7 @@ const HeaderPrimary = async () => {
 
                         <div className={styles.headerAuth}>
                             {validate ? <ServerModal cookieName="modalUser" user_name={validate.first_name} />
-                            : <HeaderRightGeneric />}
+                                : <HeaderRightGeneric />}
                         </div>
 
                     </div>

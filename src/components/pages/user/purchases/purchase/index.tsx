@@ -24,7 +24,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
     return (
         <div className={styles.pageBody}>
             <div className={styles.titleContainer}>
-                <ButtonReturn />
+                <ButtonReturn model='model2'/>
                 <Title fontSize="25px" model='model2' titleText={`Pedido Nº ${purchase.id}`} />
             </div>
 
