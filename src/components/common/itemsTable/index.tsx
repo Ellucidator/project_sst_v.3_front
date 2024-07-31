@@ -7,10 +7,11 @@ import PriceItem from '../texts/priceItem'
 type Props = {
     items: ItemPromotion[] | Purchase
     total?: number
+    frete?: number
     type?: 'Common' | 'Purchase'
     model?: 'model1' | 'model2'
 }
-const ItemsTable = ({ items, type = 'Common', model = 'model1', total = 0 }: Props) => {
+const ItemsTable = ({ items, type = 'Common', model = 'model1', total = 0, frete = 0 }: Props) => {
 
     if (type === 'Common') {
         items = items as ItemPromotion[]
@@ -30,9 +31,15 @@ const ItemsTable = ({ items, type = 'Common', model = 'model1', total = 0 }: Pro
                             </div>
                         )
                     })}
+                    {frete > 0 ?
+                        <div className={styles.item}>
+                            <p>Frete:</p>
+                            <p > {frete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                        </div> :
+                        <></>}
                     <div className={styles.item}>
                         <p className={styles.titleItems}>Total:</p>
-                        <p className={styles.titleItems} > {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                        <p className={styles.titleItems} > {(total + frete).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                     </div>
                 </div>
             </div>
