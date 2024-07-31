@@ -1,7 +1,18 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.btnReturn{
+.model1 {
+        position: fixed;
+        top: 12%;
+        left: 5%;
         color: $secondaryDark;
         font-size: small;
         width: fit-content;
+        height: fit-content;
+}
+
+.model2 {
+        color: $secondaryDark;
+        font-size: small;
+        width: fit-content;
+        height: fit-content;
 }
