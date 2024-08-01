@@ -23,7 +23,9 @@ const ModalAddress = async ({ cookieControl, adresses = [], classModal, btnActio
 
     return (
         <>
-            <ButtonActionById buttonAttribute={{ btnName: 'Mudar Endereço', btnModel: 'model2' }} idAction={'modalAddress'} actionFunction={btnAction} loading={false} />
+            <ButtonActionById 
+                buttonAttribute={{ btnName: 'Mudar Endereço', btnModel: 'model2' }} 
+                idAction={'modalAddress'} actionFunction={btnAction} loading={false} />
             <div className={styles[classModal]}>
                 {cookieControl === 'open' ?
                     <>

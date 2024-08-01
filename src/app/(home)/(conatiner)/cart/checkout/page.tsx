@@ -16,6 +16,8 @@ import { Cart } from '@/types/itemsTypes'
 
 export default async function CheckoutPage() {
     const adresses = await userService.getUserAdresses()
+    console.log(adresses)
+
     let addressActiv: UserAddress | undefined
     if (adresses) addressActiv = adresses.find((address) => address.active === true)
 
@@ -23,7 +25,6 @@ export default async function CheckoutPage() {
 
     const [items, total] = await cartServices.getItemsCart()
     if (!items || items.length === 0) redirect('/')
-
 const handlerSubmit = async (form: FormData) => {
     'use server'
     if(!addressActiv) return
@@ -47,13 +48,14 @@ const handlerSubmit = async (form: FormData) => {
 }
 
     return (
-        <form action={handlerSubmit} className={styles.pageBody}>
-            <Title fontSize="25px" model='model5' titleText="Checar pedido" />
-            <div className={styles.addressAndPayment}>
+        <div className={styles.pageBody}>
+            <Title fontSize="25px" model='model5' titleText="Checar pedido" width='100%'/>
+            <ServerModal cookieName="modalAddress"
+                            adresses={adresses || []} />
+            <form action={handlerSubmit} className={styles.addressAndPayment}>
                 <div className={styles.divAddressAndFrete}>
                     <div className={styles.divAddress}>
-                        <ServerModal cookieName="modalAddress"
-                            adresses={adresses || []} />
+                        
                         {addressActiv ? <CardAddress address={addressActiv} /> : <></>}
                     </div>
                     <div className={styles.divFrete}>
@@ -70,7 +72,7 @@ const handlerSubmit = async (form: FormData) => {
 
                     />
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }

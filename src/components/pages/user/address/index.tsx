@@ -42,7 +42,7 @@ const UserAddressPage = async ({ userAddress, modal = false }: Props) => {
                     <div className={styles.divAddressList}>
                         {
                             activeAddress ?
-                                <CardAddress address={activeAddress} buttons />
+                                <CardAddress address={activeAddress} buttons btnModal={modal}/>
                                 : <></>
                         }
                         {

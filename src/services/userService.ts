@@ -163,6 +163,7 @@ async function getUserAdresses() {
     })
 
     const data: UserAddress[] = await adresses.json();
+    console.log(data)
     return data
 }
 
