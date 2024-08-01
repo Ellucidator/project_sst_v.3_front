@@ -6,6 +6,7 @@ import { Purchase, Purchases } from "@/types/purchaseTypes";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { helpers } from "@/helpers/helpers";
+import { redirect } from "next/navigation";
 
 
 const createUser = async (user: CreateUser) => {
@@ -262,7 +263,10 @@ async function getUserPurchaseById(purchaseId: string) {
 async function addUserFavorites(itemId: string) {
     'use server'
     const token = cookies().get('token')?.value
-    if (!token) return false
+    if (!token){
+        cookies().set('redirect', `/item/${itemId}`)    
+        redirect('/form/login')
+    }
 
     await fetch(`http://localhost:3000/user/favorite`, {
         method: 'POST',
