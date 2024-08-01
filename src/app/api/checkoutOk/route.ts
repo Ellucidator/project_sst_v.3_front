@@ -7,12 +7,10 @@ export async function GET(request: NextRequest) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const address = searchParams.get('address_id')
-
     const cookieCart = cookies().get('car')?.value
     
     
-    fetch(`http://localhost:3000/user/purchase/${address}?payment_type=${searchParams.get('payment_type')}`,{
+    fetch(`http://localhost:3000/user/purchase?payment_type=${searchParams.get('payment_type')}`,{
         headers: {
             'Authorization': token,
             'Content-Type': 'application/json'

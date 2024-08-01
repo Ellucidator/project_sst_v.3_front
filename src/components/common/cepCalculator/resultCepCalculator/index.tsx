@@ -16,7 +16,7 @@ const ResultCepCalculator = ({ resultCepCalc, type='static' }: Props) => {
                 return (
                     <div key={result.name} className={styles.cepResultItem}>
                         {type === 'form'?
-                            <input required type="radio" defaultChecked={i===0?true:false} name="cep-result" value={result.error?result.error:`${result.name}-${result.price}`}></input>
+                            <input required type="radio" defaultChecked={i===0?true:false} name="cep-result" value={result.error?result.error:`${result.name}-${result.price}-De ${result.delivery_range.min} a ${result.delivery_range.max} Dias uteis`}></input>
                             :<></>
                         }
                         <Image
