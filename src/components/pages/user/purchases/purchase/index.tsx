@@ -20,6 +20,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
 
     const purchaseStatus = purchase.status === 'Recebido' ? 1 :purchase.status === 'Transportadora' ? 2 : purchase.status === 'Enviado' ? 3 : purchase.status === 'Entregue' ? 4 : 0
 
+    const [sendType, price, range] = purchase.frete!.split('-')
 
     return (
         <div className={styles.pageBody}>
@@ -76,11 +77,13 @@ const PurchasePage = async({purchaseId}: Props)=> {
                     <div className={styles.divAddressInfo}>
 
                         <p className={styles.title}>Metodo de Envio:</p>
-                        <p>...</p>
+                        <p>{`Tipo: ${sendType}`}</p>
+                        <p>{`Valor: ${parseFloat(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}</p>
+                        <p>{`Prazo: ${range}`}</p>
                     </div>
                     <div className={styles.divAddressInfo}>
                         <p className={styles.title}>Metodo de Pagamento:</p>
-                        <p>...</p>
+                        <p>{purchase.payment_type}</p>
                     </div>
 
                 </div>

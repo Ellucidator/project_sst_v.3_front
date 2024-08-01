@@ -10,10 +10,12 @@ export interface Purchase{
     id: number
     all_value: number
     status: string
-    createdAt: string
-    updatedAt: string
+    frete: string
+    payment_type: string
     ItemSells: ItemSell[]
     Address:UserAddress
+    createdAt: string
+    updatedAt: string
 }
 
 export interface Purchases{
