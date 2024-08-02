@@ -2,15 +2,14 @@
 
 .model1 {
     display: flex;
-    margin-top: 30px;
-
+    flex: 1;
     .divItems {
         display: flex;
         flex-direction: column;
         background-color: rgb($primary, 0.8);
         padding: 20px;
         gap: 10px;
-        width: 50%;
+        width: 100%;
 
         .titleItems {
             font-size: 22px;
@@ -24,7 +23,10 @@
             justify-content: space-between;
             margin: 5px 0px 5px 0px;
             border-bottom: 1px solid $secondaryDark;
-
+            .itemImg {
+                width: 80px;
+                height: 80px;
+            }
             .infoAndPrice{
                 .price{
                     font-weight: bold;
@@ -78,12 +80,7 @@
     }
 }
 
-@media(max-width:1025px){
-    .model1{
-        .divItems{
-            width: 100%;}
-    }
-}
+
 
 @media(max-width:525px) {
     .model2 {

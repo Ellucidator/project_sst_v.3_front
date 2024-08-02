@@ -1,9 +1,4 @@
 import styles from './styles.module.scss'
-import ButtonActionById from "../../buttonActionById";
-import { UserAddress } from '@/types/userTypes';
-import AddressUpdate from '@/components/pages/user/address/addAddress';
-import UserAddressPage from '@/components/pages/user/address';
-import { cookies } from 'next/headers';
 import Button from '@/components/common/button';
 import TagsFilterServ from '@/components/pages/catalog/servTagsFilter';
 import { Tag } from '@/types/tagTypes';

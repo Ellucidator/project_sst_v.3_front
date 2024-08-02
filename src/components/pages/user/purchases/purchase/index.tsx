@@ -85,10 +85,16 @@ const PurchasePage = async({purchaseId}: Props)=> {
                         <p className={styles.title}>Metodo de Pagamento:</p>
                         <p>{purchase.payment_type}</p>
                     </div>
+                    <div className={styles.divAddressInfo}>
+                        <p className={styles.title}>Ultima atualização:</p>
+                        <p>{purchase.status}</p>
+                        <p>{new Date(purchase.updatedAt).toLocaleString('pt-BR')}</p>
+                    </div>
 
                 </div>
 
-                <ItemsTable items={purchase} total={purchase.all_value} type='Purchase' />
+                <ItemsTable items={purchase} total={purchase.all_value} type='Purchase' model='model1' 
+                    frete={parseFloat(price)} />
             </div>
         </div>
     )

@@ -31,7 +31,7 @@ const TagsFilterServ = async ({ tags, subCategoryId,filters=[] }: Props) => {
                     maxAge: 60 * 60
                 })
         }
-        cookies().delete('modal')
+        cookies().delete('modalFilters')
     }
 
 
