@@ -54,7 +54,7 @@ const UserInformation = async () => {
 
             <form action={handlerSubmit} className={styles.formInformation}>
                 <Loading model='modelArea' />
-
+                <p>As informações serão atualizadas apos o proximo login.</p>
                 <div className={styles.inputsContainer}>
                     <Input mode='label&input' divWidth='40%' labelText='Primeiro Nome:'
                         inputOptions={{ id: 'first_name', type: 'text', name: 'first_name', defaultValue: infoValue.first_name, required: true }} />
