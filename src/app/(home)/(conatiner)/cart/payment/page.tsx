@@ -12,6 +12,7 @@ export default async function Payment() {
     const client = new MercadoPagoConfig({ accessToken: 'APP_USR-658438204342310-070510-884ee4cac7fc572dc65f9a5c11bee043-1888685170' });
     const preference = new Preference(client);
 
+
     const [items, total, frete] = await cartServices.getItemsCart()
     if (!items || items.length === 0) redirect('/')
 
@@ -40,6 +41,7 @@ export default async function Payment() {
             auto_return: 'approved'
         }
     })
+
     return (
         <>
             <div className={styles.pageBody}>

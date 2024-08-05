@@ -15,20 +15,23 @@ import { cartServices } from '@/services/cartService'
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
+import Link from 'next/link'
+import Image from 'next/image'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
 
-    const [item, avaliations, userAvaliation, itemCharacteristics, favorite] = await Promise.all([
+    const [item, avaliations, userAvaliation, itemCharacteristics, favorite, promotion] = await Promise.all([
         itemService.getOneItem(params.id),
         itemService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
         itemService.getItemCharacteristics(params.id),
-        userService.getUserFavoriteByItemId(params.id)
+        userService.getUserFavoriteByItemId(params.id),
+        catalogService.getFeaturedPromotion()
     ])
     item.ItemCharacteristic = itemCharacteristics
-    const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`,4)
+    const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`, 4)
 
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
@@ -57,9 +60,9 @@ export default async function Item({ params }: { params: { id: string } }) {
             <div className={` ${styles.itemContainer}`}>
                 <p className={styles.titleItem}>{item.name}</p>
                 <ButtonActionById
-                idAction={item.id} actionFunction={favorite?userService.deleteUserFavorites:userService.addUserFavorites}
-                formOption={{style: {position: 'absolute', alignSelf:'flex-end'}}}
-                buttonAttribute={{btnModel: 'model10', btnAction: 'submit',iconElem:{src:`/public/common/${favorite?'heart-fill':'heart'}.svg`,position:'left',width:15}}} 
+                    idAction={item.id} actionFunction={favorite ? userService.deleteUserFavorites : userService.addUserFavorites}
+                    formOption={{ style: { position: 'absolute', alignSelf: 'flex-end' } }}
+                    buttonAttribute={{ btnModel: 'model10', btnAction: 'submit', iconElem: { src: `/public/common/${favorite ? 'heart-fill' : 'heart'}.svg`, position: 'left', width: 15 } }}
                 />
                 <div className={styles.cardItem}>
 
@@ -71,7 +74,11 @@ export default async function Item({ params }: { params: { id: string } }) {
                         ) : (
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
-
+                        <Link href={`/promotion/${promotion.id}`} key={promotion.id}
+                            id={`promotionBanner-${promotion.id}`} className={styles.promotionLink}>
+                            <Image src={`http://localhost:3000/files/${promotion.thumbnail_url}`} alt="banner"          
+                                className={styles.promotionBanner} width={700} height={300} />
+                        </Link>
                         <div className={styles.itemInfo}>
                             <section className={styles.sectionPayInfo}>
 
@@ -98,7 +105,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                             <Container title={{ titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" }}
                                 model="model1" modelTw='container' justifyContent='center' >
                                 {recomendedItems.Items.map((elem) => {
-                                    if(elem.id === item.id) return
+                                    if (elem.id === item.id) return
                                     return (
                                         <CardItem key={elem.id} item={elem} />
                                     )
