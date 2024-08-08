@@ -17,19 +17,20 @@ import CardItem from '@/components/common/cards/cardItem'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
 import Link from 'next/link'
 import Image from 'next/image'
+import PromotionMiniBanner from '@/components/common/clientOnlyComponents/promotionMiniBanner'
 
 
 
 export default async function Item({ params }: { params: { id: string } }) {
 
-    const [item, avaliations, userAvaliation, itemCharacteristics, favorite, promotion] = await Promise.all([
+    const [item, avaliations, userAvaliation, itemCharacteristics, favorite] = await Promise.all([
         itemService.getOneItem(params.id),
         itemService.getAllAvaliationsByItemId(params.id),
         userService.getAvaliationByUserId(),
         itemService.getItemCharacteristics(params.id),
         userService.getUserFavoriteByItemId(params.id),
-        catalogService.getFeaturedPromotion()
     ])
+    
     item.ItemCharacteristic = itemCharacteristics
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`, 4)
 
@@ -74,11 +75,9 @@ export default async function Item({ params }: { params: { id: string } }) {
                         ) : (
                             <p className={styles.itemStockF}>Produto Indisponivel</p>
                         )}
-                        <Link href={`/promotion/${promotion.id}`} key={promotion.id}
-                            id={`promotionBanner-${promotion.id}`} className={styles.promotionLink}>
-                            <Image src={`http://localhost:3000/files/${promotion.thumbnail_url}`} alt="banner"          
-                                className={styles.promotionBanner} width={700} height={300} />
-                        </Link>
+
+                        <PromotionMiniBanner/>
+
                         <div className={styles.itemInfo}>
                             <section className={styles.sectionPayInfo}>
 

@@ -45,7 +45,8 @@ async function getAllPromotions(){
         next:{
             revalidate: 10
         },
-        cache: 'force-cache'
+        cache: 'default',
+        credentials:'include'
     })
     const data: Promotion[] = await res.json();
     return data;

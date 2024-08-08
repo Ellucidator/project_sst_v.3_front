@@ -4,12 +4,10 @@ import CardItem from "@/components/common/cards/cardItem";
 import imgBanner1 from '../../../public/public/home/categoryBanner1.png'
 import imgBanner2 from '../../../public/public/home/categoryBanner2.png'
 import Container from "@/components/common/container";
-import Title from "@/components/common/texts/tiltle";
-import SlideSection from "@/components/common/clientOnlyComponents/slideSection";
 import CategoryCard from "@/components/common/cards/categoryCard";
 import Banners from "@/components/common/banners";
+import SetLocalStorage from '@/components/common/clientOnlyComponents/setLocalStorage';
 export default async function Home() {
-
 
   const [promotions,promotionFeature, catalog, newestsItens, featuredItems] = await Promise.all([
     catalogService.getAllPromotions(),
@@ -18,12 +16,16 @@ export default async function Home() {
     catalogService.getNewestsItems(),
     catalogService.getFeaturedItems()
   ])
-
   
-
   return (
     <main className={`${styles.home}`}>
       
+      <SetLocalStorage name={'promotionFeature'} value={JSON.stringify({
+        id: promotionFeature.id,
+        name: promotionFeature.name,
+        thumbnail_url: promotionFeature.thumbnail_url
+      })} />
+
       <div className={`${styles.homeContainer}`}>
 
         <Banners promotions={promotions} />
