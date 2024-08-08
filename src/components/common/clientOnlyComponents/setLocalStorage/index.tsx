@@ -1,12 +1,14 @@
 'use client'
-
+import { useEffect } from "react"
 
 type Props = {
     name: string
     value: string
 }
 const SetLocalStorage = ({name, value}:Props) => {
-    localStorage.setItem(name, value)
+    useEffect(() => {
+        localStorage.setItem(name, value)
+    },[])
     return(
         <></>
     )

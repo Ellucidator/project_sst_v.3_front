@@ -81,6 +81,14 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
+
+            .formAvaliations{
+                width: 70%;
+            }
+
+            .avaliationUser{
+                width: 80%;
+            }
         }
         .sectionAllAvaliations{
             flex-wrap: wrap;

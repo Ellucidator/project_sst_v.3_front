@@ -20,14 +20,14 @@
         justify-content: center;
         background-color: $primary;
         border-bottom: 1px solid $primaryLight;
-        padding: 5px 10px;
+        padding: 5px 0px;
 
         .itemBuy {
             width: 40%;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
             flex-direction: column;
+            padding: 5px;
 
             .itemStockT {
                 display: flex;
@@ -102,8 +102,9 @@
     .itemContainer {
 
         .sectionSecond {
+            flex-direction: column;
             .recomendedItems {
-                width: 55%;
+                width: 100%;
             }
         }
     }

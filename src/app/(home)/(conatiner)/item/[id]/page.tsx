@@ -30,7 +30,7 @@ export default async function Item({ params }: { params: { id: string } }) {
         itemService.getItemCharacteristics(params.id),
         userService.getUserFavoriteByItemId(params.id),
     ])
-    
+
     item.ItemCharacteristic = itemCharacteristics
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`, 4)
 
@@ -70,13 +70,15 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <SlideSectionItem allItems={item} />
 
                     <div className={styles.itemBuy}>
-                        {item.in_stock > 0 ? (
-                            <p className={styles.itemStockT}>Produto Disponivel</p>
-                        ) : (
-                            <p className={styles.itemStockF}>Produto Indisponivel</p>
-                        )}
+                        <div>
+                            {item.in_stock > 0 ? (
+                                <p className={styles.itemStockT}>Produto Disponivel</p>
+                            ) : (
+                                <p className={styles.itemStockF}>Produto Indisponivel</p>
+                            )}
 
-                        <PromotionMiniBanner/>
+                            <PromotionMiniBanner />
+                        </div>
 
                         <div className={styles.itemInfo}>
                             <section className={styles.sectionPayInfo}>

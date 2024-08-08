@@ -3,7 +3,14 @@
 .promotionLink{
                 
     .promotionBanner{
-        border-radius: 10px;
-        height: 250px;
+        height: 200px;
+    }
+}
+
+@media(max-width: 1075px) {
+    .promotionLink{
+        .promotionBanner{
+            height: 150px;
+        }
     }
 }

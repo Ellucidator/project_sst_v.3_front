@@ -1,6 +1,7 @@
 import { btnActionService } from '@/services/btnActionService'
 import Loading from '../../clientOnlyComponents/loading'
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 
 type Props = {
@@ -11,23 +12,15 @@ type Props = {
 }
 
 const CategoryCard = async({ cardName, cardLink, imgUrl, theme }: Props) => {
-    const handlerSubmit = async (form: FormData) => {
-        'use server'
-        await btnActionService.btnSubCategoryAction(form.get('cardLink')!.toString())
-    }
+
 
     return (
-        <form className={styles.container} action={handlerSubmit}>
-            <Loading model='modelArea'/>
-            <input type="hidden" name="cardLink" defaultValue={cardLink} />
-            <button
-                type='submit'
-                className={styles.categoryCard1}
-                style={{ backgroundImage: `url(${imgUrl})` }}
+        <Link href={`http://localhost:3001/api/catalog/${cardLink}`} 
+            className={styles.container}
+            style={{ backgroundImage: `url(${imgUrl})` }}
             >
                 <p className={styles.categoryName + ' ' + styles[theme]}>{cardName}</p>
-            </button>
-        </form>
+        </Link>
     )
 }
 

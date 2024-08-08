@@ -2,14 +2,18 @@
 import Link from 'next/link'
 import styles from './styles.module.scss'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 
 const PromotionMiniBanner = () => {
-    const infoStorage = localStorage.getItem('promotionFeature')
-    if(!infoStorage)return<></>
+    const [info, setInfo] = useState<{id: string|number, thumbnail_url: string} | null>(null)
+    
+    useEffect(() => {
+        const infoStorage = localStorage.getItem('promotionFeature')
+        if(infoStorage)setInfo(JSON.parse(infoStorage))
+    },[])
 
-    const info:{id: string|number, thumbnail_url: string} = JSON.parse(infoStorage)
-
+    if(!info) return <></>
     return (
         <Link href={`/promotion/${info.id}`} key={info.id}
             id={`promotionBanner-${info.id}`} className={styles.promotionLink}>

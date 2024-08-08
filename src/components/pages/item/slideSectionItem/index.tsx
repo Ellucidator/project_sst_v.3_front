@@ -26,7 +26,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                     height: 500
                 },
                 1050: {
-                    height: 400
+                    height: 440
                 },
                 800: {
                     height: 500
@@ -35,7 +35,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                     height: 350
                 },
                 475: {
-                    height: 250
+                    height: 275
                 }
             }
 
@@ -44,7 +44,6 @@ const SlideSectionItem = ({ allItems }: Props) => {
             rewind: true,
             fixedWidth: 130,
             isNavigation: true,
-            // focus:'center',
             arrows: false,
             gap: 5,
             pagination: false,
@@ -78,7 +77,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                                 className={styles.itemImgs}
                                 src={`http://localhost:3000/files/${allItems.thumbnail_url}`}
                                 alt=''
-                                width={600}
+                                width={900}
                                 height={400}
                             />
                         </li>

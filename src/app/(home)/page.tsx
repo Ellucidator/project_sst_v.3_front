@@ -40,10 +40,10 @@ export default async function Home() {
         </Container>
 
         <section className={`container ${styles.categoriesCards}`}>
-          <CategoryCard cardLink={`${catalog[0].name.toLowerCase()}/${catalog[0].SubCategories[0].id}`}
+          <CategoryCard cardLink={`${catalog[0].name.toLowerCase()}-${catalog[0].SubCategories[0].id}`}
             cardName={catalog[0].SubCategories[0].name} imgUrl={imgBanner1.src} theme="dark" />
 
-          <CategoryCard cardLink={`${catalog[1].name.toLowerCase()}/${catalog[1].SubCategories[0].id}`} cardName={catalog[1].SubCategories[0].name} imgUrl={imgBanner2.src} theme="light" />
+          <CategoryCard cardLink={`${catalog[1].name.toLowerCase()}-${catalog[1].SubCategories[0].id}`} cardName={catalog[1].SubCategories[0].name} imgUrl={imgBanner2.src} theme="light" />
         </section>
 
         <Container title={{ titleText:'Recentemente adicionados', model: "model1", fontSize: "25px" }}
