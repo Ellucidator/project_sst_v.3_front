@@ -43,31 +43,35 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
 
     const ids = cart.items.map((item) => item.id)
 
-    const res = await fetch(process.env.API_HOST + '/items/show-cart', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(ids),
-        cache: 'no-store',
-        next: {
-            tags: ['get-items-cart']
-        }
-    })
-    const data: ItemPromotion[] = await res.json();
-
-    for (let i = 0; i < data.length; i++) {
-        const item = data.find((item) => item.id === cart.items[i].id)
-        if (item) {
-            item.ItemCharacteristic = cart.items[i].ItemCharacteristics
-
-            if (item.in_stock < item.ItemCharacteristic.quantity) {
-                item.ItemCharacteristic.quantity = item.in_stock
+    try {
+        const res = await fetch(process.env.API_HOST + '/items/show-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ids),
+            cache: 'no-store',
+            next: {
+                tags: ['get-items-cart']
+            }
+        })
+        const data: ItemPromotion[] = await res.json();
+    
+        for (let i = 0; i < data.length; i++) {
+            const item = data.find((item) => item.id === cart.items[i].id)
+            if (item) {
+                item.ItemCharacteristic = cart.items[i].ItemCharacteristics
+    
+                if (item.in_stock < item.ItemCharacteristic.quantity) {
+                    item.ItemCharacteristic.quantity = item.in_stock
+                }
             }
         }
+    
+        return [data, cart.total, cart.frete]
+    } catch (error) {
+        return [[], 0, {}]
     }
-
-    return [data, cart.total, cart.frete]
 }
 async function updateCart(value: string) {
     'use server'

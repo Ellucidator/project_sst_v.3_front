@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const CardItem = ({ item, model='vertical' }: Props) => {
-
     return (
         <Link href={`/item/${item.id}`} className={model === 'horizontal' ? styles.cardItemModelH : styles.cardItem}
         >

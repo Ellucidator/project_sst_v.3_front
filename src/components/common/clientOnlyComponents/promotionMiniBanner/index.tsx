@@ -4,8 +4,10 @@ import styles from './styles.module.scss'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-
-const PromotionMiniBanner = () => {
+type Props = {
+    apiUrl: string
+}
+const PromotionMiniBanner = ({ apiUrl }: Props) => {
     const [info, setInfo] = useState<{id: string|number, thumbnail_url: string} | null>(null)
     
     useEffect(() => {
@@ -17,7 +19,7 @@ const PromotionMiniBanner = () => {
     return (
         <Link href={`/promotion/${info.id}`} key={info.id}
             id={`promotionBanner-${info.id}`} className={styles.promotionLink}>
-            <Image src={process.env.API_HOST + `/files/${info.thumbnail_url}`} alt="banner"
+            <Image src={apiUrl + `/files/${info.thumbnail_url}`} alt="banner"
                 className={styles.promotionBanner} width={700} height={300} />
         </Link>
     )
