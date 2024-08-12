@@ -15,8 +15,6 @@ import { cartServices } from '@/services/cartService'
 import Container from '@/components/common/container'
 import CardItem from '@/components/common/cards/cardItem'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
-import Link from 'next/link'
-import Image from 'next/image'
 import PromotionMiniBanner from '@/components/common/clientOnlyComponents/promotionMiniBanner'
 
 

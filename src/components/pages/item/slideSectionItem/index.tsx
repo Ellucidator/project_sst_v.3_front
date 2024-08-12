@@ -75,7 +75,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                         <li key={`img00`} className="splide__slide">
                             <Image
                                 className={styles.itemImgs}
-                                src={`http://localhost:3000/files/${allItems.thumbnail_url}`}
+                                src={process.env.API_HOST + `/files/${allItems.thumbnail_url}`}
                                 alt=''
                                 width={900}
                                 height={400}
@@ -87,7 +87,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                                     <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgs}
-                                            src={`http://localhost:3000/files/${key}`}
+                                            src={process.env.API_HOST + `/files/${key}`}
                                             alt=''
                                             width={600}
                                             height={400}
@@ -105,7 +105,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                         <li key={`img00`} className="splide__slide">
                             <Image
                                 className={styles.itemImgsMini}
-                                src={`http://localhost:3000/files/${allItems.thumbnail_url}`}
+                                src={process.env.API_HOST + `/files/${allItems.thumbnail_url}`}
                                 alt=''
                                 width={110}
                                 height={90}
@@ -117,7 +117,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                                     <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgsMini}
-                                            src={`http://localhost:3000/files/${key}`}
+                                            src={process.env.API_HOST + `/files/${key}`}
                                             alt=''
                                             width={118}
                                             height={118}

@@ -31,7 +31,7 @@ const verifySession = async () => {
 
         try {
 
-            const verifyServer = await fetch('http://localhost:3000/verify-login', {
+            const verifyServer = await fetch(process.env.API_HOST + '/verify-login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ const verifySession = async () => {
 
 const setSession = async (email: string, password: string) => {
     try {
-        const res = await fetch('http://localhost:3000/login', {
+        const res = await fetch(process.env.API_HOST + '/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

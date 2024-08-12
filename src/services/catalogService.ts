@@ -5,7 +5,7 @@ import { Promotion, PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
 
 async function getCatalog() {
-    const res = await fetch('http://localhost:3000/categories', {
+    const res = await fetch(process.env.API_HOST + '/categories', {
         next:{
             revalidate: 10
         },
@@ -17,7 +17,7 @@ async function getCatalog() {
 }
 
 async function getSubCategories() {
-    const res:SubCategories[] = await fetch(`http://localhost:3000/sub-categories`, {
+    const res:SubCategories[] = await fetch(process.env.API_HOST + `/sub-categories`, {
         next:{
             revalidate: 10
         },
@@ -28,7 +28,7 @@ async function getSubCategories() {
     return res || []
 }
 async function getTags(subCategoryId:string) {
-    const res = await fetch(`http://localhost:3000/tags/${subCategoryId}`, {
+    const res = await fetch(process.env.API_HOST + `/tags/${subCategoryId}`, {
         next:{
             revalidate: 10
         },
@@ -41,7 +41,7 @@ async function getTags(subCategoryId:string) {
 }
 
 async function getAllPromotions(){
-    const res = await fetch('http://localhost:3000/promotions', {
+    const res = await fetch(process.env.API_HOST + '/promotions', {
         next:{
             revalidate: 10
         },
@@ -52,7 +52,7 @@ async function getAllPromotions(){
     return data;
 }
 async function getFeaturedPromotion(){
-    const res = await fetch('http://localhost:3000/promotions/featured', {
+    const res = await fetch(process.env.API_HOST + '/promotions/featured', {
         next:{
             revalidate: 10
         },
@@ -68,7 +68,7 @@ async function getPromotionById(id:string){
 
     const page = helpers.getCookieIsNumber('page')
 
-    const res = await fetch(`http://localhost:3000/promotions/${id}?page=${page}&perPage=12&order=${itemsOrder}${subCategoryId === 'all' ? '' : `&subCategoryId=${subCategoryId}`}`, {
+    const res = await fetch(process.env.API_HOST + `/promotions/${id}?page=${page}&perPage=12&order=${itemsOrder}${subCategoryId === 'all' ? '' : `&subCategoryId=${subCategoryId}`}`, {
         method: 'GET',
         next:{
             revalidate: 10
@@ -80,7 +80,7 @@ async function getPromotionById(id:string){
 }
 
 async function getNewestsItems(){
-    const res = await fetch(`http://localhost:3000/items/newests`, {
+    const res = await fetch(process.env.API_HOST + `/items/newests`, {
         next:{
             revalidate: 10
         },
@@ -91,7 +91,7 @@ async function getNewestsItems(){
 }
 
 async function getFeaturedItems(){
-    const res = await fetch(`http://localhost:3000/items/highlighted`, {
+    const res = await fetch(process.env.API_HOST + `/items/highlighted`, {
         next:{
             revalidate: 10
         },
@@ -102,7 +102,7 @@ async function getFeaturedItems(){
 }
 
 async function getSearchItems(name:string){
-    const res = await fetch(`http://localhost:3000/items/search?name=${name}`,{
+    const res = await fetch(process.env.API_HOST + `/items/search?name=${name}`,{
         cache: 'no-store'
     })
     const data: Item[] = await res.json();
@@ -116,7 +116,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
     
 
     if (tags.length > 0) {
-        const res = await fetch(`http://localhost:3000/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
+        const res = await fetch(process.env.API_HOST + `/tag-values/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
             next: {
                 revalidate: 10
             },
@@ -132,7 +132,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
         
     } else if(!(parseInt(subCategoryId) > 0)){
 
-        const res = await fetch(`http://localhost:3000/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,{
+        const res = await fetch(process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,{
             next: {
                 revalidate: 10
             },
@@ -146,7 +146,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
         return data
 
     } else {
-        const res = await fetch(`http://localhost:3000/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
+        const res = await fetch(process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
             next: {
                 revalidate: 10
             },

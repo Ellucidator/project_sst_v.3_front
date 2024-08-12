@@ -12,7 +12,7 @@ import { redirect } from "next/navigation";
 const createUser = async (user: CreateUser) => {
 
     try {
-        const res = await fetch('http://localhost:3000/create-user', {
+        const res = await fetch(process.env.API_HOST + '/create-user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const showUser = async () => {
     if (!token) return
 
 
-    const res = await fetch('http://localhost:3000/user', {
+    const res = await fetch(process.env.API_HOST + '/user', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const updatedUser = async (updateAtributes: Omit<UserInfo,'imgUrl'|'id'>) => {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const res = await fetch('http://localhost:3000/user', {
+    const res = await fetch(process.env.API_HOST + '/user', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const updatedUser = async (updateAtributes: Omit<UserInfo,'imgUrl'|'id'>) => {
 
 const createAvaliation = async (avaliation: CreateAvaliation) => {
     try {
-        const res = await fetch('http://localhost:3000/item/create-avaliation', {
+        const res = await fetch(process.env.API_HOST + '/item/create-avaliation', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ const getAvaliationByUserId = async () => {
     if (!user) return false
 
     try {
-        const avaliation = await fetch(`http://localhost:3000/user/${user.id}/avaliation`, {
+        const avaliation = await fetch(process.env.API_HOST + `/user/${user.id}/avaliation`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ async function getUserAddessById(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const address = await fetch(`http://localhost:3000/user/address/${id}`, {
+    const address = await fetch(process.env.API_HOST + `/user/address/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ async function getUserAdresses() {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const adresses = await fetch(`http://localhost:3000/user/addresses`, {
+    const adresses = await fetch(process.env.API_HOST + `/user/addresses`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -164,7 +164,6 @@ async function getUserAdresses() {
     })
 
     const data: UserAddress[] = await adresses.json();
-    console.log(data)
     return data
 }
 
@@ -173,7 +172,7 @@ async function createAddress(address: UserAddress) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    await fetch(`http://localhost:3000/user/address`, {
+    await fetch(process.env.API_HOST + `/user/address`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -189,7 +188,7 @@ async function deleteUserAddress(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    await fetch(`http://localhost:3000/user/address/${id}`, {
+    await fetch(process.env.API_HOST + `/user/address/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -203,7 +202,7 @@ async function activeUserAddress(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    await fetch(`http://localhost:3000/user/address/${id}`, {
+    await fetch(process.env.API_HOST + `/user/address/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -219,7 +218,7 @@ async function getUserPurchases( perPage: number = 6) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const purchases = await fetch(`http://localhost:3000/user/show/purchases?page=${page}&perPage=${perPage}`, {
+    const purchases = await fetch(process.env.API_HOST + `/user/show/purchases?page=${page}&perPage=${perPage}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -242,7 +241,7 @@ async function getUserPurchaseById(purchaseId: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const purchases = await fetch(`http://localhost:3000/user/show/purchase/${purchaseId}`, {
+    const purchases = await fetch(process.env.API_HOST + `/user/show/purchase/${purchaseId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -268,7 +267,7 @@ async function addUserFavorites(itemId: string) {
         redirect('/form/login')
     }
 
-    await fetch(`http://localhost:3000/user/favorite`, {
+    await fetch(process.env.API_HOST + `/user/favorite`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -286,7 +285,7 @@ async function getUserFavorites( perPage: number = 10) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const favorites = await fetch(`http://localhost:3000/user/show/favorites?page=${page}&perPage=${perPage}`, {
+    const favorites = await fetch(process.env.API_HOST + `/user/show/favorites?page=${page}&perPage=${perPage}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -308,7 +307,7 @@ async function getUserFavoriteByItemId(itemId: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const res =await fetch(`http://localhost:3000/user/show/favorite/${itemId}`, {
+    const res =await fetch(process.env.API_HOST + `/user/show/favorite/${itemId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -326,7 +325,7 @@ async function deleteUserFavorites(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    await fetch(`http://localhost:3000/user/favorite/${id}`, {
+    await fetch(process.env.API_HOST + `/user/favorite/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

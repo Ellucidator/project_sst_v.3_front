@@ -3,7 +3,7 @@ import { AvaliationAndCount } from "@/types/avaliationTypes";
 import { ItemCharacteristics, ItemFull } from "@/types/itemsTypes";
 
 async function getOneItem(itemId:string) {
-    const res = await fetch(`http://localhost:3000/items/${itemId}`, {
+    const res = await fetch(process.env.API_HOST + `/items/${itemId}`, {
         next:{
             revalidate: 10,
             tags: ['one-item']
@@ -17,7 +17,7 @@ async function getOneItem(itemId:string) {
 }
 
 async function getItemCharacteristics(itemId:string) {
-    const res = await fetch(`http:/localhost:3000/item/${itemId}/characteristics`, {
+    const res = await fetch(process.env.API_HOST + `/item/${itemId}/characteristics`, {
         next:{
             revalidate: 10,
         },
@@ -32,7 +32,7 @@ async function getItemCharacteristics(itemId:string) {
 async function getAllAvaliationsByItemId(itemId:string) {
     let page = helpers.getCookieIsNumber('page')
 
-    const res = await fetch(`http://localhost:3000/item/${itemId}/avaliations?page=${page}`, {
+    const res = await fetch(process.env.API_HOST + `/item/${itemId}/avaliations?page=${page}`, {
         next:{
             revalidate: 10,
             tags: ['all-avaliations-item']

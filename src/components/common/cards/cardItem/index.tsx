@@ -17,7 +17,7 @@ export const CardItem = ({ item, model='vertical' }: Props) => {
             
             <div className={styles.bannerAndName}>
                 <Image
-                    src={`http://localhost:3000/files/${item.thumbnail_url}`}
+                    src={process.env.API_HOST + `/files/${item.thumbnail_url}`}
                     alt="banner"
                     className={styles.cardBanner}
                     width={220}

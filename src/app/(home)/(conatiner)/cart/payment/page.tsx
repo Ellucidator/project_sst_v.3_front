@@ -35,8 +35,8 @@ export default async function Payment() {
         body: {
             items: itemsPreference,
             back_urls: {
-                success: `http://localhost:3001/api/checkoutOk?address_id=${frete.address_id}`,
-                pending: `http://localhost:3001/api/checkoutOk?address_id=${frete.address_id}`,
+                success: process.env.LOCAL_HOST + `/api/checkoutOk?address_id=${frete.address_id}`,
+                pending: process.env.LOCAL_HOST + `/api/checkoutOk?address_id=${frete.address_id}`,
             },
             auto_return: 'approved'
         }

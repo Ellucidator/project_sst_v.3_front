@@ -43,7 +43,7 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
 
     const ids = cart.items.map((item) => item.id)
 
-    const res = await fetch('http://localhost:3000/items/show-cart', {
+    const res = await fetch(process.env.API_HOST + '/items/show-cart', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

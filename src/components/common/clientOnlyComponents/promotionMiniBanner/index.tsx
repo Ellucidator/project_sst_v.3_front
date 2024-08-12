@@ -17,7 +17,7 @@ const PromotionMiniBanner = () => {
     return (
         <Link href={`/promotion/${info.id}`} key={info.id}
             id={`promotionBanner-${info.id}`} className={styles.promotionLink}>
-            <Image src={`http://localhost:3000/files/${info.thumbnail_url}`} alt="banner"
+            <Image src={process.env.API_HOST + `/files/${info.thumbnail_url}`} alt="banner"
                 className={styles.promotionBanner} width={700} height={300} />
         </Link>
     )

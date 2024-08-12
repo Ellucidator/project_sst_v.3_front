@@ -29,7 +29,7 @@ const CartTable = ({ items }: Props) => {
                             <>
                                 <div className={styles.tableRow} key={item.id}>
                                     <Link href={`/item/${item.id}`} className={styles.bannerAndName}>
-                                        <Image src={`http://localhost:3000/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
+                                        <Image src={process.env.API_HOST + `/files/${item.thumbnail_url}`} alt="banner" width={100} height={100} className={styles.cardBanner} />
                                         <p>{item.name}</p>
                                     </Link>
 

@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const cookieCart = cookies().get('car')?.value
     
     
-    fetch(`http://localhost:3000/user/purchase?payment_type=${searchParams.get('payment_type')}`,{
+    fetch(process.env.API_HOST + `/user/purchase?payment_type=${searchParams.get('payment_type')}`,{
         headers: {
             'Authorization': token,
             'Content-Type': 'application/json'

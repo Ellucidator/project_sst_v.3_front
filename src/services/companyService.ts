@@ -1,7 +1,7 @@
 import { CompanyInformation } from "@/types/companyTypes";
 
 async function getCompanyInfo() {
-    const res = await fetch('http://localhost:3000/company-information',{
+    const res = await fetch(process.env.API_HOST + '/company-information',{
         method: 'GET',
         cache: 'default',
         next: {
