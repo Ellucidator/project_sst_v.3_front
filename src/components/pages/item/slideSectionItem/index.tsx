@@ -9,9 +9,8 @@ import { useEffect } from 'react';
 
 type Props = {
     allItems: ItemFull
-    apiUrl: string
 }
-const SlideSectionItem = ({ allItems, apiUrl }: Props) => {
+const SlideSectionItem = ({ allItems }: Props) => {
     const quantImg = allItems.images?.key.length
     useEffect(() => {
         var main = new Splide('#mainSlide', {
@@ -76,7 +75,7 @@ const SlideSectionItem = ({ allItems, apiUrl }: Props) => {
                         <li key={`img00`} className="splide__slide">
                             <Image
                                 className={styles.itemImgs}
-                                src={apiUrl + `/files/${allItems.thumbnail_url}`}
+                                src={process.env.API_HOST + `/files/${allItems.thumbnail_url}`}
                                 alt=''
                                 width={900}
                                 height={400}
@@ -88,7 +87,7 @@ const SlideSectionItem = ({ allItems, apiUrl }: Props) => {
                                     <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgs}
-                                            src={apiUrl + `/files/${key}`}
+                                            src={process.env.API_HOST + `/files/${key}`}
                                             alt=''
                                             width={600}
                                             height={400}
@@ -106,7 +105,7 @@ const SlideSectionItem = ({ allItems, apiUrl }: Props) => {
                         <li key={`img00`} className="splide__slide">
                             <Image
                                 className={styles.itemImgsMini}
-                                src={apiUrl + `/files/${allItems.thumbnail_url}`}
+                                src={process.env.API_HOST + `/files/${allItems.thumbnail_url}`}
                                 alt=''
                                 width={110}
                                 height={90}
@@ -118,7 +117,7 @@ const SlideSectionItem = ({ allItems, apiUrl }: Props) => {
                                     <li key={`img${i}`} className="splide__slide">
                                         <Image
                                             className={styles.itemImgsMini}
-                                            src={apiUrl + `/files/${key}`}
+                                            src={process.env.API_HOST + `/files/${key}`}
                                             alt=''
                                             width={118}
                                             height={118}

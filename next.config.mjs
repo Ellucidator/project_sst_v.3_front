@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
     images: {
         remotePatterns:[
@@ -26,6 +29,9 @@ const nextConfig = {
         fetches:{
             fullUrl: true
         }
+    },
+    env:{
+        API_HOST: 'http://localhost:3000'
     }
 };
 

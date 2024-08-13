@@ -65,7 +65,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                 />
                 <div className={styles.cardItem}>
 
-                    <SlideSectionItem allItems={item} apiUrl={process.env.API_HOST!} />
+                    <SlideSectionItem allItems={item} />
 
                     <div className={styles.itemBuy}>
                         <div>
@@ -75,7 +75,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                 <p className={styles.itemStockF}>Produto Indisponivel</p>
                             )}
 
-                            <PromotionMiniBanner apiUrl={process.env.API_HOST!} />
+                            <PromotionMiniBanner />
                         </div>
 
                         <div className={styles.itemInfo}>
