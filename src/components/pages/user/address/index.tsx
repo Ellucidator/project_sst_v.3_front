@@ -49,7 +49,7 @@ const UserAddressPage = async ({ userAddress, modal = false }: Props) => {
                             userAddress.map((address) => {
                                 if (address.id === activeAddress?.id) return
                                 return (
-                                    <CardAddress address={address} buttons btnModal={modal} />
+                                    <CardAddress key={address.id} address={address} buttons btnModal={modal} />
                                 )
                             })
                         }

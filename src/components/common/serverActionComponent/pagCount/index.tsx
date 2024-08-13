@@ -29,20 +29,20 @@ const PagCountServer = ({count,perPage}: Props)=>{
                     if(limit >= pagArray.length){
                         if(i+1>pagArray.length-10){
                             return(
-                                <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1} 
+                                <ButtonActionById key={i} buttonAttribute={{btnName:value.toString()}} idAction={i+1} 
                                     actionFunction={btnActionService.setCookiePage}/>
                             )
                         }
                     }
                     else if(i +1 > page -5 && i < limit){
                         return(
-                            <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1}   
+                            <ButtonActionById key={i} buttonAttribute={{btnName:value.toString()}} idAction={i+1}   
                                 actionFunction={btnActionService.setCookiePage}/>
                         )
                     }
                 }else if(i < limit){
                     return(
-                        <ButtonActionById buttonAttribute={{btnName:value.toString()}} idAction={i+1} 
+                        <ButtonActionById key={i} buttonAttribute={{btnName:value.toString()}} idAction={i+1} 
                             actionFunction={btnActionService.setCookiePage}/>
                     )
                 }

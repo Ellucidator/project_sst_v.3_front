@@ -25,9 +25,9 @@ const InputsContainer = ({ containerType = 'input', containerArgs, model = 'ligh
                                 di.divArgs.length > 1 ?
                                     <div {...di.containerOptions} className={styles.containerDiv}>
                                         {
-                                            di.divArgs.map((inp) => {
+                                            di.divArgs.map((inp,i) => {
                                                 return (
-                                                    <Input mode={containerType} {...inp} inputColor={model} />
+                                                    <Input key={i} mode={containerType} {...inp} inputColor={model} />
                                                 )
                                             })
                                         }
