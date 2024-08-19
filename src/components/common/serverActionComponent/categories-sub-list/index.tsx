@@ -44,7 +44,7 @@ const CategoriesAndSubList = async ({ categories }: Props) => {
                                     {/* <ButtonActionById actionFunction={btnActionService.btnSubCategoryAction} 
                                         idAction={`${category.name.toLowerCase()}/${subCategory.id}`} 
                                         buttonAttribute={{ btnName: subCategory.name, btnModel:'model6',btnOption:{style:{fontSize:'medium'}}}} /> */}
-                                        <Button btnAction='link' href={`http://localhost:3001/api/catalog/${category.name.toLowerCase()}-${subCategory.id}`} btnName={subCategory.name} btnModel='model6' btnOption={{style:{fontSize:'medium'}}} />
+                                        <Button btnAction='link' href={`${process.env.LOCAL_HOST}/api/catalog/${category.name.toLowerCase()}-${subCategory.id}`} btnName={subCategory.name} btnModel='model6' btnOption={{style:{fontSize:'medium'}}} />
                                 </li>
                             )):<></>}
                         </ul>

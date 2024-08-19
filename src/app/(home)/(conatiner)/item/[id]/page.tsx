@@ -12,10 +12,9 @@ import { itemService } from '@/services/itemService'
 import Button from '@/components/common/button'
 import cartIcon from '../../../../../../public/public/common/cart-plus.svg'
 import { cartServices } from '@/services/cartService'
-import Container from '@/components/common/container'
-import CardItem from '@/components/common/cards/cardItem'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
 import PromotionMiniBanner from '@/components/common/clientOnlyComponents/promotionMiniBanner'
+import ProductContainer from '@/components/common/productContainer'
 
 
 
@@ -100,17 +99,15 @@ export default async function Item({ params }: { params: { id: string } }) {
                 <div className={styles.sectionSecond}>
                     <CepCalculator item={item} quantityInStock={quantityInStock} />
                     <div className={styles.recomendedItems}>
-                        {recomendedItems.Items ? (
-                            <Container title={{ titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" }}
-                                model="model1" modelTw='container' justifyContent='center' >
-                                {recomendedItems.Items.map((elem) => {
-                                    if (elem.id === item.id) return
-                                    return (
-                                        <CardItem key={elem.id} item={elem} />
-                                    )
-                                })}
-                            </Container>
-                        ) : null}
+                        {recomendedItems ?
+                            <ProductContainer
+                                products={recomendedItems.Items}
+                                containerAttributes={{
+                                    title: { titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" },
+                                    model: "model1", modelTw: 'container', justifyContent: 'center'
+                                }}
+                            />
+                            : <></>}
                     </div>
 
                 </div>

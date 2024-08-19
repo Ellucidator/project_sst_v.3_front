@@ -1,7 +1,7 @@
 import Title, { TitleProps } from '../texts/tiltle'
 import styles from './styles.module.scss'
 
-type Props = {
+export interface ContainerAttributes {
     children: React.ReactNode
     model?: 'model1'|'model2'
     direction?: 'row'|'column'
@@ -10,7 +10,7 @@ type Props = {
     modelTw?:'container'
 }
 
-const Container = ({children,title,model='model1',direction='row',justifyContent,modelTw}:Props)=>{
+const Container = ({children,title,model='model1',direction='row',justifyContent,modelTw}:ContainerAttributes)=>{
 
     return(
         <div className={ `${modelTw} ${styles.container} ${styles[model]}`}>

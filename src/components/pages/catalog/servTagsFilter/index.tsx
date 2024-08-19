@@ -6,12 +6,12 @@ import Title from '@/components/common/texts/tiltle'
 import Button from '@/components/common/button'
 
 type Props = {
-    tags: Tag[],
+    tags?: Tag[],
     subCategoryId: string,
     filters?:string[]
 }
 const TagsFilterServ = async ({ tags, subCategoryId,filters=[] }: Props) => {
-    if (tags.length < 1 ) return (<></>)
+    if (!tags) return (<></>)
 
     const actionFilter = async (form: FormData) => {
         'use server'
@@ -33,7 +33,6 @@ const TagsFilterServ = async ({ tags, subCategoryId,filters=[] }: Props) => {
         }
         cookies().delete('modalFilters')
     }
-
 
     return (
         <form className={styles.tagsFilter} action={actionFilter}>
