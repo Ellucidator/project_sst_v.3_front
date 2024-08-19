@@ -8,7 +8,19 @@ const nextConfig = {
             {
                 protocol: 'http',
                 hostname: 'localhost',
-                port: '3000',
+                port: '3001',
+                pathname: '/files/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'devleal.com.br',
+                port: '',
+                pathname: '/files/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.devleal.com.br',
+                port: '',
                 pathname: '/files/**'
             },
             {
@@ -31,7 +43,7 @@ const nextConfig = {
         }
     },
     env:{
-        API_HOST: 'http://localhost:3000'
+        API_HOST: 'https://devleal.com.br'
     }
 };
 
