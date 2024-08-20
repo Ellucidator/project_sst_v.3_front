@@ -16,7 +16,37 @@ function getCookieIsNumber(cookieName: string): number {
     return 1
 }
 
+async function getSimpleRequestAndHandleError(
+    url:string, 
+    cache:RequestCache = 'default', 
+    revalidate:number|false = false, 
+    tags:string[]|undefined = undefined
+){
+
+    try {
+        const res = await fetch(url,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            cache,
+            next: {
+                revalidate,
+                tags
+            }
+        })
+
+        if(!res.ok) return false
+
+        return await res.json()
+    } catch (error) {
+        return false
+    }
+
+}
+
 export const helpers = {
     getCookieValue,
-    getCookieIsNumber
+    getCookieIsNumber,
+    getSimpleRequestAndHandleError
 }

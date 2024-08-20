@@ -5,152 +5,67 @@ import { Promotion, PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
 
 async function getCatalog() {
-    try {
-        const res = await fetch(process.env.API_HOST + '/categories', {
-            next: {
-                revalidate: 10
-            },
-            cache: 'force-cache',
+    const categories: Categories[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/categories')
 
-        });
-        const data: Categories[] = await res.json();
-        return data;
-
-    } catch (error) {
-        return []
-    }
+    return categories
 }
 
 async function getSubCategories() {
-    try {
-        const res = await fetch(process.env.API_HOST + `/sub-categories`, {
-            next: {
-                revalidate: 10
-            },
-            cache: 'no-cache',
-        })
 
-        const data: SubCategories[] = await res.json();
-        return data
+    const subCategories: SubCategories[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/sub-categories')
 
-    } catch (error) {
-        return []
-    }
+    return subCategories
 }
 async function getTags(subCategoryId: string) {
-    try {
-        const res = await fetch(process.env.API_HOST + `/tags/${subCategoryId}`, {
-            next: {
-                revalidate: 10
-            },
-            cache: 'no-cache'
-        })
 
-        const data: Tag[] = await res.json();
-        if(typeof data === 'object') return []
+    const tags: Tag[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/tag-values/${subCategoryId}`)
 
-        return data;
-
-    } catch (error) {
-        return 
-    }
+    return tags
 }
 
 async function getAllPromotions() {
-    try {
-        const res = await fetch(process.env.API_HOST + '/promotions', {
-            next: {
-                revalidate: 10
-            },
-            cache: 'default',
-        })
-        const data: Promotion[] = await res.json();
-        return data;
 
-    } catch (error) {
-        return []
-    }
+    const promotions: Promotion[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions')
+
+    return promotions
 }
 async function getFeaturedPromotion() {
-    try {
-        const res = await fetch(process.env.API_HOST + '/promotions/featured', {
-            next: {
-                revalidate: 10
-            },
-            cache: 'force-cache'
-        })
-        const data: PromotionWithItems = await res.json();
-        return data;
 
-    } catch (error) {
-        return false
-    }
+    const promotion: PromotionWithItems = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions/featured')
+    
+    return promotion
 }
 
 async function getPromotionById(id: string) {
-    try {
+    
         const { itemsOrder, subCategoryId }: { itemsOrder: string, subCategoryId: string } = helpers.getCookieValue(`promotion${id}`) || { itemsOrder: 'created_at-DESC', subCategoryId: 'all' }
-
         const page = helpers.getCookieIsNumber('page')
 
-        const res = await fetch(process.env.API_HOST + `/promotions/${id}?page=${page}&perPage=12&order=${itemsOrder}${subCategoryId === 'all' ? '' : `&subCategoryId=${subCategoryId}`}`, {
-            method: 'GET',
-            next: {
-                revalidate: 10
-            },
-            cache: 'force-cache'
-        })
-        const data: PromotionWithItems = await res.json();
-        return data;
+        const promotion: PromotionWithItems = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/promotions/${id}?order=${itemsOrder}&page=${page}&subCategoryId=${subCategoryId}`)
 
-    } catch (error) {
-        return false
-    }
+        return promotion
 }
 
 async function getNewestsItems() {
-    try {
-        const res = await fetch(process.env.API_HOST + `/items/newests`, {
-            next: {
-                revalidate: 10
-            },
-            cache: 'default'
-        })
-        const data: Item[] = await res.json();
-        return data;
 
-    } catch (error) {
-        return []
-    }
+    const items: Item[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/newests')
+    
+    return items
 }
 
 async function getFeaturedItems() {
-    try {
-        const res = await fetch(process.env.API_HOST + `/items/highlighted`, {
-            next: {
-                revalidate: 10
-            },
-            cache: 'no-cache'
-        })
-        const data: Item[] = await res.json();
-        return data;
 
-    } catch (error) {
-        return []
-    }
+    const items: Item[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/featured')
+    
+    return items
+
 }
 
 async function getSearchItems(name: string) {
-    try {
-        const res = await fetch(process.env.API_HOST + `/items/search?name=${name}`, {
-            cache: 'no-store'
-        })
-        const data: Item[] = await res.json();
-        return data
 
-    } catch (error) {
-        return []
-    }
+    const items: Item[] = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${name}`)
+    
+    return items
 }
 
 async function getItensBySubCategory(subCategoryId: string, perPage: number = 10) {
@@ -177,28 +92,15 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
 
         } else if (!(parseInt(subCategoryId) > 0)) {
 
-            const res = await fetch(process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
-                next: {
-                    revalidate: 10
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                cache: 'no-cache',
-                method: 'GET',
-            })
-            const data: SubCategories = await res.json();
-            return data
+            const items = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`)
+
+            return items
 
         } else {
-            const res = await fetch(process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`, {
-                next: {
-                    revalidate: 10
-                },
-                cache: 'no-cache'
-            })
-            const data: SubCategories = await res.json();
-            return data;
+
+            const items = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`)
+
+            return items
         }
     } catch (error) {
         return false
