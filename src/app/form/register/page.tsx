@@ -5,13 +5,10 @@ import registerIcon from '../../../../public/public/register/registerIcon.svg'
 import { redirect } from 'next/navigation'
 import { userService } from '@/services/userService'
 import { CreateUser } from '@/types/userTypes'
-import { authService } from '@/services/authService'
-import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import Input from '@/components/common/Input-label-components/input&Label'
 import Button from '@/components/common/button'
 import Loading from '@/components/common/clientOnlyComponents/loading'
-import { error } from 'console'
 import { helpers } from '@/helpers/helpers'
 const Register = async () => {
 

@@ -4,11 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 type Props = {
-    promotions:Promotion[]
+    promotions:Promotion[]|false
 }
 
 const Banners = ({ promotions }: Props) => {
-
+    if(!promotions) return <></>
 
     return (
         <div className={styles.promotion} >

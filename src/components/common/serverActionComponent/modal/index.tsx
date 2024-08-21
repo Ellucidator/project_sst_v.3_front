@@ -3,21 +3,19 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import { cookies } from "next/headers";
 import CategoriesAndSubList from "../categories-sub-list";
-import Button from "../../button";
 import { UserAddress } from "@/types/userTypes";
 import ModalUser from "./modalUser";
 import ModalAddress from "./modalAddress";
-import TagsFilterServ from "@/components/pages/catalog/servTagsFilter";
 import { Tag } from "@/types/tagTypes";
 import ModalFilters from "./modalFilters";
 
 type Props = {
-    catalog?: Categories[]
+    catalog?: Categories[] | false
     cookieName?: 'modal' | 'modalUser' | 'modalAddress' | 'modalFilters'
     user_name?: string
     adresses?: UserAddress[]
     commonType?: 'categories-sub-list' | 'filters'
-    tags?: Tag[],
+    tags?: Tag[]|false,
     filters?: string[]
     subCategoryId?: string
 }

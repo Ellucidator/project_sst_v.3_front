@@ -40,7 +40,7 @@ export default async function Home() {
             : <></>
         }
 
-        {catalog.length > 2 ? <section className={`container ${styles.categoriesCards}`}>
+        {catalog && catalog.length > 2 ? <section className={`container ${styles.categoriesCards}`}>
           <CategoryCard cardLink={`${catalog[0].name.toLowerCase()}-${catalog[0].SubCategories[0].id}`}
             cardName={catalog[0].SubCategories[0].name} imgUrl={imgBanner1.src} theme="dark" />
 

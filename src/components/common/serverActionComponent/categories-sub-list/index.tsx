@@ -7,9 +7,10 @@ import Button from '../../button'
 import { helpers } from '@/helpers/helpers'
 
 type Props = {
-    categories: Categories[]
+    categories: Categories[]|false
 }
 const CategoriesAndSubList = async ({ categories }: Props) => {
+    if(!categories) return <></>
 
     const classCondition: { name: string, open: boolean } = helpers.getCookieValue('sub-open')
 

@@ -7,15 +7,15 @@ import Title from '../../texts/tiltle'
 type Props = {
     type:'order'|'order&subCategoryId'
     formFunction: ((formData: FormData) => void)
-    subCategories?: SubCategories[]
+    subCategories?: SubCategories[]|false
     subAc?:string
 }
 const SelectOrder = ({formFunction,type,subCategories,subAc}: Props) => {
-
+    
     return (
         <form action={formFunction} className={styles.catalogOrderContainer}>
             <Loading model='modelArea' />
-            {type === 'order&subCategoryId' 
+            {type === 'order&subCategoryId' && subCategories
                 ?<div className={styles.catalogOrder}>
                     <Title fontSize="18px" model='model1' titleText="Categoria:" />
                     <select defaultValue={subAc} className={styles.selectOrder} name='subCategoryId' >

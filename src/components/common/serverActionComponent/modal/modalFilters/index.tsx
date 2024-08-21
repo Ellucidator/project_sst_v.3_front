@@ -9,12 +9,12 @@ type Props = {
     classModal: string
     btnAction: (name: string) => Promise<void>
     filters:string[]
-    tags:Tag[]
+    tags:Tag[]|false
     subCategoryId:string
 }
 
 const ModalFilters = async ({cookieControl, classModal, btnAction,filters,tags,subCategoryId }: Props) => {
-
+    if(!tags) return (<></>)
 
     const handlerSubmit = async (form: FormData) => {
         'use server'
@@ -33,7 +33,7 @@ const ModalFilters = async ({cookieControl, classModal, btnAction,filters,tags,s
                             <button type="submit" className={styles.btnModal} >X</button>
                         </form>
 
-                        <TagsFilterServ filters={filters} tags={tags!} subCategoryId={subCategoryId!} />
+                        <TagsFilterServ filters={filters} tags={tags} subCategoryId={subCategoryId!} />
 
                     </>
                     : <></>}

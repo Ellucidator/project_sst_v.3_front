@@ -4,7 +4,7 @@ import CardItem from "../cards/cardItem"
 
 type Props = {
     containerAttributes: Omit<ContainerAttributes, 'children'>
-    products?:Item[]|ItemPromotion[]
+    products?:Item[]|ItemPromotion[]|false
 }
 const ProductContainer = ({containerAttributes,products}:Props) => {
     if(!products)return<></>

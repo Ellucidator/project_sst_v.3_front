@@ -6,7 +6,7 @@ import Title from '@/components/common/texts/tiltle'
 import Button from '@/components/common/button'
 
 type Props = {
-    tags?: Tag[],
+    tags?: Tag[]|false,
     subCategoryId: string,
     filters?:string[]
 }
