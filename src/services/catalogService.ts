@@ -5,33 +5,33 @@ import { Promotion, PromotionWithItems } from "@/types/promotionsTypes";
 import { Tag } from "@/types/tagTypes";
 
 async function getCatalog() {
-    const categories: Categories[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/categories')
+    const categories: Categories[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/categories','default',10)
 
     return categories
 }
 
 async function getSubCategories() {
 
-    const subCategories: SubCategories[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/sub-categories')
+    const subCategories: SubCategories[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/sub-categories','default',10)
 
     return subCategories
 }
 async function getTags(subCategoryId: string) {
 
-    const tags: Tag[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/tag-values/${subCategoryId}`)
+    const tags: Tag[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/tag-values/${subCategoryId}`,'default',10)
 
     return tags
 }
 
 async function getAllPromotions() {
 
-    const promotions: Promotion[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions')
+    const promotions: Promotion[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions','default',10)
 
     return promotions
 }
 async function getFeaturedPromotion() {
 
-    const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions/featured')
+    const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/promotions/featured','default',10)
     
     return promotion
 }
@@ -41,21 +41,21 @@ async function getPromotionById(id: string) {
         const { itemsOrder, subCategoryId }: { itemsOrder: string, subCategoryId: string } = helpers.getCookieValue(`promotion${id}`) || { itemsOrder: 'created_at-DESC', subCategoryId: 'all' }
         const page = helpers.getCookieIsNumber('page')
 
-        const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/promotions/${id}?order=${itemsOrder}&page=${page}&subCategoryId=${subCategoryId}`)
+        const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/promotions/${id}?page=${page}&perPage=10&order=${itemsOrder}&subCategoryId=${subCategoryId}`,'default',10)
 
         return promotion
 }
 
 async function getNewestsItems() {
 
-    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/newests')
+    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/newests','default',10)
     
     return items
 }
 
 async function getFeaturedItems() {
 
-    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/featured')
+    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + '/items/highlighted','default',10)
     
     return items
 
@@ -63,7 +63,7 @@ async function getFeaturedItems() {
 
 async function getSearchItems(name: string) {
 
-    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${name}`)
+    const items: Item[]|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${name}`,'default',10)
     
     return items
 }
@@ -92,13 +92,13 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
 
         } else if (!(parseInt(subCategoryId) > 0)) {
 
-            const data:SubCategories|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`)
+            const data:SubCategories|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,'default',10)
 
             return data
 
         } else {
 
-            const data: SubCategories|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`)
+            const data: SubCategories|false = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`,'default',10)
 
             return data
         }

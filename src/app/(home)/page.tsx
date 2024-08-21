@@ -15,6 +15,7 @@ export default async function Home() {
     catalogService.getNewestsItems(),
     catalogService.getFeaturedItems()
   ])
+  console.log(promotionFeature)
 
   return (
     <main className={`${styles.home}`}>
@@ -50,10 +51,16 @@ export default async function Home() {
         }
 
         <ProductContainer products={newestsItens}
-          containerAttributes={{ 
+          containerAttributes={{
             title: { titleText: 'Recentemente adicionados', model: "model1", fontSize: "25px" },
-            model: "model1", modelTw: 'container', justifyContent: 'center' }} />
+            model: "model1", modelTw: 'container', justifyContent: 'center'
+          }} />
 
+        <ProductContainer products={featuredItems}
+          containerAttributes={{
+            title: { titleText: 'Em destaque', model: "model1", fontSize: "25px" },
+            model: "model2", modelTw: 'container', justifyContent: 'center'
+          }} />
       </div>
 
     </main>

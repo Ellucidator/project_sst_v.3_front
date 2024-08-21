@@ -13,6 +13,7 @@ export default async function PromotionPage({ params }: { params: { id: string }
 
     const promotion = await catalogService.getPromotionById(params.id)
     const subCategories = await catalogService.getSubCategories()
+    
     if (!promotion) return redirect('/')
 
 
@@ -48,7 +49,7 @@ export default async function PromotionPage({ params }: { params: { id: string }
 
     return (
         <div className={styles.pageContainer}>
-            <Image className={styles.pageBanner} src={`http://localhost:3000/files/${promotion.thumbnail_url}`} alt={'promotion'} width={1100} height={550} />
+            <Image className={styles.pageBanner} src={process.env.API_HOST+`/files/${promotion.thumbnail_url}`} alt={'promotion'} width={1100} height={550} />
             <div className={styles.titleAndSelects}>
                 <Title titleText={promotion.name} model='model3' fontSize='25px' />
                 <SelectOrder subAc={subId} formFunction={actionSelect} type='order&subCategoryId' subCategories={subCategories} />

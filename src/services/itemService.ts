@@ -10,7 +10,7 @@ async function getOneItem(itemId:string) {
 }
 
 async function getItemCharacteristics(itemId:string) {
-    const characteristics: ItemCharacteristics = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/item/${itemId}/characteristics`)
+    const characteristics: ItemCharacteristics = await helpers.getSimpleRequestAndHandleError(process.env.API_HOST + `/item/${itemId}/characteristics`,'default',10)
     
     return characteristics
 }
