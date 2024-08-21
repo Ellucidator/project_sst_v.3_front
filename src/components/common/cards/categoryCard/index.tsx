@@ -15,7 +15,7 @@ const CategoryCard = async({ cardName, cardLink, imgUrl, theme }: Props) => {
 
 
     return (
-        <Link href={process.env.LOCAL_HOST + `/api/catalog/${cardLink}`} 
+        <Link href={`/api/catalog/${cardLink}`} 
             className={styles.container}
             style={{ backgroundImage: `url(${imgUrl})` }}
             >
