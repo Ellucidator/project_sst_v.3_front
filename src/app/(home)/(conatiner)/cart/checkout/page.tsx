@@ -16,7 +16,6 @@ import { Cart } from '@/types/itemsTypes'
 
 export default async function CheckoutPage() {
     const adresses = await userService.getUserAdresses()
-    console.log(adresses)
 
     let addressActiv: UserAddress | undefined
     if (adresses) addressActiv = adresses.find((address) => address.active === true)
@@ -29,6 +28,7 @@ const handlerSubmit = async (form: FormData) => {
     'use server'
     if(!addressActiv) return
 
+    const addressId = form.get('address_id')?.toString()
     const frete = form.get('cep-result')?.toString()
     const [service, price] = frete!.split('-')
     if(!price) return
@@ -38,7 +38,7 @@ const handlerSubmit = async (form: FormData) => {
     const cart:Cart = JSON.parse(cartCookie!)
 
     cart.frete = {
-        address_id: addressActiv.id!,
+        address_id: parseFloat(addressId!),
         name: service,
         price: parseFloat(price)
     }
@@ -55,7 +55,7 @@ const handlerSubmit = async (form: FormData) => {
             <form action={handlerSubmit} className={styles.addressAndPayment}>
                 <div className={styles.divAddressAndFrete}>
                     <div className={styles.divAddress}>
-                        
+                        {<input type="hidden" name="address_id" value={addressActiv?addressActiv.id:'0'} /> }
                         {addressActiv ? <CardAddress address={addressActiv} /> : <></>}
                     </div>
                     <div className={styles.divFrete}>
