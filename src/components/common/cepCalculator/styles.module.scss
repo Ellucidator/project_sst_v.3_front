@@ -26,3 +26,8 @@
     }
 }
 
+@media(max-width: 475px) {
+    .cep {
+        max-width: 320px;
+    }
+}
