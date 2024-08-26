@@ -49,7 +49,7 @@ export default async function Payment() {
                     <ItemsTable items={items || []} type='Common' model='model2' 
                         total={total} frete={frete.price} />
 
-                    <ApiMp id={res.id!} />
+                    <ApiMp id={res.id!} public_key={process.env.PUBLIC_KEY_MP!} />
                 </div>
             </div>
         </>

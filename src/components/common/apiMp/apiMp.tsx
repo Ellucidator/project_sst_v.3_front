@@ -2,10 +2,11 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
 
 type Props = {
-    id: string
+    id: string,
+    public_key: string
 }
-const ApiMp = ({id}:Props) => {
-    initMercadoPago('APP_USR-f5c11a33-799e-4429-b66b-23920954cd39')
+const ApiMp = ({id, public_key}:Props) => {
+    initMercadoPago(public_key)
 
     return(
         <Wallet 
