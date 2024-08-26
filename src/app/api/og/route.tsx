@@ -23,23 +23,6 @@ export async function GET(req: NextRequest) {
                     backgroundColor: "#1d1d1d",
                 }}
             >
-                <div
-                    style={
-                        {
-                            marginLeft: 190,
-                            marginRight: 190,
-                            display: "flex",
-                            fontSize: 140,
-                            fontFamily: "Outfit",
-                            letterSpacing: "-0.05em",
-                            fontStyle: "normal",
-                            color: "white",
-                            lineHeight: "120px",
-                            whiteSpace: "pre-wrap",
-                        }
-                    }
-                >
-                </div>
             </div>
         ),
         {
