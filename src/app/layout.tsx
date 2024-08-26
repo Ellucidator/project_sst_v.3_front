@@ -8,21 +8,24 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Ségio Setup",
   description: "Ségio Setup e-commerce",
-  metadataBase: new URL("https://segio-setup.vercel.app"),
-  alternates: {
-    canonical:"/"
-  },
   openGraph: {
     title: "Ségio Setup",
     description: "Ségio Setup e-commerce",
     url: "https://segio-setup.vercel.app/",
     siteName: "Ségio Setup",
-    images:{
-        url: "https://segio-setup.vercel.app/public/home/og.png",
-        width: 1920,
-        height: 1080,
-        href: "https://segio-setup.vercel.app/public/home/og.png",
+    images:[
+      {
+        url: "https://segio-setup.vercel.app/api/og?title=SS",
+        width: 800,
+        height: 600,
       },
+      {
+        url: "https://segio-setup.vercel.app/api/og?title=SS",
+        width: 1800,
+        height: 1600,
+        alt: "Ségio-Setup",
+      }
+    ],
 
     type: "website",
   },
@@ -30,7 +33,19 @@ export const metadata: Metadata = {
     title: "Ségio Setup",
     description: "Ségio Setup e-commerce",
     card: "summary_large_image",
-    images: "https://segio-setup.vercel.app/public/home/og.png",
+    images: [
+      {
+        url: "https://segio-setup.vercel.app/api/og?title=SS",
+        width: 800,
+        height: 600,
+      },
+      {
+        url: "https://segio-setup.vercel.app/api/og?title=SS",
+        width: 1800,
+        height: 1600,
+        alt: "Ségio-Setup",
+      }
+    ],
     creator: "@SegioSetup",
   },
   
