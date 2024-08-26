@@ -5,7 +5,7 @@ type Props = {
     id: string
 }
 const ApiMp = ({id}:Props) => {
-    initMercadoPago(process.env.PUBLIC_KEY_MP || '')
+    initMercadoPago('APP_USR-f5c11a33-799e-4429-b66b-23920954cd39')
 
     return(
         <Wallet 
