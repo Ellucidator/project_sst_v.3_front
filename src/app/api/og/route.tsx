@@ -2,18 +2,11 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 
-// Route segment config
 export const runtime = "edge";
 
-// Define a function to handle GET requests
 export async function GET(req: NextRequest) {
-    // Extract title from query parameters
-    const { searchParams } = req.nextUrl;
-    const postTitle = searchParams.get("title");
-
     
 
-    // Create an ImageResponse with dynamic content
     return new ImageResponse(
         (
             <div
@@ -46,11 +39,9 @@ export async function GET(req: NextRequest) {
                         }
                     }
                 >
-                    {postTitle}
                 </div>
             </div>
         ),
-        // ImageResponse options
         {
             width: 1920,
             height: 1080,

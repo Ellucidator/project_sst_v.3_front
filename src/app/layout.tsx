@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     siteName: "Ségio Setup",
     images:[
       {
-        url: "https://project-sst-v-3-front.vercel.app/api/og?title=SS",
+        url: "https://project-sst-v-3-front.vercel.app/api/og",
         width: 800,
         height: 600,
       },
       {
-        url: "https://project-sst-v-3-front.vercel.app/api/og?title=SS",
+        url: "https://project-sst-v-3-front.vercel.app/api/og",
         width: 1800,
         height: 1600,
         alt: "Ségio-Setup",
