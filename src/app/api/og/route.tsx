@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    backgroundImage: `url(https://segio-setup.vercel.app/public/home/og-bg.png)`,
+                    backgroundImage: `url(https://project-sst-v-3-front.vercel.app/public/home/og-bg.png)`,
                 }}
             >
                 <div
