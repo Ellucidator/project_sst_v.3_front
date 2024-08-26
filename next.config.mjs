@@ -46,7 +46,8 @@ const nextConfig = {
         }
     },
     env:{
-        API_HOST: 'https://devleal.com.br'
+        API_HOST: process.env.API_HOST,
+        PUBLIC_KEY_MP: process.env.PUBLIC_KEY_MP
     }
 };
 

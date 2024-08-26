@@ -4,12 +4,11 @@ import { redirect } from "next/navigation"
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 import ApiMp from '@/components/common/apiMp/apiMp'
 import Title from "@/components/common/texts/tiltle";
-import ResultCepCalculator from "@/components/common/cepCalculator/resultCepCalculator";
 import ItemsTable from "@/components/common/itemsTable";
 
 
 export default async function Payment() {
-    const client = new MercadoPagoConfig({ accessToken: 'APP_USR-658438204342310-070510-884ee4cac7fc572dc65f9a5c11bee043-1888685170' });
+    const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN_MP! });
     const preference = new Preference(client);
 
 
