@@ -25,6 +25,9 @@ export async function GET(req: NextRequest) {
                     alignItems: "flex-start",
                     justifyContent: "center",
                     backgroundImage: `url(https://project-sst-v-3-front.vercel.app/public/home/og-bg.png)`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundColor: "#1d1d1d",
                 }}
             >
                 <div
