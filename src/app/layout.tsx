@@ -8,47 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Ségio Setup",
   description: "Ségio Setup e-commerce",
-  openGraph: {
-    title: "Ségio Setup",
-    description: "Ségio Setup e-commerce",
-    url: "https://project-sst-v-3-front.vercel.app/",
-    siteName: "Ségio Setup",
-    images:[
-      {
-        url: "https://project-sst-v-3-front.vercel.app/api/og",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "https://project-sst-v-3-front.vercel.app/api/og",
-        width: 1800,
-        height: 1600,
-        alt: "Ségio-Setup",
-      }
-    ],
-
-    type: "website",
-  },
-  twitter: {
-    title: "Ségio Setup",
-    description: "Ségio Setup e-commerce",
-    card: "summary_large_image",
-    images: [
-      {
-        url: "https://project-sst-v-3-front.vercel.app/api/og?title=SS",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "https://project-sst-v-3-front.vercel.app/api/og?title=SS",
-        width: 1800,
-        height: 1600,
-        alt: "Ségio-Setup",
-      }
-    ],
-    creator: "@SegioSetup",
-  },
-  
+  metadataBase: new URL("https://project-sst-v-3-front.vercel.app"),
 };
 
 export default function RootLayout({

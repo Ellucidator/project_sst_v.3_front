@@ -1,4 +1,3 @@
-// Import required modules and constants
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 
@@ -11,14 +10,15 @@ export async function GET(req: NextRequest) {
         (
             <div
                 style={{
-                    height: "100%",
-                    width: "100%",
+                    height: "1920px",
+                    width: "1080px",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
                     backgroundImage: `url(https://project-sst-v-3-front.vercel.app/public/home/og-bg.png)`,
                     backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
                     backgroundColor: "#1d1d1d",
                 }}
             >
