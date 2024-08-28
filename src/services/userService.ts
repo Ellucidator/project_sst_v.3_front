@@ -211,6 +211,29 @@ async function activeUserAddress(id: string) {
     })
     revalidateTag('adresses-user')
 }
+
+async function createPurchase() {
+    const token = cookies().get('token')?.value
+    if (!token) return
+
+    const cookieCart = cookies().get('car')?.value
+    
+    
+    const res = await fetch(process.env.API_HOST + `/user/purchase`,{
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: cookieCart
+    })
+    const data:{preference_id:string} = await res.json();
+
+    console.log(data)
+
+    return data
+}
+
 async function getUserPurchases( perPage: number = 6) {
     'use server'
     const page = helpers.getCookieIsNumber('page')
@@ -348,6 +371,7 @@ export const userService = {
     createAddress,
     deleteUserAddress,
     activeUserAddress,
+    createPurchase,
     getUserPurchases,
     getUserPurchaseById,
     addUserFavorites,
