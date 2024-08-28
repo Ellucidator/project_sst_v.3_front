@@ -13,9 +13,9 @@ import { cartServices } from '@/services/cartService';
 
 
 export default async function Cart() {
-    const [items,total] = await cartServices.getItemsCart()
-    
+    const [items,total,frete] = await cartServices.getItemsCart()
     const subTotal = items ? items.reduce((acc:number, item) => {
+        
         acc += (item.price * item.ItemCharacteristic!.quantity!)
         return acc
     }, 0) : 0

@@ -2,7 +2,6 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-// Image metadata
 export const alt = 'Segio Setup'
 export const size = {
     width: 1200,

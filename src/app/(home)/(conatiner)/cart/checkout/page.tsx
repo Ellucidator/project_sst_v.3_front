@@ -30,7 +30,7 @@ const handlerSubmit = async (form: FormData) => {
 
     const addressId = form.get('address_id')?.toString()
     const frete = form.get('cep-result')?.toString()
-    const [service, price] = frete!.split('-')
+    const [service, price, range] = frete!.split('-')
     if(!price) return
 
     const cartCookie = cookies().get('car')?.value
@@ -40,7 +40,8 @@ const handlerSubmit = async (form: FormData) => {
     cart.frete = {
         address_id: parseFloat(addressId!),
         name: service,
-        price: parseFloat(price)
+        price: parseFloat(price),
+        range: range
     }
     cookies().set('car', JSON.stringify(cart))
 

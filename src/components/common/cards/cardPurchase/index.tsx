@@ -10,7 +10,7 @@ type Props = {
     userPurchase: Purchase
 }
 const CardPurchase = ({ userPurchase }: Props) => {
-    if(!userPurchase) return <></>
+    if(!userPurchase || userPurchase.ItemSells.length<1 || !userPurchase.all_value) return <></>
     return (
 
         <div className={styles.userPurchase}>

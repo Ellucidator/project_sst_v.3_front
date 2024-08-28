@@ -5,7 +5,7 @@ import { helpers } from "@/helpers/helpers"
 
 const addCarItem = async (inStock: number, item: ItemToCar) => {
 
-    const cart:Cart = helpers.getCookieValue('car')
+    const cart: Cart = helpers.getCookieValue('car')
     if (!cart) {
         cookies().set('car', JSON.stringify({ items: [item], total: item.price * item.ItemCharacteristics.quantity }),
             {
@@ -19,11 +19,11 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
             if ((verifyItem.ItemCharacteristics.quantity + item.ItemCharacteristics.quantity) > inStock) return
 
             verifyItem.ItemCharacteristics.quantity += item.ItemCharacteristics.quantity
-            cart.total += item.price
+            cart.total += (item.price * item.ItemCharacteristics.quantity)
 
         } else {
             cart.items.push(item)
-            cart.total += item.price
+            cart.total += (item.price * item.ItemCharacteristics.quantity)
         }
 
         cookies().set('car', JSON.stringify(cart),
@@ -38,9 +38,9 @@ const addCarItem = async (inStock: number, item: ItemToCar) => {
 }
 
 async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
-    const cart:Cart = helpers.getCookieValue('car')
+    const cart: Cart = helpers.getCookieValue('car')
     if (!cart) return [[], 0, {}]
-
+    
     const ids = cart.items.map((item) => item.id)
 
     try {
@@ -56,18 +56,19 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
             }
         })
         const data: ItemPromotion[] = await res.json();
-    
+
         for (let i = 0; i < data.length; i++) {
             const item = data.find((item) => item.id === cart.items[i].id)
             if (item) {
                 item.ItemCharacteristic = cart.items[i].ItemCharacteristics
-    
+
                 if (item.in_stock < item.ItemCharacteristic.quantity) {
+                    cart.total -= cart.items[i].price * (item.ItemCharacteristic.quantity - item.in_stock)
                     item.ItemCharacteristic.quantity = item.in_stock
                 }
             }
         }
-    
+        console.log(data)
         return [data, cart.total, cart.frete]
     } catch (error) {
         return [[], 0, {}]

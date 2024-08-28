@@ -10,7 +10,8 @@ export interface Cart{
     frete?:{
         address_id:string|number
         name:string
-        price:number
+        price:number,
+        range:string
     }
     total:number
 }
