@@ -16,26 +16,33 @@ function getCookieIsNumber(cookieName: string): number {
     return 1
 }
 
-async function getSimpleRequestAndHandleError(
+interface SimpleRequest{
     url:string, 
-    cache:RequestCache = 'default', 
-    revalidate:number|false = false, 
-    tags:string[]|undefined = undefined
-){
+    cache?:RequestCache 
+    revalidate?:number|false 
+    tags?:string[]
+    method?:'GET'|'POST'|'PUT'|'DELETE',
+    authorization?:string,
+    body?:BodyInit
+
+}
+async function getSimpleRequestAndHandleError({url, cache, revalidate, tags, method='GET', authorization='', body}:SimpleRequest) {
 
     try {
         const res = await fetch(url,{
-            method: 'GET',
+            method,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': authorization
             },
             cache,
             next: {
                 revalidate,
                 tags
-            }
+            },
+            body
         })
-
+        console.log(res.url, res.status)
         if(!res.ok) return false
 
         return await res.json()
