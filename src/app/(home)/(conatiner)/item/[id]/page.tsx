@@ -23,7 +23,7 @@ export default async function Item({ params }: { params: { id: string } }) {
     const [item, avaliations, userAvaliation, itemCharacteristics, favorite] = await Promise.all([
         itemService.getOneItem(params.id),
         itemService.getAllAvaliationsByItemId(params.id),
-        userService.getAvaliationByUserId(),
+        userService.getAvaliationByUserId(params.id),
         itemService.getItemCharacteristics(params.id),
         userService.getUserFavoriteByItemId(params.id),
     ])

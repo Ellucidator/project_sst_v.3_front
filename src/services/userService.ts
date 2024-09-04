@@ -20,7 +20,6 @@ const createUser = async (user: CreateUser) => {
             body: JSON.stringify(user),
             cache: 'no-store'
         })
-
         if (!res.ok) return false
 
         await authService.setSession(user.email, user.password)
@@ -35,98 +34,73 @@ const showUser = async () => {
     const token = cookies().get('token')?.value
     if (!token) return
 
-
-    const res = await fetch(process.env.API_HOST + '/user', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
+    const data: UserInfo = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + '/user',
         cache: 'default',
-        next: {
-            tags: ['user-info'],
-        },
+        tags: ['user-info'],
+        authorization: token
     })
-    const data:UserInfo = await res.json();
 
     return data
 }
 
-const updatedUser = async (updateAtributes: Omit<UserInfo,'imgUrl'|'id'>) => {
+const updatedUser = async (updateAtributes: Omit<UserInfo, 'imgUrl' | 'id'>) => {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const res = await fetch(process.env.API_HOST + '/user', {
+    const res = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + '/user',
+        cache: 'default',
+        authorization: token,
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(updateAtributes),
+        body: JSON.stringify(updateAtributes)
     })
-    
+
     revalidateTag('user-info')
 
 }
 
 const createAvaliation = async (avaliation: CreateAvaliation) => {
-    try {
-        const res = await fetch(process.env.API_HOST + '/item/create-avaliation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(avaliation),
-            cache: 'no-store'
-        })
-
-        const data = await res.json();
-
-        return data
-    } catch (error) {
-        return false
+    const token = cookies().get('token')?.value
+    if (!token) {
+        cookies().set('redirect', `/item/${avaliation.item_id}`)
+        redirect('/form/login')
     }
+    const data = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + '/item/create-avaliation',
+        method: 'POST',
+        authorization: token,
+        cache: 'default',
+        body: JSON.stringify(avaliation),
+    });
+
+    return data
 }
 
-const getAvaliationByUserId = async () => {
+const getAvaliationByUserId = async (itemId: string|number) => {
     const user = await authService.verifySession()
     if (!user) return false
+    
+    const data: Avaliation = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + `/user/${user.id}-${itemId}/avaliation`,
+        cache: 'default',
+        tags: ['avaliation-user'],
+        revalidate: 10
+    })
 
-    try {
-        const avaliation = await fetch(process.env.API_HOST + `/user/${user.id}/avaliation`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            cache: 'no-store',
-            next: {
-                revalidate: 10,
-                tags: ['avaliation-user'],
-            },
-        })
-
-        const data: Avaliation = await avaliation.json();
-        return data
-
-    } catch (error) {
-        if (error) return false
-    }
-
+    return data
 }
 
 async function getUserAddessById(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const address = await fetch(process.env.API_HOST + `/user/address/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
+    const data: UserAddress = await helpers.getSimpleRequestAndHandleError({
+        url:process.env.API_HOST + `/user/address/${id}`,
+        cache: 'default',
+        revalidate: 10
     })
 
-    const data: UserAddress = await address.json();
     if (!data) return {
         receiver_name: '',
         zip_code: 0,
@@ -145,25 +119,17 @@ async function getUserAddessById(id: string) {
 
 }
 async function getUserAdresses() {
-
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const adresses = await fetch(process.env.API_HOST + `/user/addresses`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-
-        cache: 'no-store',
-        next: {
-            revalidate: 10,
-            tags: ['adresses-user'],
-        },
+    const data: UserAddress[] = await helpers.getSimpleRequestAndHandleError({
+        url:process.env.API_HOST + `/user/addresses`,
+        authorization:token,
+        cache: 'default',
+        revalidate: 10,
+        tags: ['adresses-user'],
     })
 
-    const data: UserAddress[] = await adresses.json();
     return data
 }
 
@@ -217,45 +183,33 @@ async function createPurchase() {
     if (!token) return
 
     const cookieCart = cookies().get('car')?.value
-    
-    
-    const res = await fetch(process.env.API_HOST + `/user/purchase`,{
-        headers: {
-            'Authorization': token,
-            'Content-Type': 'application/json'
-        },
+
+    const data: { preference_id: string } = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + `/user/purchase`,
+        authorization: token,
         method: 'POST',
         body: cookieCart
     })
-    const data:{preference_id:string} = await res.json();
 
-    console.log(data)
-
+    revalidateTag('purchases-user')
     return data
 }
 
-async function getUserPurchases( perPage: number = 6) {
+async function getUserPurchases(perPage: number = 6) {
     'use server'
     const page = helpers.getCookieIsNumber('page')
 
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const purchases = await fetch(process.env.API_HOST + `/user/show/purchases?page=${page}&perPage=${perPage}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-
-        cache: 'no-store',
-        next: {
-            revalidate: 10,
-            tags: ['purchases-user'],
-        },
+    const data: Purchases = await helpers.getSimpleRequestAndHandleError({
+        url:process.env.API_HOST + `/user/show/purchases?page=${page}&perPage=${perPage}`,
+        authorization: token,
+        cache: 'default',
+        revalidate: 10,
+        tags: ['purchases-user'],
     })
 
-    const data: Purchases = await purchases.json();
     return data
 }
 
@@ -264,29 +218,22 @@ async function getUserPurchaseById(purchaseId: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const purchases = await fetch(process.env.API_HOST + `/user/show/purchase/${purchaseId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-
-        cache: 'no-store',
-        next: {
-            revalidate: 10,
-            tags: ['one-purchase-user'],
-        },
+    const data: Purchase = await await helpers.getSimpleRequestAndHandleError({
+        url:process.env.API_HOST + `/user/show/purchase/${purchaseId}`,
+        authorization: token,
+        cache: 'default',
+        revalidate: 10,
+        tags: ['one-purchase-user'],
     })
 
-    const data: Purchase = await purchases.json();
     return data
 }
 
 async function addUserFavorites(itemId: string) {
     'use server'
     const token = cookies().get('token')?.value
-    if (!token){
-        cookies().set('redirect', `/item/${itemId}`)    
+    if (!token) {
+        cookies().set('redirect', `/item/${itemId}`)
         redirect('/form/login')
     }
 
@@ -296,33 +243,26 @@ async function addUserFavorites(itemId: string) {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify({itemId:parseInt(itemId)})
+        body: JSON.stringify({ itemId: parseInt(itemId) })
     })
     revalidateTag('favorites-user')
 
 }
 
-async function getUserFavorites( perPage: number = 10) {
+async function getUserFavorites(perPage: number = 10) {
     const page = helpers.getCookieIsNumber('page')
 
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const favorites = await fetch(process.env.API_HOST + `/user/show/favorites?page=${page}&perPage=${perPage}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-
-        cache: 'no-store',
-        next: {
-            revalidate: 10,
-            tags: ['favorites-user'],
-        },
+    const data: Favorites = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + `/user/show/favorites?page=${page}&perPage=${perPage}`,
+        authorization: token,
+        cache: 'default',
+        revalidate: 10,
+        tags: ['favorites-user'],
     })
 
-    const data: Favorites = await favorites.json();
     return data
 }
 
@@ -330,16 +270,13 @@ async function getUserFavoriteByItemId(itemId: string) {
     const token = cookies().get('token')?.value
     if (!token) return false
 
-    const res =await fetch(process.env.API_HOST + `/user/show/favorite/${itemId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
+    const data = await helpers.getSimpleRequestAndHandleError({
+        url: process.env.API_HOST + `/user/show/favorite/${itemId}`,
+        authorization: token,
+        cache: 'default',
+        revalidate: 10,
     })
-    
-    const data = await res.json();
-    if(!data)return false
+    if (!data) return false
 
     return true
 }

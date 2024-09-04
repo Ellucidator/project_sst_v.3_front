@@ -9,12 +9,6 @@ const nextConfig = {
     images: {
         remotePatterns:[
             {
-                protocol: 'http',
-                hostname: 'localhost',
-                port: '3001',
-                pathname: '/files/**'
-            },
-            {
                 protocol: 'https',
                 hostname: 'devleal.com.br',
                 port: '',

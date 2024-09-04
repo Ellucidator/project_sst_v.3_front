@@ -68,7 +68,6 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
                 }
             }
         }
-        console.log(data)
         return [data, cart.total, cart.frete]
     } catch (error) {
         return [[], 0, {}]

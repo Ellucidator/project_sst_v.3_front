@@ -33,7 +33,7 @@ const SelectOrder = ({formFunction,type,subCategories,subAc}: Props) => {
             <Title fontSize="18px" model='model1' titleText="Ordenar por:" />
 
                 <select className={styles.selectOrder} name='order' >
-                    <option value={'created_at-DESC'}>Novidades</option>
+                    <option value={'createdAt-DESC'}>Novidades</option>
                     <option value={'price-DESC'}>Maior Preço</option>
                     <option value={'price-ASC'}>Menor Preço</option>
                 </select>

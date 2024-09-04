@@ -8,6 +8,7 @@ import FavoritesPage from '@/components/pages/user/favorites'
 import UserInformation from '@/components/pages/user/information'
 import { redirect } from 'next/navigation'
 import { revalidateTag } from 'next/cache'
+import { Purchase } from '@/types/purchaseTypes'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
@@ -22,18 +23,17 @@ export default async function UserPage({params}:{params:{options:string}}) {
 
     if(!user)redirect('/')
 
-    const [userAddress,userPurchases,purchases,newestFavorites] = await Promise.all([
+    const [userAddress,purchases,newestFavorites] = await Promise.all([
         userService.getUserAdresses(),
-        userService.getUserPurchases(1),
         userService.getUserPurchases(6),
         userService.getUserFavorites(4)
     ])
-
+    const lastPurchase= purchases? purchases.rows.find((elem) => elem) : false
 
     return(
         <div className={styles.userInfo}>
             {
-                params.options==='home'?<UserHome user={user} userPurchase={userPurchases?userPurchases.rows[0]:false} newestFavorites={newestFavorites}/>:
+                params.options==='home'?<UserHome user={user} userPurchase={lastPurchase as Purchase|false} newestFavorites={newestFavorites}/>:
                 params.options==='my-info'?<UserInformation/>:
                 params.options==='my-purchases'?<UserPurchasesPage purchases={purchases}/>:
                 params.options==='address'?<UserAddressPage userAddress={userAddress}/>:

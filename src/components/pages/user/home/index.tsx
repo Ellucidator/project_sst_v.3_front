@@ -12,7 +12,6 @@ type Props = {
     newestFavorites: Favorites | false
 }
 const UserHome = ({ user, userPurchase, newestFavorites }: Props) => {
-
     return (
         <>
             <p className={styles.userName}>Bem vindo {user.first_name}</p>
