@@ -246,7 +246,7 @@ async function addUserFavorites(itemId: string) {
         body: JSON.stringify({ itemId: parseInt(itemId) })
     })
     revalidateTag('favorites-user')
-
+    revalidateTag('one-favorite-user')
 }
 
 async function getUserFavorites(perPage: number = 10) {
@@ -275,6 +275,7 @@ async function getUserFavoriteByItemId(itemId: string) {
         authorization: token,
         cache: 'default',
         revalidate: 10,
+        tags: ['one-favorite-user'],
     })
     if (!data) return false
 
@@ -293,6 +294,7 @@ async function deleteUserFavorites(id: string) {
         },
     })
     revalidateTag('favorites-user')
+    revalidateTag('one-favorite-user')
 }
 
 
