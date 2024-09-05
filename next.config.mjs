@@ -4,7 +4,7 @@ dotenv.config();
 
 const nextConfig = {
     compiler: {
-        // removeConsole:true
+        removeConsole:true
     },
     images: {
         remotePatterns:[
