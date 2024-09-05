@@ -10,7 +10,9 @@ const InputQuantity = ({ in_stock, quantityInStock }: Props) => {
             <p>Quantidade</p>
             <select name="quantity" disabled={in_stock > 0 ? false : true} id="quantity" className={styles.selectQuant}>
                 {
-                    quantityInStock.map((num) => {
+                    quantityInStock.map((num,i) => {
+                        if(i>9)return
+                        
                         return (
                             <option key={num} value={num}>
                                 {num}

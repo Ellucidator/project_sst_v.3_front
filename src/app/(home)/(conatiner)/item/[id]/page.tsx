@@ -30,6 +30,13 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     item.ItemCharacteristic = itemCharacteristics
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`, 4)
+    .then(
+        (items)=> {
+            if(items)return items.Items!.filter((item) => item.id !== parseInt(params.id))
+            else return false
+        }
+    )
+
 
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
@@ -101,7 +108,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <div className={styles.recomendedItems}>
                         {recomendedItems ?
                             <ProductContainer
-                                products={recomendedItems.Items}
+                                products={recomendedItems}
                                 containerAttributes={{
                                     title: { titleText: 'Itens Recomendados', model: "model1", fontSize: "25px" },
                                     model: "model1", modelTw: 'container', justifyContent: 'center'
