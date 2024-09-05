@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 
 function getCookieValue(cookieName: string) {
     const cookie = cookies().get(cookieName)?.value
-    
     if(!cookie) return false
     
     return JSON.parse(cookie)
@@ -42,7 +41,6 @@ async function getSimpleRequestAndHandleError({url, cache, revalidate, tags, met
             },
             body
         })
-        console.log(res.url, res.status)
         if(!res.ok) return false
 
         return await res.json()

@@ -12,6 +12,7 @@ import ResultCepCalculator from '@/components/common/cepCalculator/resultCepCalc
 import Button from '@/components/common/button'
 import { cookies } from 'next/headers'
 import { Cart } from '@/types/itemsTypes'
+import Loading from '@/components/common/clientOnlyComponents/loading'
 
 
 export default async function CheckoutPage() {
@@ -24,6 +25,7 @@ export default async function CheckoutPage() {
 
     const [items, total] = await cartServices.getItemsCart()
     if (!items || items.length === 0) redirect('/')
+
 const handlerSubmit = async (form: FormData) => {
     'use server'
     if(!addressActiv) return
@@ -43,9 +45,13 @@ const handlerSubmit = async (form: FormData) => {
         price: parseFloat(price),
         range: range
     }
+    
+    const purchase = await userService.createPurchase(JSON.stringify(cart))
+    cart.purchase_id = purchase?.purchase_id
+
     cookies().set('car', JSON.stringify(cart))
 
-    redirect('/cart/payment')
+    redirect('/cart/payment/' + purchase?.preference_id)
 }
 
     return (
@@ -72,6 +78,7 @@ const handlerSubmit = async (form: FormData) => {
                             iconElem={{src:'/public/common/cash-stack.svg',width:30,position:'right'}}
 
                     />
+                    <Loading model='modelArea'/>
                 </div>
             </form>
         </div>

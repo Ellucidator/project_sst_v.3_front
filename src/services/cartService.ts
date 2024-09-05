@@ -56,7 +56,6 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
             }
         })
         const data: ItemPromotion[] = await res.json();
-
         for (let i = 0; i < data.length; i++) {
             const item = data.find((item) => item.id === cart.items[i].id)
             if (item) {

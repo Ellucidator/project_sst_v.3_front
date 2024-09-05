@@ -10,7 +10,7 @@ const ApiMp = ({ id, public_key }: Props) => {
 
     return (
         <Wallet
-            initialization={{preferenceId: id}}
+            initialization={{preferenceId: id,redirectMode: 'modal'}}
             locale="pt-BR"
             customization={{ texts: { valueProp: 'payment_methods_logos', action: 'pay', actionComplement: 'brand' } }}
         />

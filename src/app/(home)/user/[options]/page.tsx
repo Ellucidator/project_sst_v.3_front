@@ -29,7 +29,6 @@ export default async function UserPage({params}:{params:{options:string}}) {
         userService.getUserFavorites(4)
     ])
     const lastPurchase= purchases? purchases.rows.find((elem) => elem) : false
-
     return(
         <div className={styles.userInfo}>
             {

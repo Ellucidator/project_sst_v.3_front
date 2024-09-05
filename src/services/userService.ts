@@ -178,17 +178,17 @@ async function activeUserAddress(id: string) {
     revalidateTag('adresses-user')
 }
 
-async function createPurchase() {
+async function createPurchase(cookieCart:BodyInit) {
     const token = cookies().get('token')?.value
     if (!token) return
 
-    const cookieCart = cookies().get('car')?.value
 
-    const data: { preference_id: string } = await helpers.getSimpleRequestAndHandleError({
+    const data: { preference_id: string,purchase_id: string } = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/user/purchase`,
         authorization: token,
         method: 'POST',
-        body: cookieCart
+        body: cookieCart,
+        cache: 'no-store',
     })
 
     revalidateTag('purchases-user')

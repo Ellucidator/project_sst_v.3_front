@@ -6,6 +6,7 @@ export interface ItemToCar{
     ItemCharacteristics: ItemCharacteristics
 }
 export interface Cart{
+    purchase_id?:string
     items:ItemToCar[]
     frete?:{
         address_id:string|number
