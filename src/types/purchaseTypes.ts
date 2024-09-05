@@ -12,6 +12,7 @@ export interface Purchase{
     status: string
     frete: string
     payment_type: string
+    payment_status: string
     ItemSells: ItemSell[]
     Address:UserAddress
     createdAt: string

@@ -84,6 +84,7 @@ const PurchasePage = async({purchaseId}: Props)=> {
                     <div className={styles.divAddressInfo}>
                         <p className={styles.title}>Metodo de Pagamento:</p>
                         <p>{purchase.payment_type}</p>
+                        <p>{`Status: ${purchase.payment_status}`}</p>
                     </div>
                     <div className={styles.divAddressInfo}>
                         <p className={styles.title}>Ultima atualização:</p>

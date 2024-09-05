@@ -15,6 +15,7 @@ import { cartServices } from '@/services/cartService'
 import ButtonActionById from '@/components/common/serverActionComponent/buttonActionById'
 import PromotionMiniBanner from '@/components/common/clientOnlyComponents/promotionMiniBanner'
 import ProductContainer from '@/components/common/productContainer'
+import Loading from '@/components/common/clientOnlyComponents/loading'
 
 
 
@@ -97,7 +98,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                     <input type="hidden" name='price' value={item.promotion ? item.ItemPromotion!.price : item.price} />
 
                                     <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconElem={{ src: cartIcon, position: 'right', width: 35 }} />
-
+                                    <Loading model='modelArea'/>
                                 </form>
                             </section>
                         </div>
