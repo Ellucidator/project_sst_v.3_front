@@ -15,8 +15,6 @@ export default async function PageUserLayout({ children }: Props) {
         ['Favoritos','favorites']
     ]
 
-
-    
     return (
         <div className={styles.pageBody}>
             <div className={styles.pageContainer}>

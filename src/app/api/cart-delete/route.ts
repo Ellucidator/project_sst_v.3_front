@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
 
 
     const cookieCart:Cart = helpers.getCookieValue('car')
-    console.log(cookieCart)
     if(cookieCart.purchase_id)cookies().delete('car')
 
     const loginUrl = new URL('/user/home', request.url)

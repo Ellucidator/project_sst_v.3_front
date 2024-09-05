@@ -22,7 +22,6 @@ export default async function Catalog({ params }: { params: { categoryName: stri
         filters = JSON.parse(catalogCookie).tags
 
     }
-
     const actionSelect = async (form: FormData) => {
         'use server'
 
@@ -56,7 +55,7 @@ export default async function Catalog({ params }: { params: { categoryName: stri
 
             <div className={styles.catalogCardContainer}>
                 <div className={styles.select}>
-                    <Title fontSize="25px" model='model2' titleText={params.categoryName.toUpperCase()} />
+                    <Title fontSize="25px" model='model2' titleText={decodeURIComponent(params.categoryName).toUpperCase()} />
                     <p className={styles.filters}>{`${filters.join(', ')}`}</p>
                     <div className={styles.responsiveFilters} >
                         <ServerModal cookieName='modalFilters' tags={tags} filters={filters} subCategoryId={params.subCategoryId} />

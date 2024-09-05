@@ -9,6 +9,7 @@ import UserInformation from '@/components/pages/user/information'
 import { redirect } from 'next/navigation'
 import { revalidateTag } from 'next/cache'
 import { Purchase } from '@/types/purchaseTypes'
+import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
@@ -31,6 +32,7 @@ export default async function UserPage({params}:{params:{options:string}}) {
     const lastPurchase= purchases? purchases.rows.find((elem) => elem) : false
     return(
         <div className={styles.userInfo}>
+            <ScrollToTop/>
             {
                 params.options==='home'?<UserHome user={user} userPurchase={lastPurchase as Purchase|false} newestFavorites={newestFavorites}/>:
                 params.options==='my-info'?<UserInformation/>:

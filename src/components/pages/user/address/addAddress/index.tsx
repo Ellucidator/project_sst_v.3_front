@@ -33,7 +33,7 @@ const AddressUpdate = async ({ addressId, btnBack=true ,modal }: Props) => {
     }
 
     if (addressId !=='0') {
-        addressValue = await userService.getUserAddessById(addressId).then(res => res!)
+        addressValue = await userService.getUserAddessById(addressId).then((data) => data!)
     }
     
 

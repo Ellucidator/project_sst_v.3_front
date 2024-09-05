@@ -12,8 +12,9 @@ export async function GET(request: NextRequest,context:{params:Params}) {
     cookies().delete(`catalog${subCategoryId}`)
     cookies().delete(`modal`)
     
+    const newUrl = new URL(`/catalog/${category}/${subCategoryId}`,request.url)
 
-    return NextResponse.redirect(`http://${request.nextUrl.host}/catalog/${category}/${subCategoryId}`)
+    return NextResponse.redirect(newUrl)
 
 }
 

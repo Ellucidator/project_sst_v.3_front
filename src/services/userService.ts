@@ -66,7 +66,6 @@ const createAvaliation = async (avaliation: CreateAvaliation) => {
         cookies().set('redirect', `/item/${avaliation.item_id}`)
         redirect('/form/login')
     }
-    console.log(avaliation)
     const data = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/item/create-avaliation',
         method: 'POST',
@@ -94,13 +93,12 @@ const getAvaliationByUserId = async (itemId: string|number) => {
 async function getUserAddessById(id: string) {
     const token = cookies().get('token')?.value
     if (!token) return
-
+    
     const data: UserAddress = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/user/address/${id}`,
-        cache: 'default',
-        revalidate: 10
+        cache: 'no-store',
+        authorization: token
     })
-
     if (!data) return {
         receiver_name: '',
         zip_code: 0,
