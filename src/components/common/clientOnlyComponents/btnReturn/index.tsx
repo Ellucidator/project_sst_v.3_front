@@ -4,9 +4,10 @@ import styles from './styles.module.scss'
 
 type Props = {
     model?:'model1'|'model2'
+    position?:"static" | "relative" | "absolute" | "sticky" | "fixed"
 }
 
-export const ButtonReturn = ({ model = 'model1'}:Props) => {
+export const ButtonReturn = ({ model = 'model1', position = 'static'}:Props) => {
 
     const router = useRouter()
 
@@ -14,7 +15,11 @@ export const ButtonReturn = ({ model = 'model1'}:Props) => {
         router.back()
     }
     
-    return <button className={styles[model]} onClick={handletClick}>{'<-VOLTAR'}</button>
+    return <button
+        style={{position}}
+        className={styles[model]} 
+        onClick={handletClick}
+        >{'<-VOLTAR'}</button>
 }
 
 export default ButtonReturn

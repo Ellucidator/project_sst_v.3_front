@@ -28,7 +28,7 @@ const HeaderPrimary = async () => {
     return (
         <>
             <div id="header" className={`${styles.header}`}>
-                <ButtonReturn />
+                <ButtonReturn position="fixed" />
 
                 <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>

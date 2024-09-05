@@ -1,6 +1,6 @@
 @import '../../../../styles/colors/colors.module.scss';
 
-.inputAndLabel{
+.inputAndLabel {
     display: flex;
     height: auto;
     font-size: 18px;
@@ -9,40 +9,52 @@
 }
 
 
-.input{
+.input {
     padding: 5px;
     min-height: 40px;
     font-size: 17px;
-    &:focus{
+
+    &:focus {
         outline: 1px solid $tertiary;
         background-color: $secondary;
         color: $primaryDark;
     }
 }
 
-.model1{
+.model1 {
     background-color: transparent;
     border-bottom: solid 1px $secondary;
 }
-.light{
+
+.light {
     background-color: $primaryLight;
 }
-.dark{
+
+.dark {
     background-color: $primary;
 }
 
 @media(max-width: 700px) {
-    .inputAndLabel{
+    .inputAndLabel {
         flex: 1;
-        max-height: 90px;
+        justify-content: flex-end;
+        height: 120px;
         min-width: 150px;
-        .input{
+
+        .input {
             flex: 1;
             max-height: 45px;
         }
     }
-    .input{
+
+    .input {
         flex: 1;
         min-width: 150px;
+    }
+}
+
+@media(max-width: 417px) {
+    .inputAndLabel {
+        height: auto;
     }
 }
