@@ -29,11 +29,11 @@ const ModalUser = async ({cookieControl, user_name, classModal, btnAction}: Prop
                         <form action={handlerLogout} className={styles[classModal]}>
                             {cookieControl === 'open' ?
                                 <>
-                                    <Button href="/user/home" btnName="Minha Conta" btnAction="link" btnModel="model6" />
-                                    <Button href="/user/my-info" btnName="Minhas Informações" btnAction="link" btnModel="model6" />
-                                    <Button href="/user/my-purchases" btnName="Pedidos" btnAction="link" btnModel="model6" />
-                                    <Button href="/user/address" btnName="Endereços" btnAction="link" btnModel="model6" />
-                                    <Button href="/user/favorites" btnName="Favoritos" btnAction="link" btnModel="model6" />
+                                    <Button href="/api/link/home" btnName="Minha Conta" btnAction="link" btnModel="model6" />
+                                    <Button href="/api/link/my-info" btnName="Minhas Informações" btnAction="link" btnModel="model6" />
+                                    <Button href="/api/link/my-purchases" btnName="Pedidos" btnAction="link" btnModel="model6" />
+                                    <Button href="/api/link/address" btnName="Endereços" btnAction="link" btnModel="model6" />
+                                    <Button href="/api/link/favorites" btnName="Favoritos" btnAction="link" btnModel="model6" />
                                     <Button btnName="Sair" btnAction="submit" btnModel="model6" iconElem={{ src: logoutIcon, position: 'left', width: 22 }} />
                                 </>
                                 : <></>}
