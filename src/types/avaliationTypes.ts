@@ -6,7 +6,6 @@ export interface Avaliation{
 }
 
 export interface CreateAvaliation extends Avaliation{
-    user_id: number | string
     item_id: number | string
 }
 

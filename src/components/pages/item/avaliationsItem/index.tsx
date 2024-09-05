@@ -10,11 +10,10 @@ import Loading from '../../../common/clientOnlyComponents/loading'
 
 type Props = {
     item_id: number | string
-    user_id: number | string
     avaliation?: Avaliation | false
     allAvaliation?: AvaliationAndCount
 }
-const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: Props) => {
+const AvaliationsItem = async ({ item_id, avaliation, allAvaliation }: Props) => {
     const formAvaliationAction = async (form: FormData) => {
         'use server'
 
@@ -22,12 +21,11 @@ const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: 
         const comment = form.get('comment')?.toString()
         const rating = form.get('stars')?.toString()
 
-        console.log(title, comment, rating)
 
         if (!title || !comment || !rating) return
+        
+        await userService.createAvaliation({ title, comment, rating, item_id })
 
-        const avaliation = await userService.createAvaliation({ title, comment, rating, item_id, user_id })
-        console.log(avaliation)
         revalidateTag('avaliation-user')
         revalidateTag('all-avaliations-item')
     }
