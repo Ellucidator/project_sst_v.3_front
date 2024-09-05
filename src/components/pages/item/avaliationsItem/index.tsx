@@ -22,9 +22,12 @@ const AvaliationsItem = async ({ item_id, user_id, avaliation, allAvaliation }: 
         const comment = form.get('comment')?.toString()
         const rating = form.get('stars')?.toString()
 
+        console.log(title, comment, rating)
+
         if (!title || !comment || !rating) return
 
-        await userService.createAvaliation({ title, comment, rating, item_id, user_id })
+        const avaliation = await userService.createAvaliation({ title, comment, rating, item_id, user_id })
+        console.log(avaliation)
         revalidateTag('avaliation-user')
         revalidateTag('all-avaliations-item')
     }

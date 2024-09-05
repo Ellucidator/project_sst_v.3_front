@@ -66,11 +66,11 @@ const createAvaliation = async (avaliation: CreateAvaliation) => {
         cookies().set('redirect', `/item/${avaliation.item_id}`)
         redirect('/form/login')
     }
+    console.log(avaliation)
     const data = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/item/create-avaliation',
         method: 'POST',
         authorization: token,
-        cache: 'default',
         body: JSON.stringify(avaliation),
     });
 
