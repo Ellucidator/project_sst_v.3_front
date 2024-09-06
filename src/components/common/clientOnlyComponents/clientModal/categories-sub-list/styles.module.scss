@@ -16,10 +16,20 @@
     transition: 0.2s;
 }
 .subCategoryOpen {
+    display: flex;
+    flex-direction: column;
     margin-left: 15px;
     margin-bottom: 10px;
     transition: 0.2s;
     font-size: large;
+    gap: 5px;
+    
+
+    .subCategory{
+        padding: 5px;
+        border-radius: 5px;
+        border-left: 2px solid $tertiaryDark;
+    }
 }
 @media(max-width: 775px) {
     .subCategoryOpen {
