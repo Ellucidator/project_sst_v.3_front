@@ -1,0 +1,35 @@
+@import '../../../../styles/colors/colors.module.scss';
+
+.element{
+    height: 0px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.elementActive{
+    height: auto;
+    width: 100%;
+    position: sticky;
+    z-index: 7;
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 20px;
+    padding: 15px 0px;
+    background-color: $primary;
+    transition: visibility 0.5s, opacity 0.5s;
+
+    .logoHeader {
+        padding-bottom: 5px;
+
+        .logo {
+            width: 250px;
+            height: 95px;
+        }
+    }
+}
+

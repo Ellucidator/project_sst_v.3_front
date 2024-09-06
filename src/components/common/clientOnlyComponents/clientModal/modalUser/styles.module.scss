@@ -2,14 +2,14 @@
 
 ///////ModalUser///////
 .modalUser {
-    position: fixed;
+    position: absolute;
     transition: 0.5s;
     margin-top: 40px;
 }
 
 .modalUserOpen {
     z-index: 10;
-    position: fixed;
+    position: absolute;
     margin-top: 40px;
     transform: translate(-10%, -0%);
     transition: 0.2s;

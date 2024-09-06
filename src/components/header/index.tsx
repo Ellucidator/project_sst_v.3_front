@@ -10,6 +10,7 @@ import ServerModal from "../common/serverActionComponent/modal";
 import { helpers } from "@/helpers/helpers";
 import ButtonReturn from "../common/clientOnlyComponents/btnReturn";
 import ClientModal from "../common/clientOnlyComponents/clientModal";
+import ElementSticky from "../common/clientOnlyComponents/elementSticky";
 
 
 const HeaderPrimary = async () => {
@@ -28,9 +29,8 @@ const HeaderPrimary = async () => {
 
     return (
         <>
+            {/* <ElementSticky catalog={catalog} /> */}
             <div id="header" className={`${styles.header}`}>
-                <ButtonReturn position="fixed" />
-
                 <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
                         <ClientModal catalog={catalog} cookieName="modal" />

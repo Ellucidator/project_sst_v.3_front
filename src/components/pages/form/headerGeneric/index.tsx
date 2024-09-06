@@ -9,7 +9,6 @@ const HeaderGeneric = () => {
     return (
         <>
             <header className={styles.header}>
-                <ButtonReturn position='absolute' />
                 <div className={styles.headerContainer}>
                     <Link href="/" className={styles.logoHeader}>
                         <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
