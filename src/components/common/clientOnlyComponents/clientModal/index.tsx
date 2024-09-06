@@ -2,7 +2,7 @@
 import { Categories } from "@/types/catalogTypes";
 import styles from './styles.module.scss'
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import CategoriesAndSubListClient from "./categories-sub-list";
 import ModalUserClient from "./modalUser";
 
@@ -17,7 +17,9 @@ const ClientModal =  ({ catalog, cookieName = 'modal', user_name }: Props) => {
     const [cookieControl, setCookieControl] = useState('close')
     const [classModal, setClassModal] = useState<string>(cookieName)
     
-    const btnAction = async (name: string) => {
+    const btnAction = async (ev:React.MouseEvent<HTMLButtonElement>,  name: string) => {
+
+        ev.preventDefault()
 
         if (cookieControl === 'close') {
             setClassModal(`${cookieName}Open`)
@@ -33,7 +35,7 @@ const ClientModal =  ({ catalog, cookieName = 'modal', user_name }: Props) => {
             {cookieName === 'modal' ?
                 <>
 
-                    <button onClick={() => btnAction(cookieName)} type="submit" className={styles.btnHeader}>
+                    <button onClick={(ev) => btnAction(ev,cookieName)} type="submit" className={styles.btnHeader}>
                         <p className="flex gap-2 border-b-2">
                             Catalogo
                             <Image src="/public/header/shop.svg" alt="catalog" className={styles.icon} width={20} height={20} />
@@ -48,7 +50,7 @@ const ClientModal =  ({ catalog, cookieName = 'modal', user_name }: Props) => {
                         {cookieControl === 'open' ?
                             <>
                                 
-                                    <button onClick={() => btnAction(cookieName)} type="button" className={styles.btnModal} >X</button>
+                                    <button onClick={(ev) => btnAction(ev,cookieName)} type="button" className={styles.btnModal} >X</button>
                                 <CategoriesAndSubListClient categories={catalog!} />
                             </>
                             : <></>}
@@ -61,7 +63,7 @@ const ClientModal =  ({ catalog, cookieName = 'modal', user_name }: Props) => {
 
             }
             {cookieControl === 'open' ?
-                <button onClick={() => btnAction(cookieName)} type="button" className={styles.overlayModal}></button>
+                <button onClick={(ev) => btnAction(ev,cookieName)} type="button" className={styles.overlayModal}></button>
                 :
                 <></>
             }

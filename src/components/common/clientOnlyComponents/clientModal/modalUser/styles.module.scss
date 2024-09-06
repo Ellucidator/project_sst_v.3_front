@@ -4,7 +4,7 @@
 .modalUser {
     position: fixed;
     transition: 0.5s;
-
+    margin-top: 40px;
 }
 
 .modalUserOpen {
@@ -26,6 +26,9 @@
 }
 
 @media(max-width: 891px){
+    .modalUser{
+        margin-top: 90px;
+    }
     .modalUserOpen{
         margin-top: 90px;
     }
