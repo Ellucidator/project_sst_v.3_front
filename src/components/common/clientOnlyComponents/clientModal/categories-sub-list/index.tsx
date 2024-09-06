@@ -8,9 +8,10 @@ type Props = {
     categories: Categories[]|false
 }
 const CategoriesAndSubListClient =  ({ categories }: Props) => {
+    const [classCondition, setClassCondition] = useState<{ name: string, open: boolean}>({ name: 'All', open: false }) 
+
     if(!categories) return <></>
 
-    const [classCondition, setClassCondition] = useState<{ name: string, open: boolean}>({ name: 'All', open: false }) 
 
     const btnAction = async (name: string) => {
         const ul= document.getElementById(name)!
