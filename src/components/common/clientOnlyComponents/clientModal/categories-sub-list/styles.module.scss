@@ -21,3 +21,9 @@
     transition: 0.2s;
     font-size: large;
 }
+@media(max-width: 775px) {
+    .subCategoryOpen {
+        font-size: medium;
+        margin-left: 5px;
+    }
+}

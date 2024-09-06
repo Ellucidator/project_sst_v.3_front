@@ -16,3 +16,24 @@
         width: fit-content;
         height: fit-content;
 }
+
+@media(max-height: 870px) {
+        .model1 {
+                top: 15%;
+        }
+}
+@media(max-height: 722px) {
+        .model1 {
+                top: 17%;
+        }
+}
+@media(max-height: 615px) {
+        .model1 {
+                top: 21%;
+        }
+}
+@media(max-height: 545px) {
+        .model1 {
+                top: 23%;
+        }
+}

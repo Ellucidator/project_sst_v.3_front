@@ -23,7 +23,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
             height: 650,
             breakpoints: {
                 1350: {
-                    height: 500
+                    height: 525
                 },
                 1050: {
                     height: 440
@@ -32,10 +32,10 @@ const SlideSectionItem = ({ allItems }: Props) => {
                     height: 500
                 },
                 600: {
-                    height: 350
+                    height: 400
                 },
                 475: {
-                    height: 275
+                    height: 375
                 }
             }
 
@@ -56,7 +56,7 @@ const SlideSectionItem = ({ allItems }: Props) => {
                     fixedWidth: 100
                 },
                 1050: {
-                    fixedWidth: 80,
+                    fixedWidth: 90,
                 }
             }
 

@@ -66,10 +66,10 @@
 
 @media(max-width:1000px){
     .pageBody{
-
+        width: 100%;
         .pageContainer{
             flex-direction: column;
-
+            width: 99%;
             .divOptions{
                 padding: 20px;
                 width: 100%;

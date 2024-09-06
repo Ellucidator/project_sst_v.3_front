@@ -113,6 +113,11 @@
 
 @media(max-width: 800px) {
     .itemContainer {
+        .titleItem{
+            max-width: 83%;
+            margin: 0px 0px 10px 20px;
+            font-size: 20px;
+        }
         .cardItem {
             flex-direction: column;
 
@@ -133,9 +138,7 @@
 
 @media(max-width: 610px) {
     .itemContainer {
-        .titleItem{
-            font-size: 28px;
-        }
+        
         .sectionSecond {
             .recomendedItems {
                 display: none;

@@ -132,3 +132,17 @@
     transform: scale(1.015);
     transition: 0.1s;
 }
+
+@media(max-width: 775px) {
+    .modalOpen {
+        width: 225px;
+        height: 100%;
+        top: 0%;
+        left: 0%;
+    
+        /* CONTEÚDO DO MODAL */
+        display: flex;
+        flex-direction: column;
+        padding: 10px 14px;
+    }
+}

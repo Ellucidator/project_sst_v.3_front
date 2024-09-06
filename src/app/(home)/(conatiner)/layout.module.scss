@@ -8,3 +8,9 @@
     background-color: $primaryLight;
     width: 90%;
 }
+
+@media(max-width: 775px){
+    .container{
+        width: 99%;
+    }
+}
