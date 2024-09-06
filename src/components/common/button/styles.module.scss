@@ -94,13 +94,9 @@
     background-color: transparent;
     border: none;
 
-    .btnTextsArrow {
+    .btnTexts {
         &:hover {
             .title {
-                color: $tertiary;
-            }
-
-            .arrowDown {
                 color: $tertiary;
             }
         }
@@ -115,7 +111,14 @@
 
 }
 
-
+.arrowUp {
+    transform: rotate(180deg);
+    transition: 0.2s;
+}
+.arrowDown {
+    transition: 0.2s;
+    filter: brightness(0) saturate(100%) invert(100%);
+}
 
 .model7 {
     padding: 0px;
@@ -142,34 +145,6 @@
 
 }
 
-.btnTextsArrow {
-    display: flex;
-    flex-wrap: nowrap;
-
-    .arrowUp {
-        margin-left: 15px;
-        font-weight: bold;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.5s;
-        transform: rotate(45deg);
-        color: $tertiary;
-
-        &:hover {
-            color: $secondary;
-        }
-    }
-
-    .arrowDown {
-        margin-left: 15px;
-        font-weight: bold;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.5s;
-        transform: rotate(-135deg);
-
-    }
-}
 
 .model9 {
     padding: 10px 15px;

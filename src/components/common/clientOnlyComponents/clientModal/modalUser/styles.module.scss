@@ -1,0 +1,32 @@
+@import '../../../../../styles/colors/colors.module.scss';
+
+///////ModalUser///////
+.modalUser {
+    position: fixed;
+    transition: 0.5s;
+
+}
+
+.modalUserOpen {
+    z-index: 10;
+    position: fixed;
+    margin-top: 40px;
+    transform: translate(-10%, -0%);
+    transition: 0.2s;
+    width: auto;
+    background-color: $primary;
+    color: $secondary;
+    box-shadow: 4px 4px 4px #0000007c, -4px 4px 4px #0000007c;
+    /* CONTEÚDO DO MODAL */
+    display: flex;
+    flex-direction: column;
+    padding: 15px 24px;
+    gap: 5px;
+    border-bottom: 2px solid $tertiaryDark;
+}
+
+@media(max-width: 891px){
+    .modalUserOpen{
+        margin-top: 90px;
+    }
+}

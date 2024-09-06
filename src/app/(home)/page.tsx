@@ -15,7 +15,6 @@ export default async function Home() {
     catalogService.getNewestsItems(),
     catalogService.getFeaturedItems()
   ])
-  console.log(promotionFeature)
 
   return (
     <main className={`${styles.home}`}>

@@ -14,13 +14,12 @@ type Props = {
     cookieName?: 'modal' | 'modalUser' | 'modalAddress' | 'modalFilters'
     user_name?: string
     adresses?: UserAddress[]
-    commonType?: 'categories-sub-list' | 'filters'
     tags?: Tag[]|false,
     filters?: string[]
     subCategoryId?: string
 }
 
-const ServerModal = async ({ catalog, cookieName = 'modal', commonType = 'categories-sub-list', user_name, adresses = [], tags, filters, subCategoryId }: Props) => {
+const ServerModal = async ({ catalog, cookieName = 'modal', user_name, adresses = [], tags, filters, subCategoryId }: Props) => {
 
     let classModal = cookieName
     const cookieControl = cookies().get(cookieName)?.value

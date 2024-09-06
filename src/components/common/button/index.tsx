@@ -13,8 +13,10 @@ export interface NewButton {
     subTitle?: string
     iconElem?: {
         src: string
-        position: 'left' | 'right'
+        srcR?: string
+        position: 'left' | 'right' | 'left&right'
         width: number
+        widthR?: number
     }
     arrow?:'arrowUp'|'arrowDown'
 }
@@ -43,15 +45,20 @@ const Button = ({ btnOption, btnModel='model1', btnName, btnAction = 'button', h
                 className={styles.btn + ' ' + styles[btnModel]}
                 {...btnOption}
             >
-                {iconElem && iconElem.position === 'left' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
+                {iconElem && (iconElem.position === 'left' || iconElem.position === 'left&right') ?
+                    <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
                 {subTitle ?
-                    <div className={arrow?styles.btnTextsArrow:styles.btnTexts}>
+                    <div className={styles.btnTexts}>
                         <p className={styles.title}>{btnName}</p>
 
-                        <p className={`${arrow?styles[arrow]:styles.subTitle}`}>{subTitle}</p>
+                        <p className={`${styles.subTitle}`}>{subTitle}</p>
                     </div>
                     : btnName}
-                {iconElem && iconElem.position === 'right' ? <Image src={iconElem.src} alt="icon" className={styles.icon} width={iconElem.width} height={iconElem.width} /> : <></>}
+                {iconElem && (iconElem.position === 'right'|| iconElem.position === 'left&right') ? 
+                    <Image 
+                        src={iconElem.srcR?iconElem.srcR:iconElem.src} alt="icon" 
+                        className={arrow?styles[arrow]:styles.icon} 
+                        width={iconElem.widthR?iconElem.widthR:iconElem.width} height={iconElem.width} /> : <></>}
             </button>
         )
     }

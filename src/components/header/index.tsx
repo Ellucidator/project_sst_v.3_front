@@ -9,6 +9,7 @@ import { Cart } from "@/types/itemsTypes";
 import ServerModal from "../common/serverActionComponent/modal";
 import { helpers } from "@/helpers/helpers";
 import ButtonReturn from "../common/clientOnlyComponents/btnReturn";
+import ClientModal from "../common/clientOnlyComponents/clientModal";
 
 
 const HeaderPrimary = async () => {
@@ -32,7 +33,7 @@ const HeaderPrimary = async () => {
 
                 <div className={`container ${styles.headerContainer}`}>
                     <div className={styles.headerDiv1}>
-                        <ServerModal cookieName="modal" commonType="categories-sub-list" catalog={catalog} />
+                        <ClientModal catalog={catalog} cookieName="modal" />
                         <Link href="/" className={styles.logoHeader}>
                             <Image src='/public/header/logoHeader.svg' alt="logo" className={styles.logo} width={250} height={95} />
                         </Link>
@@ -43,7 +44,8 @@ const HeaderPrimary = async () => {
                         <InputSearch />
 
                         <div className={styles.headerAuth}>
-                            {validate ? <ServerModal cookieName="modalUser" user_name={validate.first_name} />
+                            {validate ? 
+                                <ClientModal cookieName="modalUser" user_name={validate.first_name} />
                                 : <HeaderRightGeneric />}
                         </div>
                         <Link href={'/cart'} className={styles.linkCartDisplayLight}>
