@@ -39,8 +39,10 @@ const verifySession = async () => {
                 body: JSON.stringify({ token: cookieValue }),
                 cache: 'no-store',
                 next: {
-                    tags: ['verify-login']
-                }
+                    tags: ['verify-login'],
+                    revalidate: 0
+                },
+                
             })
 
             const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
@@ -68,7 +70,6 @@ const setSession = async (email: string, password: string) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ email, password }),
-            cache: 'no-store'
         })
         const data = await res.json();
 
@@ -80,7 +81,6 @@ const setSession = async (email: string, password: string) => {
             return true
         }
 
-        revalidateTag('user-info')
         return data
 
     } catch (error) {

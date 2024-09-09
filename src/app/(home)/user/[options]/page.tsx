@@ -7,18 +7,11 @@ import UserPurchasesPage from '@/components/pages/user/purchases'
 import FavoritesPage from '@/components/pages/user/favorites'
 import UserInformation from '@/components/pages/user/information'
 import { redirect } from 'next/navigation'
-import { revalidateTag } from 'next/cache'
 import { Purchase } from '@/types/purchaseTypes'
 import ScrollToTop from '@/components/common/clientOnlyComponents/scrollToTop'
 
 
 export default async function UserPage({params}:{params:{options:string}}) {
-
-    if(params.options === 'pay'){
-        revalidateTag('purchases-user')
-        revalidateTag('one-item')
-        redirect('/user/home')
-    }
 
     const user = await authService.verifySession()
 

@@ -2,7 +2,6 @@ import { userService } from '@/services/userService'
 import Stars from './star'
 import styles from './styles.module.scss'
 import { Avaliation, AvaliationAndCount } from '@/types/avaliationTypes'
-import { revalidateTag } from 'next/cache'
 import PagCountServer from '../../../common/serverActionComponent/pagCount'
 import Button from '../../../common/button'
 import Input from '../../../common/Input-label-components/input&Label'
@@ -25,9 +24,6 @@ const AvaliationsItem = async ({ item_id, avaliation, allAvaliation }: Props) =>
         if (!title || !comment || !rating) return
         
         await userService.createAvaliation({ title, comment, rating, item_id })
-
-        revalidateTag('avaliation-user')
-        revalidateTag('all-avaliations-item')
     }
 
     return (

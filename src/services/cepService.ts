@@ -38,6 +38,7 @@ export async function cepCalculator(cep:string,itemCharacteristics:ItemCharacter
         }),
         next:{
             tags: ['cep-calculator-fetch'],
+            revalidate: 0
         },
         cache: 'no-cache'
     })

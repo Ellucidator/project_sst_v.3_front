@@ -6,17 +6,16 @@ import { authService } from "@/services/authService";
 import HeaderRightGeneric from "./headerRightGeneric";
 import InputSearch from "./inputSearch";
 import { Cart } from "@/types/itemsTypes";
-import ServerModal from "../common/serverActionComponent/modal";
 import { helpers } from "@/helpers/helpers";
-import ButtonReturn from "../common/clientOnlyComponents/btnReturn";
 import ClientModal from "../common/clientOnlyComponents/clientModal";
 import ElementSticky from "../common/clientOnlyComponents/elementSticky";
 
 
 const HeaderPrimary = async () => {
-
-    const validate = await authService.verifySession();
-    const catalog = await catalogService.getCatalog();
+    const [validate, catalog] = await Promise.all([
+        authService.verifySession(),
+        catalogService.getCatalog()
+    ])
 
     let carCount: number = 0
     const cartItems: Cart = helpers.getCookieValue('car')

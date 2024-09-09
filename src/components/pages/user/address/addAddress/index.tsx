@@ -1,7 +1,6 @@
 import styles from './styles.module.scss'
 import { userService } from '@/services/userService'
 import { UserAddress } from '@/types/userTypes'
-import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import Title from '@/components/common/texts/tiltle';
 import Button from '@/components/common/button'
@@ -70,7 +69,6 @@ const AddressUpdate = async ({ addressId, btnBack=true ,modal }: Props) => {
             }
 
         await userService.createAddress(newAddress)
-        revalidateTag('adresses-user')
 
         if(modal) cookies().delete('modalAddressOption')
         else redirect('/user/address')

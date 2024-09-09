@@ -18,7 +18,6 @@ const createUser = async (user: CreateUser) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user),
-            cache: 'no-store'
         })
         if (!res.ok) return false
 
@@ -36,7 +35,8 @@ const showUser = async () => {
 
     const data: UserInfo = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/user',
-        cache: 'default',
+        cache: 'force-cache',
+        revalidate: false,
         tags: ['user-info'],
         authorization: token
     })
@@ -50,7 +50,6 @@ const updatedUser = async (updateAtributes: Omit<UserInfo, 'imgUrl' | 'id'>) => 
 
     const res = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/user',
-        cache: 'default',
         authorization: token,
         method: 'PUT',
         body: JSON.stringify(updateAtributes)
@@ -73,6 +72,8 @@ const createAvaliation = async (avaliation: CreateAvaliation) => {
         body: JSON.stringify(avaliation),
     });
 
+    revalidateTag('avaliation-user')
+
     return data
 }
 
@@ -82,9 +83,9 @@ const getAvaliationByUserId = async (itemId: string|number) => {
     
     const data: Avaliation = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/user/${user.id}-${itemId}/avaliation`,
-        cache: 'default',
+        cache: 'force-cache',
         tags: ['avaliation-user'],
-        revalidate: 10
+        revalidate: false
     })
 
     return data
@@ -96,8 +97,10 @@ async function getUserAddessById(id: string) {
     
     const data: UserAddress = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/user/address/${id}`,
-        cache: 'no-store',
-        authorization: token
+        cache: 'force-cache',
+        revalidate: false,
+        authorization: token,
+        tags: ['one-address-user'],
     })
     if (!data) return {
         receiver_name: '',
@@ -123,8 +126,8 @@ async function getUserAdresses() {
     const data: UserAddress[] = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/user/addresses`,
         authorization:token,
-        cache: 'default',
-        revalidate: 10,
+        cache: 'force-cache',
+        revalidate: false,
         tags: ['adresses-user'],
     })
 
@@ -145,6 +148,7 @@ async function createAddress(address: UserAddress) {
         body: JSON.stringify(address)
     })
 
+    revalidateTag('adresses-user')
 }
 
 async function deleteUserAddress(id: string) {
@@ -174,6 +178,7 @@ async function activeUserAddress(id: string) {
         },
     })
     revalidateTag('adresses-user')
+    revalidateTag('one-address-user')
 }
 
 async function createPurchase(cookieCart:BodyInit) {
@@ -186,7 +191,6 @@ async function createPurchase(cookieCart:BodyInit) {
         authorization: token,
         method: 'POST',
         body: cookieCart,
-        cache: 'no-store',
     })
 
     revalidateTag('purchases-user')
@@ -203,8 +207,8 @@ async function getUserPurchases(perPage: number = 6) {
     const data: Purchases = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/user/show/purchases?page=${page}&perPage=${perPage}`,
         authorization: token,
-        cache: 'default',
-        revalidate: 10,
+        cache: 'force-cache',
+        revalidate: 60*60*24,
         tags: ['purchases-user'],
     })
 
@@ -219,8 +223,8 @@ async function getUserPurchaseById(purchaseId: string) {
     const data: Purchase = await await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/user/show/purchase/${purchaseId}`,
         authorization: token,
-        cache: 'default',
-        revalidate: 10,
+        cache: 'force-cache',
+        revalidate: 60*60*2,
         tags: ['one-purchase-user'],
     })
 
@@ -256,8 +260,8 @@ async function getUserFavorites(perPage: number = 10) {
     const data: Favorites = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/user/show/favorites?page=${page}&perPage=${perPage}`,
         authorization: token,
-        cache: 'default',
-        revalidate: 10,
+        cache: 'force-cache',
+        revalidate: false,
         tags: ['favorites-user'],
     })
 
@@ -271,8 +275,8 @@ async function getUserFavoriteByItemId(itemId: string) {
     const data = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/user/show/favorite/${itemId}`,
         authorization: token,
-        cache: 'default',
-        revalidate: 10,
+        cache: 'force-cache',
+        revalidate: false,
         tags: ['one-favorite-user'],
     })
     if (!data) return false

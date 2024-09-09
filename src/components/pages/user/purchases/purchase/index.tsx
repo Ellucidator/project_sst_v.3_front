@@ -1,7 +1,6 @@
 import { userService } from '@/services/userService'
 import styles from './styles.module.scss'
 import Image from 'next/image'
-import { revalidateTag } from 'next/cache'
 import Title from '@/components/common/texts/tiltle';
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 import PurchaseInfo from '@/components/common/cards/cardPurchase/purchaseInfo';
@@ -12,7 +11,6 @@ type Props = {
 }
 
 const PurchasePage = async({purchaseId}: Props)=> {
-    revalidateTag('one-purchase-user')
 
     const purchase = await userService.getUserPurchaseById(purchaseId)
 

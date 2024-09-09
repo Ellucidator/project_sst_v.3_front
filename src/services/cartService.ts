@@ -52,7 +52,8 @@ async function getItemsCart(): Promise<[ItemPromotion[], number, any]> {
             body: JSON.stringify(ids),
             cache: 'no-store',
             next: {
-                tags: ['get-items-cart']
+                tags: ['get-items-cart'],
+                revalidate: 0
             }
         })
         const data: ItemPromotion[] = await res.json();
