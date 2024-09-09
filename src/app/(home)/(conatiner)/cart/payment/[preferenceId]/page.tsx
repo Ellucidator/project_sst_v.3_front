@@ -9,7 +9,6 @@ import ItemsTable from "@/components/common/itemsTable";
 export default async function Payment({ params }: { params: { preferenceId: string } }) {
     
     const [items, total, frete] = await cartServices.getItemsCart()
-    console.log(items, total, frete)
     // if (!items || items.length === 0) redirect('/')
 
 

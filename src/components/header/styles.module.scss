@@ -156,6 +156,10 @@
 
                 .linkCartDisplayLight {
                     display: flex;
+                    position: fixed;
+                    top: 145px;
+                    right: 50px;
+                    background-color: $primary;
                 }
             }
 

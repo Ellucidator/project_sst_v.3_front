@@ -9,6 +9,7 @@ import CepCalculator from '@/components/common/cepCalculator'
 import CartTable from '@/components/pages/cart/cartTable'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 import { cartServices } from '@/services/cartService';
+import Loading from '@/components/common/clientOnlyComponents/loading';
 
 
 
@@ -64,6 +65,7 @@ export default async function Cart() {
                         <Button btnName='FINALIZAR COMPRA' btnModel='model5' btnAction='submit'
                             iconElem={{ src: '/public/common/bag-check.svg', position: 'left', width: 35 }}
                             btnOption={{ style: { padding: '10px 20px', fontSize: '22px' } }} />
+                        <Loading model='modelArea'/>
                     </form>
 
                 </div>
