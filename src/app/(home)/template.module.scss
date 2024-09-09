@@ -1,10 +1,11 @@
+@import '../../styles/colors/colors.module.scss';
+
 .template{
     min-height: 100%;
     min-width: 100%;
-    font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:#1d1d1d ;
+    background-image: linear-gradient(to top, $tertiaryDark, $primaryDark 60%);
 }

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Tomorrow } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const tomorrow = Tomorrow({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Ségio Setup",
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` ${inter.className}`}>
+    <html lang="pt-br">
+      <body className={` ${tomorrow.className}`}>
         {children}
         <Footer />
       </body>
