@@ -1,8 +1,8 @@
 export interface Avaliation{
+    user_id?: number
     rating: number | string
     title: string
     comment: string
-    created_at?: Date
 }
 
 export interface CreateAvaliation extends Avaliation{

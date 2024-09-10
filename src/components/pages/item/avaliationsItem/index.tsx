@@ -9,10 +9,10 @@ import Loading from '../../../common/clientOnlyComponents/loading'
 
 type Props = {
     item_id: number | string
-    avaliation?: Avaliation | false
+    userAvaliation?: Avaliation | false
     allAvaliation?: AvaliationAndCount
 }
-const AvaliationsItem = async ({ item_id, avaliation, allAvaliation }: Props) => {
+const AvaliationsItem = async ({ item_id, userAvaliation, allAvaliation }: Props) => {
     const formAvaliationAction = async (form: FormData) => {
         'use server'
 
@@ -39,11 +39,11 @@ const AvaliationsItem = async ({ item_id, avaliation, allAvaliation }: Props) =>
                     <Button btnWidth='100%' btnModel='model1' btnName='ENVIAR' btnAction='submit' />
                     <Loading model='modelLocal'/>
                 </form>
-                {avaliation ? (
+                {userAvaliation ? (
                     <section className={styles.avaliationUser}>
-                        <p className={styles.avaliationStars}>{avaliation.rating}</p>
-                        <p className={styles.avaliationTitle}>{avaliation.title}</p>
-                        <p className={styles.avaliationComment} >{avaliation.comment}</p>
+                        <p className={styles.avaliationStars}>{userAvaliation.rating}</p>
+                        <p className={styles.avaliationTitle}>{userAvaliation.title}</p>
+                        <p className={styles.avaliationComment} >{userAvaliation.comment}</p>
                     </section>
                 ) : null}
             </div>
@@ -52,6 +52,7 @@ const AvaliationsItem = async ({ item_id, avaliation, allAvaliation }: Props) =>
                 
                 {allAvaliation?.rows ? (
                     allAvaliation.rows.map((avaliation,i) => {
+                        if(userAvaliation && userAvaliation.user_id === avaliation.user_id) return <></>
                         return (
                             <div key={i + avaliation.title} className={styles.avaliationUser}>
                                 <p className={styles.avaliationStars}>{avaliation.rating}</p>

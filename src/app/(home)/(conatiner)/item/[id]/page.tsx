@@ -123,7 +123,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                     <DescriptionList tagList={item.TagValues} />
                 </div>
                 <div className={styles.avaliations} >
-                    <AvaliationsItem item_id={item.id} avaliation={userAvaliation} allAvaliation={avaliations} />
+                    <AvaliationsItem item_id={item.id} userAvaliation={userAvaliation} allAvaliation={avaliations} />
                 </div>
             </div>
         </>
