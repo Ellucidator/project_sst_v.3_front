@@ -8,10 +8,28 @@
     display: flex;
     flex-direction: column;
 
-    .titleItem {
-        max-width: 70%;
-        margin: 0px 0px 10px 80px;
-        font-size: 28px;
+    .divTitle{
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        .titleItem {
+            max-width: 70%;
+            margin: 0px 0px 10px 80px;
+            font-size: 28px;
+        }
+        .average {
+            flex: 1;
+            align-items: flex-end;
+            justify-content: flex-end;
+            font-size: 15px;
+            display: flex;
+            flex-wrap: nowrap;
+            font-weight: bold;
+            gap: 2px;
+            .star{
+                margin-bottom: 2px;
+            }
+        }
     }
 
     .cardItem {
@@ -112,10 +130,12 @@
 
 @media(max-width: 800px) {
     .itemContainer {
-        .titleItem{
-            max-width: 83%;
-            margin: 0px 0px 10px 20px;
-            font-size: 20px;
+        .divTitle{
+            .titleItem{
+                max-width: 83%;
+                margin: 0px 0px 10px 20px;
+                font-size: 20px;
+            }
         }
         .cardItem {
             flex-direction: column;

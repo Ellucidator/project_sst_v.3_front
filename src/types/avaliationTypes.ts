@@ -12,4 +12,5 @@ export interface CreateAvaliation extends Avaliation{
 export interface AvaliationAndCount{
     count: number
     rows: Avaliation[]
+    average: string
 }

@@ -50,8 +50,18 @@ async function getSimpleRequestAndHandleError({url, cache, revalidate, tags, met
 
 }
 
+
+function convertToNumber(value: string) {
+    const number = parseFloat(value)
+
+    if(Number.isInteger(number)) return parseInt(value)
+
+    return number
+}
+
 export const helpers = {
     getCookieValue,
     getCookieIsNumber,
-    getSimpleRequestAndHandleError
+    getSimpleRequestAndHandleError,
+    convertToNumber
 }

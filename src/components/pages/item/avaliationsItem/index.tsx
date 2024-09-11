@@ -6,6 +6,7 @@ import PagCountServer from '../../../common/serverActionComponent/pagCount'
 import Button from '../../../common/button'
 import Input from '../../../common/Input-label-components/input&Label'
 import Loading from '../../../common/clientOnlyComponents/loading'
+import Image from 'next/image'
 
 type Props = {
     item_id: number | string
@@ -41,7 +42,10 @@ const AvaliationsItem = async ({ item_id, userAvaliation, allAvaliation }: Props
                 </form>
                 {userAvaliation ? (
                     <section className={styles.avaliationUser}>
-                        <p className={styles.avaliationStars}>{userAvaliation.rating}</p>
+                        <p className={styles.avaliationStars}>
+                            {userAvaliation.rating}
+                            <Image className={styles.star} src='/public/common/star.svg' alt="star" width={20} height={20} />
+                        </p>
                         <p className={styles.avaliationTitle}>{userAvaliation.title}</p>
                         <p className={styles.avaliationComment} >{userAvaliation.comment}</p>
                     </section>
@@ -55,7 +59,10 @@ const AvaliationsItem = async ({ item_id, userAvaliation, allAvaliation }: Props
                         if(userAvaliation && userAvaliation.user_id === avaliation.user_id) return <></>
                         return (
                             <div key={i + avaliation.title} className={styles.avaliationUser}>
-                                <p className={styles.avaliationStars}>{avaliation.rating}</p>
+                                <p className={styles.avaliationStars}>
+                                    {avaliation.rating}
+                                    <Image className={styles.star} src='/public/common/star.svg' alt="star" width={20} height={20} />
+                                </p>
                                 <p className={styles.avaliationTitle}>{avaliation.title}</p>
                                 <p className={styles.avaliationComment} >{avaliation.comment}</p>
                             </div>

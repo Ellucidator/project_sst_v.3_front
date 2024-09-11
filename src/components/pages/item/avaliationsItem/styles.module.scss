@@ -46,8 +46,17 @@
             background-color: rgb($primary, 0.5);
             
             .avaliationStars{
-                align-self: flex-end;
-                margin: 10px 0px;
+                flex: 1;
+                align-items: flex-end;
+                justify-content: flex-end;
+                font-size: 15px;
+                display: flex;
+                flex-wrap: nowrap;
+                font-weight: bold;
+                gap: 2px;
+                .star{
+                    margin-bottom: 2px;
+                }
             }
     
             .avaliationTitle{

@@ -16,6 +16,8 @@ import ButtonActionById from '@/components/common/serverActionComponent/buttonAc
 import PromotionMiniBanner from '@/components/common/clientOnlyComponents/promotionMiniBanner'
 import ProductContainer from '@/components/common/productContainer'
 import Loading from '@/components/common/clientOnlyComponents/loading'
+import { helpers } from '@/helpers/helpers'
+import Image from 'next/image'
 
 
 
@@ -31,13 +33,12 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     item.ItemCharacteristic = itemCharacteristics
     const recomendedItems = await catalogService.getItensBySubCategory(`${item.sub_category_id!}`, 4)
-    .then(
-        (items)=> {
-            if(items)return items.Items!.filter((item) => item.id !== parseInt(params.id))
-            else return false
-        }
-    )
-
+        .then(
+            (items) => {
+                if (items) return items.Items!.filter((item) => item.id !== parseInt(params.id))
+                else return false
+            }
+        )
 
     const quantityInStock = Array.from({ length: item.in_stock }, (_, i) => i + 1)
 
@@ -60,16 +61,23 @@ export default async function Item({ params }: { params: { id: string } }) {
         })
 
     }
-
+    const average = helpers.convertToNumber(avaliations.average)
+    
     return (
         <>
             <div className={` ${styles.itemContainer}`}>
-                <p className={styles.titleItem}>{item.name}</p>
-                <ButtonActionById
-                    idAction={item.id} actionFunction={favorite ? userService.deleteUserFavorites : userService.addUserFavorites}
-                    formOption={{ style: { position: 'absolute', alignSelf: 'flex-end' } }}
-                    buttonAttribute={{ btnModel: 'model10', btnAction: 'submit', iconElem: { src: `/public/common/${favorite ? 'heart-fill' : 'heart'}.svg`, position: 'left', width: 15 } }}
-                />
+                <div className={styles.divTitle}>
+                    <p className={styles.titleItem}>{item.name}</p>
+                    <p className={styles.average}>
+                        {average}
+                        <Image className={styles.star} src='/public/common/star.svg' alt="star" width={20} height={20} />
+                        {`(${avaliations.count})`}
+                    </p>
+                    <ButtonActionById
+                        idAction={item.id} actionFunction={favorite ? userService.deleteUserFavorites : userService.addUserFavorites}
+                        buttonAttribute={{ btnModel: 'model10', btnAction: 'submit', iconElem: { src: `/public/common/${favorite ? 'heart-fill' : 'heart'}.svg`, position: 'left', width: 15 } }}
+                    />
+                </div>
                 <div className={styles.cardItem}>
 
                     <SlideSectionItem allItems={item} />
@@ -98,7 +106,7 @@ export default async function Item({ params }: { params: { id: string } }) {
                                     <input type="hidden" name='price' value={item.promotion ? item.ItemPromotion!.price : item.price} />
 
                                     <Button btnWidth='100%' btnModel='model5' btnName='Comprar' subTitle='Adicionar ao carrinho' btnAction='submit' iconElem={{ src: cartIcon, position: 'right', width: 35 }} />
-                                    <Loading model='modelArea'/>
+                                    <Loading model='modelArea' />
                                 </form>
                             </section>
                         </div>
