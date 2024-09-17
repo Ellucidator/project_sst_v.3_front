@@ -10,6 +10,7 @@ import CartTable from '@/components/pages/cart/cartTable'
 import ButtonReturn from '@/components/common/clientOnlyComponents/btnReturn';
 import { cartServices } from '@/services/cartService';
 import Loading from '@/components/common/clientOnlyComponents/loading';
+import RemoveComponentCart from '@/components/pages/cart/removeComponentCart';
 
 
 
@@ -44,6 +45,7 @@ export default async function Cart() {
     return (
         <>
             <div className={`container ${styles.cartBody}`}>
+                <RemoveComponentCart/>
                 <ButtonReturn/>
                 <Title model='model1' fontSize="25px" titleText="MEU CARRINHO" />
                 <div className={styles.cartInfo}>

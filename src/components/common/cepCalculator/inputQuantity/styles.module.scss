@@ -2,6 +2,7 @@
 
 
 .divQuant{
+    padding: 0px 5px;
     display: flex;
     flex-wrap: nowrap;
     align-self: flex-end;
@@ -11,7 +12,7 @@
     justify-content: center;
     border-radius: 5px;
     border: 1px solid $secondaryDark;
-
+    font-size: 15px;
     .selectQuant{
         background-color: transparent;
         border: none;

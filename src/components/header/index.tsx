@@ -47,7 +47,7 @@ const HeaderPrimary = async () => {
                                 <ClientModal cookieName="modalUser" user_name={validate.first_name} />
                                 : <HeaderRightGeneric />}
                         </div>
-                        <Link href={'/cart'} className={styles.linkCartDisplayLight}>
+                        <Link id="cartCount" href={'/cart'} className={styles.linkCartDisplayLight}>
                             <p className={styles.cartCount}>{carCount}</p>
                             <Image src='/public/header/cart-fill.svg' alt="search" className={styles.cartIcon}
                                 width={30} height={30} />
