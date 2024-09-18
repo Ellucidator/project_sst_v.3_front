@@ -5,7 +5,7 @@ async function getCompanyInfo() {
 
     const companyInfo: CompanyInformation = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + '/company-information',
-        cache:'force-cache',
+        cache:'default',
         revalidate:60*60*24
     })
 

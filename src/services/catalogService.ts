@@ -7,7 +7,7 @@ import { Tag } from "@/types/tagTypes";
 async function getCatalog() {
     const categories: Categories[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/categories',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
 
@@ -18,7 +18,7 @@ async function getSubCategories() {
 
     const subCategories: SubCategories[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/sub-categories',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
 
@@ -27,7 +27,7 @@ async function getSubCategories() {
 async function getTags(subCategoryId: string) {
     const tags: Tag[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/tags/${subCategoryId}`,
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
     
@@ -38,7 +38,7 @@ async function getAllPromotions() {
 
     const promotions: Promotion[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/promotions',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
 
@@ -48,7 +48,7 @@ async function getFeaturedPromotion() {
 
     const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/promotions/featured',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*12
     })
     
@@ -62,7 +62,7 @@ async function getPromotionById(id: string) {
 
         const promotion: PromotionWithItems|false = await helpers.getSimpleRequestAndHandleError({
             url: process.env.API_HOST + `/promotions/${id}?page=${page}&perPage=10&order=${itemsOrder}&subCategoryId=${subCategoryId}`,
-            cache: 'force-cache',
+            cache: 'default',
             revalidate: 60*60*12
         })
 
@@ -73,7 +73,7 @@ async function getNewestsItems() {
 
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/items/newests',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
     
@@ -84,7 +84,7 @@ async function getFeaturedItems() {
 
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/items/highlighted',
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
     
@@ -96,7 +96,7 @@ async function getSearchItems(name: string) {
 
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/items/search?name=${name}`,
-        cache: 'force-cache',
+        cache: 'default',
         revalidate: 60*60*24
     })
     
@@ -125,7 +125,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
 
             const data:SubCategories|false = await helpers.getSimpleRequestAndHandleError({
                 url: process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,
-                cache: 'force-cache',
+                cache: 'default',
                 revalidate: 60*60*24
             })
 
@@ -135,7 +135,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
 
             const data: SubCategories|false = await helpers.getSimpleRequestAndHandleError({
                 url: process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`,
-                cache: 'force-cache',
+                cache: 'default',
                 revalidate: 60*60*24
             })
 
