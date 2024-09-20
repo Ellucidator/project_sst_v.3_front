@@ -26,7 +26,7 @@ async function getAllAvaliationsByItemId(itemId:string) {
     const avaliations: AvaliationAndCount = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/item/${itemId}/avaliations?page=${page}`,
         cache:'default',
-        revalidate:10,
+        revalidate:86400,
         tags:['all-avaliations-item']
     })
     return avaliations
