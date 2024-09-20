@@ -1,7 +1,6 @@
 import { cookies } from "next/headers"
 import * as jose from 'jose'
 import { UserPayload } from "@/types/userTypes"
-import { revalidateTag } from "next/cache"
 import { helpers } from "@/helpers/helpers"
 
 
@@ -76,7 +75,7 @@ const setSession = async (email: string, password: string) => {
 
         if (data.token) {
             cookies().set('token', data.token, {
-                maxAge: 60 * 60 * 24,
+                maxAge: 86400,
             })
             return true
         }

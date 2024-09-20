@@ -6,7 +6,7 @@ async function getOneItem(itemId:string) {
     const item: ItemFull = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/items/${itemId}`,
         cache:'default',
-        revalidate:60*2,
+        revalidate:120,
         tags:['one-item']
     })
     return item
@@ -16,7 +16,7 @@ async function getItemCharacteristics(itemId:string) {
     const characteristics: ItemCharacteristics = await helpers.getSimpleRequestAndHandleError({
         url:process.env.API_HOST + `/item/${itemId}/characteristics`,
         cache:'default',
-        revalidate:60*60,
+        revalidate:3600,
     })
     return characteristics
 }

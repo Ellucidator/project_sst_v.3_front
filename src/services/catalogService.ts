@@ -8,7 +8,7 @@ async function getCatalog() {
     const categories: Categories[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/categories',
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
 
     return categories
@@ -19,7 +19,7 @@ async function getSubCategories() {
     const subCategories: SubCategories[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/sub-categories',
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
 
     return subCategories
@@ -28,7 +28,7 @@ async function getTags(subCategoryId: string) {
     const tags: Tag[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/tags/${subCategoryId}`,
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
     
     return tags
@@ -39,7 +39,7 @@ async function getAllPromotions() {
     const promotions: Promotion[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/promotions',
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
 
     return promotions
@@ -74,7 +74,7 @@ async function getNewestsItems() {
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/items/newests',
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
     
     return items
@@ -85,7 +85,7 @@ async function getFeaturedItems() {
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + '/items/highlighted',
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
     
     return items
@@ -97,7 +97,7 @@ async function getSearchItems(name: string) {
     const items: Item[]|false = await helpers.getSimpleRequestAndHandleError({
         url: process.env.API_HOST + `/items/search?name=${name}`,
         cache: 'default',
-        revalidate: 60*60*24
+        revalidate: 86400
     })
     
     return items
@@ -126,7 +126,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
             const data:SubCategories|false = await helpers.getSimpleRequestAndHandleError({
                 url: process.env.API_HOST + `/items/search?name=${subCategoryId}&order=${itemsOrder}&page=${page}&perPage=${perPage}`,
                 cache: 'default',
-                revalidate: 60*60*24
+                revalidate: 86400
             })
 
             return data
@@ -136,7 +136,7 @@ async function getItensBySubCategory(subCategoryId: string, perPage: number = 10
             const data: SubCategories|false = await helpers.getSimpleRequestAndHandleError({
                 url: process.env.API_HOST + `/sub-categories/${subCategoryId}?order=${itemsOrder}&page=${page}&perPage=${perPage}`,
                 cache: 'default',
-                revalidate: 60*60*24
+                revalidate: 86400
             })
 
             return data

@@ -208,7 +208,7 @@ async function getUserPurchases(perPage: number = 6) {
         url:process.env.API_HOST + `/user/show/purchases?page=${page}&perPage=${perPage}`,
         authorization: token,
         cache: 'default',
-        revalidate: 60*60*24,
+        revalidate: 86400,
         tags: ['purchases-user'],
     })
 
@@ -224,7 +224,7 @@ async function getUserPurchaseById(purchaseId: string) {
         url:process.env.API_HOST + `/user/show/purchase/${purchaseId}`,
         authorization: token,
         cache: 'default',
-        revalidate: 60*60*2,
+        revalidate: 7200,
         tags: ['one-purchase-user'],
     })
 
