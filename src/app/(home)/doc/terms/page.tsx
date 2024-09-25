@@ -1,7 +1,4 @@
-export default async function Privacy() {
-
-
-
+export default async function Terms() {
 
     return (
         <>
