@@ -178,6 +178,8 @@
     border: 2px solid $tertiary;
     border-radius: 100%;
     padding: 7px;
+    min-width: 30px;
+    min-height: 30px;
     transition: 0.1s;
     margin: 5px 5px 0px 0px;
     background-color: $primary;
