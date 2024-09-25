@@ -15,10 +15,10 @@ export default async function Terms() {
                 </p>
                 <ol style={{ color: 'rgb(68, 68, 68)' }}>
                     <li style={{ color: 'rgb(68, 68, 68)' }}>modificar ou copiar os materiais;</li>
-                    <li style={{ color: 'rgb(68, 68, 68)' }}>usar os materiais para qualquer finalidade comercial ou para exibição pública (comercial ou não comercial);</li>
+                    <li style={{ color: 'rgb(68, 68, 68)' }}>usar os materiais para qualquer finalidade comercial ou para exibição pública -comercial ou não comercial-;</li>
                     <li style={{ color: 'rgb(68, 68, 68)' }}>tentar descompilar ou fazer engenharia reversa de qualquer software contido no site e-commerce;</li>
                     <li style={{ color: 'rgb(68, 68, 68)' }}>remover quaisquer direitos autorais ou outras notações de propriedade dos materiais; ou</li>
-                    <li style={{ color: 'rgb(68, 68, 68)' }}>transferir os materiais para outra pessoa ou 'espelhar' os materiais em qualquer outro servidor.</li>
+                    <li style={{ color: 'rgb(68, 68, 68)' }}>transferir os materiais para outra pessoa ou -espelhar- os materiais em qualquer outro servidor.</li>
                 </ol>
                 <p style={{ color: 'rgb(68, 68, 68)' }}>
                     Esta licença será automaticamente rescindida se você violar alguma dessas restrições e poderá ser rescindida por e-commerce a qualquer momento. Ao encerrar a visualização desses materiais ou após o término desta licença, você deve apagar todos os materiais baixados em sua posse, seja em formato eletrónico ou impresso.
@@ -26,13 +26,13 @@ export default async function Terms() {
 
                 <h2 style={{ color: 'rgb(68, 68, 68)' }}>3. Isenção de responsabilidade</h2>
                 <ol style={{ color: 'rgb(68, 68, 68)' }}>
-                    <li style={{ color: 'rgb(68, 68, 68)' }}>Os materiais no site da e-commerce são fornecidos 'como estão'. e-commerce não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos.</li>
+                    <li style={{ color: 'rgb(68, 68, 68)' }}>Os materiais no site da e-commerce são fornecidos -como estão-. e-commerce não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos.</li>
                     <li style={{ color: 'rgb(68, 68, 68)' }}>Além disso, o e-commerce não garante ou faz qualquer representação relativa à precisão, aos resultados prováveis ou à confiabilidade do uso dos materiais em seu site ou de outra forma relacionado a esses materiais ou em sites vinculados a este site.</li>
                 </ol>
 
                 <h2 style={{ color: 'rgb(68, 68, 68)' }}>4. Limitações</h2>
                 <p style={{ color: 'rgb(68, 68, 68)' }}>
-                    Em nenhum caso o e-commerce ou seus fornecedores serão responsáveis ​​por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro ou devido a interrupção dos negócios) decorrentes do uso ou da incapacidade de usar os materiais em e-commerce, mesmo que e-commerce ou um representante autorizado da e-commerce tenha sido notificado oralmente ou por escrito da possibilidade de tais danos. Como algumas jurisdições não permitem limitações em garantias implícitas, ou limitações de responsabilidade por danos consequentes ou incidentais, essas limitações podem não se aplicar a você.
+                    Em nenhum caso o e-commerce ou seus fornecedores serão responsáveis ​​por quaisquer danos -incluindo, sem limitação, danos por perda de dados ou lucro ou devido a interrupção dos negócios- decorrentes do uso ou da incapacidade de usar os materiais em e-commerce, mesmo que e-commerce ou um representante autorizado da e-commerce tenha sido notificado oralmente ou por escrito da possibilidade de tais danos. Como algumas jurisdições não permitem limitações em garantias implícitas, ou limitações de responsabilidade por danos consequentes ou incidentais, essas limitações podem não se aplicar a você.
                 </p>
 
                 <h2 style={{ color: 'rgb(68, 68, 68)' }}>5. Precisão dos materiais</h2>
