@@ -15,7 +15,7 @@ export default async function UserPage({params}:{params:{options:string}}) {
 
     const user = await authService.verifySession()
 
-    if(!user)redirect('/')
+    if(!user)redirect('/form/login')
 
     const [userAddress,purchases,newestFavorites] = await Promise.all([
         userService.getUserAdresses(),

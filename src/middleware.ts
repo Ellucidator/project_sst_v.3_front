@@ -4,7 +4,8 @@ import { authService } from './services/authService'
 export async function middleware(request: NextRequest) {
 
     const verifyLogin = await authService.verifySession()
-    if(!verifyLogin) return NextResponse.redirect(new URL('/', request.url))
+
+    if(!verifyLogin) return NextResponse.redirect(new URL('/form/login', request.url))
     
 }
 
