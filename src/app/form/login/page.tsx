@@ -19,12 +19,13 @@ const Login = async () => {
     const handlerSubmit = async (form: FormData) => {
         'use server'
 
-        const login = form.get('email')?.valueOf();
-        const password = form.get('password')?.valueOf();
+        const login = form.get('email')?.toString();
+        const password = form.get('password')?.toString();
+        const remember = form.get('remember')?.toString() || 'off';
+        
+        if (login && password) {
 
-        if (typeof login === 'string' && typeof password === 'string') {
-
-            const session = await authService.setSession(login, password);
+            const session = await authService.setSession(login, password, remember);
 
             if (!session.error) {
                 const redirectCookie = cookies().get('redirect')?.value
@@ -53,7 +54,10 @@ const Login = async () => {
 
                     <Input inputColor='model1' divWidth='100%' mode='label&input' labelText='Senha:' inputOptions={{ required: true, type: 'password', name: 'password', id: 'password', placeholder: 'Sua senha' }} />
                     {verify.error === 'password' ? <p className={styles.verifyP}>Senha incorreta</p> : null}
-
+                    <div className={styles.remember}>
+                        <input type="checkbox" id="remember" name="remember" />
+                        <label htmlFor="remember"> Manter conectado</label>
+                    </div>
                     <br />
                     <Button btnModel='model1' btnAction='submit' btnName='ENTRAR' btnWidth='80%' />
                 </form>
