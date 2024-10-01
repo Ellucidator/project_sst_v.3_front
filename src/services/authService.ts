@@ -61,7 +61,7 @@ const verifySession = async () => {
 
 }
 
-const setSession = async (email: string, password: string, remember: string) => {
+const setSession = async (email: string, password: string, remember: string = 'off') => {
     try {
         const res = await fetch(process.env.API_HOST + '/login', {
             method: 'POST',
