@@ -52,6 +52,8 @@ async function getSimpleRequestAndHandleError({url, cache, revalidate, tags, met
 
 
 function convertToNumber(value: string) {
+    if(!value) return 0
+    
     const number = parseFloat(value)
 
     if(Number.isInteger(number)) return parseInt(value)
