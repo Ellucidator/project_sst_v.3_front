@@ -49,7 +49,8 @@ const CategoriesAndSubListClient =  ({ categories }: Props) => {
                             className={styles.subCategoryList}>
                             {classCondition.name === category.name && classCondition.open === true?category.SubCategories.map((subCategory) => (
                                 <li key={subCategory.id} className={styles.subCategory} >
-                                        <Button btnAction='link' href={`/api/catalog/${category.name.toLowerCase()}-${subCategory.id}`} btnName={subCategory.name} btnModel='model6' />
+                                        {<Button btnAction='link' href={`/catalog/${category.name.toLowerCase()}/${subCategory.id}`} btnName={subCategory.name} btnModel='model6' />}
+                                        
                                 </li>
                             )):<></>}
                         </ul>

@@ -62,7 +62,6 @@ export default async function Item({ params }: { params: { id: string } }) {
 
     }
     const average = helpers.convertToNumber(avaliations.average)
-    
     return (
         <>
             <div className={` ${styles.itemContainer}`}>

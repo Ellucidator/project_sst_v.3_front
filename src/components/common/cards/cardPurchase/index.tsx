@@ -17,7 +17,7 @@ const CardPurchase = ({ userPurchase }: Props) => {
             <div className={styles.userPurchaseImg}>
                 {userPurchase.ItemSells.map((item, i) => {
                     if (i < 4) return (
-                        <Image key={item.Item.name} src={process.env.API_HOST + `/files/${item.Item.thumbnail_url}`} alt={item.Item.name} width={50} height={50} />
+                        <Image key={item.Item.name} className={userPurchase.ItemSells.length > 1 ? styles.multipleImg : styles.singleImg} src={process.env.API_HOST + `/files/${item.Item.thumbnail_url}`} alt={item.Item.name} width={50} height={50} />
                     )
                 })}
             </div>

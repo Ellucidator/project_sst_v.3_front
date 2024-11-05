@@ -21,9 +21,16 @@
         background-color: $primary;
         margin-right: 40px;
 
-        img{
+        .singleImg{
             flex: 1;
+            border: 1px solid $secondary;
+
+        }
+
+        .multipleImg{
             min-width: 50px;
+            max-width: 50px;
+            max-height: 50px;
             min-height: 50px;
             border: 1px solid $secondary;
         }
