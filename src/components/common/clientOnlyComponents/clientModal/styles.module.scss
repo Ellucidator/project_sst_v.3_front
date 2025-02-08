@@ -21,7 +21,8 @@
     font-size: 18px;
     border-radius: 20%;
     padding: 10px 10px;
-    border-left: 4px solid $tertiaryDark;
+    background-color: $tertiaryDark;
+    border-left: 4px solid $tertiary;
     border-bottom: 1px solid transparent;
     transition: 0.5s linear;
 
